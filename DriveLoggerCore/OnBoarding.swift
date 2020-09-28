@@ -31,7 +31,7 @@ struct OboardingGoal: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("I want to drive:").font(.title).fontWeight(.bold).multilineTextAlignment(.center)
+            Text("In total I need to drive:").font(.title).fontWeight(.bold).multilineTextAlignment(.center)
 
             Picker("I want to drive", selection: $goal) {
                 ForEach(1...100, id: \.self) {time in

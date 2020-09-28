@@ -9,6 +9,7 @@ import SwiftUI
 import DriveLoggerServicePackage
 
 public struct DriveEditor: View {
+    let dlService = DriveLoggerService()
     let save: ((Drive) -> ())
     let delete: ((Drive) -> ())
     let cancel: (()->())
@@ -71,7 +72,11 @@ public struct DriveEditor: View {
                     
                     DatePicker("Start Time", selection: self.$drive.startTime, in: ...Date()).padding(.vertical)
                     DatePicker("End Time", selection: self.$drive.endTime, in: self.drive.startTime...Date()).padding(.vertical)
-                    
+                    HStack {
+                        Text("Total Time")
+                        Spacer()
+                        Text("\(self.dlService.displayTimeInterval(self.drive.endTime.timeIntervalSince(self.drive.startTime)).value)\(self.dlService.displayTimeInterval(self.drive.endTime.timeIntervalSince(self.drive.startTime)).unit)")
+                    }
                     Spacer()
                     BlackButton("Save", action: {self.save(self.drive)})
                 }.padding().background(Color.white)

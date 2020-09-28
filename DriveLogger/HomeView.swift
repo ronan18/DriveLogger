@@ -12,15 +12,30 @@ struct HomeView: View {
     @EnvironmentObject var appState: AppState
     @State var presentedDrive: Drive = Drive(startTime: Date(), endTime: Date(), location: "loading")
     @State var driveEditor = false
+    @State var recentDrivesLimit = 3
+    @State var recentDrivesListHeight: CGFloat = 200
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 NavigationView {
                     
                     ZStack {
+                       
                         VStack {
                             ScrollView {
                                 //Text(String(Int(geometry.size.height)))
+                    
+                                   /* HStack {
+                                        Spacer()
+                                        NavigationLink(
+                                            destination: Text("Destination"),
+                                            label: {
+                                                Image(systemName: "gearshape").font(.headline)
+                                            }).foregroundColor(.black)
+                                        
+                                    }.padding(.trailing).frame(height: 10)*/
+                                   
                                 if (appState.dlService.displayTimeInterval(appState.state.totalTime).value == "0") {
                                     TimeStat(value: appState.dlService.displayTimeInterval(appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.totalTime).unit, description: "Time Driven").padding(.bottom, 30).padding(.top, 20)
                                 } else {
@@ -30,14 +45,14 @@ struct HomeView: View {
                                 HStack {
                                     Text("recent drives").font(.headline)
                                     Spacer()
-                                    NavigationLink(destination: DriveListView()) {
+                                    NavigationLink(destination: DriveListView(), tag: 1, selection: self.$appState.viewAllDrivesScreen) {
                                         Text("show more")
                                     }
                                 }.padding(.horizontal)
                                 if (appState.state.drives.count > 0) {
                                     VStack {
-                                        if (appState.state.drivesSortedByDate.count > 3) {
-                                            ForEach(appState.state.drivesSortedByDate.prefix(through: 2)) { drive in
+                                        if (appState.state.drivesSortedByDate.count > self.recentDrivesLimit) {
+                                            ForEach(appState.state.drivesSortedByDate.prefix(through: self.recentDrivesLimit - 1)) { drive in
                                                 DriveCard(drive, action: {drive in self.presentedDrive = drive;
                                                             print("presneting drive", drive.location)
                                                             self.appState.computeStatistics()
@@ -54,7 +69,7 @@ struct HomeView: View {
                                         }
                                         
                                         Spacer()
-                                    }.frame(minHeight: 200)
+                                    }.frame(minHeight: self.recentDrivesListHeight)
                                 } else {
                                     VStack {
                                         HStack {
@@ -69,12 +84,12 @@ struct HomeView: View {
                                 }
                                 
                                 HStack {
-                                    Text("Statistics").font(.headline)
+                                    Text("statistics").font(.headline)
                                     Spacer()
                                     
                                 }.padding(.top, 20).padding(.horizontal)
                                 HStack {
-                                    StatCard(width: geometry.size.width, value: String(appState.state.percentComplete), unit: "%", description: "complete")
+                                    ProgressStatCard(width: geometry.size.width, value: Double(appState.state.percentComplete), unit: "%", description: "complete")
                                     Spacer()
                                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.averageDriveDuration).value, unit: appState.dlService.displayTimeInterval(appState.state.averageDriveDuration).unit, description: "average drive duration")
                                 }.padding(.horizontal)
@@ -102,7 +117,7 @@ struct HomeView: View {
                         
                     }.navigationBarTitle("")
                     .navigationBarHidden(true)
-                }
+                }.navigationViewStyle(StackNavigationViewStyle())
                 Text("").sheet(isPresented: self.$driveEditor, content: {
                     if (self.presentedDrive != nil) {
                         DriveEditor(self.presentedDrive, save: {drive in
@@ -121,7 +136,18 @@ struct HomeView: View {
                     }
                     
                 })
-            }.environment(\.colorScheme, .light).preferredColorScheme(.light)
+            }.environment(\.colorScheme, .light).preferredColorScheme(.light).onAppear {
+                print(geometry.size.height)
+                if (geometry.size.height < 650) {
+                    self.recentDrivesLimit = 2
+                    self.recentDrivesListHeight = 150
+                }
+                if (geometry.size.height < 550) {
+                    self.recentDrivesLimit = 1
+                    self.recentDrivesListHeight = 80
+                }
+               
+            }
         }.environment(\.colorScheme, .light).preferredColorScheme(.light)
         
     }

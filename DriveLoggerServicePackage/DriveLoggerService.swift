@@ -125,14 +125,26 @@ public class DriveLoggerService {
         var nightDriveTime: TimeInterval = 0
         var averageDriveDuration: TimeInterval = 0
         state.drives.forEach {drive in
-            let driveTime = DateInterval(start: drive.startTime, end: drive.endTime).duration
+            var driveTime:TimeInterval = 0
+            print("drive times", drive.startTime, drive.endTime)
+            if (drive.startTime == drive.endTime || drive.endTime < drive.startTime) {
+                driveTime = 0
+            } else {
+                driveTime = drive.endTime.timeIntervalSince(drive.startTime)
+                
+            }
+           
             totalTime += driveTime
-            let startHour = Calendar.current.component(.hour, from: drive.startTime)
-            let endHour = Calendar.current.component(.hour, from: drive.endTime)
+            var startDayteComponents = Calendar.current.dateComponents([.hour, .minute, .day],from: drive.startTime)
+            var eveningDateComponents = DateComponents()
             
-            if (startHour >= 19 || endHour >= 19) {
+            let startHour = startDayteComponents.hour!
+            let endHour = Calendar.current.component(.hour, from: drive.endTime)
+            if (startHour >= 19 && endHour <= 5 || endHour >= 19 ) {
                 nightDriveTime += driveTime
             }
+            
+            
         }
         averageDriveDuration = totalTime / Double(state.drives.count)
         dayDriveTime = totalTime - nightDriveTime
@@ -214,7 +226,39 @@ public class DriveLoggerService {
             if let placemarks = placemarks {
                 if error == nil && placemarks.count > 0 {
                     let placeMark = placemarks.last
-                    result(placeMark?.locality ?? "")
+                    debugPrint(placeMark ?? "")
+                    debugPrint(placeMark?.administrativeArea ?? "")
+                    debugPrint("subAdminArea",placeMark?.subAdministrativeArea ?? "")
+                    debugPrint("locality",placeMark?.locality ?? "")
+                    debugPrint("subLocality",placeMark?.subLocality ?? "")
+                    debugPrint("thuroughFare",placeMark?.thoroughfare ?? "")
+                    debugPrint("subThoroughfare", placeMark?.subThoroughfare ?? "")
+                    debugPrint("name", placeMark?.name ?? "")
+
+                    var resultString = placeMark?.locality ?? ""
+                    if let thoroughfare = placeMark?.thoroughfare {
+                        if let subLocality =  placeMark?.subLocality {
+                            print("thuroughfare, sublocality")
+                            resultString = "\(thoroughfare), \(subLocality)"
+                        }
+                       
+                    } else {
+                        if let subLocality =  placeMark?.subLocality {
+                            print("sublocality")
+                            resultString = subLocality
+                        } else if let name = placeMark?.name {
+                            if let locality = placeMark?.locality {
+                                print("name, locality")
+                                resultString = "\(name), \(locality)"
+                            } else {
+                                print("name")
+                                resultString = "\(name)"
+                            }
+                            
+                        }
+                    }
+                    result(resultString)
+                    
                 } else {
                     result("")
                 }

@@ -21,17 +21,25 @@ struct DriveView: View {
                 Spacer()
                 if (self.appState.startCityName != "") {
                     HStack {
-                        Image(systemName: "location.fill")
-                        Text(self.appState.startCityName)
+                        Text("\(Image(systemName: "location.fill")) \(self.appState.currentCity)")
+                        
+                      /*
+                       
                         if(self.appState.startCityName != self.appState.currentCity) {
-                            Text("--")
-                            Text(self.appState.currentCity)
-                        }
-                    }.font(.subheadline).foregroundColor(.gray)
+                            VStack {
+                            Text("\(Image(systemName: "flag.fill")) \(self.appState.startCityName)")
+                                Text("to").padding(.vertical, 5)
+                                Text("\(Image(systemName: "location.fill")) \(self.appState.currentCity)")
+                            }
+                            //Text(self.appState.currentCity)
+                        } else {
+                            Text("\(Image(systemName: "location.fill")) \(self.appState.startCityName)")
+                        }*/
+                    }.font(.subheadline).foregroundColor(.gray).multilineTextAlignment(.center)
                 } else {
                     HStack {
-                        Image(systemName: "location.fill")
-                        Text("none")
+                     
+                        Text("\(Image(systemName: "location.fill")) none")
                     }.font(.subheadline).foregroundColor(.gray)
                 }
                 Spacer()
@@ -45,6 +53,7 @@ struct DriveView: View {
                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.nightDriveTime).value, unit: appState.dlService.displayTimeInterval(appState.state.nightDriveTime).unit, description: "night driving")
                 }
                 Spacer()
+               
                 BlackButton("End Drive", action: {self.appState.endDrive()})
             }.padding()
         }

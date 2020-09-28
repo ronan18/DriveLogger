@@ -29,6 +29,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var presentedDrive: Drive? = nil
     @Published var driving = false
     @Published var defaults = UserDefaults.standard
+    @Published var viewAllDrivesScreen: Int? = nil
     var drivesWatcher: Any? = nil
     private let locationManager = CLLocationManager()
     override init() {
@@ -51,6 +52,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         // self.dlService.upateWidgets()
         
     }
+    
     func start() {
         self.state = self.dlService.retreiveState()
         self.state = self.dlService.computeStatistics(self.state)
@@ -61,12 +63,26 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     func computeStatistics() {
         self.state = self.dlService.computeStatistics(self.state)
     }
+    func viewAllDrives() {
+        if (!self.driving && self.appScreen != .onboard) {
+            self.appScreen = .home
+            self.viewAllDrivesScreen = 1
+        }
+    }
     func logDrive(_ drive: Drive) {
+        var drive = drive
+        if (drive.endTime < drive.startTime) {
+            drive.endTime = drive.startTime
+        }
         self.state.drives.append(drive)
         self.state = self.dlService.computeStatistics(self.state)
         self.dlService.saveState(self.state, updateWidgets: true)
     }
     func updateDrive(_ drive: Drive) {
+        var drive = drive
+        if (drive.endTime < drive.startTime) {
+            drive.endTime = drive.startTime
+        }
         self.state = dlService.updateDrive(drive, state: self.state)
         dlService.saveState(self.state, updateWidgets: true)
         
@@ -75,6 +91,13 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.state = dlService.deleteDrive(drive, state: self.state)
         dlService.saveState(self.state, updateWidgets: true)
         
+    }
+    func logDrivesViewed() {
+        let intent = ViewAllDrivesIntent()
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate(completion: {response in
+            print("SIRI view all drives donation:", response)
+        })
     }
     func startDrive() {
         if (self.appScreen != .onboard) {

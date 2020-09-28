@@ -18,7 +18,7 @@ public struct DriveCard: View {
         if (self.drive.location.count == 0) {
             self.drive.location = "No Location"
         }
-        self.length = dlService.displayDateInterval(DateInterval(start: drive.startTime, end: drive.endTime))
+        self.length = dlService.displayTimeInterval(drive.endTime.timeIntervalSince(drive.startTime))
      
             self.action = action
    
