@@ -9,6 +9,7 @@ import Foundation
 import DriveLoggerServicePackage
 import CoreLocation
 import Intents
+import FirebaseAnalytics
 enum AppScreen {
     case onboard
     case home
@@ -36,8 +37,10 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         super.init()
         if (self.defaults.bool(forKey: "onboarded")) {
             self.start()
+            Analytics.logEvent("startingup", parameters: [:])
         } else {
             self.appScreen = .onboard
+            Analytics.logEvent("onboarding", parameters: [:])
         }
         
         
@@ -58,6 +61,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.state = self.dlService.computeStatistics(self.state)
         self.appScreen = .home
         self.requestLocation()
+        Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
         //self.dlService.upateWidgets()
     }
     func computeStatistics() {
@@ -68,6 +72,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.appScreen = .home
             self.viewAllDrivesScreen = 1
         }
+        Analytics.logEvent("viewAllDrivesIntent", parameters: [:])
     }
     func logDrive(_ drive: Drive) {
         var drive = drive
@@ -77,6 +82,8 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.state.drives.append(drive)
         self.state = self.dlService.computeStatistics(self.state)
         self.dlService.saveState(self.state, updateWidgets: true)
+        Analytics.logEvent("logDrive", parameters: [:])
+        Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
     }
     func updateDrive(_ drive: Drive) {
         var drive = drive
@@ -85,11 +92,14 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         self.state = dlService.updateDrive(drive, state: self.state)
         dlService.saveState(self.state, updateWidgets: true)
+        Analytics.logEvent("updateDrive", parameters: [:])
         
     }
     func deleteDrive(_ drive: Drive) {
         self.state = dlService.deleteDrive(drive, state: self.state)
         dlService.saveState(self.state, updateWidgets: true)
+        Analytics.logEvent("deleteDrive", parameters: [:])
+        Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
         
     }
     func logDrivesViewed() {
@@ -98,6 +108,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         interaction.donate(completion: {response in
             print("SIRI view all drives donation:", response)
         })
+        Analytics.logEvent("viewingAllDrives", parameters: [:])
     }
     func startDrive() {
         if (self.appScreen != .onboard) {
@@ -115,7 +126,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             interaction.donate(completion: {response in
                 print("SIRI start drive donation:", response)
             })
-            
+            Analytics.logEvent("startDrive", parameters: [:])
         }
         
         
@@ -143,6 +154,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             interaction.donate(completion: {response in
                 print("SIRI stop drive donation:", response)
             })
+            Analytics.logEvent("endDrive", parameters: [:])
         }
         
     }
@@ -153,9 +165,10 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters // You can change the locaiton accuary here.
             locationManager.startUpdatingLocation()
             print("location access after start")
+            Analytics.setUserProperty("true", forName: "locationAccess")
         } else {
             print("no location access")
-            
+            Analytics.setUserProperty("false", forName: "locationAccess")
             self.requestLocation()
             
         }
@@ -192,13 +205,15 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         case .authorizedWhenInUse, .authorizedAlways:
             if CLLocationManager.locationServicesEnabled() {
                 self.locationAllowed = true
-                
+                Analytics.logEvent("locationAccess", parameters: ["value": true])
+                Analytics.setUserProperty("true", forName: "locationAccess")
                 print(" location access")
                 
             }
         case .restricted, .denied:
             self.locationAllowed = false
-            
+            Analytics.logEvent("locationAccess", parameters: ["value": false])
+            Analytics.setUserProperty("false", forName: "locationAccess")
             print("no location access")
             
         }

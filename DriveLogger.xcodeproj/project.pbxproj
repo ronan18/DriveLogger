@@ -58,6 +58,7 @@
 		34E30B0E251D8DEA0078F63A /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E30B0D251D8DEA0078F63A /* AppState.swift */; };
 		34E30B17251D8EAA0078F63A /* DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */; };
 		34E30B1E251D9C310078F63A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E30B1D251D9C310078F63A /* Helpers.swift */; };
+		34EA81CA25238F460072511C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EA81C925238F460072511C /* GoogleService-Info.plist */; };
 		4DEB6CA7058A0B697A000D18 /* Pods_DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */; };
 		924B384E787A7F777EE571C9 /* Pods_DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8017AD64CA2A100DAA0BC3 /* Pods_DriveLoggerServicePackage.framework */; };
 		E0D59D40C82E0524D6EDB9C5 /* Pods_DriveLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386194E905148B469EEE19B3 /* Pods_DriveLogger.framework */; };
@@ -207,6 +208,7 @@
 		34E30B09251D8DC00078F63A /* DriveLoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerService.swift; sourceTree = "<group>"; };
 		34E30B0D251D8DEA0078F63A /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		34E30B1D251D9C310078F63A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		34EA81C925238F460072511C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		386194E905148B469EEE19B3 /* Pods_DriveLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB0BCFCD81ED7555B8D16E8 /* Pods-DriveLoggerCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLoggerCore.release.xcconfig"; path = "Target Support Files/Pods-DriveLoggerCore/Pods-DriveLoggerCore.release.xcconfig"; sourceTree = "<group>"; };
 		6D8017AD64CA2A100DAA0BC3 /* Pods_DriveLoggerServicePackage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveLoggerServicePackage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,6 +301,7 @@
 		348D64A9251D081000585B36 /* DriveLogger */ = {
 			isa = PBXGroup;
 			children = (
+				34EA81C925238F460072511C /* GoogleService-Info.plist */,
 				34A83BA5251EE6BB0059F81F /* logo.png */,
 				3417A22F251E7D9E0053F93A /* DriveLogger.entitlements */,
 				348D64AA251D081000585B36 /* DriveLoggerApp.swift */,
@@ -435,6 +438,7 @@
 				348D64C9251D1F7100585B36 /* Embed Frameworks */,
 				34B8A1E6251D8A3400C5535D /* Embed App Extensions */,
 				BBD2C35FA153E38F8B3D782C /* [CP] Embed Pods Frameworks */,
+				34EA8212252396150072511C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -585,6 +589,7 @@
 				34A83B9D251E88ED0059F81F /* Launch Screen.storyboard in Resources */,
 				348D64B2251D081100585B36 /* Preview Assets.xcassets in Resources */,
 				348D64AF251D081100585B36 /* Assets.xcassets in Resources */,
+				34EA81CA25238F460072511C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,6 +630,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		34EA8212252396150072511C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 		8394FE64EF8A381E76882914 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

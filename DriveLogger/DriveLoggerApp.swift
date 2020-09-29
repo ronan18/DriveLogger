@@ -7,10 +7,15 @@
 
 import SwiftUI
 import Intents
+import Firebase
+import FirebaseAnalytics
 @main
 struct DriveLoggerApp: App {
     @StateObject private var appState = AppState()
     @Environment(\.scenePhase) private var scenePhase
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView().environmentObject(appState).preferredColorScheme(.light).environment(\.colorScheme, .light).onContinueUserActivity("StartDriveIntent", perform: { userActivity in
