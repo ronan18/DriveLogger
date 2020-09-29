@@ -133,15 +133,18 @@ public class DriveLoggerService {
                 driveTime = drive.endTime.timeIntervalSince(drive.startTime)
                 
             }
-           
+           let sunsetHour = 19
+            let sunriseHour = 5
             totalTime += driveTime
             var startDayteComponents = Calendar.current.dateComponents([.hour, .minute, .day],from: drive.startTime)
             var eveningDateComponents = DateComponents()
             
             let startHour = startDayteComponents.hour!
             let endHour = Calendar.current.component(.hour, from: drive.endTime)
-            if (startHour >= 19 && endHour <= 5 || endHour >= 19 ) {
+            if (startHour >= sunsetHour && endHour <= sunriseHour || endHour >= sunsetHour ) { // entire drive in side of night time
                 nightDriveTime += driveTime
+            } else if (startHour <= sunsetHour && endHour <= sunriseHour || endHour >= sunsetHour ) { // drive starts outside of time and ends in side of time
+                
             }
             
             
