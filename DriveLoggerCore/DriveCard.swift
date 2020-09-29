@@ -13,6 +13,7 @@ public struct DriveCard: View {
     var length: TimeDisplay
     var dlService = DriveLoggerService()
     var action: ((Drive)->())
+    var nightDrive = false
     public init(_ drive: Drive, action:  @escaping ((Drive)->()) = {drive in}) {
         self.drive = drive
         if (self.drive.location.count == 0) {
@@ -21,6 +22,7 @@ public struct DriveCard: View {
         self.length = dlService.displayTimeInterval(drive.endTime.timeIntervalSince(drive.startTime))
      
             self.action = action
+        self.nightDrive = self.dlService.isNightDrive(drive)
    
     }
     public var body: some View {
@@ -28,8 +30,13 @@ public struct DriveCard: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(drive.location).font(.headline)
-                    HStack(alignment: .lastTextBaseline, spacing: 0) {
+                    HStack(alignment: .lastTextBaseline) {
                         Text(self.dlService.displayDate(drive.startTime)).font(.caption)
+                        if (self.nightDrive) {
+                            Image(systemName: "moon.stars").font(.caption)
+                        } else {
+                            Image(systemName: "sun.max").font(.caption)
+                        }
                     //    Text(drive.startTime, style: .relative)
                     }
                 }

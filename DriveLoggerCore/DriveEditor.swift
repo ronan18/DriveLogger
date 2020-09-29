@@ -76,6 +76,8 @@ public struct DriveEditor: View {
                         Text("Total Time")
                         Spacer()
                         Text("\(self.dlService.displayTimeInterval(self.drive.endTime.timeIntervalSince(self.drive.startTime)).value)\(self.dlService.displayTimeInterval(self.drive.endTime.timeIntervalSince(self.drive.startTime)).unit)")
+                        Image(systemName: self.dlService.isNightDrive(self.drive) ? "moon.stars" : "sun.max")
+                        
                     }
                     Spacer()
                     BlackButton("Save", action: {self.save(self.drive)})

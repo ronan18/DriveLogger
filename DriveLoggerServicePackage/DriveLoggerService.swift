@@ -40,13 +40,13 @@ public struct DriveLoggerAppState: Codable {
     public var averageDriveDuration: TimeInterval = 0
     public var percentComplete: Int = 0
     public var goalTime: TimeInterval = (50*60*60)
-   
+    
     
 }
 
 public class DriveLoggerService {
-   
-
+    
+    
     var encoder: JSONEncoder = JSONEncoder()
     var decoder: JSONDecoder = JSONDecoder()
     var searchTimer: Timer? = nil
@@ -79,46 +79,89 @@ public class DriveLoggerService {
             print("updateing widgets forced")
         } else if (!force) {
             self.debounceWidgets = true
-        searchTimer = Timer.scheduledTimer(withTimeInterval: 20, repeats: false, block: { [weak self] (timer) in
-           DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-             //Use search text and perform the query
-             DispatchQueue.main.async {
-               //Update UI
-                WidgetCenter.shared.reloadAllTimelines()
-                print("updateing widgets")
-                
-                self?.debounceWidgets = false
-             }
-           }
-         })
+            searchTimer = Timer.scheduledTimer(withTimeInterval: 20, repeats: false, block: { [weak self] (timer) in
+                DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                    //Use search text and perform the query
+                    DispatchQueue.main.async {
+                        //Update UI
+                        WidgetCenter.shared.reloadAllTimelines()
+                        print("updateing widgets")
+                        
+                        self?.debounceWidgets = false
+                    }
+                }
+            })
         }
-       
+        
     }
     public func saveState(_ state: DriveLoggerAppState, updateWidgets: Bool = false) {
-    do {
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                try Disk.save(state, to: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: "applicationState.json", encoder: self.encoder)
-             
-            } catch {
-                print("error saving state to disk", error)
+        do {
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    try Disk.save(state, to: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: "applicationState.json", encoder: self.encoder)
+                    
+                } catch {
+                    print("error saving state to disk", error)
+                }
+                DispatchQueue.main.async {
+                    print("saved app state to disk")
+                    if (updateWidgets) {
+                        self.upateWidgets()
+                    }
+                    
+                    
+                }
             }
-            DispatchQueue.main.async {
-                print("saved app state to disk")
-                  if (updateWidgets) {
-                    self.upateWidgets()
-                  }
-               
-                
+            
+        } catch {
+            print("AppState not saved to disk", error)
+            
+        }
+    }
+    public func isNightDrive(_ drive: Drive) -> Bool {
+        let sunsetHour = 19
+        let sunriseHour = 5
+        var startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
+        let startHour = startDateComponents.hour!
+        let endHour = Calendar.current.component(.hour, from: drive.endTime)
+      
+       
+        var eveningDateComponents = DateComponents()
+        var sunriseDateComponents = DateComponents()
+        sunriseDateComponents = startDateComponents
+        eveningDateComponents = startDateComponents
+        eveningDateComponents.hour = sunsetHour
+        eveningDateComponents.minute = 0
+        sunriseDateComponents.hour = sunriseHour
+        sunriseDateComponents.minute = 0
+        var sunriseTime = Calendar.current.date(from: sunriseDateComponents)
+        if (startHour > sunriseHour) {
+            print("night drive time startHour", startHour, sunriseHour, drive.location)
+            if let time = sunriseTime {
+                sunriseTime = Calendar.current.date(byAdding: .day, value: 1, to: time)
             }
         }
-       
-    } catch {
-        print("AppState not saved to disk", error)
-    
+      
+         
+        let eveningTime = Calendar.current.date(from: eveningDateComponents)
+      
+        if (startHour >= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour) ) { // entire drive in side of night time
+            print("night display all in", drive.location)
+          return true
+        } else if (startHour <= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour)) { // drive starts outside of time and ends in side of time
+            print("night display start out end in", drive.location)
+          
+                return true
+            
+        } else if ((startHour >= sunsetHour || startHour < sunriseHour) && endHour <= sunsetHour) { // drive starts in side of time and ends outside of time
+            print("night display start in end out", drive.location)
+            
+            return true
+        }
+        return false
     }
-    }
-   public func computeStatistics(_ state: DriveLoggerAppState) -> DriveLoggerAppState {
+    public func computeStatistics(_ state: DriveLoggerAppState) -> DriveLoggerAppState {
+        print("compute drive statistics")
         var state = state
         var totalTime: TimeInterval = 0
         var dayDriveTime: TimeInterval = 0
@@ -133,18 +176,54 @@ public class DriveLoggerService {
                 driveTime = drive.endTime.timeIntervalSince(drive.startTime)
                 
             }
-           let sunsetHour = 19
-            let sunriseHour = 5
             totalTime += driveTime
-            var startDayteComponents = Calendar.current.dateComponents([.hour, .minute, .day],from: drive.startTime)
-            var eveningDateComponents = DateComponents()
-            
-            let startHour = startDayteComponents.hour!
+            let sunsetHour = 19
+            let sunriseHour = 5
+            var startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
+            let startHour = startDateComponents.hour!
             let endHour = Calendar.current.component(.hour, from: drive.endTime)
-            if (startHour >= sunsetHour && endHour <= sunriseHour || endHour >= sunsetHour ) { // entire drive in side of night time
+          
+           
+            var eveningDateComponents = DateComponents()
+            var sunriseDateComponents = DateComponents()
+            sunriseDateComponents = startDateComponents
+            eveningDateComponents = startDateComponents
+            eveningDateComponents.hour = sunsetHour
+            eveningDateComponents.minute = 0
+            sunriseDateComponents.hour = sunriseHour
+            sunriseDateComponents.minute = 0
+            var sunriseTime = Calendar.current.date(from: sunriseDateComponents)
+            if (startHour > sunriseHour) {
+                print("night drive time startHour", startHour, sunriseHour, drive.location)
+                if let time = sunriseTime {
+                    sunriseTime = Calendar.current.date(byAdding: .day, value: 1, to: time)
+                }
+            }
+          
+             
+            let eveningTime = Calendar.current.date(from: eveningDateComponents)
+          
+            if (startHour >= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour) ) { // entire drive in side of night time
+                print("night drive all in", drive.location)
                 nightDriveTime += driveTime
-            } else if (startHour <= sunsetHour && endHour <= sunriseHour || endHour >= sunsetHour ) { // drive starts outside of time and ends in side of time
-                
+            } else if (startHour <= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour)) { // drive starts outside of time and ends in side of time
+                print("night drive start out end in", drive.location)
+                if let eveningTime = eveningTime {
+                    let interval = drive.endTime.timeIntervalSince(eveningTime)
+                    print("night drive SOEI added", interval / 60)
+                nightDriveTime += interval
+                } else {
+                    print("night drive error")
+                }
+            } else if ((startHour >= sunsetHour || startHour < sunriseHour) && endHour <= sunsetHour) { // drive starts in side of time and ends outside of time
+                print("night drive start in end out", drive.location)
+                if let sunriseTime = sunriseTime {
+                    let interval = sunriseTime.timeIntervalSince(drive.startTime)
+                    print("night drive SIEO added", interval / 60)
+                    nightDriveTime += interval
+                } else {
+                    print("night drive error")
+                }
             }
             
             
@@ -152,23 +231,23 @@ public class DriveLoggerService {
         averageDriveDuration = totalTime / Double(state.drives.count)
         dayDriveTime = totalTime - nightDriveTime
         state.totalTime = totalTime
-       state.dayDriveTime = dayDriveTime
+        state.dayDriveTime = dayDriveTime
         state.nightDriveTime = nightDriveTime
-       state.averageDriveDuration = averageDriveDuration
+        state.averageDriveDuration = averageDriveDuration
         state.percentComplete = Int((totalTime / state.goalTime)*100)
-    state.drivesSortedByDate = state.drives.sorted(by: { (a, b) -> Bool in
-        return a.startTime > b.startTime
-    })
-    print("raw complete", totalTime / state.goalTime)
-    state.timeBreakdown = "\(displayTimeInterval(state.dayDriveTime).value)\(displayTimeInterval(state.dayDriveTime).unit) day \(displayTimeInterval(state.nightDriveTime).value)\(displayTimeInterval(state.nightDriveTime).unit) night"
-    return state
-            
+        state.drivesSortedByDate = state.drives.sorted(by: { (a, b) -> Bool in
+            return a.startTime > b.startTime
+        })
+        print("raw complete", totalTime / state.goalTime)
+        state.timeBreakdown = "\(displayTimeInterval(state.dayDriveTime).value)\(displayTimeInterval(state.dayDriveTime).unit) day \(displayTimeInterval(state.nightDriveTime).value)\(displayTimeInterval(state.nightDriveTime).unit) night"
+        return state
+        
     }
     
     public func updateDrive(_ drive: Drive, state: DriveLoggerAppState) -> DriveLoggerAppState{
         let id = drive.id
         var drives = state.drives
-       let index = drives.firstIndex(where: {drive in drive.id == id})
+        let index = drives.firstIndex(where: {drive in drive.id == id})
         if let index = index {
             drives[index] = drive
         } else {
@@ -181,7 +260,7 @@ public class DriveLoggerService {
     public func deleteDrive(_ drive: Drive, state: DriveLoggerAppState) -> DriveLoggerAppState{
         let id = drive.id
         var drives = state.drives
-       let index = drives.firstIndex(where: {drive in drive.id == id})
+        let index = drives.firstIndex(where: {drive in drive.id == id})
         if let index = index {
             drives.remove(at: index)
         }
@@ -189,27 +268,27 @@ public class DriveLoggerService {
         state.drives = drives
         return self.computeStatistics(state)
     }
-
+    
     public func displayTimeInterval(_ timeInterval: TimeInterval) -> TimeDisplay{
         if (timeInterval > 60*60){
             return TimeDisplay(value: String(Int(timeInterval / (60*60))), unit: "hr")
         } else if (timeInterval > 60) {
             return TimeDisplay(value: String(Int(timeInterval / 60)), unit: "min")
         }  else {
-                return TimeDisplay(value: "0", unit: "min")
+            return TimeDisplay(value: "0", unit: "min")
             
         }
     }
     public func displayDateInterval(_ dateInterval: DateInterval) -> TimeDisplay {
         let timeInterval = dateInterval.duration
         print("date display", dateInterval, timeInterval)
-         if (timeInterval > 60*60){
+        if (timeInterval > 60*60){
             return TimeDisplay(value: String(Int(timeInterval / (60*60))), unit: "hr")
         } else if (timeInterval > 60) {
             return TimeDisplay(value: String(Int(timeInterval / 60)), unit: "min")
         } else {
-       
-                return TimeDisplay(value: "0", unit: "min")
+            
+            return TimeDisplay(value: "0", unit: "min")
             
         }
     }
@@ -237,14 +316,14 @@ public class DriveLoggerService {
                     debugPrint("thuroughFare",placeMark?.thoroughfare ?? "")
                     debugPrint("subThoroughfare", placeMark?.subThoroughfare ?? "")
                     debugPrint("name", placeMark?.name ?? "")
-
+                    
                     var resultString = placeMark?.locality ?? ""
                     if let thoroughfare = placeMark?.thoroughfare {
                         if let subLocality =  placeMark?.subLocality {
                             print("thuroughfare, sublocality")
                             resultString = "\(thoroughfare), \(subLocality)"
                         }
-                       
+                        
                     } else {
                         if let subLocality =  placeMark?.subLocality {
                             print("sublocality")
@@ -268,7 +347,7 @@ public class DriveLoggerService {
                 
             } else {
                 result("")
-                }
+            }
         })
     }
 }
