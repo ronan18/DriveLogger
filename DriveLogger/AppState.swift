@@ -15,6 +15,7 @@ enum AppScreen {
     case home
     case drive
 }
+
 class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var appScreen = AppScreen.home
     @Published var dlService = DriveLoggerService()
@@ -31,6 +32,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var driving = false
     @Published var defaults = UserDefaults.standard
     @Published var viewAllDrivesScreen: Int? = nil
+    @Published var currentDrive: CurrentDrive? = nil
     var drivesWatcher: Any? = nil
     private let locationManager = CLLocationManager()
     override init() {
@@ -59,7 +61,17 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     func start() {
         self.state = self.dlService.retreiveState()
         self.state = self.dlService.computeStatistics(self.state)
-        self.appScreen = .home
+        self.currentDrive = self.dlService.retreiveCurrentDrive()
+        print("currentDrive from startup", self.currentDrive ?? "none")
+        if (self.currentDrive != nil) {
+            self.driving = true
+            self.startLocationUpdating()
+            
+            self.appScreen = .drive
+        } else {
+            self.appScreen = .home
+        }
+       
         self.requestLocation()
         Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
         //self.dlService.upateWidgets()
@@ -110,16 +122,22 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         })
         Analytics.logEvent("viewingAllDrives", parameters: [:])
     }
+    func saveCurrentDrive() {
+        print("saving currentDrive", self.currentDrive ?? "none")
+        self.dlService.saveCurrentDrive(self.currentDrive)
+    }
     func startDrive() {
         if (self.appScreen != .onboard) {
             self.driving = true
             self.startLocationUpdating()
             self.currentDriveStart = Date()
+            self.currentDrive = CurrentDrive(startLocation: self.currentCity, startTime: Date())
+            print("current drive started", self.currentDrive ?? "none")
             self.appScreen = .drive
             
             self.startLocation = self.currentLocation
             
-            
+            self.saveCurrentDrive()
             self.startCityName = self.currentCity
             let intent = StartDriveIntent()
             let interaction = INInteraction(intent: intent, response: nil)
@@ -133,21 +151,26 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func endDrive() {
         if (self.driving) {
+            if let currentDrive = self.currentDrive {
+                
+            
             self.driving = false
             let endTime = Date()
             let endLocation = self.currentCity
             
             var location = ""
-            if startCityName != "" {
-                if (startCityName != endLocation) {
-                    location = "\(startCityName) --> \(endLocation)"
+                if currentDrive.startLocation != "" {
+                if (currentDrive.startLocation != endLocation) {
+                    location = "\(currentDrive.startLocation) --> \(endLocation)"
                 } else {
-                    location = startCityName
+                    location = currentDrive.startLocation
                 }
             }
-            self.presentedDrive = Drive(startTime: self.currentDriveStart, endTime: endTime, location: location)
+                self.presentedDrive = Drive(startTime: currentDrive.startTime, endTime: endTime, location: location)
             self.driveEditor = true
+            self.currentDrive = nil
             self.appScreen = .home
+                self.saveCurrentDrive()
             locationManager.stopUpdatingLocation()
             let intent = StopDriveIntent()
             let interaction = INInteraction(intent: intent, response: nil)
@@ -155,6 +178,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
                 print("SIRI stop drive donation:", response)
             })
             Analytics.logEvent("endDrive", parameters: [:])
+            }
         }
         
     }
@@ -184,8 +208,11 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.currentLocation = location
             dlService.cityName(from: location, result: {location in
                 self.currentCity = location
-                if (self.driving && self.startCityName == "") {
+                print("set current city", location)
+                if (self.driving && self.currentDrive?.startLocation == "") {
                     self.startCityName = location
+                    self.currentDrive?.startLocation = location
+                    self.saveCurrentDrive()
                 }
             })
             

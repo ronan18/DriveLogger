@@ -14,3 +14,11 @@ public struct TimeDisplay {
 
 
 
+public struct CurrentDrive: Encodable, Decodable {
+    public var startLocation: String
+    public var startTime: Date
+    public init (startLocation: String, startTime: Date) {
+        self.startLocation = startLocation
+        self.startTime = startTime
+    }
+}

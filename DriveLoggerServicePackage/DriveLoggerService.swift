@@ -56,6 +56,38 @@ public class DriveLoggerService {
         decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "0", negativeInfinity: "0", nan: "0")
         
     }
+    public func retreiveCurrentDrive() -> CurrentDrive? {
+        var attemptedRetreival: CurrentDrive? = nil
+        do {
+            attemptedRetreival = try Disk.retrieve("currentDrive.json", from: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: CurrentDrive.self, decoder: decoder)
+        } catch {
+            print("Current Drive not retrieved from disk", error)
+            attemptedRetreival = nil
+        }
+        print("retreived current drive", attemptedRetreival)
+        return attemptedRetreival
+    }
+    public func saveCurrentDrive(_ currentDrive: CurrentDrive?) {
+        print("DL serivice save current drive")
+        if let currentDrive = currentDrive {
+            print("saving current drive as a file", currentDrive)
+            do {
+                try Disk.save(currentDrive, to: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: "currentDrive.json", encoder: self.encoder)
+                print("saved current Drive")
+            } catch {
+                print("error saving current Drive to disk", error)
+            }
+        } else {
+            print("current drive removing")
+            do {
+                try Disk.remove("currentDrive.json", from: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"))
+                print("current drive removed")
+            } catch {
+                print("error removing current drive", error)
+            }
+        }
+       
+    }
     public func retreiveState() -> DriveLoggerAppState{
         let attemptedRetreval:DriveLoggerAppState?
         do {
@@ -318,7 +350,11 @@ public class DriveLoggerService {
                     debugPrint("name", placeMark?.name ?? "")
                     
                     var resultString = placeMark?.locality ?? ""
-                    if let thoroughfare = placeMark?.thoroughfare {
+                    if let subLocality =  placeMark?.subLocality {
+                        print("sublocality")
+                        resultString = subLocality
+                    }
+                 /*   if let thoroughfare = placeMark?.thoroughfare {
                         if let subLocality =  placeMark?.subLocality {
                             print("thuroughfare, sublocality")
                             resultString = "\(thoroughfare), \(subLocality)"
@@ -339,6 +375,7 @@ public class DriveLoggerService {
                             
                         }
                     }
+                    */
                     result(resultString)
                     
                 } else {

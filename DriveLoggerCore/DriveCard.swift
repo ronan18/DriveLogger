@@ -29,7 +29,7 @@ public struct DriveCard: View {
         Button(action: {action(self.drive)}) {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(drive.location).font(.headline)
+                    Text(drive.location).font(.headline).lineLimit(1)
                     HStack(alignment: .lastTextBaseline) {
                         Text(self.dlService.displayDate(drive.startTime)).font(.caption)
                         if (self.nightDrive) {

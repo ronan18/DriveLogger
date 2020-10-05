@@ -15,11 +15,11 @@ struct DriveView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    TimeStat(value: "", unit: "", description: "current drive duration", date: self.appState.currentDriveStart)
+                    TimeStat(value: "", unit: "", description: "current drive duration", date: self.appState.currentDrive?.startTime)
                     Spacer()
                 }
                 Spacer()
-                if (self.appState.startCityName != "") {
+                if (self.appState.currentCity != "") {
                     HStack {
                         Text("\(Image(systemName: "location.fill")) \(self.appState.currentCity)")
                         
