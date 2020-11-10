@@ -25,10 +25,17 @@ struct OboardingHome: View {
         }.padding()
     }
 }
-struct OboardingGoal: View {
-    var next: ((Int)->())
+public struct OboardingGoal: View {
+    public var next: ((Int)->())
+    public var confirmText = false
+    var defaultVal: Int
+    public init(next: @escaping ((Int)->()), confirmText: Bool = false, defaultVal: Int = 50) {
+        self.next = next
+        self.confirmText = confirmText
+        self.defaultVal = defaultVal
+    }
     @State var goal = 50
-    var body: some View {
+    public var body: some View {
         VStack {
             Spacer()
             Text("In total I need to drive:").font(.title).fontWeight(.bold).multilineTextAlignment(.center)
@@ -41,8 +48,10 @@ struct OboardingGoal: View {
           
             Spacer()
           
-            BlackButton("Start Now",action: {next(self.goal)})
-        }.padding()
+            BlackButton(self.confirmText ? "Confirm" :"Start Now",action: {next(self.goal)})
+        }.padding().onAppear {
+            self.goal = defaultVal
+        }
     }
 }
 public struct Onboarding: View {

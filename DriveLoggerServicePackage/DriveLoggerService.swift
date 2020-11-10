@@ -10,6 +10,7 @@ import Disk
 import CoreLocation
 import Combine
 import WidgetKit
+import UIKit
 public struct Drive: Codable, Identifiable {
     public init (startTime: Date, endTime: Date,location: String) {
         self.startTime = startTime
@@ -22,7 +23,7 @@ public struct Drive: Codable, Identifiable {
     public var location: String
 }
 public struct DriveLoggerAppState: Codable {
-    public init (drives: [Drive] = [], totalTime: TimeInterval = 0, dayDriveTime: TimeInterval = 0, nightDriveTime: TimeInterval = 0, averageDriveDuration: TimeInterval = 0, percentComplete: Int = 0,goalTime: TimeInterval = (50*60*60)) {
+    public init (drives: [Drive] = [], totalTime: TimeInterval = 0, dayDriveTime: TimeInterval = 0, nightDriveTime: TimeInterval = 0, averageDriveDuration: TimeInterval = 0, percentComplete: Int = 0,goalTime: TimeInterval = (50*60*60), timeToday: TimeInterval? = nil) {
         self.drives = drives
         self.totalTime = totalTime
         self.dayDriveTime = dayDriveTime
@@ -30,6 +31,7 @@ public struct DriveLoggerAppState: Codable {
         self.averageDriveDuration = averageDriveDuration
         self.percentComplete = percentComplete
         self.goalTime = goalTime
+        self.timeToday = timeToday ?? 0
     }
     public var drives: [Drive] = []
     public var drivesSortedByDate: [Drive] = []
@@ -40,6 +42,7 @@ public struct DriveLoggerAppState: Codable {
     public var averageDriveDuration: TimeInterval = 0
     public var percentComplete: Int = 0
     public var goalTime: TimeInterval = (50*60*60)
+    public var timeToday: TimeInterval? = 0
     
     
 }
@@ -54,6 +57,28 @@ public class DriveLoggerService {
     public init () {
         encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "0", negativeInfinity: "0", nan: "0")
         decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "0", negativeInfinity: "0", nan: "0")
+        
+    }
+   public func hapticResponse() {
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+                generator.impactOccurred()
+    }
+    public func exportData(state: DriveLoggerAppState) -> String {
+        print("Starting encode")
+     
+            let encoder = JSONEncoder()
+            do {
+            let data = try encoder.encode(state)
+            // 2
+            let string = String(data: data, encoding: .utf8)!
+           // let data = stateData.encode(to: String)
+           // let string = String(decoding: data, as: UTF8.self)
+            print("encode", string)
+                return string
+            } catch {
+                print("error encode", error)
+                return ""
+            }
         
     }
     public func retreiveCurrentDrive() -> CurrentDrive? {
@@ -199,6 +224,7 @@ public class DriveLoggerService {
         var dayDriveTime: TimeInterval = 0
         var nightDriveTime: TimeInterval = 0
         var averageDriveDuration: TimeInterval = 0
+        var timeToday: TimeInterval = 0
         state.drives.forEach {drive in
             var driveTime:TimeInterval = 0
             print("drive times", drive.startTime, drive.endTime)
@@ -257,6 +283,11 @@ public class DriveLoggerService {
                     print("night drive error")
                 }
             }
+            let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+            let driveDay = Calendar.current.dateComponents([.year, .month, .day], from: drive.endTime)
+            if (today == driveDay) {
+                timeToday += driveTime
+            }
             
             
         }
@@ -270,8 +301,10 @@ public class DriveLoggerService {
         state.drivesSortedByDate = state.drives.sorted(by: { (a, b) -> Bool in
             return a.startTime > b.startTime
         })
+        state.timeToday = timeToday
         print("raw complete", totalTime / state.goalTime)
-        state.timeBreakdown = "\(displayTimeInterval(state.dayDriveTime).value)\(displayTimeInterval(state.dayDriveTime).unit) day \(displayTimeInterval(state.nightDriveTime).value)\(displayTimeInterval(state.nightDriveTime).unit) night"
+    
+     
         return state
         
     }

@@ -13,6 +13,7 @@
 		342A50B3251D2B0E002BE67B /* BlackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342A50B2251D2B0E002BE67B /* BlackButton.swift */; };
 		342A50B6251D2C1A002BE67B /* DriveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342A50B5251D2C1A002BE67B /* DriveCard.swift */; };
 		342A50B9251D30FF002BE67B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342A50B8251D30FF002BE67B /* HomeView.swift */; };
+		347CBFF52544ACE40003E40E /* DriveLoggerDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CBFF42544ACE40003E40E /* DriveLoggerDataFormat.swift */; };
 		348D64AB251D081000585B36 /* DriveLoggerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348D64AA251D081000585B36 /* DriveLoggerApp.swift */; };
 		348D64AD251D081000585B36 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 348D64AC251D081000585B36 /* ContentView.swift */; };
 		348D64AF251D081100585B36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348D64AE251D081100585B36 /* Assets.xcassets */; };
@@ -168,6 +169,7 @@
 		342A50B2251D2B0E002BE67B /* BlackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackButton.swift; sourceTree = "<group>"; };
 		342A50B5251D2C1A002BE67B /* DriveCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveCard.swift; sourceTree = "<group>"; };
 		342A50B8251D30FF002BE67B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		347CBFF42544ACE40003E40E /* DriveLoggerDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerDataFormat.swift; sourceTree = "<group>"; };
 		348D64A7251D081000585B36 /* DriveLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DriveLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		348D64AA251D081000585B36 /* DriveLoggerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerApp.swift; sourceTree = "<group>"; };
 		348D64AC251D081000585B36 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		348D649E251D081000585B36 = {
 			isa = PBXGroup;
 			children = (
+				347CBFF42544ACE40003E40E /* DriveLoggerDataFormat.swift */,
 				34D09DA0252177B000701C4C /* Percent CompleteExtension.entitlements */,
 				3417A231251E82610053F93A /* TimeDrivenExtension.entitlements */,
 				348D64A9251D081000585B36 /* DriveLogger */,
@@ -790,6 +793,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34E30B1E251D9C310078F63A /* Helpers.swift in Sources */,
+				347CBFF52544ACE40003E40E /* DriveLoggerDataFormat.swift in Sources */,
 				34E30B0A251D8DC00078F63A /* DriveLoggerService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -970,7 +974,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
@@ -980,7 +984,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -997,7 +1001,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
@@ -1007,7 +1011,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1021,7 +1025,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1034,7 +1038,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drivesCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1053,7 +1057,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1066,7 +1070,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drivesCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1085,7 +1089,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimeDrivenExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = TimeDriven/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1093,7 +1097,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.TimeDriven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1109,7 +1113,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimeDrivenExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = TimeDriven/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1117,7 +1121,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.TimeDriven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1133,7 +1137,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Percent CompleteExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = "Percent Complete/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1141,7 +1145,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.drives.Percent-Complete";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1157,7 +1161,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Percent CompleteExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = "Percent Complete/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1165,7 +1169,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.drives.Percent-Complete";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1181,7 +1185,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1194,7 +1198,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drivesServicePackage;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1214,7 +1218,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2010051;
+				CURRENT_PROJECT_VERSION = 2011041;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1227,7 +1231,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drivesServicePackage;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

@@ -92,10 +92,25 @@ struct HomeView: View {
                                     ProgressStatCard(width: geometry.size.width, value: Double(appState.state.percentComplete), unit: "%", description: "complete")
                                     Spacer()
                                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.averageDriveDuration).value, unit: appState.dlService.displayTimeInterval(appState.state.averageDriveDuration).unit, description: "average drive duration")
-                                }.padding(.horizontal)
+                                }.padding(.horizontal).padding(.bottom)
+                                
+                                HStack {
+                                    StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.timeToday ?? 0).value, unit: appState.dlService.displayTimeInterval(appState.state.timeToday ?? 0).unit, description: "time driven today")
+                                    Spacer()
+                                    StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).unit, description: "until goal completion")
+                                }.padding(.horizontal).padding(.bottom)
                                 Spacer()
+                            
+                                  
+                                    Text("Drive Logger is an open source app developed by ").font(.footnote)
+                                    Link(destination: URL(string:"https://ronanfuruta.com")!) {
+                                        Text("Ronan Furuta").fontWeight(.bold).padding(.bottom).padding(.top, 5)
+                                    }.font(.footnote)
+                                    Spacer()
+                                    
+                                
                             }
-                            Spacer().frame(height: 90)
+                            Spacer().frame(height: 120)
                         }.edgesIgnoringSafeArea(.bottom)
                         VStack {
                             Spacer()
@@ -107,6 +122,7 @@ struct HomeView: View {
                                 Border()
                                 HStack {
                                     BlackButton("Start Drive", action: {
+                                        self.appState.dlService.hapticResponse()
                                         self.appState.startDrive()
                                     })
                                 }.padding()

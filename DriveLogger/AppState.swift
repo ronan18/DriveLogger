@@ -33,6 +33,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var defaults = UserDefaults.standard
     @Published var viewAllDrivesScreen: Int? = nil
     @Published var currentDrive: CurrentDrive? = nil
+    @Published var dataExport: DLStateDocument = DLStateDocument(data: "")
     var drivesWatcher: Any? = nil
     private let locationManager = CLLocationManager()
     override init() {
@@ -60,6 +61,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func start() {
         self.state = self.dlService.retreiveState()
+        self.dataExport = DLStateDocument(data: self.dlService.exportData(state: self.state))
         self.state = self.dlService.computeStatistics(self.state)
         self.currentDrive = self.dlService.retreiveCurrentDrive()
         print("currentDrive from startup", self.currentDrive ?? "none")
@@ -70,6 +72,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.appScreen = .drive
         } else {
             self.appScreen = .home
+           
         }
        
         self.requestLocation()
@@ -96,6 +99,11 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         self.dlService.saveState(self.state, updateWidgets: true)
         Analytics.logEvent("logDrive", parameters: [:])
         Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
+    }
+    func updateGoalTime(_ time: Int) {
+        self.state.goalTime = TimeInterval(time * 60 * 60)
+        self.computeStatistics()
+        self.dlService.saveState(self.state, updateWidgets: true)
     }
     func updateDrive(_ drive: Drive) {
         var drive = drive
@@ -128,6 +136,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func startDrive() {
         if (self.appScreen != .onboard) {
+           
             self.driving = true
             self.startLocationUpdating()
             self.currentDriveStart = Date()
@@ -152,7 +161,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     func endDrive() {
         if (self.driving) {
             if let currentDrive = self.currentDrive {
-                
+               
             
             self.driving = false
             let endTime = Date()

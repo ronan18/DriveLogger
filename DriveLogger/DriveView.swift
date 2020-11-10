@@ -54,7 +54,11 @@ struct DriveView: View {
                 }
                 Spacer()
                
-                BlackButton("End Drive", action: {self.appState.endDrive()})
+                BlackButton("End Drive", action: {
+                    self.appState.dlService.hapticResponse()
+                                self.appState.endDrive()
+                    
+                })
             }.padding()
         }
     }
