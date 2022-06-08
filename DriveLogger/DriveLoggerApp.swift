@@ -18,7 +18,7 @@ struct DriveLoggerApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(appState).preferredColorScheme(.light).environment(\.colorScheme, .light).onContinueUserActivity("StartDriveIntent", perform: { userActivity in
+            ContentView().environmentObject(appState).onContinueUserActivity("StartDriveIntent", perform: { userActivity in
                 print("SIRI: Start Drive Intent Activated")
                 self.appState.startDrive()
             }).onContinueUserActivity("StopDriveIntent", perform: { userActivity in

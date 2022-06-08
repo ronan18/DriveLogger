@@ -19,23 +19,9 @@ struct HomeView: View {
         GeometryReader { geometry in
             ZStack {
                 NavigationView {
-                    
                     ZStack {
-                        
                         VStack {
                             ScrollView {
-                                //Text(String(Int(geometry.size.height)))
-                                
-                                /* HStack {
-                                 Spacer()
-                                 NavigationLink(
-                                 destination: Text("Destination"),
-                                 label: {
-                                 Image(systemName: "gearshape").font(.headline)
-                                 }).foregroundColor(.black)
-                                 
-                                 }.padding(.trailing).frame(height: 10)*/
-                                
                                 if (appState.dlService.displayTimeInterval(appState.state.totalTime).value == "0") {
                                     TimeStat(value: appState.dlService.displayTimeInterval(appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.totalTime).unit, description: "Time Driven").padding(.bottom, 30).padding(.top, 20)
                                 } else {
@@ -104,7 +90,7 @@ struct HomeView: View {
                                 
                                 
                                 Text("Drive Logger is an open source app developed by **[Ronan Furuta](https://ronan.link/K9cd6Q)**").font(.footnote).multilineTextAlignment(.center).padding()
-                               
+                                
                                 Spacer()
                                 
                                 
@@ -113,20 +99,37 @@ struct HomeView: View {
                         }.edgesIgnoringSafeArea(.bottom)
                         VStack {
                             Spacer()
-                            ZStack{
+                            if #available(iOS 15.0, *) {
+                                VStack{
+                                   
+                                    Border()
+                                    
+                                    HStack {
+                                        BlackButton("Start Drive", action: {
+                                            self.appState.dlService.hapticResponse()
+                                            self.appState.startDrive()
+                                        }, stayBlack: true)
+                                    }.padding()
+                                    
+                                }.frame(height:90).background(.ultraThinMaterial)
+                            } else {
                                 
-                                
-                                VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
-                                    .edgesIgnoringSafeArea(.all)
-                                Border()
-                                HStack {
-                                    BlackButton("Start Drive", action: {
-                                        self.appState.dlService.hapticResponse()
-                                        self.appState.startDrive()
-                                    })
-                                }.padding()
-                                
-                            }.frame(height:90)
+                                ZStack{
+                                    
+                                    
+                                    VisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+                                        .edgesIgnoringSafeArea(.all)
+                                    
+                                    Border()
+                                    HStack {
+                                        BlackButton("Start Drive", action: {
+                                            self.appState.dlService.hapticResponse()
+                                            self.appState.startDrive()
+                                        }, stayBlack: false)
+                                    }.padding()
+                                    
+                                }.frame(height:90)
+                            }
                         }
                         
                         
@@ -151,7 +154,7 @@ struct HomeView: View {
                     }
                     
                 })
-            }.environment(\.colorScheme, .light).preferredColorScheme(.light).onAppear {
+            }.onAppear {
                 print(geometry.size.height)
                 if (geometry.size.height < 650) {
                     self.recentDrivesLimit = 2
@@ -163,7 +166,7 @@ struct HomeView: View {
                 }
                 
             }
-        }.environment(\.colorScheme, .light).preferredColorScheme(.light)
+        }
         
     }
 }

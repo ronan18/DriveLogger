@@ -80,8 +80,8 @@ public struct DriveEditor: View {
                         
                     }
                     Spacer()
-                    BlackButton("Save", action: {self.save(self.drive)})
-                }.padding().background(Color.white)
+                    BlackButton("Save", action: {self.save(self.drive)}, stayBlack: true)
+                }.padding()//.background(Color.white)
             }.onAppear {
                
                 if (!self.driveLoaded) {
@@ -89,7 +89,7 @@ public struct DriveEditor: View {
                     self.driveLoaded = true
                 }
                
-            }.environment(\.colorScheme, .light).preferredColorScheme(.light)
+            }
         
         
     }

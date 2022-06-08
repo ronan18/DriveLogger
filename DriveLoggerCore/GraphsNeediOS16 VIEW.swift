@@ -35,12 +35,13 @@ private struct InternalContent: View {
     var body: some View {
         VStack {
             Spacer()
+            Image(systemName: "exclamationmark.triangle.fill").renderingMode(.original)
             Text("Graphs require iOS 16").font(.headline).padding(.vertical, 2)
             HStack {
                 
                 Spacer()
                 
-                Text("Drive Logger uses features introduced in iOS 16 to render graphs. Please **update iOS to use all Drive Logger features.** For more information please view **[Apple Support](https://support.apple.com/ios/update)**").multilineTextAlignment(.center).font(.subheadline)
+                Text("Drive Logger uses features introduced in iOS 16 to render graphs. Please **update iOS to use all Drive Logger features.** For more information please view **[Apple Support](https://stomprocket.link/hljFab)**").multilineTextAlignment(.center).font(.subheadline)
                 Spacer()
             }
             Spacer()

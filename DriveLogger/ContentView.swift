@@ -11,11 +11,11 @@ struct ContentView: View {
     @EnvironmentObject var appState: AppState
     var body: some View {
         if (self.appState.appScreen == .home) {
-            HomeView().preferredColorScheme(.light).environment(\.colorScheme, .light)
+            HomeView()
         } else if (self.appState.appScreen == .drive) {
-            DriveView().preferredColorScheme(.light).environment(\.colorScheme, .light)
+            DriveView()
         } else {
-            Onboarding(complete: {goal in appState.startFromOnboard(goal)}).preferredColorScheme(.light).environment(\.colorScheme, .light)
+            Onboarding(complete: {goal in appState.startFromOnboard(goal)})
         }
 
         

@@ -55,7 +55,7 @@ public struct ChartView: View {
                             RuleMark(y: .value("Average drive length", self.averageLength / 60)).foregroundStyle(.blue).annotation(position: .top, alignment: .trailing) {
                                 VStack {
                                     Text("Average \(Int(self.averageLength / 60))m").font(.caption2).foregroundColor(.blue)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
-                                }.padding(2).background(.thinMaterial).cornerRadius(5)
+                                }.padding(2).background(.ultraThinMaterial).cornerRadius(5)
                             }
                         }
                     }
