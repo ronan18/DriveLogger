@@ -20,7 +20,7 @@ public struct BlackButton: View {
                 Spacer()
                 Text(text).fontWeight(.bold).foregroundColor(.white)
                 Spacer()
-            }.padding().background(Color("BlackBG")).cornerRadius(10)
+            }.padding().background(Color("blackBG")).cornerRadius(10)
         }
         
     }

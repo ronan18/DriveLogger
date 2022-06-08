@@ -21,21 +21,21 @@ struct HomeView: View {
                 NavigationView {
                     
                     ZStack {
-                       
+                        
                         VStack {
                             ScrollView {
                                 //Text(String(Int(geometry.size.height)))
-                    
-                                   /* HStack {
-                                        Spacer()
-                                        NavigationLink(
-                                            destination: Text("Destination"),
-                                            label: {
-                                                Image(systemName: "gearshape").font(.headline)
-                                            }).foregroundColor(.black)
-                                        
-                                    }.padding(.trailing).frame(height: 10)*/
-                                   
+                                
+                                /* HStack {
+                                 Spacer()
+                                 NavigationLink(
+                                 destination: Text("Destination"),
+                                 label: {
+                                 Image(systemName: "gearshape").font(.headline)
+                                 }).foregroundColor(.black)
+                                 
+                                 }.padding(.trailing).frame(height: 10)*/
+                                
                                 if (appState.dlService.displayTimeInterval(appState.state.totalTime).value == "0") {
                                     TimeStat(value: appState.dlService.displayTimeInterval(appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.totalTime).unit, description: "Time Driven").padding(.bottom, 30).padding(.top, 20)
                                 } else {
@@ -46,7 +46,7 @@ struct HomeView: View {
                                     Text("recent drives").font(.headline)
                                     Spacer()
                                     NavigationLink(destination: DriveListView(), tag: 1, selection: self.$appState.viewAllDrivesScreen) {
-                                        Text("show more")
+                                        Text("show all")
                                     }
                                 }.padding(.horizontal)
                                 if (appState.state.drives.count > 0) {
@@ -54,16 +54,16 @@ struct HomeView: View {
                                         if (appState.state.drivesSortedByDate.count > self.recentDrivesLimit) {
                                             ForEach(appState.state.drivesSortedByDate.prefix(through: self.recentDrivesLimit - 1)) { drive in
                                                 DriveCard(drive, action: {drive in self.presentedDrive = drive;
-                                                            print("presneting drive", drive.location)
-                                                            self.appState.computeStatistics()
-                                                            self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
+                                                    print("presneting drive", drive.location)
+                                                    self.appState.computeStatistics()
+                                                    self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
                                                 
                                             }
                                         } else {
                                             ForEach(appState.state.drivesSortedByDate) { drive in
                                                 DriveCard(drive, action: {drive in self.presentedDrive = drive;
-                                                            self.appState.computeStatistics()
-                                                            self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
+                                                    self.appState.computeStatistics()
+                                                    self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
                                                 
                                             }
                                         }
@@ -99,15 +99,14 @@ struct HomeView: View {
                                     Spacer()
                                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).unit, description: "until goal completion")
                                 }.padding(.horizontal).padding(.bottom)
+                                ChartCard(data: self.appState.state).padding(.horizontal).frame(height: 250)
                                 Spacer()
-                            
-                                  
-                                    Text("Drive Logger is an open source app developed by ").font(.footnote)
-                                    Link(destination: URL(string:"https://ronanfuruta.com")!) {
-                                        Text("Ronan Furuta").fontWeight(.bold).padding(.bottom).padding(.top, 5)
-                                    }.font(.footnote)
-                                    Spacer()
-                                    
+                                
+                                
+                                Text("Drive Logger is an open source app developed by **[Ronan Furuta](https://ronan.link/K9cd6Q)**").font(.footnote).multilineTextAlignment(.center).padding()
+                               
+                                Spacer()
+                                
                                 
                             }
                             Spacer().frame(height: 120)
@@ -132,7 +131,7 @@ struct HomeView: View {
                         
                         
                     }.navigationBarTitle("")
-                    .navigationBarHidden(true)
+                        .navigationBarHidden(true)
                 }.navigationViewStyle(StackNavigationViewStyle())
                 Text("").sheet(isPresented: self.$driveEditor, content: {
                     if (self.presentedDrive != nil) {
@@ -162,7 +161,7 @@ struct HomeView: View {
                     self.recentDrivesLimit = 1
                     self.recentDrivesListHeight = 80
                 }
-               
+                
             }
         }.environment(\.colorScheme, .light).preferredColorScheme(.light)
         
@@ -171,7 +170,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(AppState())
     }
 }
 

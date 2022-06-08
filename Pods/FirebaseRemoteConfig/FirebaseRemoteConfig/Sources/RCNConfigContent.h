@@ -43,7 +43,7 @@ typedef NS_ENUM(NSInteger, RCNDBSource) {
 /// Designated initializer;
 - (instancetype)initWithDBManager:(RCNConfigDBManager *)DBManager NS_DESIGNATED_INITIALIZER;
 
-/// Returns true if initalization succeeded.
+/// Returns true if initialization succeeded.
 - (BOOL)initializationSuccessful;
 
 /// Update config content from fetch response in JSON format.
@@ -56,5 +56,11 @@ typedef NS_ENUM(NSInteger, RCNDBSource) {
 - (void)copyFromDictionary:(NSDictionary *)fromDictionary
                   toSource:(RCNDBSource)source
               forNamespace:(NSString *)FIRNamespace;
+
+/// Sets the fetched Personalization metadata to active.
+- (void)activatePersonalization;
+
+/// Gets the active config and Personalization metadata.
+- (NSDictionary *)getConfigAndMetadataForNamespace:(NSString *)FIRNamespace;
 
 @end

@@ -22,8 +22,18 @@ public struct Drive: Codable, Identifiable {
     public var endTime: Date
     public var location: String
 }
+public struct DriveLengthDay: Codable, Identifiable {
+    public var id = UUID()
+    public var date: Date
+    public var length: TimeInterval
+    public init(id: UUID = UUID(), date: Date, length: TimeInterval) {
+        self.id = id
+        self.date = date
+        self.length = length
+    }
+}
 public struct DriveLoggerAppState: Codable {
-    public init (drives: [Drive] = [], totalTime: TimeInterval = 0, dayDriveTime: TimeInterval = 0, nightDriveTime: TimeInterval = 0, averageDriveDuration: TimeInterval = 0, percentComplete: Int = 0,goalTime: TimeInterval = (50*60*60), timeToday: TimeInterval? = nil) {
+    public init (drives: [Drive] = [], totalTime: TimeInterval = 0, dayDriveTime: TimeInterval = 0, nightDriveTime: TimeInterval = 0, averageDriveDuration: TimeInterval = 0, percentComplete: Int = 0,goalTime: TimeInterval = (50*60*60), timeToday: TimeInterval? = nil, driveLengthByDay: [DriveLengthDay]? = []) {
         self.drives = drives
         self.totalTime = totalTime
         self.dayDriveTime = dayDriveTime
@@ -43,8 +53,11 @@ public struct DriveLoggerAppState: Codable {
     public var percentComplete: Int = 0
     public var goalTime: TimeInterval = (50*60*60)
     public var timeToday: TimeInterval? = 0
+    public var driveLengthByDay: [DriveLengthDay] = []
     
-    
+    private enum CodingKeys: String, CodingKey {
+            case drives, drivesSortedByDate,totalTime,dayDriveTime,nightDriveTime,timeBreakdown,averageDriveDuration,percentComplete,timeToday,goalTime
+        }
 }
 
 public class DriveLoggerService {
@@ -304,7 +317,33 @@ public class DriveLoggerService {
         state.timeToday = timeToday
         print("raw complete", totalTime / state.goalTime)
     
-     
+        var days: [Date: TimeInterval] = [:]
+        print("TIME PER DAY COMPUTE: Running computer on days", state.drivesSortedByDate.count)
+        state.drivesSortedByDate.forEach({drive in
+            print("TIME PER DAY COMPUTE: running by day", drive.id)
+            let components = Calendar.current.dateComponents([.year,
+                                                              .month, .day], from: drive.startTime)
+            let length = drive.endTime.timeIntervalSince(drive.startTime)
+            print("TIME PER DAY COMPUTE: components for drive", components)
+            let date = Calendar.current.date(from: components)!
+            if var existing =  days[date] {
+                existing += length
+                days[date] = existing
+                print("TIME PER DAY COMPUTE: exists", existing)
+            } else {
+                print("TIME PER DAY COMPUTE: does not exist", length)
+                days[date] = length
+            }
+            
+        })
+        let result: [DriveLengthDay] =   days.map { key,value in
+            return DriveLengthDay(date: key, length: value)
+        }.sorted(by: { (a, b) -> Bool in
+            return a.date > b.date
+        })
+        
+        print("TIME PER DAY COMPUTE: result", result)
+        state.driveLengthByDay = result
         return state
         
     }

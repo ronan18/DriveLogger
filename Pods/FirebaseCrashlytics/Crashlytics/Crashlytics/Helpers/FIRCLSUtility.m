@@ -136,24 +136,43 @@ bool FIRCLSUnlinkIfExists(const char* path) {
   return true;
 }
 
-/*
-NSString* FIRCLSGenerateUUID(void) {
-  NSString* string;
-
-  CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
-  string = CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, uuid));
-  CFRelease(uuid);
-
-  return string;
-}
-*/
-
 NSString* FIRCLSNormalizeUUID(NSString* value) {
   return [[value stringByReplacingOccurrencesOfString:@"-" withString:@""] lowercaseString];
 }
 
 NSString* FIRCLSGenerateNormalizedUUID(void) {
   return FIRCLSNormalizeUUID(FIRCLSGenerateUUID());
+}
+
+// Redacts a UUID wrapped in parenthesis from a char* using strchr, which is async safe.
+// Ex.
+//   "foo (bar) (45D62CC2-CFB5-4E33-AB61-B0684627F1B6) baz"
+// becomes
+//   "foo (bar) (********-****-****-****-************) baz"
+void FIRCLSRedactUUID(char* value) {
+  if (value == NULL) {
+    return;
+  }
+  char* openParen = value;
+  // find the index of the first paren
+  while ((openParen = strchr(openParen, '(')) != NULL) {
+    // find index of the matching close paren
+    const char* closeParen = strchr(openParen, ')');
+    if (closeParen == NULL) {
+      break;
+    }
+    // if the distance between them is 37, traverse the characters
+    // and replace anything that is not a '-' with '*'
+    if (closeParen - openParen == 37) {
+      for (int i = 1; i < 37; ++i) {
+        if (*(openParen + i) != '-') {
+          *(openParen + i) = '*';
+        }
+      }
+      break;
+    }
+    openParen++;
+  }
 }
 
 NSString* FIRCLSNSDataToNSString(NSData* data) {
@@ -181,21 +200,6 @@ NSString* FIRCLSNSDataToNSString(NSData* data) {
 
   return string;
 }
-
-/*
-NSString* FIRCLSHashBytes(const void* bytes, size_t length) {
-  uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
-  CC_SHA1(bytes, (CC_LONG)length, digest);
-
-  NSData* result = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
-
-  return FIRCLSNSDataToNSString(result);
-}
-
-NSString* FIRCLSHashNSData(NSData* data) {
-  return FIRCLSHashBytes([data bytes], [data length]);
-}
-*/
 
 void FIRCLSAddOperationAfter(float timeInSeconds, NSOperationQueue* queue, void (^block)(void)) {
   dispatch_queue_t afterQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);

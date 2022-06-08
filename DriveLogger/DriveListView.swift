@@ -126,7 +126,7 @@ struct DriveListView: View {
                     // Handle failure.
                 }
             }.alert(isPresented: self.$errorImporting) {
-                Alert(title: Text("Error Importing Data"), message: Text("there was an error importing your previous drives. Try rexporting them."), dismissButton: .default(Text("OK")))
+                Alert(title: Text("Error Importing Data"), message: Text("there was an error importing your previous drives. Try rexporting them. If this problem persists, please contact support and send your database file."), dismissButton: .default(Text("OK")))
             }.actionSheet(isPresented: self.$confirmImport) {
                 ActionSheet(title: Text("Are you sure you want to import your previous drives"), message: Text("This will erase all of your current data"), buttons: [.cancel(Text("cancel")), .destructive(Text("import"), action: {
                     guard self.importState != nil else {return}

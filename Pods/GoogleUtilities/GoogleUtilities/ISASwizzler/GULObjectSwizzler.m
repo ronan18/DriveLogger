@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GoogleUtilities/ISASwizzler/Private/GULObjectSwizzler.h"
+#import "GoogleUtilities/ISASwizzler/Public/GoogleUtilities/GULObjectSwizzler.h"
 
 #import <objc/runtime.h>
 
-#import "GoogleUtilities/ISASwizzler/Private/GULSwizzledObject.h"
+#import "GoogleUtilities/ISASwizzler/GULObjectSwizzler+Internal.h"
+#import "GoogleUtilities/ISASwizzler/Public/GoogleUtilities/GULSwizzledObject.h"
 
 @implementation GULObjectSwizzler {
   // The swizzled object.
@@ -75,19 +76,25 @@
  *  @return An instance of this class.
  */
 - (instancetype)initWithObject:(id)object {
+  if (object == nil) {
+    return nil;
+  }
+
+  GULObjectSwizzler *existingSwizzler =
+      [[self class] getAssociatedObject:object key:kGULSwizzlerAssociatedObjectKey];
+  if ([existingSwizzler isKindOfClass:[GULObjectSwizzler class]]) {
+    // The object has been swizzled already, no need to swizzle again.
+    return existingSwizzler;
+  }
+
   self = [super init];
   if (self) {
-    __strong id swizzledObject = object;
-    if (swizzledObject) {
-      _swizzledObject = swizzledObject;
-      _originalClass = object_getClass(object);
-      NSString *newClassName = [NSString stringWithFormat:@"fir_%@_%@", [[NSUUID UUID] UUIDString],
-                                                          NSStringFromClass(_originalClass)];
-      _generatedClass = objc_allocateClassPair(_originalClass, newClassName.UTF8String, 0);
-      NSAssert(_generatedClass, @"Wasn't able to allocate the class pair.");
-    } else {
-      return nil;
-    }
+    _swizzledObject = object;
+    _originalClass = object_getClass(object);
+    NSString *newClassName = [NSString stringWithFormat:@"fir_%@_%@", [[NSUUID UUID] UUIDString],
+                                                        NSStringFromClass(_originalClass)];
+    _generatedClass = objc_allocateClassPair(_originalClass, newClassName.UTF8String, 0);
+    NSAssert(_generatedClass, @"Wasn't able to allocate the class pair.");
   }
   return self;
 }
@@ -98,10 +105,9 @@
                                   : class_getInstanceMethod(aClass, selector);
   Class targetClass = isClassSelector ? object_getClass(_generatedClass) : _generatedClass;
   IMP implementation = method_getImplementation(method);
+
   const char *typeEncoding = method_getTypeEncoding(method);
-  BOOL success __unused = class_addMethod(targetClass, selector, implementation, typeEncoding);
-  NSAssert(success, @"Unable to add selector %@ to class %@", NSStringFromSelector(selector),
-           NSStringFromClass(targetClass));
+  class_replaceMethod(targetClass, selector, implementation, typeEncoding);
 }
 
 - (void)setAssociatedObjectWithKey:(NSString *)key
@@ -123,11 +129,20 @@
 
 - (void)swizzle {
   __strong id swizzledObject = _swizzledObject;
+
+  GULObjectSwizzler *existingSwizzler =
+      [[self class] getAssociatedObject:swizzledObject key:kGULSwizzlerAssociatedObjectKey];
+  if (existingSwizzler != nil) {
+    NSAssert(existingSwizzler == self, @"The swizzled object has a different swizzler.");
+    // The object has been swizzled already.
+    return;
+  }
+
   if (swizzledObject) {
     [GULObjectSwizzler setAssociatedObject:swizzledObject
-                                       key:kSwizzlerAssociatedObjectKey
+                                       key:kGULSwizzlerAssociatedObjectKey
                                      value:self
-                               association:GUL_ASSOCIATION_RETAIN_NONATOMIC];
+                               association:GUL_ASSOCIATION_RETAIN];
 
     [GULSwizzledObject copyDonorSelectorsUsingObjectSwizzler:self];
 
@@ -144,16 +159,50 @@
   }
 }
 
-- (void)swizzledObjectHasBeenDeallocatedWithGeneratedSubclass:(BOOL)isInstanceOfGeneratedSubclass {
-  // If the swizzled object had a different class, it most likely indicates that the object was
-  // ISA swizzled one more time. In this case it is not safe to dispose the generated class. We
-  // will have to keep it to prevent a crash.
+- (void)dealloc {
+  // When the Zombies instrument is enabled, a zombie is created for the swizzled object upon
+  // deallocation. Because this zombie subclasses the generated class, the swizzler should not
+  // dispose it during the swizzler's deallocation.
+  //
+  // There are other special cases where the generated class might be subclassed by a third-party
+  // generated classes, for example: https://github.com/firebase/firebase-ios-sdk/issues/9083
+  // To avoid errors in such cases, the environment variable `GULGeneratedClassDisposeDisabled` can
+  // be set with `YES`.
+  NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+  if ([[environment objectForKey:@"NSZombieEnabled"] boolValue] ||
+      [[environment objectForKey:@"GULGeneratedClassDisposeDisabled"] boolValue]) {
+    return;
+  }
 
-  // TODO: Consider adding a flag that can be set by the host application to dispose the class pair
-  // unconditionally. It may be used by apps that use ISA Swizzling themself and are confident in
-  // disposing their subclasses.
-  if (isInstanceOfGeneratedSubclass) {
-    objc_disposeClassPair(_generatedClass);
+  if (_generatedClass) {
+    if (_swizzledObject == nil) {
+      // The swizzled object has been deallocated already, so the generated class can be disposed
+      // now.
+      objc_disposeClassPair(_generatedClass);
+      return;
+    }
+
+    // GULSwizzledObject is retained by the swizzled object which means that the swizzled object is
+    // being deallocated now. Let's see if we should schedule the generated class disposal.
+
+    // If the swizzled object has a different class, it most likely indicates that the object was
+    // ISA swizzled one more time. In this case it is not safe to dispose the generated class. We
+    // will have to keep it to prevent a crash.
+
+    // TODO: Consider adding a flag that can be set by the host application to dispose the class
+    // pair unconditionally. It may be used by apps that use ISA Swizzling themself and are
+    // confident in disposing their subclasses.
+    BOOL isSwizzledObjectInstanceOfGeneratedClass =
+        object_getClass(_swizzledObject) == _generatedClass;
+
+    if (isSwizzledObjectInstanceOfGeneratedClass) {
+      Class generatedClass = _generatedClass;
+
+      // Schedule the generated class disposal after the swizzled object has been deallocated.
+      dispatch_async(dispatch_get_main_queue(), ^{
+        objc_disposeClassPair(generatedClass);
+      });
+    }
   }
 }
 

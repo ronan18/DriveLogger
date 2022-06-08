@@ -25,7 +25,6 @@
 		34A83B99251E88C30059F81F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348D64AE251D081100585B36 /* Assets.xcassets */; };
 		34A83B9D251E88ED0059F81F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A83B9C251E88ED0059F81F /* Launch Screen.storyboard */; };
 		34A83BA1251E8B570059F81F /* OnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A83BA0251E8B570059F81F /* OnBoarding.swift */; };
-		34A83BA6251EE6BB0059F81F /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 34A83BA5251EE6BB0059F81F /* logo.png */; };
 		34A83BAF251EEB3E0059F81F /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 34A83BAC251EEA1B0059F81F /* Intents.intentdefinition */; };
 		34A83BBB251EFA630059F81F /* DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */; };
 		34A83BBF251EFAA50059F81F /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348D64C0251D1F7100585B36 /* DriveLoggerCore.framework */; };
@@ -62,6 +61,17 @@
 		34EA81CA25238F460072511C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EA81C925238F460072511C /* GoogleService-Info.plist */; };
 		4DEB6CA7058A0B697A000D18 /* Pods_DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */; };
 		924B384E787A7F777EE571C9 /* Pods_DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8017AD64CA2A100DAA0BC3 /* Pods_DriveLoggerServicePackage.framework */; };
+		C539C1C628512EF6005425F3 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539C1C528512EF6005425F3 /* ChartView.swift */; };
+		C55568FA2851074300718886 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C55568F92851074300718886 /* logo.png */; };
+		C55568FC28510C4700718886 /* ChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55568FB28510C4700718886 /* ChartCard.swift */; };
+		C555690228512C1C00718886 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D6251D8A2E00C5535D /* WidgetKit.framework */; };
+		C555690328512C1C00718886 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D8251D8A2E00C5535D /* SwiftUI.framework */; };
+		C555690628512C1C00718886 /* PreviousDurationsGraphWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C555690528512C1C00718886 /* PreviousDurationsGraphWidget.swift */; };
+		C555690F28512C1D00718886 /* PreviousDurationsGraphWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C555690128512C1C00718886 /* PreviousDurationsGraphWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C555691328512CC500718886 /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348D64C0251D1F7100585B36 /* DriveLoggerCore.framework */; };
+		C555691728512CC500718886 /* DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */; };
+		C5B7C67228514A8800738D9D /* GraphsNeediOS16 VIEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7C67128514A8800738D9D /* GraphsNeediOS16 VIEW.swift */; };
+		C5B7C67328514C3B00738D9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348D64AE251D081100585B36 /* Assets.xcassets */; };
 		E0D59D40C82E0524D6EDB9C5 /* Pods_DriveLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386194E905148B469EEE19B3 /* Pods_DriveLogger.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,6 +139,27 @@
 			remoteGlobalIDString = 34E30AF8251D8DAC0078F63A;
 			remoteInfo = DriveLoggerServicePackage;
 		};
+		C555690D28512C1D00718886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348D649F251D081000585B36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C555690028512C1C00718886;
+			remoteInfo = PreviousDurationsGraphWidgetExtension;
+		};
+		C555691528512CC500718886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348D649F251D081000585B36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 348D64BF251D1F7100585B36;
+			remoteInfo = DriveLoggerCore;
+		};
+		C555691928512CC500718886 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348D649F251D081000585B36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34E30AF8251D8DAC0078F63A;
+			remoteInfo = DriveLoggerServicePackage;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -151,6 +182,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				34D09D7D2521706F00701C4C /* Percent CompleteExtension.appex in Embed App Extensions */,
+				C555690F28512C1D00718886 /* PreviousDurationsGraphWidgetExtension.appex in Embed App Extensions */,
 				34B8A1E2251D8A3400C5535D /* TimeDrivenExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -182,7 +214,6 @@
 		348D64CE251D1F8E00585B36 /* TimeStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStat.swift; sourceTree = "<group>"; };
 		34A83B9C251E88ED0059F81F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		34A83BA0251E8B570059F81F /* OnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoarding.swift; sourceTree = "<group>"; };
-		34A83BA5251EE6BB0059F81F /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = "../../../../../Creative Cloud Files/Drive Logger/3x/logo.png"; sourceTree = "<group>"; };
 		34A83BAC251EEA1B0059F81F /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		34A83BCC251F173C0059F81F /* AddToSiri.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToSiri.swift; sourceTree = "<group>"; };
 		34B8A1C1251D5C5A00C5535D /* DriveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveView.swift; sourceTree = "<group>"; };
@@ -217,6 +248,14 @@
 		76491951E904E93AB2A17129 /* Pods-DriveLoggerServicePackage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLoggerServicePackage.release.xcconfig"; path = "Target Support Files/Pods-DriveLoggerServicePackage/Pods-DriveLoggerServicePackage.release.xcconfig"; sourceTree = "<group>"; };
 		8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveLoggerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E95DD4850DD229EFB2CBDE /* Pods-DriveLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLogger.debug.xcconfig"; path = "Target Support Files/Pods-DriveLogger/Pods-DriveLogger.debug.xcconfig"; sourceTree = "<group>"; };
+		C539C1C528512EF6005425F3 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		C539C1C728513006005425F3 /* PreviousDurationsGraphWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PreviousDurationsGraphWidgetExtension.entitlements; sourceTree = "<group>"; };
+		C55568F92851074300718886 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
+		C55568FB28510C4700718886 /* ChartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCard.swift; sourceTree = "<group>"; };
+		C555690128512C1C00718886 /* PreviousDurationsGraphWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PreviousDurationsGraphWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C555690528512C1C00718886 /* PreviousDurationsGraphWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousDurationsGraphWidget.swift; sourceTree = "<group>"; };
+		C555690A28512C1D00718886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B7C67128514A8800738D9D /* GraphsNeediOS16 VIEW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GraphsNeediOS16 VIEW.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,12 +308,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C55568FE28512C1C00718886 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C555690328512C1C00718886 /* SwiftUI.framework in Frameworks */,
+				C555691328512CC500718886 /* DriveLoggerCore.framework in Frameworks */,
+				C555691728512CC500718886 /* DriveLoggerServicePackage.framework in Frameworks */,
+				C555690228512C1C00718886 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		348D649E251D081000585B36 = {
 			isa = PBXGroup;
 			children = (
+				C539C1C728513006005425F3 /* PreviousDurationsGraphWidgetExtension.entitlements */,
 				347CBFF42544ACE40003E40E /* DriveLoggerDataFormat.swift */,
 				34D09DA0252177B000701C4C /* Percent CompleteExtension.entitlements */,
 				3417A231251E82610053F93A /* TimeDrivenExtension.entitlements */,
@@ -283,6 +334,7 @@
 				34E30AFA251D8DAC0078F63A /* DriveLoggerServicePackage */,
 				34D09D752521706D00701C4C /* Percent Complete */,
 				34B8A1DA251D8A2E00C5535D /* TimeDriven */,
+				C555690428512C1C00718886 /* PreviousDurationsGraphWidget */,
 				34B8A1D5251D8A2E00C5535D /* Frameworks */,
 				348D64A8251D081000585B36 /* Products */,
 				5DBDBDAA49EFE8567728A62A /* Pods */,
@@ -297,6 +349,7 @@
 				34B8A1D4251D8A2E00C5535D /* TimeDrivenExtension.appex */,
 				34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */,
 				34D09D722521706D00701C4C /* Percent CompleteExtension.appex */,
+				C555690128512C1C00718886 /* PreviousDurationsGraphWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -304,8 +357,8 @@
 		348D64A9251D081000585B36 /* DriveLogger */ = {
 			isa = PBXGroup;
 			children = (
+				C55568F92851074300718886 /* logo.png */,
 				34EA81C925238F460072511C /* GoogleService-Info.plist */,
-				34A83BA5251EE6BB0059F81F /* logo.png */,
 				3417A22F251E7D9E0053F93A /* DriveLogger.entitlements */,
 				348D64AA251D081000585B36 /* DriveLoggerApp.swift */,
 				348D64AC251D081000585B36 /* ContentView.swift */,
@@ -334,11 +387,14 @@
 		348D64C1251D1F7100585B36 /* DriveLoggerCore */ = {
 			isa = PBXGroup;
 			children = (
+				C5B7C67128514A8800738D9D /* GraphsNeediOS16 VIEW.swift */,
 				348D64C2251D1F7100585B36 /* DriveLoggerCore.h */,
 				348D64C3251D1F7100585B36 /* Info.plist */,
 				348D64CE251D1F8E00585B36 /* TimeStat.swift */,
 				342A50A4251D21C5002BE67B /* CardModifier.swift */,
 				342A50AF251D2A2B002BE67B /* StatCard.swift */,
+				C55568FB28510C4700718886 /* ChartCard.swift */,
+				C539C1C528512EF6005425F3 /* ChartView.swift */,
 				34D09D6925216A5E00701C4C /* ProgressStatCard.swift */,
 				34D09DA5252177E200701C4C /* ProgressStat.swift */,
 				34D09DAB25217ACD00701C4C /* BarChart.swift */,
@@ -408,6 +464,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C555690428512C1C00718886 /* PreviousDurationsGraphWidget */ = {
+			isa = PBXGroup;
+			children = (
+				C555690528512C1C00718886 /* PreviousDurationsGraphWidget.swift */,
+				C555690A28512C1D00718886 /* Info.plist */,
+			);
+			path = PreviousDurationsGraphWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -450,6 +515,7 @@
 				34B8A1E1251D8A3400C5535D /* PBXTargetDependency */,
 				34E30AFF251D8DAC0078F63A /* PBXTargetDependency */,
 				34D09D7C2521706F00701C4C /* PBXTargetDependency */,
+				C555690E28512C1D00718886 /* PBXTargetDependency */,
 			);
 			name = DriveLogger;
 			productName = DriveLogger;
@@ -533,13 +599,32 @@
 			productReference = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C555690028512C1C00718886 /* PreviousDurationsGraphWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C555691028512C1D00718886 /* Build configuration list for PBXNativeTarget "PreviousDurationsGraphWidgetExtension" */;
+			buildPhases = (
+				C55568FD28512C1C00718886 /* Sources */,
+				C55568FE28512C1C00718886 /* Frameworks */,
+				C55568FF28512C1C00718886 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C555691628512CC500718886 /* PBXTargetDependency */,
+				C555691A28512CC500718886 /* PBXTargetDependency */,
+			);
+			name = PreviousDurationsGraphWidgetExtension;
+			productName = PreviousDurationsGraphWidgetExtension;
+			productReference = C555690128512C1C00718886 /* PreviousDurationsGraphWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		348D649F251D081000585B36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					348D64A6251D081000585B36 = {
@@ -558,6 +643,9 @@
 					34E30AF8251D8DAC0078F63A = {
 						CreatedOnToolsVersion = 12.0;
 						LastSwiftMigration = 1200;
+					};
+					C555690028512C1C00718886 = {
+						CreatedOnToolsVersion = 14.0;
 					};
 				};
 			};
@@ -579,6 +667,7 @@
 				34B8A1D3251D8A2E00C5535D /* TimeDrivenExtension */,
 				34E30AF8251D8DAC0078F63A /* DriveLoggerServicePackage */,
 				34D09D712521706D00701C4C /* Percent CompleteExtension */,
+				C555690028512C1C00718886 /* PreviousDurationsGraphWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -588,8 +677,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34A83BA6251EE6BB0059F81F /* logo.png in Resources */,
 				34A83B9D251E88ED0059F81F /* Launch Screen.storyboard in Resources */,
+				C55568FA2851074300718886 /* logo.png in Resources */,
 				348D64B2251D081100585B36 /* Preview Assets.xcassets in Resources */,
 				348D64AF251D081100585B36 /* Assets.xcassets in Resources */,
 				34EA81CA25238F460072511C /* GoogleService-Info.plist in Resources */,
@@ -627,6 +716,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				34D09D9B2521738000701C4C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C55568FF28512C1C00718886 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B7C67328514C3B00738D9D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +857,8 @@
 				342A50B6251D2C1A002BE67B /* DriveCard.swift in Sources */,
 				342A50B0251D2A2B002BE67B /* StatCard.swift in Sources */,
 				34D09D6A25216A5E00701C4C /* ProgressStatCard.swift in Sources */,
+				C5B7C67228514A8800738D9D /* GraphsNeediOS16 VIEW.swift in Sources */,
+				C539C1C628512EF6005425F3 /* ChartView.swift in Sources */,
 				34B8A1CB251D827200C5535D /* VisualEffectView.swift in Sources */,
 				34D09DAC25217ACD00701C4C /* BarChart.swift in Sources */,
 				342A50B3251D2B0E002BE67B /* BlackButton.swift in Sources */,
@@ -768,6 +867,7 @@
 				34D09DA6252177E200701C4C /* ProgressStat.swift in Sources */,
 				348D64CF251D1F8E00585B36 /* TimeStat.swift in Sources */,
 				342A50A5251D21C5002BE67B /* CardModifier.swift in Sources */,
+				C55568FC28510C4700718886 /* ChartCard.swift in Sources */,
 				34B8A1C8251D824A00C5535D /* DriveEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,6 +895,14 @@
 				34E30B1E251D9C310078F63A /* Helpers.swift in Sources */,
 				347CBFF52544ACE40003E40E /* DriveLoggerDataFormat.swift in Sources */,
 				34E30B0A251D8DC00078F63A /* DriveLoggerService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C55568FD28512C1C00718886 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C555690628512C1C00718886 /* PreviousDurationsGraphWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +953,21 @@
 			isa = PBXTargetDependency;
 			target = 34E30AF8251D8DAC0078F63A /* DriveLoggerServicePackage */;
 			targetProxy = 34E30B23251DB3AF0078F63A /* PBXContainerItemProxy */;
+		};
+		C555690E28512C1D00718886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C555690028512C1C00718886 /* PreviousDurationsGraphWidgetExtension */;
+			targetProxy = C555690D28512C1D00718886 /* PBXContainerItemProxy */;
+		};
+		C555691628512CC500718886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 348D64BF251D1F7100585B36 /* DriveLoggerCore */;
+			targetProxy = C555691528512CC500718886 /* PBXContainerItemProxy */;
+		};
+		C555691A28512CC500718886 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34E30AF8251D8DAC0078F63A /* DriveLoggerServicePackage */;
+			targetProxy = C555691928512CC500718886 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -979,6 +1102,7 @@
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DriveLogger/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1006,6 +1130,7 @@
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = DriveLogger/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1243,6 +1368,66 @@
 			};
 			name = Release;
 		};
+		C555691128512C1D00718886 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = PreviousDurationsGraphWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7M5JDZSYX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PreviousDurationsGraphWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PreviousDurationsGraphWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PreviousDurationsGraphWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C555691228512C1D00718886 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = PreviousDurationsGraphWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7M5JDZSYX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PreviousDurationsGraphWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PreviousDurationsGraphWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PreviousDurationsGraphWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1296,6 +1481,15 @@
 			buildConfigurations = (
 				34E30B02251D8DAC0078F63A /* Debug */,
 				34E30B03251D8DAC0078F63A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C555691028512C1D00718886 /* Build configuration list for PBXNativeTarget "PreviousDurationsGraphWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C555691128512C1D00718886 /* Debug */,
+				C555691228512C1D00718886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

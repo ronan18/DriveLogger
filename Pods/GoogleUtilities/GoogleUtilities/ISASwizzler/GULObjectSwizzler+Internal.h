@@ -12,7 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GoogleUtilities/ISASwizzler/Private/GULObjectSwizzler.h"
+#import "GoogleUtilities/ISASwizzler/Public/GoogleUtilities/GULObjectSwizzler.h"
+
+FOUNDATION_EXPORT NSString *kGULSwizzlerAssociatedObjectKey;
 
 @interface GULObjectSwizzler (Internal)
 
