@@ -61,7 +61,7 @@
 		34EA81CA25238F460072511C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EA81C925238F460072511C /* GoogleService-Info.plist */; };
 		4DEB6CA7058A0B697A000D18 /* Pods_DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */; };
 		924B384E787A7F777EE571C9 /* Pods_DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8017AD64CA2A100DAA0BC3 /* Pods_DriveLoggerServicePackage.framework */; };
-		C539C1C628512EF6005425F3 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539C1C528512EF6005425F3 /* ChartView.swift */; };
+		C539C1C628512EF6005425F3 /* DriveByDayChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539C1C528512EF6005425F3 /* DriveByDayChart.swift */; };
 		C55568FA2851074300718886 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C55568F92851074300718886 /* logo.png */; };
 		C55568FC28510C4700718886 /* ChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55568FB28510C4700718886 /* ChartCard.swift */; };
 		C555690228512C1C00718886 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D6251D8A2E00C5535D /* WidgetKit.framework */; };
@@ -72,6 +72,15 @@
 		C555691728512CC500718886 /* DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */; };
 		C5B7C67228514A8800738D9D /* GraphsNeediOS16 VIEW.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7C67128514A8800738D9D /* GraphsNeediOS16 VIEW.swift */; };
 		C5B7C67328514C3B00738D9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348D64AE251D081100585B36 /* Assets.xcassets */; };
+		C5B7C675285163E100738D9D /* Percent of Goal Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7C674285163E100738D9D /* Percent of Goal Chart.swift */; };
+		C5B7C67B28516D4000738D9D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D6251D8A2E00C5535D /* WidgetKit.framework */; };
+		C5B7C67C28516D4000738D9D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D8251D8A2E00C5535D /* SwiftUI.framework */; };
+		C5B7C67F28516D4000738D9D /* PercentDrivenOverTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7C67E28516D4000738D9D /* PercentDrivenOverTime.swift */; };
+		C5B7C68128516D4100738D9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5B7C68028516D4100738D9D /* Assets.xcassets */; };
+		C5B7C68528516D4100738D9D /* PercentDrivenOverTimeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5B7C67A28516D4000738D9D /* PercentDrivenOverTimeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5B7C68928516D4E00738D9D /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348D64C0251D1F7100585B36 /* DriveLoggerCore.framework */; };
+		C5B7C68E28516D5200738D9D /* DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */; };
+		C5B7C69328516E6600738D9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348D64AE251D081100585B36 /* Assets.xcassets */; };
 		E0D59D40C82E0524D6EDB9C5 /* Pods_DriveLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386194E905148B469EEE19B3 /* Pods_DriveLogger.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +169,27 @@
 			remoteGlobalIDString = 34E30AF8251D8DAC0078F63A;
 			remoteInfo = DriveLoggerServicePackage;
 		};
+		C5B7C68328516D4100738D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348D649F251D081000585B36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5B7C67928516D4000738D9D;
+			remoteInfo = PercentDrivenOverTimeExtension;
+		};
+		C5B7C68B28516D4E00738D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348D649F251D081000585B36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 348D64BF251D1F7100585B36;
+			remoteInfo = DriveLoggerCore;
+		};
+		C5B7C69028516D5200738D9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 348D649F251D081000585B36 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34E30AF8251D8DAC0078F63A;
+			remoteInfo = DriveLoggerServicePackage;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -182,6 +212,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				34D09D7D2521706F00701C4C /* Percent CompleteExtension.appex in Embed App Extensions */,
+				C5B7C68528516D4100738D9D /* PercentDrivenOverTimeExtension.appex in Embed App Extensions */,
 				C555690F28512C1D00718886 /* PreviousDurationsGraphWidgetExtension.appex in Embed App Extensions */,
 				34B8A1E2251D8A3400C5535D /* TimeDrivenExtension.appex in Embed App Extensions */,
 			);
@@ -248,7 +279,7 @@
 		76491951E904E93AB2A17129 /* Pods-DriveLoggerServicePackage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLoggerServicePackage.release.xcconfig"; path = "Target Support Files/Pods-DriveLoggerServicePackage/Pods-DriveLoggerServicePackage.release.xcconfig"; sourceTree = "<group>"; };
 		8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveLoggerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E95DD4850DD229EFB2CBDE /* Pods-DriveLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLogger.debug.xcconfig"; path = "Target Support Files/Pods-DriveLogger/Pods-DriveLogger.debug.xcconfig"; sourceTree = "<group>"; };
-		C539C1C528512EF6005425F3 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		C539C1C528512EF6005425F3 /* DriveByDayChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveByDayChart.swift; sourceTree = "<group>"; };
 		C539C1C728513006005425F3 /* PreviousDurationsGraphWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PreviousDurationsGraphWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C55568F92851074300718886 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
 		C55568FB28510C4700718886 /* ChartCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCard.swift; sourceTree = "<group>"; };
@@ -256,6 +287,12 @@
 		C555690528512C1C00718886 /* PreviousDurationsGraphWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousDurationsGraphWidget.swift; sourceTree = "<group>"; };
 		C555690A28512C1D00718886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B7C67128514A8800738D9D /* GraphsNeediOS16 VIEW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GraphsNeediOS16 VIEW.swift"; sourceTree = "<group>"; };
+		C5B7C674285163E100738D9D /* Percent of Goal Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Percent of Goal Chart.swift"; sourceTree = "<group>"; };
+		C5B7C67A28516D4000738D9D /* PercentDrivenOverTimeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PercentDrivenOverTimeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5B7C67E28516D4000738D9D /* PercentDrivenOverTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentDrivenOverTime.swift; sourceTree = "<group>"; };
+		C5B7C68028516D4100738D9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5B7C68228516D4100738D9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B7C69228516D5B00738D9D /* PercentDrivenOverTimeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PercentDrivenOverTimeExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,12 +356,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C5B7C67728516D4000738D9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B7C67C28516D4000738D9D /* SwiftUI.framework in Frameworks */,
+				C5B7C68928516D4E00738D9D /* DriveLoggerCore.framework in Frameworks */,
+				C5B7C68E28516D5200738D9D /* DriveLoggerServicePackage.framework in Frameworks */,
+				C5B7C67B28516D4000738D9D /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		348D649E251D081000585B36 = {
 			isa = PBXGroup;
 			children = (
+				C5B7C69228516D5B00738D9D /* PercentDrivenOverTimeExtension.entitlements */,
 				C539C1C728513006005425F3 /* PreviousDurationsGraphWidgetExtension.entitlements */,
 				347CBFF42544ACE40003E40E /* DriveLoggerDataFormat.swift */,
 				34D09DA0252177B000701C4C /* Percent CompleteExtension.entitlements */,
@@ -335,6 +384,7 @@
 				34D09D752521706D00701C4C /* Percent Complete */,
 				34B8A1DA251D8A2E00C5535D /* TimeDriven */,
 				C555690428512C1C00718886 /* PreviousDurationsGraphWidget */,
+				C5B7C67D28516D4000738D9D /* PercentDrivenOverTime */,
 				34B8A1D5251D8A2E00C5535D /* Frameworks */,
 				348D64A8251D081000585B36 /* Products */,
 				5DBDBDAA49EFE8567728A62A /* Pods */,
@@ -350,6 +400,7 @@
 				34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */,
 				34D09D722521706D00701C4C /* Percent CompleteExtension.appex */,
 				C555690128512C1C00718886 /* PreviousDurationsGraphWidgetExtension.appex */,
+				C5B7C67A28516D4000738D9D /* PercentDrivenOverTimeExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -394,7 +445,8 @@
 				342A50A4251D21C5002BE67B /* CardModifier.swift */,
 				342A50AF251D2A2B002BE67B /* StatCard.swift */,
 				C55568FB28510C4700718886 /* ChartCard.swift */,
-				C539C1C528512EF6005425F3 /* ChartView.swift */,
+				C539C1C528512EF6005425F3 /* DriveByDayChart.swift */,
+				C5B7C674285163E100738D9D /* Percent of Goal Chart.swift */,
 				34D09D6925216A5E00701C4C /* ProgressStatCard.swift */,
 				34D09DA5252177E200701C4C /* ProgressStat.swift */,
 				34D09DAB25217ACD00701C4C /* BarChart.swift */,
@@ -473,6 +525,16 @@
 			path = PreviousDurationsGraphWidget;
 			sourceTree = "<group>";
 		};
+		C5B7C67D28516D4000738D9D /* PercentDrivenOverTime */ = {
+			isa = PBXGroup;
+			children = (
+				C5B7C67E28516D4000738D9D /* PercentDrivenOverTime.swift */,
+				C5B7C68028516D4100738D9D /* Assets.xcassets */,
+				C5B7C68228516D4100738D9D /* Info.plist */,
+			);
+			path = PercentDrivenOverTime;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -516,6 +578,7 @@
 				34E30AFF251D8DAC0078F63A /* PBXTargetDependency */,
 				34D09D7C2521706F00701C4C /* PBXTargetDependency */,
 				C555690E28512C1D00718886 /* PBXTargetDependency */,
+				C5B7C68428516D4100738D9D /* PBXTargetDependency */,
 			);
 			name = DriveLogger;
 			productName = DriveLogger;
@@ -618,6 +681,25 @@
 			productReference = C555690128512C1C00718886 /* PreviousDurationsGraphWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		C5B7C67928516D4000738D9D /* PercentDrivenOverTimeExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5B7C68628516D4100738D9D /* Build configuration list for PBXNativeTarget "PercentDrivenOverTimeExtension" */;
+			buildPhases = (
+				C5B7C67628516D4000738D9D /* Sources */,
+				C5B7C67728516D4000738D9D /* Frameworks */,
+				C5B7C67828516D4000738D9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C5B7C68C28516D4E00738D9D /* PBXTargetDependency */,
+				C5B7C69128516D5200738D9D /* PBXTargetDependency */,
+			);
+			name = PercentDrivenOverTimeExtension;
+			productName = PercentDrivenOverTimeExtension;
+			productReference = C5B7C67A28516D4000738D9D /* PercentDrivenOverTimeExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -647,6 +729,9 @@
 					C555690028512C1C00718886 = {
 						CreatedOnToolsVersion = 14.0;
 					};
+					C5B7C67928516D4000738D9D = {
+						CreatedOnToolsVersion = 14.0;
+					};
 				};
 			};
 			buildConfigurationList = 348D64A2251D081000585B36 /* Build configuration list for PBXProject "DriveLogger" */;
@@ -668,6 +753,7 @@
 				34E30AF8251D8DAC0078F63A /* DriveLoggerServicePackage */,
 				34D09D712521706D00701C4C /* Percent CompleteExtension */,
 				C555690028512C1C00718886 /* PreviousDurationsGraphWidgetExtension */,
+				C5B7C67928516D4000738D9D /* PercentDrivenOverTimeExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -724,6 +810,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B7C67328514C3B00738D9D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B7C67828516D4000738D9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B7C69328516E6600738D9D /* Assets.xcassets in Resources */,
+				C5B7C68128516D4100738D9D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,12 +953,13 @@
 				342A50B0251D2A2B002BE67B /* StatCard.swift in Sources */,
 				34D09D6A25216A5E00701C4C /* ProgressStatCard.swift in Sources */,
 				C5B7C67228514A8800738D9D /* GraphsNeediOS16 VIEW.swift in Sources */,
-				C539C1C628512EF6005425F3 /* ChartView.swift in Sources */,
+				C539C1C628512EF6005425F3 /* DriveByDayChart.swift in Sources */,
 				34B8A1CB251D827200C5535D /* VisualEffectView.swift in Sources */,
 				34D09DAC25217ACD00701C4C /* BarChart.swift in Sources */,
 				342A50B3251D2B0E002BE67B /* BlackButton.swift in Sources */,
 				34A83BA1251E8B570059F81F /* OnBoarding.swift in Sources */,
 				34B8A1CE251D840C00C5535D /* BorderView.swift in Sources */,
+				C5B7C675285163E100738D9D /* Percent of Goal Chart.swift in Sources */,
 				34D09DA6252177E200701C4C /* ProgressStat.swift in Sources */,
 				348D64CF251D1F8E00585B36 /* TimeStat.swift in Sources */,
 				342A50A5251D21C5002BE67B /* CardModifier.swift in Sources */,
@@ -903,6 +999,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C555690628512C1C00718886 /* PreviousDurationsGraphWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B7C67628516D4000738D9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B7C67F28516D4000738D9D /* PercentDrivenOverTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -968,6 +1072,21 @@
 			isa = PBXTargetDependency;
 			target = 34E30AF8251D8DAC0078F63A /* DriveLoggerServicePackage */;
 			targetProxy = C555691928512CC500718886 /* PBXContainerItemProxy */;
+		};
+		C5B7C68428516D4100738D9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5B7C67928516D4000738D9D /* PercentDrivenOverTimeExtension */;
+			targetProxy = C5B7C68328516D4100738D9D /* PBXContainerItemProxy */;
+		};
+		C5B7C68C28516D4E00738D9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 348D64BF251D1F7100585B36 /* DriveLoggerCore */;
+			targetProxy = C5B7C68B28516D4E00738D9D /* PBXContainerItemProxy */;
+		};
+		C5B7C69128516D5200738D9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34E30AF8251D8DAC0078F63A /* DriveLoggerServicePackage */;
+			targetProxy = C5B7C69028516D5200738D9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1097,7 +1216,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011043;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
@@ -1125,7 +1244,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011043;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
@@ -1428,6 +1547,66 @@
 			};
 			name = Release;
 		};
+		C5B7C68728516D4100738D9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = PercentDrivenOverTimeExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7M5JDZSYX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PercentDrivenOverTime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PercentDrivenOverTime;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PercentDrivenOverTime;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C5B7C68828516D4100738D9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_ENTITLEMENTS = PercentDrivenOverTimeExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7M5JDZSYX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PercentDrivenOverTime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PercentDrivenOverTime;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PercentDrivenOverTime;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1490,6 +1669,15 @@
 			buildConfigurations = (
 				C555691128512C1D00718886 /* Debug */,
 				C555691228512C1D00718886 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5B7C68628516D4100738D9D /* Build configuration list for PBXNativeTarget "PercentDrivenOverTimeExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5B7C68728516D4100738D9D /* Debug */,
+				C5B7C68828516D4100738D9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

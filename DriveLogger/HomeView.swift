@@ -85,7 +85,10 @@ struct HomeView: View {
                                     Spacer()
                                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).unit, description: "until goal completion")
                                 }.padding(.horizontal).padding(.bottom)
-                                ChartCard(data: self.appState.state).padding(.horizontal).frame(height: 250)
+                                VStack {
+                                    ChartCard(data: self.appState.state).padding(.horizontal).frame(height: 250).padding(.bottom)
+                                    PercentOfGoalChart(data: self.appState.state).padding().card().padding(.horizontal).frame(height: 250)
+                                }
                                 Spacer()
                                 
                                 

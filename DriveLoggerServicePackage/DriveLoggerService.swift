@@ -25,7 +25,7 @@ public struct Drive: Codable, Identifiable {
 public struct DriveLengthDay: Codable, Identifiable {
     public var id = UUID()
     public var date: Date
-    public var length: TimeInterval
+    public var length: Double
     public init(id: UUID = UUID(), date: Date, length: TimeInterval) {
         self.id = id
         self.date = date

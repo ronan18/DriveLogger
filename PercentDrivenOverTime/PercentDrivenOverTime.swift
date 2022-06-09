@@ -1,6 +1,6 @@
 //
-//  PreviousDurationsGraphWidget.swift
-//  PreviousDurationsGraphWidget
+//  PercentDrivenOverTime.swift
+//  PercentDrivenOverTime
 //
 //  Created by Ronan Furuta on 6/8/22.
 //
@@ -45,7 +45,7 @@ struct SimpleEntry: TimelineEntry {
     let state: DriveLoggerAppState?
 }
 
-struct PreviousDurationEntryView : View {
+struct PercentDrivenOverTimeEntryView : View {
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
     let dlService = DriveLoggerService()
@@ -69,31 +69,31 @@ struct PreviousDurationEntryView : View {
     var body: some View {
      //   Text("avg:\(average.description) axis:\(axis.description) lbl:\(label?.description ?? "nil") fam:\(widgetFamily.description)").font(.caption2)
         if (entry.state != nil) {
-            DriveByDayChart(data: entry.state!, average: average, axis: widgetFamily == .systemSmall ? false : true, label: widgetFamily == .systemSmall ? "Drives" : nil).padding()
+            PercentOfGoalChart(data: entry.state!, average: average, axis: widgetFamily == .systemSmall ? false : true, label: widgetFamily == .systemSmall ? "Goal" : nil).padding()
         } else {
-            Text("Loading Data").redacted(reason: .placeholder)
+            Text("loadingData").redacted(reason: .placeholder)
         }
         
     }
 }
 
 @main
-struct PreviousDuration: Widget {
+struct PercentDrivenOverTime: Widget {
     
-    let kind: String = "PreviousDurationGraph"
+    let kind: String = "PercentDrivenPerday"
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            PreviousDurationEntryView(entry: entry)
+            PercentDrivenOverTimeEntryView(entry: entry)
         }
-        .configurationDisplayName("Previous Durations Graph")
+        .configurationDisplayName("Percent driven per day graph")
         .description("View a graph of your previous drives by day")
     }
 }
 
-struct PreviousDuration_Previews: PreviewProvider {
+struct PercentDrivenOverTime_Previews: PreviewProvider {
     static var previews: some View {
-        PreviousDurationEntryView(entry: SimpleEntry(date: Date(), state: nil))
+        PercentDrivenOverTimeEntryView(entry: SimpleEntry(date: Date(), state: nil))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

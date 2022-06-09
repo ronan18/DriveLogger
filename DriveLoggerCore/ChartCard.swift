@@ -17,7 +17,7 @@ public struct ChartCard: View {
        
     }
     public var body: some View {
-        ChartView(data: data).padding().card()
+        DriveByDayChart(data: data).padding().card()
     }
 }
 /*

@@ -11,23 +11,26 @@ import DriveLoggerServicePackage
 #if canImport(Charts)
 import Charts
 #endif
-public enum ChartMode {
-    case standard
-    case minimal
-}
-public struct ChartView: View {
+
+public struct DriveByDayChart: View {
     var data: [DriveLengthDay]
     
     var average = true
     var axis = true
-    var averageLength: TimeInterval
+    var dailyAverage: TimeInterval
+    var averageDriveLength: TimeInterval
     var label: String
     public init(data: DriveLoggerAppState, average: Bool = true, axis: Bool = true, label: String? = nil) {
         self.data = data.driveLengthByDay
-        self.averageLength = data.averageDriveDuration
-        self.label = label ?? "duration of previous drives"
+        self.averageDriveLength = data.averageDriveDuration
+        self.label = label ?? "amount of driving per day"
         self.average = average
         self.axis = axis
+        var sumAverage = 0
+        data.driveLengthByDay.forEach({drive in
+            sumAverage += Int(drive.length)
+        })
+        self.dailyAverage = TimeInterval(sumAverage / data.driveLengthByDay.count)
     }
     
     public var body: some View {
@@ -52,9 +55,14 @@ public struct ChartView: View {
                             y: .value("Duration", data.length / 60)
                         ).foregroundStyle(Color("BlackColor")).interpolationMethod(.catmullRom)//.symbol(by: .value("Length", data.length))
                         if (self.average) {
-                            RuleMark(y: .value("Average drive length", self.averageLength / 60)).foregroundStyle(.blue).annotation(position: .top, alignment: .trailing) {
+                            RuleMark(y: .value("Average time driving per day", self.dailyAverage / 60)).foregroundStyle(.blue).annotation(position: .top, alignment: .trailing) {
                                 VStack {
-                                    Text("Average \(Int(self.averageLength / 60))m").font(.caption2).foregroundColor(.blue)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
+                                    Text("Daily average: **\(Int(self.dailyAverage / 60))**m").font(.caption2).foregroundColor(.blue)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
+                                }.padding(2).background(.ultraThinMaterial).cornerRadius(5)
+                            }
+                            RuleMark(y: .value("Average drive length", self.averageDriveLength / 60)).foregroundStyle(.orange).annotation(position: .top, alignment: .leading) {
+                                VStack {
+                                    Text("Average drive: **\(Int(self.averageDriveLength / 60))**m").font(.caption2).foregroundColor(.orange)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
                                 }.padding(2).background(.ultraThinMaterial).cornerRadius(5)
                             }
                         }
@@ -68,7 +76,7 @@ public struct ChartView: View {
                     VStack(alignment:.leading) {
                         Text(label + " graph").font(.headline)
                         if (axis) {
-                            Text("Graphical representation of the length of previous drive").font(.caption).foregroundColor(.gray)
+                            Text("Graphical representation of the amount of driving per day").font(.caption).foregroundColor(.gray)
                         }
                     }
                     Spacer()
