@@ -56,14 +56,12 @@ public struct DriveByDayChart: View {
                         ).foregroundStyle(Color("BlackColor")).interpolationMethod(.catmullRom)//.symbol(by: .value("Length", data.length))
                         if (self.average) {
                             RuleMark(y: .value("Average time driving per day", self.dailyAverage / 60)).foregroundStyle(.blue).annotation(position: .top, alignment: .trailing) {
-                                VStack {
-                                    Text("Daily average: **\(Int(self.dailyAverage / 60))**m").font(.caption2).foregroundColor(.blue)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
-                                }.padding(2).background(.ultraThinMaterial).cornerRadius(5)
+                                RuleMarkAnnotation(label: self.axis ? "Daily average: **\(Int(self.dailyAverage / 60))**m" : "**\(Int(self.dailyAverage / 60))**m avg day ", color: .blue)
+                              
                             }
                             RuleMark(y: .value("Average drive length", self.averageDriveLength / 60)).foregroundStyle(.orange).annotation(position: .top, alignment: .leading) {
-                                VStack {
-                                    Text("Average drive: **\(Int(self.averageDriveLength / 60))**m").font(.caption2).foregroundColor(.orange)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
-                                }.padding(2).background(.ultraThinMaterial).cornerRadius(5)
+                                RuleMarkAnnotation(label: self.axis ? "Average drive: **\(Int(self.averageDriveLength / 60))**m" : "**\(Int(self.averageDriveLength / 60))**m avg drive", color: .orange)
+                       
                             }
                         }
                     }

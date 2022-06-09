@@ -26,7 +26,7 @@ struct Provider: TimelineProvider {
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+       
         let dlService = DriveLoggerService()
         var state = dlService.retreiveState()
         state = dlService.computeStatistics(state)

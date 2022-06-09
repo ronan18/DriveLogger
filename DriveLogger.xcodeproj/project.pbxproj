@@ -76,11 +76,11 @@
 		C5B7C67B28516D4000738D9D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D6251D8A2E00C5535D /* WidgetKit.framework */; };
 		C5B7C67C28516D4000738D9D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B8A1D8251D8A2E00C5535D /* SwiftUI.framework */; };
 		C5B7C67F28516D4000738D9D /* PercentDrivenOverTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7C67E28516D4000738D9D /* PercentDrivenOverTime.swift */; };
-		C5B7C68128516D4100738D9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5B7C68028516D4100738D9D /* Assets.xcassets */; };
 		C5B7C68528516D4100738D9D /* PercentDrivenOverTimeExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5B7C67A28516D4000738D9D /* PercentDrivenOverTimeExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C5B7C68928516D4E00738D9D /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348D64C0251D1F7100585B36 /* DriveLoggerCore.framework */; };
 		C5B7C68E28516D5200738D9D /* DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34E30AF9251D8DAC0078F63A /* DriveLoggerServicePackage.framework */; };
 		C5B7C69328516E6600738D9D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 348D64AE251D081100585B36 /* Assets.xcassets */; };
+		C5B7C695285193B900738D9D /* RuleMarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B7C694285193B900738D9D /* RuleMarkAnnotation.swift */; };
 		E0D59D40C82E0524D6EDB9C5 /* Pods_DriveLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386194E905148B469EEE19B3 /* Pods_DriveLogger.framework */; };
 /* End PBXBuildFile section */
 
@@ -290,9 +290,9 @@
 		C5B7C674285163E100738D9D /* Percent of Goal Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Percent of Goal Chart.swift"; sourceTree = "<group>"; };
 		C5B7C67A28516D4000738D9D /* PercentDrivenOverTimeExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PercentDrivenOverTimeExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B7C67E28516D4000738D9D /* PercentDrivenOverTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentDrivenOverTime.swift; sourceTree = "<group>"; };
-		C5B7C68028516D4100738D9D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5B7C68228516D4100738D9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5B7C69228516D5B00738D9D /* PercentDrivenOverTimeExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PercentDrivenOverTimeExtension.entitlements; sourceTree = "<group>"; };
+		C5B7C694285193B900738D9D /* RuleMarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleMarkAnnotation.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +438,7 @@
 		348D64C1251D1F7100585B36 /* DriveLoggerCore */ = {
 			isa = PBXGroup;
 			children = (
+				C5B7C694285193B900738D9D /* RuleMarkAnnotation.swift */,
 				C5B7C67128514A8800738D9D /* GraphsNeediOS16 VIEW.swift */,
 				348D64C2251D1F7100585B36 /* DriveLoggerCore.h */,
 				348D64C3251D1F7100585B36 /* Info.plist */,
@@ -529,7 +530,6 @@
 			isa = PBXGroup;
 			children = (
 				C5B7C67E28516D4000738D9D /* PercentDrivenOverTime.swift */,
-				C5B7C68028516D4100738D9D /* Assets.xcassets */,
 				C5B7C68228516D4100738D9D /* Info.plist */,
 			);
 			path = PercentDrivenOverTime;
@@ -818,7 +818,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B7C69328516E6600738D9D /* Assets.xcassets in Resources */,
-				C5B7C68128516D4100738D9D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -958,6 +957,7 @@
 				34D09DAC25217ACD00701C4C /* BarChart.swift in Sources */,
 				342A50B3251D2B0E002BE67B /* BlackButton.swift in Sources */,
 				34A83BA1251E8B570059F81F /* OnBoarding.swift in Sources */,
+				C5B7C695285193B900738D9D /* RuleMarkAnnotation.swift in Sources */,
 				34B8A1CE251D840C00C5535D /* BorderView.swift in Sources */,
 				C5B7C675285163E100738D9D /* Percent of Goal Chart.swift in Sources */,
 				34D09DA6252177E200701C4C /* ProgressStat.swift in Sources */,
@@ -1333,7 +1333,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimeDrivenExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011041;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = TimeDriven/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1341,7 +1341,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.TimeDriven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1357,7 +1357,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimeDrivenExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011041;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = TimeDriven/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1365,7 +1365,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.TimeDriven;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1381,7 +1381,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Percent CompleteExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011041;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = "Percent Complete/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1389,7 +1389,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.drives.Percent-Complete";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1405,7 +1405,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Percent CompleteExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011041;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = "Percent Complete/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1413,7 +1413,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.3;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.drives.Percent-Complete";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1495,7 +1495,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PreviousDurationsGraphWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PreviousDurationsGraphWidget/Info.plist;
@@ -1507,7 +1507,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PreviousDurationsGraphWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1525,7 +1525,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PreviousDurationsGraphWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PreviousDurationsGraphWidget/Info.plist;
@@ -1537,7 +1537,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PreviousDurationsGraphWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1555,7 +1555,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PercentDrivenOverTimeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PercentDrivenOverTime/Info.plist;
@@ -1567,7 +1567,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PercentDrivenOverTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1585,7 +1585,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PercentDrivenOverTimeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2011044;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PercentDrivenOverTime/Info.plist;
@@ -1597,7 +1597,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.PercentDrivenOverTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

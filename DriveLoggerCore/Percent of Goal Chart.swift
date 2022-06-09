@@ -22,32 +22,34 @@ public struct PercentOfGoalChart: View {
     var yLimit: Int = 110
     var goalTime: Double
     var domain: ClosedRange<Int>
-   
+    
     public init(data: DriveLoggerAppState, average: Bool = true, axis: Bool = true, label: String? = nil) {
-       /* self.data = data.driveLengthByDay.map({drive in
-            return DriveLengthDay(date: drive.date, length: drive.length/data.goalTime * 100)
-        })*/
+        /* self.data = data.driveLengthByDay.map({drive in
+         return DriveLengthDay(date: drive.date, length: drive.length/data.goalTime * 100)
+         })*/
         var currentTotalTime = 0.0
         var result: [DriveLengthDay] = []
+        var totalPercentage = 0.0
         data.driveLengthByDay.reversed().forEach({drive in
-                if #available(iOS 15.0, *) {
-                   // print("ITTERATING OVER DRIVES FOR WIDGET", drive.date.formatted(), drive.length,drive.length/data.goalTime * 100, data.goalTime)
-                    currentTotalTime += drive.length
-                    //print("ITTERATING OVER DRIVES FOR WIDGET: current total time\(currentTotalTime) of \(data.goalTime) \((currentTotalTime/data.goalTime)*100)%")
-                    result.append(DriveLengthDay(date: drive.date, length: ((currentTotalTime/data.goalTime)*100)))
-                }
-            })
-        
+            
+            // print("ITTERATING OVER DRIVES FOR WIDGET", drive.date.formatted(), drive.length,drive.length/data.goalTime * 100, data.goalTime)
+            currentTotalTime += drive.length
+            //print("ITTERATING OVER DRIVES FOR WIDGET: current total time\(currentTotalTime) of \(data.goalTime) \((currentTotalTime/data.goalTime)*100)%")
+            let percentage = (currentTotalTime/data.goalTime)*100
+            totalPercentage += (drive.length/data.goalTime)*100
+            result.append(DriveLengthDay(date: drive.date, length: percentage))
+            
+        })
+        self.dailyAverage = round(totalPercentage/Double(data.driveLengthByDay.count))
+        print("daily average", self.dailyAverage, totalPercentage, data.driveLengthByDay.count)
         self.data = result
         self.averageDriveLength = data.averageDriveDuration
         self.label = label ?? "goal completion over time"
         self.average = average
         self.axis = axis
-        var sumAverage = 0
-        data.driveLengthByDay.forEach({drive in
-            sumAverage += Int(drive.length)
-        })
-        self.dailyAverage = TimeInterval(sumAverage / data.driveLengthByDay.count)
+       
+       // self.dailyAverage = (sumAverage / Double(data.driveLengthByDay.count))
+        
         if (data.percentComplete > 100) {
             yLimit = Int(data.percentComplete + 10)
         }
@@ -77,17 +79,18 @@ public struct PercentOfGoalChart: View {
                             x: .value("Date", data.date, unit: .day),
                             y: .value("Duration", data.length)
                         ).foregroundStyle(graphGradient).interpolationMethod(.catmullRom)//.symbol(by: .value("Length", data.length))
-                      LineMark(
+                        LineMark(
                             x: .value("Date", data.date, unit: .day),
                             y: .value("Duration", data.length)
                         ).foregroundStyle(Color("BlackColor")).interpolationMethod(.catmullRom)
                         if (self.average) {
-                            RuleMark(y: .value("Driving Goal", 100)).foregroundStyle(.blue).annotation(position: .bottom, alignment: .leading) {
-                                VStack {
-                                    Text("Goal: **\(Int(self.goalTime))**hr").font(.caption2).foregroundColor(.blue)//.shadow(color: Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.025), radius: 2, x: 0.0, y: 3)
-                                }.padding(2).background(.ultraThinMaterial).cornerRadius(5)
+                            RuleMark(y: .value("Driving Goal", 100)).foregroundStyle(.green).annotation(position: .bottom, alignment: .leading) {
+                                RuleMarkAnnotation(label: "Goal: **\(Int(self.goalTime))**hr", color: .green)
                             }
-                           
+                            RuleMark(y: .value("Average Daily Percentage", self.dailyAverage)).foregroundStyle(.orange).annotation(position: .top, alignment: .trailing) {
+                                RuleMarkAnnotation(label: self.axis ? "Average **\(Int(self.dailyAverage))**% increase a day" :"Avg **\(Int(self.dailyAverage))**% a day", color: .orange)
+                            }
+                            
                         }
                     }
                     
@@ -116,3 +119,5 @@ public struct PercentOfGoalChart: View {
         }
     }
 }
+
+
