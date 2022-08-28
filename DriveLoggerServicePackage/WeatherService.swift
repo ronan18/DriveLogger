@@ -9,6 +9,22 @@ import Foundation
 import WeatherKit
 import CoreLocation
 
+public struct SavedWeatherData: Codable {
+    let sunriseTime: Date
+    let sunsetTime: Date
+    let weatherIcon: String
+    let weatherCondition: String
+    let formattedTemp: String
+    let rawValueTemp: Double
+    public init(sunriseTime: Date, sunsetTime: Date, weatherIcon: String, weatherCondition: String, formattedTemp: String, rawValueTemp: Double) {
+        self.sunriseTime = sunriseTime
+        self.sunsetTime = sunsetTime
+        self.weatherIcon = weatherIcon
+        self.weatherCondition = weatherCondition
+        self.formattedTemp = formattedTemp
+        self.rawValueTemp = rawValueTemp
+    }
+}
 #if canImport(WeatherKit)
 @available(iOSApplicationExtension 16.0, *)
 struct LastWeatherSearch {
@@ -65,7 +81,7 @@ public class DLWeather {
             let current = try await WS.weather(for: location, including: .current)
             let day = try await WS.weather(for: location, including: .daily)
             print("WS: Got weather")
-            let res = DLWeatherResults(current: current, today: day.first!, time: Date(), sunriseSunset: SunriseSunset(sunriseTime: day.first!.sun.civilDawn!, sunsetTime: day.first!.sun.civilDusk!))
+            let res = DLWeatherResults(current: current, today: day.first!, time: Date(), sunriseSunset: SunriseSunset(sunriseTime: day.first!.sun.sunrise!, sunsetTime: day.first!.sun.sunset!))
             self.lastSearch = LastWeatherSearch(location: location, success: true, weather: res)
 
             return res

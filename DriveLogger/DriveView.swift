@@ -34,12 +34,12 @@ struct DriveView: View {
                         }.font(.subheadline).foregroundColor(.gray)
                     }
                     if #available(iOS 16.0, *) {
-                        if (self.appState.currentSun != nil) {
-                            HStack(alignment: .lastTextBaseline) {
+                        if (self.appState.currentWeather != nil) {
+                            HStack(alignment: .lastTextBaseline, spacing: 2) {
                                 Image(systemName: "sunrise")
-                                Text(self.appState.currentSun?.sunriseTime ?? Date(), style: .time)
+                                Text(self.appState.currentWeather?.sunriseSunset.sunriseTime ?? Date(), style: .time)
                                 if (self.appState.currentWeather != nil) {
-                                    HStack(spacing: 0) {
+                                    HStack(alignment: .lastTextBaseline, spacing: 0) {
                                         Image(systemName: self.appState.currentWeather?.current.symbolName ?? "cloud")
                                         Text(self.appState.currentWeather?.current.condition.description ?? "")
                                         
@@ -50,7 +50,7 @@ struct DriveView: View {
                                 }
                                 
                                 Image(systemName: "sunset")
-                                Text(self.appState.currentSun?.sunsetTime ?? Date(), style: .time)
+                                Text(self.appState.currentWeather?.sunriseSunset.sunsetTime ?? Date(), style: .time)
                             }.font(.subheadline).foregroundColor(.gray).padding(.bottom).padding(.top, 5)
                         } else {
                             WeatherNotAvail(reason: .notLoaded)

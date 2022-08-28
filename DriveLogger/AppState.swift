@@ -26,7 +26,6 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentDriveStart = Date()
     @Published var locationAllowed = true
     @Published var currentLocation: CLLocation? = nil
-    @Published var currentSun: SunriseSunset? = nil
     @Published var currentWeather: DLWeatherResults? = nil
     @Published var startLocation: CLLocation? = nil
     @Published var startCityName: String = ""
@@ -148,7 +147,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.startLocationUpdating()
             self.currentDriveStart = Date()
             
-            self.currentDrive = CurrentDrive(startLocation: self.currentCity, startTime: Date(), sun: self.currentSun ?? self.defaultSunriseSunset )
+            self.currentDrive = CurrentDrive(startLocation: self.currentCity, startTime: Date(), sun: self.currentWeather?.sunriseSunset ?? self.defaultSunriseSunset )
             print("current drive started", self.currentDrive ?? "none")
             self.appScreen = .drive
             
@@ -176,9 +175,21 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         
         self.driving = false
+        let intent = StopDriveIntent()
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate(completion: {response in
+            print("SIRI stop drive donation:", response as Any)
+        })
+        Analytics.logEvent("endDrive", parameters: [:])
+
         let endTime = Date()
         let endLocation = self.currentCity
-        
+        var weatherData: SavedWeatherData? = nil
+        if let weather = self.currentWeather {
+            if #available(iOS 15.0, *) {
+                weatherData = SavedWeatherData(sunriseTime: weather.sunriseSunset.sunriseTime, sunsetTime: weather.sunriseSunset.sunsetTime, weatherIcon: weather.current.symbolName, weatherCondition: weather.current.condition.description, formattedTemp: weather.current.temperature.formatted().description, rawValueTemp: weather.current.temperature.value)
+            }
+        }
         var location = ""
         if currentDrive.startLocation != "" {
             if (currentDrive.startLocation != endLocation) {
@@ -187,18 +198,12 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
                 location = currentDrive.startLocation
             }
         }
-        self.presentedDrive = Drive(startTime: currentDrive.startTime, endTime: endTime, location: location)
+        self.presentedDrive = Drive(startTime: currentDrive.startTime, endTime: endTime, location: location, savedWeatherData: weatherData)
         self.driveEditor = true
         self.currentDrive = nil
         self.appScreen = .home
         self.saveCurrentDrive()
         locationManager.stopUpdatingLocation()
-        let intent = StopDriveIntent()
-        let interaction = INInteraction(intent: intent, response: nil)
-        interaction.donate(completion: {response in
-            print("SIRI stop drive donation:", response as Any)
-        })
-        Analytics.logEvent("endDrive", parameters: [:])
         
         
         
@@ -235,18 +240,13 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
                 if (self.driving && self.currentDrive?.startLocation == "") {
                     self.startCityName = locationStr
                     self.currentDrive?.startLocation = locationStr
-                    self.currentDrive?.sun = self.currentSun ?? self.defaultSunriseSunset
+                   
                     self.saveCurrentDrive()
                 }
             })
             if #available(iOS 16, *) {
                 Task {
                     self.currentWeather = await self.WS.weather(for: location)
-                    let sunData = self.currentWeather?.sunriseSunset
-                    
-                    if let civilDawn = sunData?.sunriseTime, let civilDusk = sunData?.sunsetTime {
-                        self.currentSun = SunriseSunset(sunriseTime: civilDawn, sunsetTime: civilDusk)
-                    }
                     
                 }
             }

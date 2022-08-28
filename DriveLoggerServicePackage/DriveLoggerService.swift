@@ -12,15 +12,17 @@ import Combine
 import WidgetKit
 import UIKit
 public struct Drive: Codable, Identifiable {
-    public init (startTime: Date, endTime: Date,location: String) {
+    public init (startTime: Date, endTime: Date,location: String, savedWeatherData: SavedWeatherData? = nil) {
         self.startTime = startTime
         self.endTime = endTime
         self.location = location
+        self.savedWeatherData = savedWeatherData
     }
     public var id = UUID()
     public var startTime: Date
     public var endTime: Date
     public var location: String
+    public var savedWeatherData: SavedWeatherData? = nil
 }
 public struct DriveLengthDay: Codable, Identifiable {
     public var id = UUID()
@@ -56,8 +58,8 @@ public struct DriveLoggerAppState: Codable {
     public var driveLengthByDay: [DriveLengthDay] = []
     
     private enum CodingKeys: String, CodingKey {
-            case drives, drivesSortedByDate,totalTime,dayDriveTime,nightDriveTime,timeBreakdown,averageDriveDuration,percentComplete,timeToday,goalTime
-        }
+        case drives, drivesSortedByDate,totalTime,dayDriveTime,nightDriveTime,timeBreakdown,averageDriveDuration,percentComplete,timeToday,goalTime
+    }
 }
 
 public class DriveLoggerService {
@@ -72,26 +74,26 @@ public class DriveLoggerService {
         decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "0", negativeInfinity: "0", nan: "0")
         
     }
-   public func hapticResponse() {
+    public func hapticResponse() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
-                generator.impactOccurred()
+        generator.impactOccurred()
     }
     public func exportData(state: DriveLoggerAppState) -> String {
         print("Starting encode")
-     
-            let encoder = JSONEncoder()
-            do {
+        
+        let encoder = JSONEncoder()
+        do {
             let data = try encoder.encode(state)
             // 2
             let string = String(data: data, encoding: .utf8)!
-           // let data = stateData.encode(to: String)
-           // let string = String(decoding: data, as: UTF8.self)
+            // let data = stateData.encode(to: String)
+            // let string = String(decoding: data, as: UTF8.self)
             print("encode", string)
-                return string
-            } catch {
-                print("error encode", error)
-                return ""
-            }
+            return string
+        } catch {
+            print("error encode", error)
+            return ""
+        }
         
     }
     public func retreiveCurrentDrive() -> CurrentDrive? {
@@ -124,7 +126,7 @@ public class DriveLoggerService {
                 print("error removing current drive", error)
             }
         }
-       
+        
     }
     public func retreiveState() -> DriveLoggerAppState{
         let attemptedRetreval:DriveLoggerAppState?
@@ -188,14 +190,43 @@ public class DriveLoggerService {
             
         }
     }
+    public func driveTimeClassification(_ drive: Drive) -> (TimeInterval, TimeInterval) {
+        if let weatherData = drive.savedWeatherData {
+            let sunrise = weatherData.sunriseTime
+            let sunset = weatherData.sunsetTime
+            let startTime = drive.startTime
+            let endTime = drive.endTime
+            
+            var nightTime = 0.0
+            var dayTime = 0.0
+            let starttimeToEnd = startTime.distance(to: sunrise)
+            if (starttimeToEnd > 0) {
+                nightTime += starttimeToEnd
+            }
+            let sunsetToEnd = sunset.distance(to: endTime)
+            if (sunsetToEnd > 0) {
+                nightTime += sunsetToEnd
+            }
+            dayTime = (endTime.timeIntervalSince(startTime) - nightTime)
+            return (dayTime,nightTime)
+            
+        } else {
+            if (self.isNightDrive(drive)) {
+                return (0,drive.endTime.timeIntervalSince(drive.startTime))
+            } else {
+                return (drive.endTime.timeIntervalSince(drive.startTime), 0)
+            }
+        }
+    }
     public func isNightDrive(_ drive: Drive) -> Bool {
+        
         let sunsetHour = 19
         let sunriseHour = 5
         var startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
         let startHour = startDateComponents.hour!
         let endHour = Calendar.current.component(.hour, from: drive.endTime)
-      
-       
+        
+        
         var eveningDateComponents = DateComponents()
         var sunriseDateComponents = DateComponents()
         sunriseDateComponents = startDateComponents
@@ -211,17 +242,17 @@ public class DriveLoggerService {
                 sunriseTime = Calendar.current.date(byAdding: .day, value: 1, to: time)
             }
         }
-      
-         
+        
+        
         let eveningTime = Calendar.current.date(from: eveningDateComponents)
-      
+        
         if (startHour >= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour) ) { // entire drive in side of night time
             print("night display all in", drive.location)
-          return true
+            return true
         } else if (startHour <= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour)) { // drive starts outside of time and ends in side of time
             print("night display start out end in", drive.location)
-          
-                return true
+            
+            return true
             
         } else if ((startHour >= sunsetHour || startHour < sunriseHour) && endHour <= sunsetHour) { // drive starts in side of time and ends outside of time
             print("night display start in end out", drive.location)
@@ -229,6 +260,7 @@ public class DriveLoggerService {
             return true
         }
         return false
+        
     }
     public func computeStatistics(_ state: DriveLoggerAppState) -> DriveLoggerAppState {
         print("compute drive statistics")
@@ -253,8 +285,8 @@ public class DriveLoggerService {
             var startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
             let startHour = startDateComponents.hour!
             let endHour = Calendar.current.component(.hour, from: drive.endTime)
-          
-           
+            
+            
             var eveningDateComponents = DateComponents()
             var sunriseDateComponents = DateComponents()
             sunriseDateComponents = startDateComponents
@@ -270,10 +302,10 @@ public class DriveLoggerService {
                     sunriseTime = Calendar.current.date(byAdding: .day, value: 1, to: time)
                 }
             }
-          
-             
+            
+            
             let eveningTime = Calendar.current.date(from: eveningDateComponents)
-          
+            
             if (startHour >= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour) ) { // entire drive in side of night time
                 print("night drive all in", drive.location)
                 nightDriveTime += driveTime
@@ -282,7 +314,7 @@ public class DriveLoggerService {
                 if let eveningTime = eveningTime {
                     let interval = drive.endTime.timeIntervalSince(eveningTime)
                     print("night drive SOEI added", interval / 60)
-                nightDriveTime += interval
+                    nightDriveTime += interval
                 } else {
                     print("night drive error")
                 }
@@ -316,7 +348,7 @@ public class DriveLoggerService {
         })
         state.timeToday = timeToday
         print("raw complete", totalTime / state.goalTime)
-    
+        
         var days: [Date: TimeInterval] = [:]
         print("TIME PER DAY COMPUTE: Running computer on days", state.drivesSortedByDate.count)
         state.drivesSortedByDate.forEach({drive in
@@ -426,28 +458,28 @@ public class DriveLoggerService {
                         print("sublocality")
                         resultString = subLocality
                     }
-                 /*   if let thoroughfare = placeMark?.thoroughfare {
-                        if let subLocality =  placeMark?.subLocality {
-                            print("thuroughfare, sublocality")
-                            resultString = "\(thoroughfare), \(subLocality)"
-                        }
-                        
-                    } else {
-                        if let subLocality =  placeMark?.subLocality {
-                            print("sublocality")
-                            resultString = subLocality
-                        } else if let name = placeMark?.name {
-                            if let locality = placeMark?.locality {
-                                print("name, locality")
-                                resultString = "\(name), \(locality)"
-                            } else {
-                                print("name")
-                                resultString = "\(name)"
-                            }
-                            
-                        }
-                    }
-                    */
+                    /*   if let thoroughfare = placeMark?.thoroughfare {
+                     if let subLocality =  placeMark?.subLocality {
+                     print("thuroughfare, sublocality")
+                     resultString = "\(thoroughfare), \(subLocality)"
+                     }
+                     
+                     } else {
+                     if let subLocality =  placeMark?.subLocality {
+                     print("sublocality")
+                     resultString = subLocality
+                     } else if let name = placeMark?.name {
+                     if let locality = placeMark?.locality {
+                     print("name, locality")
+                     resultString = "\(name), \(locality)"
+                     } else {
+                     print("name")
+                     resultString = "\(name)"
+                     }
+                     
+                     }
+                     }
+                     */
                     result(resultString)
                     
                 } else {
