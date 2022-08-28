@@ -12,35 +12,48 @@ struct DriveView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Spacer()
-                HStack {
+                VStack {
                     Spacer()
-                    TimeStat(value: "", unit: "", description: "current drive duration", date: self.appState.currentDrive?.startTime)
-                    Spacer()
-                }
-                Spacer()
-                if (self.appState.currentCity != "") {
                     HStack {
-                        Text("\(Image(systemName: "location.fill")) \(self.appState.currentCity)")
+                        Spacer()
+                        TimeStat(value: "", unit: "", description: "current drive duration", date: self.appState.currentDrive?.startTime)
+                        Spacer()
+                    }
+                    
+                    Spacer()
+                    if (self.appState.currentCity != "") {
+                        HStack {
+                            Text("\(Image(systemName: "location.fill")) \(self.appState.currentCity)")
+                            
+                        }.font(.headline).foregroundColor(.gray).multilineTextAlignment(.center)
                         
-                      /*
-                       
-                        if(self.appState.startCityName != self.appState.currentCity) {
-                            VStack {
-                            Text("\(Image(systemName: "flag.fill")) \(self.appState.startCityName)")
-                                Text("to").padding(.vertical, 5)
-                                Text("\(Image(systemName: "location.fill")) \(self.appState.currentCity)")
-                            }
-                            //Text(self.appState.currentCity)
-                        } else {
-                            Text("\(Image(systemName: "location.fill")) \(self.appState.startCityName)")
-                        }*/
-                    }.font(.subheadline).foregroundColor(.gray).multilineTextAlignment(.center)
-                } else {
-                    HStack {
-                     
-                        Text("\(Image(systemName: "location.fill")) none")
-                    }.font(.subheadline).foregroundColor(.gray)
+                    } else {
+                        HStack {
+                            
+                            Text("\(Image(systemName: "location.fill")) none")
+                        }.font(.subheadline).foregroundColor(.gray)
+                    }
+                    if #available(iOS 16.0, *) {
+                        if (self.appState.currentSun != nil) {
+                            HStack(alignment: .lastTextBaseline) {
+                                Image(systemName: "sunrise")
+                                Text(self.appState.currentSun?.sunriseTime ?? Date(), style: .time)
+                                if (self.appState.currentWeather != nil) {
+                                    HStack(spacing: 0) {
+                                        Image(systemName: self.appState.currentWeather?.current.symbolName ?? "cloud")
+                                        Text(self.appState.currentWeather?.current.condition.description ?? "")
+                                        
+                                        Text(self.appState.currentWeather?.current.temperature.formatted() ?? "").padding(.leading, 5)
+                                    }.padding(.horizontal)
+                                } else {
+                                    Spacer().frame(width: 25)
+                                }
+                                
+                                Image(systemName: "sunset")
+                                Text(self.appState.currentSun?.sunsetTime ?? Date(), style: .time)
+                            }.font(.subheadline).foregroundColor(.gray).padding(.bottom).padding(.top, 5)
+                        }
+                    }
                 }
                 Spacer()
                 HStack {
@@ -53,10 +66,11 @@ struct DriveView: View {
                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.nightDriveTime).value, unit: appState.dlService.displayTimeInterval(appState.state.nightDriveTime).unit, description: "night driving")
                 }
                 Spacer()
-               
+                Spacer()
+                
                 BlackButton("End Drive", action: {
                     self.appState.dlService.hapticResponse()
-                                self.appState.endDrive()
+                    self.appState.endDrive()
                     
                 })
             }.padding()

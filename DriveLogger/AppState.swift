@@ -8,6 +8,7 @@
 import Foundation
 import DriveLoggerServicePackage
 import CoreLocation
+import WeatherKit
 import Intents
 import FirebaseAnalytics
 enum AppScreen {
@@ -16,6 +17,7 @@ enum AppScreen {
     case drive
 }
 
+@MainActor
 class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var appScreen = AppScreen.home
     @Published var dlService = DriveLoggerService()
@@ -24,6 +26,8 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currentDriveStart = Date()
     @Published var locationAllowed = true
     @Published var currentLocation: CLLocation? = nil
+    @Published var currentSun: SunriseSunset? = nil
+    @Published var currentWeather: DLWeatherResults? = nil
     @Published var startLocation: CLLocation? = nil
     @Published var startCityName: String = ""
     @Published var currentCity: String = ""
@@ -34,7 +38,10 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var viewAllDrivesScreen: Int? = nil
     @Published var currentDrive: CurrentDrive? = nil
     @Published var dataExport: DLStateDocument = DLStateDocument(data: "")
+    
     var drivesWatcher: Any? = nil
+    var WS = DLWeather()
+    var defaultSunriseSunset = SunriseSunset(sunriseTime: Date(), sunsetTime: Date())
     private let locationManager = CLLocationManager()
     override init() {
         super.init()
@@ -72,9 +79,9 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             self.appScreen = .drive
         } else {
             self.appScreen = .home
-           
+            
         }
-       
+        
         self.requestLocation()
         Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
         //self.dlService.upateWidgets()
@@ -126,7 +133,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         let intent = ViewAllDrivesIntent()
         let interaction = INInteraction(intent: intent, response: nil)
         interaction.donate(completion: {response in
-            print("SIRI view all drives donation:", response)
+            print("SIRI view all drives donation:", response as Any)
         })
         Analytics.logEvent("viewingAllDrives", parameters: [:])
     }
@@ -136,11 +143,12 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     func startDrive() {
         if (self.appScreen != .onboard) {
-           
+            
             self.driving = true
             self.startLocationUpdating()
             self.currentDriveStart = Date()
-            self.currentDrive = CurrentDrive(startLocation: self.currentCity, startTime: Date())
+            
+            self.currentDrive = CurrentDrive(startLocation: self.currentCity, startTime: Date(), sun: self.currentSun ?? self.defaultSunriseSunset )
             print("current drive started", self.currentDrive ?? "none")
             self.appScreen = .drive
             
@@ -151,7 +159,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             let intent = StartDriveIntent()
             let interaction = INInteraction(intent: intent, response: nil)
             interaction.donate(completion: {response in
-                print("SIRI start drive donation:", response)
+                print("SIRI start drive donation:", response as Any)
             })
             Analytics.logEvent("startDrive", parameters: [:])
         }
@@ -159,36 +167,40 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         
     }
     func endDrive() {
-        if (self.driving) {
-            if let currentDrive = self.currentDrive {
-               
-            
-            self.driving = false
-            let endTime = Date()
-            let endLocation = self.currentCity
-            
-            var location = ""
-                if currentDrive.startLocation != "" {
-                if (currentDrive.startLocation != endLocation) {
-                    location = "\(currentDrive.startLocation) --> \(endLocation)"
-                } else {
-                    location = currentDrive.startLocation
-                }
-            }
-                self.presentedDrive = Drive(startTime: currentDrive.startTime, endTime: endTime, location: location)
-            self.driveEditor = true
-            self.currentDrive = nil
-            self.appScreen = .home
-                self.saveCurrentDrive()
-            locationManager.stopUpdatingLocation()
-            let intent = StopDriveIntent()
-            let interaction = INInteraction(intent: intent, response: nil)
-            interaction.donate(completion: {response in
-                print("SIRI stop drive donation:", response)
-            })
-            Analytics.logEvent("endDrive", parameters: [:])
+        guard (self.driving)  else {
+            return
+        }
+        guard let currentDrive = self.currentDrive  else {
+            return
+        }
+        
+        
+        self.driving = false
+        let endTime = Date()
+        let endLocation = self.currentCity
+        
+        var location = ""
+        if currentDrive.startLocation != "" {
+            if (currentDrive.startLocation != endLocation) {
+                location = "\(currentDrive.startLocation) --> \(endLocation)"
+            } else {
+                location = currentDrive.startLocation
             }
         }
+        self.presentedDrive = Drive(startTime: currentDrive.startTime, endTime: endTime, location: location)
+        self.driveEditor = true
+        self.currentDrive = nil
+        self.appScreen = .home
+        self.saveCurrentDrive()
+        locationManager.stopUpdatingLocation()
+        let intent = StopDriveIntent()
+        let interaction = INInteraction(intent: intent, response: nil)
+        interaction.donate(completion: {response in
+            print("SIRI stop drive donation:", response as Any)
+        })
+        Analytics.logEvent("endDrive", parameters: [:])
+        
+        
         
     }
     // MARK: Location delegates
@@ -209,21 +221,36 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     func  requestLocation() {
         locationManager.requestWhenInUseAuthorization()
     }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("LOCATION: update")
         if let location = locations.first {
             //print(location.coordinate, "location", location)
             
             self.currentLocation = location
-            dlService.cityName(from: location, result: {location in
-                self.currentCity = location
-                print("set current city", location)
+           
+            dlService.cityName(from: location, result: {locationStr in
+                self.currentCity = locationStr
+                print("set current city", locationStr)
+              
                 if (self.driving && self.currentDrive?.startLocation == "") {
-                    self.startCityName = location
-                    self.currentDrive?.startLocation = location
+                    self.startCityName = locationStr
+                    self.currentDrive?.startLocation = locationStr
+                    self.currentDrive?.sun = self.currentSun ?? self.defaultSunriseSunset
                     self.saveCurrentDrive()
                 }
             })
+            if #available(iOS 16, *) {
+                Task {
+                    self.currentWeather = await self.WS.weather(for: location)
+                    let sunData = self.currentWeather?.sunriseSunset
+                    
+                    if let civilDawn = sunData?.sunriseTime, let civilDusk = sunData?.sunsetTime {
+                        self.currentSun = SunriseSunset(sunriseTime: civilDawn, sunsetTime: civilDusk)
+                    }
+                    
+                }
+            }
+           
             
             
         }
@@ -252,6 +279,8 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             Analytics.setUserProperty("false", forName: "locationAccess")
             print("no location access")
             
+        @unknown default:
+            self.locationAllowed = false
         }
     }
     

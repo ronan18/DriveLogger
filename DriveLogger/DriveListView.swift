@@ -147,12 +147,12 @@ struct DriveListView: View {
                 }, cancel: {self.newDriveModal = false})
             })
             Text("").sheet(isPresented: self.$driveEditor, content: {
-                if (self.presentedDrive != nil) {
+                
                     DriveEditor(self.presentedDrive, save: {drive in
                         self.appState.updateDrive(drive)
                         self.driveEditor = false
                     }, cancel: {self.driveEditor = false}, delete: {drive in self.appState.deleteDrive(drive); self.driveEditor = false}, editDrive: true)
-                }
+                
                 
             })
         }.onAppear {

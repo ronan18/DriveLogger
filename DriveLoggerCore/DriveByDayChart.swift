@@ -30,7 +30,11 @@ public struct DriveByDayChart: View {
         data.driveLengthByDay.forEach({drive in
             sumAverage += Int(drive.length)
         })
-        self.dailyAverage = TimeInterval(sumAverage / data.driveLengthByDay.count)
+        if (data.driveLengthByDay.count > 0) {
+            self.dailyAverage = TimeInterval(sumAverage / data.driveLengthByDay.count)
+        } else {
+            self.dailyAverage = TimeInterval(0)
+        }
     }
     
     public var body: some View {

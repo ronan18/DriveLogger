@@ -61,6 +61,7 @@
 		34EA81CA25238F460072511C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34EA81C925238F460072511C /* GoogleService-Info.plist */; };
 		4DEB6CA7058A0B697A000D18 /* Pods_DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */; };
 		924B384E787A7F777EE571C9 /* Pods_DriveLoggerServicePackage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8017AD64CA2A100DAA0BC3 /* Pods_DriveLoggerServicePackage.framework */; };
+		C512986328BB01A60049D232 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C512986228BB01A60049D232 /* WeatherService.swift */; };
 		C539C1C628512EF6005425F3 /* DriveByDayChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539C1C528512EF6005425F3 /* DriveByDayChart.swift */; };
 		C55568FA2851074300718886 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C55568F92851074300718886 /* logo.png */; };
 		C55568FC28510C4700718886 /* ChartCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55568FB28510C4700718886 /* ChartCard.swift */; };
@@ -279,6 +280,7 @@
 		76491951E904E93AB2A17129 /* Pods-DriveLoggerServicePackage.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLoggerServicePackage.release.xcconfig"; path = "Target Support Files/Pods-DriveLoggerServicePackage/Pods-DriveLoggerServicePackage.release.xcconfig"; sourceTree = "<group>"; };
 		8201AF741C0E771691308BF6 /* Pods_DriveLoggerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DriveLoggerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86E95DD4850DD229EFB2CBDE /* Pods-DriveLogger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DriveLogger.debug.xcconfig"; path = "Target Support Files/Pods-DriveLogger/Pods-DriveLogger.debug.xcconfig"; sourceTree = "<group>"; };
+		C512986228BB01A60049D232 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		C539C1C528512EF6005425F3 /* DriveByDayChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveByDayChart.swift; sourceTree = "<group>"; };
 		C539C1C728513006005425F3 /* PreviousDurationsGraphWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PreviousDurationsGraphWidgetExtension.entitlements; sourceTree = "<group>"; };
 		C55568F92851074300718886 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = SOURCE_ROOT; };
@@ -498,6 +500,7 @@
 			children = (
 				34E30AFB251D8DAC0078F63A /* DriveLoggerServicePackage.h */,
 				34E30B09251D8DC00078F63A /* DriveLoggerService.swift */,
+				C512986228BB01A60049D232 /* WeatherService.swift */,
 				34E30B1D251D9C310078F63A /* Helpers.swift */,
 				34E30AFC251D8DAC0078F63A /* Info.plist */,
 			);
@@ -988,6 +991,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C512986328BB01A60049D232 /* WeatherService.swift in Sources */,
 				34E30B1E251D9C310078F63A /* Helpers.swift in Sources */,
 				347CBFF52544ACE40003E40E /* DriveLoggerDataFormat.swift in Sources */,
 				34E30B0A251D8DC00078F63A /* DriveLoggerService.swift in Sources */,
@@ -1216,7 +1220,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011047;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
@@ -1244,7 +1248,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = DriveLogger/DriveLogger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011047;
 				DEVELOPMENT_ASSET_PATHS = "\"DriveLogger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
@@ -1333,7 +1337,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimeDrivenExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = TimeDriven/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1357,7 +1361,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = TimeDrivenExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = TimeDriven/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1381,7 +1385,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Percent CompleteExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = "Percent Complete/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1405,7 +1409,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = "Percent CompleteExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				INFOPLIST_FILE = "Percent Complete/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1495,7 +1499,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PreviousDurationsGraphWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PreviousDurationsGraphWidget/Info.plist;
@@ -1525,7 +1529,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PreviousDurationsGraphWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PreviousDurationsGraphWidget/Info.plist;
@@ -1555,7 +1559,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PercentDrivenOverTimeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PercentDrivenOverTime/Info.plist;
@@ -1585,7 +1589,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = PercentDrivenOverTimeExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2011044;
+				CURRENT_PROJECT_VERSION = 2011046;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PercentDrivenOverTime/Info.plist;
