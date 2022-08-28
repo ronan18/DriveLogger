@@ -104,7 +104,7 @@ public class DriveLoggerService {
             print("Current Drive not retrieved from disk", error)
             attemptedRetreival = nil
         }
-        print("retreived current drive", attemptedRetreival)
+        print("retreived current drive", attemptedRetreival as Any)
         return attemptedRetreival
     }
     public func saveCurrentDrive(_ currentDrive: CurrentDrive?) {
@@ -138,7 +138,7 @@ public class DriveLoggerService {
         }
         if let state = attemptedRetreval {
             return self.computeStatistics(state)
-            print("used disk state", state)
+            
         } else {
             return DriveLoggerAppState()
         }
@@ -167,28 +167,25 @@ public class DriveLoggerService {
         
     }
     public func saveState(_ state: DriveLoggerAppState, updateWidgets: Bool = false) {
-        do {
-            DispatchQueue.global(qos: .userInitiated).async {
-                do {
-                    try Disk.save(state, to: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: "applicationState.json", encoder: self.encoder)
-                    
-                } catch {
-                    print("error saving state to disk", error)
-                }
-                DispatchQueue.main.async {
-                    print("saved app state to disk")
-                    if (updateWidgets) {
-                        self.upateWidgets()
-                    }
-                    
-                    
-                }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                try Disk.save(state, to: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: "applicationState.json", encoder: self.encoder)
+                
+            } catch {
+                print("error saving state to disk", error)
             }
-            
-        } catch {
-            print("AppState not saved to disk", error)
-            
+            DispatchQueue.main.async {
+                print("saved app state to disk")
+                if (updateWidgets) {
+                    self.upateWidgets()
+                }
+                
+                
+            }
         }
+        
+        
     }
     public func driveTimeClassification(_ drive: Drive) -> (TimeInterval, TimeInterval) {
         if let weatherData = drive.savedWeatherData {
@@ -222,7 +219,7 @@ public class DriveLoggerService {
         
         let sunsetHour = 19
         let sunriseHour = 5
-        var startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
+        let startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
         let startHour = startDateComponents.hour!
         let endHour = Calendar.current.component(.hour, from: drive.endTime)
         
@@ -244,7 +241,7 @@ public class DriveLoggerService {
         }
         
         
-        let eveningTime = Calendar.current.date(from: eveningDateComponents)
+       // let eveningTime = Calendar.current.date(from: eveningDateComponents)
         
         if (startHour >= sunsetHour && (endHour <= sunriseHour || endHour >= sunsetHour) ) { // entire drive in side of night time
             print("night display all in", drive.location)
@@ -282,7 +279,7 @@ public class DriveLoggerService {
             totalTime += driveTime
             let sunsetHour = 19
             let sunriseHour = 5
-            var startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
+            let startDateComponents = Calendar.current.dateComponents([.hour, .minute, .day, .month, .year, .calendar],from: drive.startTime)
             let startHour = startDateComponents.hour!
             let endHour = Calendar.current.component(.hour, from: drive.endTime)
             
@@ -458,28 +455,6 @@ public class DriveLoggerService {
                         print("sublocality")
                         resultString = subLocality
                     }
-                    /*   if let thoroughfare = placeMark?.thoroughfare {
-                     if let subLocality =  placeMark?.subLocality {
-                     print("thuroughfare, sublocality")
-                     resultString = "\(thoroughfare), \(subLocality)"
-                     }
-                     
-                     } else {
-                     if let subLocality =  placeMark?.subLocality {
-                     print("sublocality")
-                     resultString = subLocality
-                     } else if let name = placeMark?.name {
-                     if let locality = placeMark?.locality {
-                     print("name, locality")
-                     resultString = "\(name), \(locality)"
-                     } else {
-                     print("name")
-                     resultString = "\(name)"
-                     }
-                     
-                     }
-                     }
-                     */
                     result(resultString)
                     
                 } else {
