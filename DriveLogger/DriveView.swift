@@ -52,7 +52,11 @@ struct DriveView: View {
                                 Image(systemName: "sunset")
                                 Text(self.appState.currentSun?.sunsetTime ?? Date(), style: .time)
                             }.font(.subheadline).foregroundColor(.gray).padding(.bottom).padding(.top, 5)
+                        } else {
+                            WeatherNotAvail(reason: .notLoaded)
                         }
+                    } else {
+                        WeatherNotAvail(reason: .ios16)
                     }
                 }
                 Spacer()
@@ -81,5 +85,41 @@ struct DriveView: View {
 struct DriveView_Previews: PreviewProvider {
     static var previews: some View {
         DriveView()
+    }
+}
+
+enum WeatherNotAvailReason {
+    case ios16
+    case notLoaded
+}
+struct WeatherNotAvail: View {
+    var reason: WeatherNotAvailReason
+    var text: String
+    var redactText = false
+    var image = true
+    init(reason: WeatherNotAvailReason) {
+        self.reason = reason
+        switch reason {
+        case .ios16:
+            self.text = "iOS 16 required for weather conditions and sunset/sunrise times"
+            self.image = false
+        case .notLoaded:
+            self.text = "Weather data loading"
+            self.redactText = true
+        }
+     
+    }
+    var body: some View {
+        
+        HStack(spacing: 5) {
+            if (image) {
+                Image(systemName: "thermometer")
+            }
+            if (redactText) {
+                Text(text).redacted(reason: .placeholder)
+            } else {
+                Text(text)
+            }
+        }.padding(.bottom).padding(.top, 5).font(.subheadline).foregroundColor(.gray).multilineTextAlignment(.center).padding(.horizontal)
     }
 }

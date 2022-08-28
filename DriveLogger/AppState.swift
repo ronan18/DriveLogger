@@ -205,7 +205,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     // MARK: Location delegates
     func startLocationUpdating() {
-        if CLLocationManager.locationServicesEnabled() {
+        if self.locationAllowed{
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters // You can change the locaiton accuary here.
             locationManager.startUpdatingLocation()
@@ -266,13 +266,13 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             
             break
         case .authorizedWhenInUse, .authorizedAlways:
-            if CLLocationManager.locationServicesEnabled() {
+            //if CLLocationManager.locationServicesEnabled() {
                 self.locationAllowed = true
                 Analytics.logEvent("locationAccess", parameters: ["value": true])
                 Analytics.setUserProperty("true", forName: "locationAccess")
                 print(" location access")
                 
-            }
+           // }
         case .restricted, .denied:
             self.locationAllowed = false
             Analytics.logEvent("locationAccess", parameters: ["value": false])
