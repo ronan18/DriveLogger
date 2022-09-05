@@ -11,10 +11,16 @@ import CoreLocation
 import WeatherKit
 import Intents
 import FirebaseAnalytics
+import SwiftUI
+import Combine
 enum AppScreen {
     case onboard
     case home
     case drive
+}
+enum LoadingState {
+    case preparingData
+    case ready
 }
 
 @MainActor
@@ -37,15 +43,28 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var viewAllDrivesScreen: Int? = nil
     @Published var currentDrive: CurrentDrive? = nil
     @Published var dataExport: DLStateDocument = DLStateDocument(data: "")
+    @Published var loading:LoadingState = .preparingData
+    @Published var chartSatisticsReady = false
     
     var drivesWatcher: Any? = nil
     var WS = DLWeather()
     var defaultSunriseSunset = SunriseSunset(sunriseTime: Date(), sunsetTime: Date())
+    var initTime = Date()
     private let locationManager = CLLocationManager()
     override init() {
         super.init()
         if (self.defaults.bool(forKey: "onboarded")) {
-            self.start()
+            if #available(iOS 15.0, *) {
+                print("HANG: time since start init before start async", Date().timeIntervalSince(initTime))
+                Task(priority: .background) {
+                    await self.startAsync()
+                   
+                }
+            } else {
+                self.start()
+                self.loading = .ready
+            }
+            
             Analytics.logEvent("startingup", parameters: [:])
         } else {
             self.appScreen = .onboard
@@ -65,9 +84,45 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         
     }
     
-    func start() {
+    func startAsync() async {
+        let startTime = Date()
         self.state = self.dlService.retreiveState()
-        self.dataExport = DLStateDocument(data: self.dlService.exportData(state: self.state))
+        self.chartSatisticsReady = false
+        
+       
+        self.currentDrive = self.dlService.retreiveCurrentDrive()
+        print("currentDrive from startup", self.currentDrive ?? "none")
+        if (self.currentDrive != nil) {
+            self.driving = true
+            self.startLocationUpdating()
+            
+            self.appScreen = .drive
+        } else {
+            self.appScreen = .home
+            
+        }
+        self.loading = .ready
+        print("HANG: marked as ready ", Date().timeIntervalSince(startTime))
+        self.requestLocation()
+        
+       
+        //self.dlService.upateWidgets()
+       
+        Task(priority: .background) {
+            self.state = await self.dlService.asyncComputeStatistics(self.state)
+            withAnimation {
+                self.chartSatisticsReady = true
+            }
+           // self.dataExport = DLStateDocument(data: self.dlService.exportData(state: self.state))
+            Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
+            print("HANG: done computing startup", Date().timeIntervalSince(startTime))
+        }
+       
+        print("HANG: Full Start time ", Date().timeIntervalSince(startTime))
+    }
+    func start()  {
+        self.state = self.dlService.retreiveState()
+        
         self.state = self.dlService.computeStatistics(self.state)
         self.currentDrive = self.dlService.retreiveCurrentDrive()
         print("currentDrive from startup", self.currentDrive ?? "none")
@@ -82,7 +137,11 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
         }
         
         self.requestLocation()
+        
+        
+        self.dataExport = DLStateDocument(data: self.dlService.exportData(state: self.state))
         Analytics.setUserProperty(String(self.state.drives.count), forName: "driveCount")
+        
         //self.dlService.upateWidgets()
     }
     func computeStatistics() {
@@ -181,7 +240,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             print("SIRI stop drive donation:", response as Any)
         })
         Analytics.logEvent("endDrive", parameters: [:])
-
+        
         let endTime = Date()
         let endLocation = self.currentCity
         var weatherData: SavedWeatherData? = nil
@@ -226,21 +285,21 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
     func  requestLocation() {
         locationManager.requestWhenInUseAuthorization()
     }
-     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("LOCATION: update")
         if let location = locations.first {
             //print(location.coordinate, "location", location)
             
             self.currentLocation = location
-           
+            
             dlService.cityName(from: location, result: {locationStr in
                 self.currentCity = locationStr
                 print("set current city", locationStr)
-              
+                
                 if (self.driving && self.currentDrive?.startLocation == "") {
                     self.startCityName = locationStr
                     self.currentDrive?.startLocation = locationStr
-                   
+                    
                     self.saveCurrentDrive()
                 }
             })
@@ -250,7 +309,7 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
                     
                 }
             }
-           
+            
             
             
         }
@@ -267,12 +326,12 @@ class AppState: NSObject, ObservableObject, CLLocationManagerDelegate {
             break
         case .authorizedWhenInUse, .authorizedAlways:
             //if CLLocationManager.locationServicesEnabled() {
-                self.locationAllowed = true
-                Analytics.logEvent("locationAccess", parameters: ["value": true])
-                Analytics.setUserProperty("true", forName: "locationAccess")
-                print(" location access")
-                
-           // }
+            self.locationAllowed = true
+            Analytics.logEvent("locationAccess", parameters: ["value": true])
+            Analytics.setUserProperty("true", forName: "locationAccess")
+            print(" location access")
+            
+            // }
         case .restricted, .denied:
             self.locationAllowed = false
             Analytics.logEvent("locationAccess", parameters: ["value": false])

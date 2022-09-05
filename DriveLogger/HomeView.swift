@@ -30,43 +30,62 @@ struct HomeView: View {
                                 
                                 HStack {
                                     Text("recent drives").font(.headline)
+                                   
                                     Spacer()
                                     NavigationLink(destination: DriveListView(), tag: 1, selection: self.$appState.viewAllDrivesScreen) {
                                         Text("show all")
                                     }
                                 }.padding(.horizontal)
-                                if (appState.state.drives.count > 0) {
-                                    VStack {
-                                        if (appState.state.drivesSortedByDate.count > self.recentDrivesLimit) {
-                                            ForEach(appState.state.drivesSortedByDate.prefix(through: self.recentDrivesLimit - 1)) { drive in
-                                                DriveCard(drive, action: {drive in self.presentedDrive = drive;
-                                                    print("presneting drive", drive.location)
-                                                    self.appState.computeStatistics()
-                                                    self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
-                                                
-                                            }
-                                        } else {
-                                            ForEach(appState.state.drivesSortedByDate) { drive in
-                                                DriveCard(drive, action: {drive in self.presentedDrive = drive;
-                                                    self.appState.computeStatistics()
-                                                    self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
-                                                
-                                            }
-                                        }
-                                        
-                                        Spacer()
-                                    }.frame(minHeight: self.recentDrivesListHeight)
-                                } else {
+                                if (self.appState.loading == .preparingData) {
                                     VStack {
                                         HStack {
                                             Spacer()
-                                            Text("No Logged Drives Yet").font(.headline)
-                                            
+                                            VStack {
+                                                ProgressView()
+                                                Text("Loading Drives")
+                                            }
                                             Spacer()
                                         }.padding(.bottom, 5)
-                                        Text("Tap Start Drive to begin recording a drive").padding(.bottom, 1).lineLimit(2)
-                                        Text("Tap show more than plus to manually log a drive")
+                                       
                                     }.padding().frame(height: 200).multilineTextAlignment(.center).foregroundColor(.gray)
+                                   
+                                } else {
+                                    if (appState.state.drives.count > 0) {
+                                        VStack {
+                                            if (appState.state.drivesSortedByDate.count > self.recentDrivesLimit) {
+                                                ForEach(appState.state.drivesSortedByDate.prefix(through: self.recentDrivesLimit - 1)) { drive in
+                                                    DriveCard(drive, action: {drive in self.presentedDrive = drive;
+                                                        //TODO: this is causing the editor to load slowly. Need to push update from appstate
+                                                        print("presneting drive", drive.location)
+                                                        self.appState.computeStatistics()
+                                                        self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
+                                                    
+                                                }
+                                            } else {
+                                                ForEach(appState.state.drivesSortedByDate) { drive in
+                                                    DriveCard(drive, action: {drive in self.presentedDrive = drive;
+                                                        self.appState.computeStatistics()
+                                                        self.driveEditor = true}).padding(.vertical, 2.5).padding(.horizontal)
+                                                    
+                                                }
+                                            }
+                                            
+                                            Spacer()
+                                        }.frame(minHeight: self.recentDrivesListHeight).onAppear {
+                                            print("HANG: drives showedup", Date().timeIntervalSince(self.appState.initTime))
+                                        }
+                                    } else {
+                                        VStack {
+                                            HStack {
+                                                Spacer()
+                                                Text("No Logged Drives Yet").font(.headline)
+                                                
+                                                Spacer()
+                                            }.padding(.bottom, 5)
+                                            Text("Tap Start Drive to begin recording a drive").padding(.bottom, 1).lineLimit(2)
+                                            Text("Tap show more than plus to manually log a drive")
+                                        }.padding().frame(height: 200).multilineTextAlignment(.center).foregroundColor(.gray)
+                                    }
                                 }
                                 
                                 HStack {
@@ -85,10 +104,25 @@ struct HomeView: View {
                                     Spacer()
                                     StatCard(width: geometry.size.width, value: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).value, unit: appState.dlService.displayTimeInterval(appState.state.goalTime - appState.state.totalTime).unit, description: "until goal completion")
                                 }.padding(.horizontal).padding(.bottom)
-                                VStack {
-                                    ChartCard(data: self.appState.state).padding(.horizontal).frame(height: 250).padding(.bottom)
-                                    PercentOfGoalChart(data: self.appState.state).padding().card().padding(.horizontal).frame(height: 250)
+                                if (self.appState.chartSatisticsReady) {
+                                    VStack {
+                                        ChartCard(data: self.appState.state).padding(.horizontal).frame(height: 250).padding(.bottom)
+                                        PercentOfGoalChart(data: self.appState.state).padding().card().padding(.horizontal).frame(height: 250)
+                                    }
+                                } else {
+                                    VStack {
+                                        HStack {
+                                            Spacer()
+                                            VStack {
+                                                ProgressView()
+                                                Text("Preparing Charts")
+                                            }
+                                            Spacer()
+                                        }.padding().foregroundColor(.gray)
+                                        
+                                    }
                                 }
+                               
                                 Spacer()
                                 
                                 
@@ -104,7 +138,7 @@ struct HomeView: View {
                             Spacer()
                             if #available(iOS 15.0, *) {
                                 VStack{
-                                   
+                                    
                                     Border()
                                     
                                     HStack {

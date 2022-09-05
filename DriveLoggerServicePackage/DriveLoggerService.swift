@@ -129,6 +129,7 @@ public class DriveLoggerService {
         
     }
     public func retreiveState() -> DriveLoggerAppState{
+        let startTime = Date()
         let attemptedRetreval:DriveLoggerAppState?
         do {
             attemptedRetreval = try Disk.retrieve("applicationState.json", from: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: DriveLoggerAppState.self, decoder: decoder)
@@ -137,7 +138,10 @@ public class DriveLoggerService {
             attemptedRetreval = nil
         }
         if let state = attemptedRetreval {
-            return self.computeStatistics(state)
+          //  let res =  self.computeStatistics(state)
+            let res = state
+            print("HANG: retreived state time", Date().timeIntervalSince(startTime))
+            return res
             
         } else {
             return DriveLoggerAppState()
@@ -187,7 +191,10 @@ public class DriveLoggerService {
         
         
     }
-    public func driveTimeClassification(_ drive: Drive) -> (TimeInterval, TimeInterval) {
+    public func driveTimeClassification(_ drive: Drive) async -> (TimeInterval, TimeInterval) {
+        return self.getDriveTimeClassification(drive)
+    }
+    public func getDriveTimeClassification(_ drive: Drive) -> (TimeInterval, TimeInterval) {
         if let weatherData = drive.savedWeatherData {
             let sunrise = weatherData.sunriseTime
             let sunset = weatherData.sunsetTime
@@ -258,6 +265,80 @@ public class DriveLoggerService {
         }
         return false
         
+    }
+    public func asyncComputeStatistics(_ state: DriveLoggerAppState) async -> DriveLoggerAppState {
+        let startTime = Date()
+        print("compute drive statistics async")
+        var state = state
+        var totalTime: TimeInterval = 0
+        var dayDriveTime: TimeInterval = 0
+        var nightDriveTime: TimeInterval = 0
+        var averageDriveDuration: TimeInterval = 0
+        var timeToday: TimeInterval = 0
+        let today = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+         await state.drives.concurrentForEach {drive in
+            var driveTime:TimeInterval = 0
+            print("drive times", drive.startTime, drive.endTime)
+            if (drive.startTime == drive.endTime || drive.endTime < drive.startTime) {
+                driveTime = 0
+            } else {
+                driveTime = drive.endTime.timeIntervalSince(drive.startTime)
+                
+            }
+            totalTime += driveTime
+           let (dayTime, nightTime) = self.getDriveTimeClassification(drive)
+            dayDriveTime += dayTime
+            nightDriveTime += nightTime
+          
+            let driveDay = Calendar.current.dateComponents([.year, .month, .day], from: drive.endTime)
+            if (today == driveDay) {
+                timeToday += driveTime
+            }
+            
+            
+        }
+        averageDriveDuration = totalTime / Double(state.drives.count)
+        dayDriveTime = totalTime - nightDriveTime
+        state.totalTime = totalTime
+        state.dayDriveTime = dayDriveTime
+        state.nightDriveTime = nightDriveTime
+        state.averageDriveDuration = averageDriveDuration
+        state.percentComplete = Int((totalTime / state.goalTime)*100)
+        state.drivesSortedByDate = state.drives.sorted(by: { (a, b) -> Bool in
+            return a.startTime > b.startTime
+        })
+        state.timeToday = timeToday
+        print("raw complete", totalTime / state.goalTime)
+        
+        var days: [Date: TimeInterval] = [:]
+        print("TIME PER DAY COMPUTE: Running computer on days", state.drivesSortedByDate.count)
+        state.drivesSortedByDate.forEach({drive in
+            print("TIME PER DAY COMPUTE: running by day", drive.id)
+            let components = Calendar.current.dateComponents([.year,
+                                                              .month, .day], from: drive.startTime)
+            let length = drive.endTime.timeIntervalSince(drive.startTime)
+            print("TIME PER DAY COMPUTE: components for drive", components)
+            let date = Calendar.current.date(from: components)!
+            if var existing =  days[date] {
+                existing += length
+                days[date] = existing
+                print("TIME PER DAY COMPUTE: exists", existing)
+            } else {
+                print("TIME PER DAY COMPUTE: does not exist", length)
+                days[date] = length
+            }
+            
+        })
+        let result: [DriveLengthDay] =   days.map { key,value in
+            return DriveLengthDay(date: key, length: value)
+        }.sorted(by: { (a, b) -> Bool in
+            return a.date > b.date
+        })
+        
+        print("TIME PER DAY COMPUTE: result", result)
+        state.driveLengthByDay = result
+        print("HANG: done async compute stats", Date().timeIntervalSince(startTime))
+        return state
     }
     public func computeStatistics(_ state: DriveLoggerAppState) -> DriveLoggerAppState {
         print("compute drive statistics")
