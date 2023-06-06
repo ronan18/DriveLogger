@@ -7,13 +7,16 @@
 
 import SwiftUI
 import DriveLoggerCore
+
 struct ContentView: View {
     var body: some View {
         NavigationView {
            HomeView()
         }
     }
+ 
 }
+
 
 struct ContetView_Previews: PreviewProvider {
     static var previews: some View {

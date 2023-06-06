@@ -10,20 +10,37 @@ import DriveLoggerCore
 import CoreData
 
 public struct DriveCard: View {
-    let drive: FetchedResults<Drive>.Element
-    public init(_ drive: FetchedResults<Drive>.Element) {
+    let drive: Drive
+    public init(_ drive: Drive) {
         self.drive = drive
     }
     public var body: some View {
         HStack {
             VStack(alignment: .leading) {
+               
                 HStack(spacing: 4) {
-                    Text("East Side")
-                    Image(systemName: "arrow.forward").font(.caption).bold()
-                    Text("San Luis Obispo")
+                    if (drive.startLocationName != nil) {
+                        Text(drive.startLocationName ?? "")
+                    }
+                    if (drive.startLocationName != nil && drive.endLocationName != nil) {
+                        Image(systemName: "arrow.forward").font(.caption).bold()
+                        
+                    }
+                    if (drive.endLocationName != nil) {
+                        Text(drive.endLocationName ?? "")
+                    }
+                    
+                    if (drive.endLocationName == nil && drive.startLocationName == nil) {
+                        Text(drive.backupDriveString())
+                    }
+                    
+                    
                 }.font(.headline)
                 HStack {
-                    Text(Date(timeIntervalSinceNow: -500099).formatted(date: .abbreviated, time: .shortened))
+                    if (!(drive.endLocationName == nil && drive.startLocationName == nil)) {
+                        Text(drive.startTime.formatted(date: .abbreviated, time: .shortened))
+                    }
+                  
                     HStack(spacing: 0) {
                         Image(systemName: "sun.max.circle.fill")
                         Image(systemName: "moon.stars.circle.fill")
@@ -45,11 +62,7 @@ public struct DriveCard: View {
 struct DriveCard_Previews: PreviewProvider {
     
     static var previews: some View {
-        let viewContext = PersistenceController.preview.container.viewContext
-        let previewItem = Drive(context: viewContext)
-        
-      
-            return DriveCard(previewItem).padding().previewLayout(.sizeThatFits)
+        DriveCard(Drive(sampleData: true)).padding().previewLayout(.sizeThatFits)
         
     }
 }

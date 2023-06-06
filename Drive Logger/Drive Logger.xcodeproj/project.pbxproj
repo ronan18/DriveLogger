@@ -7,484 +7,467 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C51DB14A2A2E436900340C02 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51DB1492A2E436900340C02 /* SampleData.swift */; };
-		C53FF2522A2B8F3F00EFA4EC /* Drive_LoggerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2512A2B8F3F00EFA4EC /* Drive_LoggerApp.swift */; };
-		C53FF2542A2B8F3F00EFA4EC /* ContentViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2532A2B8F3F00EFA4EC /* ContentViewSample.swift */; };
-		C53FF2562A2B8F4000EFA4EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C53FF2552A2B8F4000EFA4EC /* Assets.xcassets */; };
-		C53FF2592A2B8F4000EFA4EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C53FF2582A2B8F4000EFA4EC /* Preview Assets.xcassets */; };
-		C53FF2682A2B8F4000EFA4EC /* Drive_LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2672A2B8F4000EFA4EC /* Drive_LoggerTests.swift */; };
-		C53FF2722A2B8F4000EFA4EC /* Drive_LoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2712A2B8F4000EFA4EC /* Drive_LoggerUITests.swift */; };
-		C53FF2742A2B8F4000EFA4EC /* Drive_LoggerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2732A2B8F4000EFA4EC /* Drive_LoggerUITestsLaunchTests.swift */; };
-		C53FF2812A2B905A00EFA4EC /* ContetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2802A2B905A00EFA4EC /* ContetView.swift */; };
-		C53FF2832A2B90F100EFA4EC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2822A2B90F100EFA4EC /* HomeView.swift */; };
-		C53FF28D2A2BB18400EFA4EC /* DriveLoggerUI.docc in Sources */ = {isa = PBXBuildFile; fileRef = C53FF28C2A2BB18400EFA4EC /* DriveLoggerUI.docc */; };
-		C53FF2932A2BB18500EFA4EC /* DriveLoggerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53FF2892A2BB18400EFA4EC /* DriveLoggerUI.framework */; };
-		C53FF29A2A2BB18500EFA4EC /* DriveLoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2992A2BB18500EFA4EC /* DriveLoggerUITests.swift */; };
-		C53FF29B2A2BB18500EFA4EC /* DriveLoggerUI.h in Headers */ = {isa = PBXBuildFile; fileRef = C53FF28B2A2BB18400EFA4EC /* DriveLoggerUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C53FF29E2A2BB18500EFA4EC /* DriveLoggerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C53FF2892A2BB18400EFA4EC /* DriveLoggerUI.framework */; };
-		C53FF29F2A2BB18500EFA4EC /* DriveLoggerUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C53FF2892A2BB18400EFA4EC /* DriveLoggerUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C53FF2A82A2BB19F00EFA4EC /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2A72A2BB19F00EFA4EC /* ProgressBar.swift */; };
-		C53FF2A92A2BB2E700EFA4EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C53FF2552A2B8F4000EFA4EC /* Assets.xcassets */; };
-		C53FF2AB2A2BB71100EFA4EC /* DriveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2AA2A2BB71100EFA4EC /* DriveCard.swift */; };
-		C53FF2AD2A2BBA8500EFA4EC /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2AC2A2BBA8500EFA4EC /* CardModifier.swift */; };
-		C53FF2AF2A2BC54E00EFA4EC /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2AE2A2BC54E00EFA4EC /* LargeButton.swift */; };
-		C53FF2B12A2CF07600EFA4EC /* HomeHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2B02A2CF07600EFA4EC /* HomeHeaderSection.swift */; };
-		C53FF2B32A2CF11100EFA4EC /* RecentDrivesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2B22A2CF11100EFA4EC /* RecentDrivesSection.swift */; };
-		C53FF2B52A2CF4B300EFA4EC /* StatisticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF2B42A2CF4B300EFA4EC /* StatisticsSection.swift */; };
-		C556241E2A2D38AD0038200E /* DrivingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556241D2A2D38AD0038200E /* DrivingView.swift */; };
-		C55624292A2E3A470038200E /* DriveLoggerCore.docc in Sources */ = {isa = PBXBuildFile; fileRef = C55624282A2E3A470038200E /* DriveLoggerCore.docc */; };
-		C556242F2A2E3A470038200E /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55624252A2E3A470038200E /* DriveLoggerCore.framework */; };
-		C55624362A2E3A470038200E /* DriveLoggerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55624352A2E3A470038200E /* DriveLoggerCoreTests.swift */; };
-		C55624372A2E3A470038200E /* DriveLoggerCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C55624272A2E3A470038200E /* DriveLoggerCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C556243A2A2E3A470038200E /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55624252A2E3A470038200E /* DriveLoggerCore.framework */; };
-		C556243B2A2E3A470038200E /* DriveLoggerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C55624252A2E3A470038200E /* DriveLoggerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C55624422A2E3A4D0038200E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53FF25A2A2B8F4000EFA4EC /* Persistence.swift */; };
-		C55624472A2E3D7B0038200E /* Drive_Logger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C53FF25C2A2B8F4000EFA4EC /* Drive_Logger.xcdatamodeld */; };
-		C556244A2A2E418C0038200E /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55624252A2E3A470038200E /* DriveLoggerCore.framework */; };
-		C556244B2A2E418C0038200E /* DriveLoggerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C55624252A2E3A470038200E /* DriveLoggerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C5A434602A2EE2B3008A00B3 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A4345F2A2EE2B3008A00B3 /* AppState.swift */; };
+		C56C21322A2EE4E7008D2CBE /* Drive_LoggerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21312A2EE4E7008D2CBE /* Drive_LoggerApp.swift */; };
+		C56C21342A2EE4E7008D2CBE /* ContentViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21332A2EE4E7008D2CBE /* ContentViewSample.swift */; };
+		C56C21362A2EE4E7008D2CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56C21352A2EE4E7008D2CBE /* Assets.xcassets */; };
+		C56C21392A2EE4E8008D2CBE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56C21382A2EE4E8008D2CBE /* Preview Assets.xcassets */; };
+		C56C213B2A2EE4E8008D2CBE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C213A2A2EE4E8008D2CBE /* Item.swift */; };
+		C56C21472A2EE4E8008D2CBE /* Drive_LoggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21462A2EE4E8008D2CBE /* Drive_LoggerTests.swift */; };
+		C56C21512A2EE4E8008D2CBE /* Drive_LoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21502A2EE4E8008D2CBE /* Drive_LoggerUITests.swift */; };
+		C56C21532A2EE4E8008D2CBE /* Drive_LoggerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21522A2EE4E8008D2CBE /* Drive_LoggerUITestsLaunchTests.swift */; };
+		C56C21682A2EE53A008D2CBE /* DriveLoggerUI.docc in Sources */ = {isa = PBXBuildFile; fileRef = C56C21672A2EE53A008D2CBE /* DriveLoggerUI.docc */; };
+		C56C216E2A2EE53A008D2CBE /* DriveLoggerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */; };
+		C56C21752A2EE53A008D2CBE /* DriveLoggerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21742A2EE53A008D2CBE /* DriveLoggerUITests.swift */; };
+		C56C21762A2EE53A008D2CBE /* DriveLoggerUI.h in Headers */ = {isa = PBXBuildFile; fileRef = C56C21662A2EE53A008D2CBE /* DriveLoggerUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C56C21792A2EE53A008D2CBE /* DriveLoggerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */; };
+		C56C217A2A2EE53A008D2CBE /* DriveLoggerUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C56C21862A2EE56E008D2CBE /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21822A2EE56D008D2CBE /* CardModifier.swift */; };
+		C56C21872A2EE56E008D2CBE /* DriveCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21832A2EE56E008D2CBE /* DriveCard.swift */; };
+		C56C21882A2EE56E008D2CBE /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21842A2EE56E008D2CBE /* ProgressBar.swift */; };
+		C56C21892A2EE56E008D2CBE /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21852A2EE56E008D2CBE /* LargeButton.swift */; };
+		C56C218E2A2EE589008D2CBE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C218B2A2EE589008D2CBE /* ContentView.swift */; };
+		C56C218F2A2EE589008D2CBE /* DrivingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C218C2A2EE589008D2CBE /* DrivingView.swift */; };
+		C56C21942A2EE5B7008D2CBE /* RecentDrivesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21902A2EE5B6008D2CBE /* RecentDrivesSection.swift */; };
+		C56C21952A2EE5B7008D2CBE /* StatisticsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21912A2EE5B7008D2CBE /* StatisticsSection.swift */; };
+		C56C21962A2EE5B7008D2CBE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21922A2EE5B7008D2CBE /* HomeView.swift */; };
+		C56C21972A2EE5B7008D2CBE /* HomeHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21932A2EE5B7008D2CBE /* HomeHeaderSection.swift */; };
+		C56C21B12A2EE62E008D2CBE /* DriveLoggerCore.docc in Sources */ = {isa = PBXBuildFile; fileRef = C56C21B02A2EE62E008D2CBE /* DriveLoggerCore.docc */; };
+		C56C21B72A2EE62E008D2CBE /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; };
+		C56C21BE2A2EE62E008D2CBE /* DriveLoggerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21BD2A2EE62E008D2CBE /* DriveLoggerCoreTests.swift */; };
+		C56C21BF2A2EE62E008D2CBE /* DriveLoggerCore.h in Headers */ = {isa = PBXBuildFile; fileRef = C56C21AF2A2EE62E008D2CBE /* DriveLoggerCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C56C21C22A2EE62F008D2CBE /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; };
+		C56C21C32A2EE62F008D2CBE /* DriveLoggerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C56C21CB2A2EE65A008D2CBE /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21CA2A2EE65A008D2CBE /* test.swift */; };
+		C56C21CE2A2F0837008D2CBE /* Drive.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21CD2A2F0837008D2CBE /* Drive.model.swift */; };
+		C56C21D02A2F0DCB008D2CBE /* AllDrivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21CF2A2F0DCB008D2CBE /* AllDrivesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C53FF2642A2B8F4000EFA4EC /* PBXContainerItemProxy */ = {
+		C56C21432A2EE4E8008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C53FF24D2A2B8F3F00EFA4EC;
+			remoteGlobalIDString = C56C212D2A2EE4E7008D2CBE;
 			remoteInfo = "Drive Logger";
 		};
-		C53FF26E2A2B8F4000EFA4EC /* PBXContainerItemProxy */ = {
+		C56C214D2A2EE4E8008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C53FF24D2A2B8F3F00EFA4EC;
+			remoteGlobalIDString = C56C212D2A2EE4E7008D2CBE;
 			remoteInfo = "Drive Logger";
 		};
-		C53FF2942A2BB18500EFA4EC /* PBXContainerItemProxy */ = {
+		C56C216F2A2EE53A008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C53FF2882A2BB18400EFA4EC;
+			remoteGlobalIDString = C56C21632A2EE539008D2CBE;
 			remoteInfo = DriveLoggerUI;
 		};
-		C53FF2962A2BB18500EFA4EC /* PBXContainerItemProxy */ = {
+		C56C21712A2EE53A008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C53FF24D2A2B8F3F00EFA4EC;
+			remoteGlobalIDString = C56C212D2A2EE4E7008D2CBE;
 			remoteInfo = "Drive Logger";
 		};
-		C53FF29C2A2BB18500EFA4EC /* PBXContainerItemProxy */ = {
+		C56C21772A2EE53A008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C53FF2882A2BB18400EFA4EC;
+			remoteGlobalIDString = C56C21632A2EE539008D2CBE;
 			remoteInfo = DriveLoggerUI;
 		};
-		C55624302A2E3A470038200E /* PBXContainerItemProxy */ = {
+		C56C21B82A2EE62E008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C55624242A2E3A470038200E;
+			remoteGlobalIDString = C56C21AC2A2EE62E008D2CBE;
 			remoteInfo = DriveLoggerCore;
 		};
-		C55624322A2E3A470038200E /* PBXContainerItemProxy */ = {
+		C56C21BA2A2EE62E008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C53FF24D2A2B8F3F00EFA4EC;
+			remoteGlobalIDString = C56C212D2A2EE4E7008D2CBE;
 			remoteInfo = "Drive Logger";
 		};
-		C55624382A2E3A470038200E /* PBXContainerItemProxy */ = {
+		C56C21C02A2EE62F008D2CBE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C55624242A2E3A470038200E;
-			remoteInfo = DriveLoggerCore;
-		};
-		C556244C2A2E418C0038200E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C53FF2462A2B8F3F00EFA4EC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C55624242A2E3A470038200E;
+			remoteGlobalIDString = C56C21AC2A2EE62E008D2CBE;
 			remoteInfo = DriveLoggerCore;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C53FF2A32A2BB18500EFA4EC /* Embed Frameworks */ = {
+		C56C217E2A2EE53A008D2CBE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C556243B2A2E3A470038200E /* DriveLoggerCore.framework in Embed Frameworks */,
-				C53FF29F2A2BB18500EFA4EC /* DriveLoggerUI.framework in Embed Frameworks */,
+				C56C21C32A2EE62F008D2CBE /* DriveLoggerCore.framework in Embed Frameworks */,
+				C56C217A2A2EE53A008D2CBE /* DriveLoggerUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C556244E2A2E418C0038200E /* Embed Frameworks */ = {
+		C56C21A72A2EE61A008D2CBE /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 13;
 			files = (
-				C556244B2A2E418C0038200E /* DriveLoggerCore.framework in Embed Frameworks */,
 			);
-			name = "Embed Frameworks";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C51DB1492A2E436900340C02 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		C53FF24E2A2B8F3F00EFA4EC /* Drive Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drive Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FF2512A2B8F3F00EFA4EC /* Drive_LoggerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerApp.swift; sourceTree = "<group>"; };
-		C53FF2532A2B8F3F00EFA4EC /* ContentViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewSample.swift; sourceTree = "<group>"; };
-		C53FF2552A2B8F4000EFA4EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C53FF2582A2B8F4000EFA4EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C53FF25A2A2B8F4000EFA4EC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		C53FF25D2A2B8F4000EFA4EC /* Drive_Logger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Drive_Logger.xcdatamodel; sourceTree = "<group>"; };
-		C53FF2632A2B8F4000EFA4EC /* Drive LoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive LoggerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FF2672A2B8F4000EFA4EC /* Drive_LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerTests.swift; sourceTree = "<group>"; };
-		C53FF26D2A2B8F4000EFA4EC /* Drive LoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive LoggerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FF2712A2B8F4000EFA4EC /* Drive_LoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerUITests.swift; sourceTree = "<group>"; };
-		C53FF2732A2B8F4000EFA4EC /* Drive_LoggerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		C53FF2802A2B905A00EFA4EC /* ContetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContetView.swift; sourceTree = "<group>"; };
-		C53FF2822A2B90F100EFA4EC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		C53FF2892A2BB18400EFA4EC /* DriveLoggerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DriveLoggerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FF28B2A2BB18400EFA4EC /* DriveLoggerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriveLoggerUI.h; sourceTree = "<group>"; };
-		C53FF28C2A2BB18400EFA4EC /* DriveLoggerUI.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DriveLoggerUI.docc; sourceTree = "<group>"; };
-		C53FF2922A2BB18500EFA4EC /* DriveLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FF2992A2BB18500EFA4EC /* DriveLoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerUITests.swift; sourceTree = "<group>"; };
-		C53FF2A72A2BB19F00EFA4EC /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
-		C53FF2AA2A2BB71100EFA4EC /* DriveCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveCard.swift; sourceTree = "<group>"; };
-		C53FF2AC2A2BBA8500EFA4EC /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
-		C53FF2AE2A2BC54E00EFA4EC /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
-		C53FF2B02A2CF07600EFA4EC /* HomeHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeaderSection.swift; sourceTree = "<group>"; };
-		C53FF2B22A2CF11100EFA4EC /* RecentDrivesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDrivesSection.swift; sourceTree = "<group>"; };
-		C53FF2B42A2CF4B300EFA4EC /* StatisticsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsSection.swift; sourceTree = "<group>"; };
-		C556241D2A2D38AD0038200E /* DrivingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivingView.swift; sourceTree = "<group>"; };
-		C55624252A2E3A470038200E /* DriveLoggerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DriveLoggerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C55624272A2E3A470038200E /* DriveLoggerCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriveLoggerCore.h; sourceTree = "<group>"; };
-		C55624282A2E3A470038200E /* DriveLoggerCore.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DriveLoggerCore.docc; sourceTree = "<group>"; };
-		C556242E2A2E3A470038200E /* DriveLoggerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C55624352A2E3A470038200E /* DriveLoggerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerCoreTests.swift; sourceTree = "<group>"; };
-		C5A4345F2A2EE2B3008A00B3 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		C56C212E2A2EE4E7008D2CBE /* Drive Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drive Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21312A2EE4E7008D2CBE /* Drive_LoggerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerApp.swift; sourceTree = "<group>"; };
+		C56C21332A2EE4E7008D2CBE /* ContentViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewSample.swift; sourceTree = "<group>"; };
+		C56C21352A2EE4E7008D2CBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C56C21382A2EE4E8008D2CBE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C56C213A2A2EE4E8008D2CBE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		C56C213C2A2EE4E8008D2CBE /* Drive_Logger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Drive_Logger.entitlements; sourceTree = "<group>"; };
+		C56C213D2A2EE4E8008D2CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C56C21422A2EE4E8008D2CBE /* Drive LoggerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive LoggerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21462A2EE4E8008D2CBE /* Drive_LoggerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerTests.swift; sourceTree = "<group>"; };
+		C56C214C2A2EE4E8008D2CBE /* Drive LoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Drive LoggerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21502A2EE4E8008D2CBE /* Drive_LoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerUITests.swift; sourceTree = "<group>"; };
+		C56C21522A2EE4E8008D2CBE /* Drive_LoggerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DriveLoggerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21662A2EE53A008D2CBE /* DriveLoggerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriveLoggerUI.h; sourceTree = "<group>"; };
+		C56C21672A2EE53A008D2CBE /* DriveLoggerUI.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DriveLoggerUI.docc; sourceTree = "<group>"; };
+		C56C216D2A2EE53A008D2CBE /* DriveLoggerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21742A2EE53A008D2CBE /* DriveLoggerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerUITests.swift; sourceTree = "<group>"; };
+		C56C21822A2EE56D008D2CBE /* CardModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
+		C56C21832A2EE56E008D2CBE /* DriveCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriveCard.swift; sourceTree = "<group>"; };
+		C56C21842A2EE56E008D2CBE /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		C56C21852A2EE56E008D2CBE /* LargeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
+		C56C218B2A2EE589008D2CBE /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C56C218C2A2EE589008D2CBE /* DrivingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrivingView.swift; sourceTree = "<group>"; };
+		C56C21902A2EE5B6008D2CBE /* RecentDrivesSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentDrivesSection.swift; sourceTree = "<group>"; };
+		C56C21912A2EE5B7008D2CBE /* StatisticsSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsSection.swift; sourceTree = "<group>"; };
+		C56C21922A2EE5B7008D2CBE /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C56C21932A2EE5B7008D2CBE /* HomeHeaderSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeHeaderSection.swift; sourceTree = "<group>"; };
+		C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DriveLoggerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21AF2A2EE62E008D2CBE /* DriveLoggerCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DriveLoggerCore.h; sourceTree = "<group>"; };
+		C56C21B02A2EE62E008D2CBE /* DriveLoggerCore.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DriveLoggerCore.docc; sourceTree = "<group>"; };
+		C56C21B62A2EE62E008D2CBE /* DriveLoggerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DriveLoggerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56C21BD2A2EE62E008D2CBE /* DriveLoggerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerCoreTests.swift; sourceTree = "<group>"; };
+		C56C21CA2A2EE65A008D2CBE /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		C56C21CD2A2F0837008D2CBE /* Drive.model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive.model.swift; sourceTree = "<group>"; };
+		C56C21CF2A2F0DCB008D2CBE /* AllDrivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDrivesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C53FF24B2A2B8F3F00EFA4EC /* Frameworks */ = {
+		C56C212B2A2EE4E7008D2CBE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C556243A2A2E3A470038200E /* DriveLoggerCore.framework in Frameworks */,
-				C53FF29E2A2BB18500EFA4EC /* DriveLoggerUI.framework in Frameworks */,
+				C56C21C22A2EE62F008D2CBE /* DriveLoggerCore.framework in Frameworks */,
+				C56C21792A2EE53A008D2CBE /* DriveLoggerUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF2602A2B8F4000EFA4EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FF26A2A2B8F4000EFA4EC /* Frameworks */ = {
+		C56C213F2A2EE4E8008D2CBE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF2862A2BB18400EFA4EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C556244A2A2E418C0038200E /* DriveLoggerCore.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FF28F2A2BB18500EFA4EC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C53FF2932A2BB18500EFA4EC /* DriveLoggerUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C55624222A2E3A470038200E /* Frameworks */ = {
+		C56C21492A2EE4E8008D2CBE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C556242B2A2E3A470038200E /* Frameworks */ = {
+		C56C21612A2EE539008D2CBE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C556242F2A2E3A470038200E /* DriveLoggerCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C56C216A2A2EE53A008D2CBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C56C216E2A2EE53A008D2CBE /* DriveLoggerUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C56C21AA2A2EE62E008D2CBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C56C21B32A2EE62E008D2CBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C56C21B72A2EE62E008D2CBE /* DriveLoggerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C53FF2452A2B8F3F00EFA4EC = {
+		C56C21252A2EE4E7008D2CBE = {
 			isa = PBXGroup;
 			children = (
-				C53FF2502A2B8F3F00EFA4EC /* Drive Logger */,
-				C53FF2662A2B8F4000EFA4EC /* Drive LoggerTests */,
-				C53FF2702A2B8F4000EFA4EC /* Drive LoggerUITests */,
-				C53FF28A2A2BB18400EFA4EC /* DriveLoggerUI */,
-				C53FF2982A2BB18500EFA4EC /* DriveLoggerUITests */,
-				C55624262A2E3A470038200E /* DriveLoggerCore */,
-				C55624342A2E3A470038200E /* DriveLoggerCoreTests */,
-				C53FF24F2A2B8F3F00EFA4EC /* Products */,
-				C55624492A2E418C0038200E /* Frameworks */,
+				C56C21302A2EE4E7008D2CBE /* Drive Logger */,
+				C56C21452A2EE4E8008D2CBE /* Drive LoggerTests */,
+				C56C214F2A2EE4E8008D2CBE /* Drive LoggerUITests */,
+				C56C21652A2EE53A008D2CBE /* DriveLoggerUI */,
+				C56C21732A2EE53A008D2CBE /* DriveLoggerUITests */,
+				C56C21AE2A2EE62E008D2CBE /* DriveLoggerCore */,
+				C56C21BC2A2EE62E008D2CBE /* DriveLoggerCoreTests */,
+				C56C212F2A2EE4E7008D2CBE /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C53FF24F2A2B8F3F00EFA4EC /* Products */ = {
+		C56C212F2A2EE4E7008D2CBE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF24E2A2B8F3F00EFA4EC /* Drive Logger.app */,
-				C53FF2632A2B8F4000EFA4EC /* Drive LoggerTests.xctest */,
-				C53FF26D2A2B8F4000EFA4EC /* Drive LoggerUITests.xctest */,
-				C53FF2892A2BB18400EFA4EC /* DriveLoggerUI.framework */,
-				C53FF2922A2BB18500EFA4EC /* DriveLoggerUITests.xctest */,
-				C55624252A2E3A470038200E /* DriveLoggerCore.framework */,
-				C556242E2A2E3A470038200E /* DriveLoggerCoreTests.xctest */,
+				C56C212E2A2EE4E7008D2CBE /* Drive Logger.app */,
+				C56C21422A2EE4E8008D2CBE /* Drive LoggerTests.xctest */,
+				C56C214C2A2EE4E8008D2CBE /* Drive LoggerUITests.xctest */,
+				C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */,
+				C56C216D2A2EE53A008D2CBE /* DriveLoggerUITests.xctest */,
+				C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */,
+				C56C21B62A2EE62E008D2CBE /* DriveLoggerCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C53FF2502A2B8F3F00EFA4EC /* Drive Logger */ = {
+		C56C21302A2EE4E7008D2CBE /* Drive Logger */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF2512A2B8F3F00EFA4EC /* Drive_LoggerApp.swift */,
-				C53FF2532A2B8F3F00EFA4EC /* ContentViewSample.swift */,
-				C53FF2802A2B905A00EFA4EC /* ContetView.swift */,
-				C556241D2A2D38AD0038200E /* DrivingView.swift */,
-				C556241F2A2D3BD60038200E /* Home */,
-				C53FF2552A2B8F4000EFA4EC /* Assets.xcassets */,
-				C53FF2572A2B8F4000EFA4EC /* Preview Content */,
-				C5A4345F2A2EE2B3008A00B3 /* AppState.swift */,
+				C56C21312A2EE4E7008D2CBE /* Drive_LoggerApp.swift */,
+				C56C21332A2EE4E7008D2CBE /* ContentViewSample.swift */,
+				C56C21352A2EE4E7008D2CBE /* Assets.xcassets */,
+				C56C213A2A2EE4E8008D2CBE /* Item.swift */,
+				C56C213C2A2EE4E8008D2CBE /* Drive_Logger.entitlements */,
+				C56C213D2A2EE4E8008D2CBE /* Info.plist */,
+				C56C218B2A2EE589008D2CBE /* ContentView.swift */,
+				C56C218C2A2EE589008D2CBE /* DrivingView.swift */,
+				C56C21CC2A2EE676008D2CBE /* Home */,
+				C56C21372A2EE4E7008D2CBE /* Preview Content */,
+				C56C21CF2A2F0DCB008D2CBE /* AllDrivesView.swift */,
 			);
 			path = "Drive Logger";
 			sourceTree = "<group>";
 		};
-		C53FF2572A2B8F4000EFA4EC /* Preview Content */ = {
+		C56C21372A2EE4E7008D2CBE /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF2582A2B8F4000EFA4EC /* Preview Assets.xcassets */,
+				C56C21382A2EE4E8008D2CBE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		C53FF2662A2B8F4000EFA4EC /* Drive LoggerTests */ = {
+		C56C21452A2EE4E8008D2CBE /* Drive LoggerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF2672A2B8F4000EFA4EC /* Drive_LoggerTests.swift */,
+				C56C21462A2EE4E8008D2CBE /* Drive_LoggerTests.swift */,
 			);
 			path = "Drive LoggerTests";
 			sourceTree = "<group>";
 		};
-		C53FF2702A2B8F4000EFA4EC /* Drive LoggerUITests */ = {
+		C56C214F2A2EE4E8008D2CBE /* Drive LoggerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF2712A2B8F4000EFA4EC /* Drive_LoggerUITests.swift */,
-				C53FF2732A2B8F4000EFA4EC /* Drive_LoggerUITestsLaunchTests.swift */,
+				C56C21502A2EE4E8008D2CBE /* Drive_LoggerUITests.swift */,
+				C56C21522A2EE4E8008D2CBE /* Drive_LoggerUITestsLaunchTests.swift */,
 			);
 			path = "Drive LoggerUITests";
 			sourceTree = "<group>";
 		};
-		C53FF28A2A2BB18400EFA4EC /* DriveLoggerUI */ = {
+		C56C21652A2EE53A008D2CBE /* DriveLoggerUI */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF28B2A2BB18400EFA4EC /* DriveLoggerUI.h */,
-				C53FF28C2A2BB18400EFA4EC /* DriveLoggerUI.docc */,
-				C53FF2A72A2BB19F00EFA4EC /* ProgressBar.swift */,
-				C53FF2AA2A2BB71100EFA4EC /* DriveCard.swift */,
-				C53FF2AC2A2BBA8500EFA4EC /* CardModifier.swift */,
-				C53FF2AE2A2BC54E00EFA4EC /* LargeButton.swift */,
+				C56C21822A2EE56D008D2CBE /* CardModifier.swift */,
+				C56C21832A2EE56E008D2CBE /* DriveCard.swift */,
+				C56C21852A2EE56E008D2CBE /* LargeButton.swift */,
+				C56C21842A2EE56E008D2CBE /* ProgressBar.swift */,
+				C56C21662A2EE53A008D2CBE /* DriveLoggerUI.h */,
+				C56C21672A2EE53A008D2CBE /* DriveLoggerUI.docc */,
 			);
 			path = DriveLoggerUI;
 			sourceTree = "<group>";
 		};
-		C53FF2982A2BB18500EFA4EC /* DriveLoggerUITests */ = {
+		C56C21732A2EE53A008D2CBE /* DriveLoggerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF2992A2BB18500EFA4EC /* DriveLoggerUITests.swift */,
+				C56C21742A2EE53A008D2CBE /* DriveLoggerUITests.swift */,
 			);
 			path = DriveLoggerUITests;
 			sourceTree = "<group>";
 		};
-		C556241F2A2D3BD60038200E /* Home */ = {
+		C56C21AE2A2EE62E008D2CBE /* DriveLoggerCore */ = {
 			isa = PBXGroup;
 			children = (
-				C53FF2822A2B90F100EFA4EC /* HomeView.swift */,
-				C53FF2B22A2CF11100EFA4EC /* RecentDrivesSection.swift */,
-				C53FF2B42A2CF4B300EFA4EC /* StatisticsSection.swift */,
-				C53FF2B02A2CF07600EFA4EC /* HomeHeaderSection.swift */,
-			);
-			path = Home;
-			sourceTree = "<group>";
-		};
-		C55624262A2E3A470038200E /* DriveLoggerCore */ = {
-			isa = PBXGroup;
-			children = (
-				C53FF25C2A2B8F4000EFA4EC /* Drive_Logger.xcdatamodeld */,
-				C53FF25A2A2B8F4000EFA4EC /* Persistence.swift */,
-				C51DB1492A2E436900340C02 /* SampleData.swift */,
-				C55624272A2E3A470038200E /* DriveLoggerCore.h */,
-				C55624282A2E3A470038200E /* DriveLoggerCore.docc */,
+				C56C21AF2A2EE62E008D2CBE /* DriveLoggerCore.h */,
+				C56C21B02A2EE62E008D2CBE /* DriveLoggerCore.docc */,
+				C56C21CA2A2EE65A008D2CBE /* test.swift */,
+				C56C21CD2A2F0837008D2CBE /* Drive.model.swift */,
 			);
 			path = DriveLoggerCore;
 			sourceTree = "<group>";
 		};
-		C55624342A2E3A470038200E /* DriveLoggerCoreTests */ = {
+		C56C21BC2A2EE62E008D2CBE /* DriveLoggerCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				C55624352A2E3A470038200E /* DriveLoggerCoreTests.swift */,
+				C56C21BD2A2EE62E008D2CBE /* DriveLoggerCoreTests.swift */,
 			);
 			path = DriveLoggerCoreTests;
 			sourceTree = "<group>";
 		};
-		C55624492A2E418C0038200E /* Frameworks */ = {
+		C56C21CC2A2EE676008D2CBE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C56C21932A2EE5B7008D2CBE /* HomeHeaderSection.swift */,
+				C56C21922A2EE5B7008D2CBE /* HomeView.swift */,
+				C56C21912A2EE5B7008D2CBE /* StatisticsSection.swift */,
+				C56C21902A2EE5B6008D2CBE /* RecentDrivesSection.swift */,
 			);
-			name = Frameworks;
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C53FF2842A2BB18400EFA4EC /* Headers */ = {
+		C56C215F2A2EE539008D2CBE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF29B2A2BB18500EFA4EC /* DriveLoggerUI.h in Headers */,
+				C56C21762A2EE53A008D2CBE /* DriveLoggerUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C55624202A2E3A470038200E /* Headers */ = {
+		C56C21A82A2EE62E008D2CBE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C55624372A2E3A470038200E /* DriveLoggerCore.h in Headers */,
+				C56C21BF2A2EE62E008D2CBE /* DriveLoggerCore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C53FF24D2A2B8F3F00EFA4EC /* Drive Logger */ = {
+		C56C212D2A2EE4E7008D2CBE /* Drive Logger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C53FF2772A2B8F4000EFA4EC /* Build configuration list for PBXNativeTarget "Drive Logger" */;
+			buildConfigurationList = C56C21562A2EE4E8008D2CBE /* Build configuration list for PBXNativeTarget "Drive Logger" */;
 			buildPhases = (
-				C53FF24A2A2B8F3F00EFA4EC /* Sources */,
-				C53FF24B2A2B8F3F00EFA4EC /* Frameworks */,
-				C53FF24C2A2B8F3F00EFA4EC /* Resources */,
-				C53FF2A32A2BB18500EFA4EC /* Embed Frameworks */,
+				C56C212A2A2EE4E7008D2CBE /* Sources */,
+				C56C212B2A2EE4E7008D2CBE /* Frameworks */,
+				C56C212C2A2EE4E7008D2CBE /* Resources */,
+				C56C217E2A2EE53A008D2CBE /* Embed Frameworks */,
+				C56C21A72A2EE61A008D2CBE /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C53FF29D2A2BB18500EFA4EC /* PBXTargetDependency */,
-				C55624392A2E3A470038200E /* PBXTargetDependency */,
+				C56C21782A2EE53A008D2CBE /* PBXTargetDependency */,
+				C56C21C12A2EE62F008D2CBE /* PBXTargetDependency */,
 			);
 			name = "Drive Logger";
 			productName = "Drive Logger";
-			productReference = C53FF24E2A2B8F3F00EFA4EC /* Drive Logger.app */;
+			productReference = C56C212E2A2EE4E7008D2CBE /* Drive Logger.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C53FF2622A2B8F4000EFA4EC /* Drive LoggerTests */ = {
+		C56C21412A2EE4E8008D2CBE /* Drive LoggerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C53FF27A2A2B8F4000EFA4EC /* Build configuration list for PBXNativeTarget "Drive LoggerTests" */;
+			buildConfigurationList = C56C21592A2EE4E8008D2CBE /* Build configuration list for PBXNativeTarget "Drive LoggerTests" */;
 			buildPhases = (
-				C53FF25F2A2B8F4000EFA4EC /* Sources */,
-				C53FF2602A2B8F4000EFA4EC /* Frameworks */,
-				C53FF2612A2B8F4000EFA4EC /* Resources */,
+				C56C213E2A2EE4E8008D2CBE /* Sources */,
+				C56C213F2A2EE4E8008D2CBE /* Frameworks */,
+				C56C21402A2EE4E8008D2CBE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C53FF2652A2B8F4000EFA4EC /* PBXTargetDependency */,
+				C56C21442A2EE4E8008D2CBE /* PBXTargetDependency */,
 			);
 			name = "Drive LoggerTests";
 			productName = "Drive LoggerTests";
-			productReference = C53FF2632A2B8F4000EFA4EC /* Drive LoggerTests.xctest */;
+			productReference = C56C21422A2EE4E8008D2CBE /* Drive LoggerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C53FF26C2A2B8F4000EFA4EC /* Drive LoggerUITests */ = {
+		C56C214B2A2EE4E8008D2CBE /* Drive LoggerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C53FF27D2A2B8F4000EFA4EC /* Build configuration list for PBXNativeTarget "Drive LoggerUITests" */;
+			buildConfigurationList = C56C215C2A2EE4E8008D2CBE /* Build configuration list for PBXNativeTarget "Drive LoggerUITests" */;
 			buildPhases = (
-				C53FF2692A2B8F4000EFA4EC /* Sources */,
-				C53FF26A2A2B8F4000EFA4EC /* Frameworks */,
-				C53FF26B2A2B8F4000EFA4EC /* Resources */,
+				C56C21482A2EE4E8008D2CBE /* Sources */,
+				C56C21492A2EE4E8008D2CBE /* Frameworks */,
+				C56C214A2A2EE4E8008D2CBE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C53FF26F2A2B8F4000EFA4EC /* PBXTargetDependency */,
+				C56C214E2A2EE4E8008D2CBE /* PBXTargetDependency */,
 			);
 			name = "Drive LoggerUITests";
 			productName = "Drive LoggerUITests";
-			productReference = C53FF26D2A2B8F4000EFA4EC /* Drive LoggerUITests.xctest */;
+			productReference = C56C214C2A2EE4E8008D2CBE /* Drive LoggerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		C53FF2882A2BB18400EFA4EC /* DriveLoggerUI */ = {
+		C56C21632A2EE539008D2CBE /* DriveLoggerUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C53FF2A02A2BB18500EFA4EC /* Build configuration list for PBXNativeTarget "DriveLoggerUI" */;
+			buildConfigurationList = C56C217B2A2EE53A008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerUI" */;
 			buildPhases = (
-				C53FF2842A2BB18400EFA4EC /* Headers */,
-				C53FF2852A2BB18400EFA4EC /* Sources */,
-				C53FF2862A2BB18400EFA4EC /* Frameworks */,
-				C53FF2872A2BB18400EFA4EC /* Resources */,
-				C556244E2A2E418C0038200E /* Embed Frameworks */,
+				C56C215F2A2EE539008D2CBE /* Headers */,
+				C56C21602A2EE539008D2CBE /* Sources */,
+				C56C21612A2EE539008D2CBE /* Frameworks */,
+				C56C21622A2EE539008D2CBE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C556244D2A2E418C0038200E /* PBXTargetDependency */,
 			);
 			name = DriveLoggerUI;
 			productName = DriveLoggerUI;
-			productReference = C53FF2892A2BB18400EFA4EC /* DriveLoggerUI.framework */;
+			productReference = C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C53FF2912A2BB18500EFA4EC /* DriveLoggerUITests */ = {
+		C56C216C2A2EE53A008D2CBE /* DriveLoggerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C53FF2A42A2BB18500EFA4EC /* Build configuration list for PBXNativeTarget "DriveLoggerUITests" */;
+			buildConfigurationList = C56C217F2A2EE53A008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerUITests" */;
 			buildPhases = (
-				C53FF28E2A2BB18500EFA4EC /* Sources */,
-				C53FF28F2A2BB18500EFA4EC /* Frameworks */,
-				C53FF2902A2BB18500EFA4EC /* Resources */,
+				C56C21692A2EE53A008D2CBE /* Sources */,
+				C56C216A2A2EE53A008D2CBE /* Frameworks */,
+				C56C216B2A2EE53A008D2CBE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C53FF2952A2BB18500EFA4EC /* PBXTargetDependency */,
-				C53FF2972A2BB18500EFA4EC /* PBXTargetDependency */,
+				C56C21702A2EE53A008D2CBE /* PBXTargetDependency */,
+				C56C21722A2EE53A008D2CBE /* PBXTargetDependency */,
 			);
 			name = DriveLoggerUITests;
 			productName = DriveLoggerUITests;
-			productReference = C53FF2922A2BB18500EFA4EC /* DriveLoggerUITests.xctest */;
+			productReference = C56C216D2A2EE53A008D2CBE /* DriveLoggerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C55624242A2E3A470038200E /* DriveLoggerCore */ = {
+		C56C21AC2A2EE62E008D2CBE /* DriveLoggerCore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C556243C2A2E3A470038200E /* Build configuration list for PBXNativeTarget "DriveLoggerCore" */;
+			buildConfigurationList = C56C21C42A2EE62F008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerCore" */;
 			buildPhases = (
-				C55624202A2E3A470038200E /* Headers */,
-				C55624212A2E3A470038200E /* Sources */,
-				C55624222A2E3A470038200E /* Frameworks */,
-				C55624232A2E3A470038200E /* Resources */,
+				C56C21A82A2EE62E008D2CBE /* Headers */,
+				C56C21A92A2EE62E008D2CBE /* Sources */,
+				C56C21AA2A2EE62E008D2CBE /* Frameworks */,
+				C56C21AB2A2EE62E008D2CBE /* Resources */,
 			);
 			buildRules = (
 			);
@@ -492,66 +475,66 @@
 			);
 			name = DriveLoggerCore;
 			productName = DriveLoggerCore;
-			productReference = C55624252A2E3A470038200E /* DriveLoggerCore.framework */;
+			productReference = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C556242D2A2E3A470038200E /* DriveLoggerCoreTests */ = {
+		C56C21B52A2EE62E008D2CBE /* DriveLoggerCoreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C556243F2A2E3A470038200E /* Build configuration list for PBXNativeTarget "DriveLoggerCoreTests" */;
+			buildConfigurationList = C56C21C72A2EE62F008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerCoreTests" */;
 			buildPhases = (
-				C556242A2A2E3A470038200E /* Sources */,
-				C556242B2A2E3A470038200E /* Frameworks */,
-				C556242C2A2E3A470038200E /* Resources */,
+				C56C21B22A2EE62E008D2CBE /* Sources */,
+				C56C21B32A2EE62E008D2CBE /* Frameworks */,
+				C56C21B42A2EE62E008D2CBE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C55624312A2E3A470038200E /* PBXTargetDependency */,
-				C55624332A2E3A470038200E /* PBXTargetDependency */,
+				C56C21B92A2EE62E008D2CBE /* PBXTargetDependency */,
+				C56C21BB2A2EE62E008D2CBE /* PBXTargetDependency */,
 			);
 			name = DriveLoggerCoreTests;
 			productName = DriveLoggerCoreTests;
-			productReference = C556242E2A2E3A470038200E /* DriveLoggerCoreTests.xctest */;
+			productReference = C56C21B62A2EE62E008D2CBE /* DriveLoggerCoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C53FF2462A2B8F3F00EFA4EC /* Project object */ = {
+		C56C21262A2EE4E7008D2CBE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					C53FF24D2A2B8F3F00EFA4EC = {
-						CreatedOnToolsVersion = 14.3.1;
+					C56C212D2A2EE4E7008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
 					};
-					C53FF2622A2B8F4000EFA4EC = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = C53FF24D2A2B8F3F00EFA4EC;
+					C56C21412A2EE4E8008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = C56C212D2A2EE4E7008D2CBE;
 					};
-					C53FF26C2A2B8F4000EFA4EC = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = C53FF24D2A2B8F3F00EFA4EC;
+					C56C214B2A2EE4E8008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = C56C212D2A2EE4E7008D2CBE;
 					};
-					C53FF2882A2BB18400EFA4EC = {
-						CreatedOnToolsVersion = 14.3.1;
+					C56C21632A2EE539008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
 					};
-					C53FF2912A2BB18500EFA4EC = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = C53FF24D2A2B8F3F00EFA4EC;
+					C56C216C2A2EE53A008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = C56C212D2A2EE4E7008D2CBE;
 					};
-					C55624242A2E3A470038200E = {
-						CreatedOnToolsVersion = 14.3.1;
+					C56C21AC2A2EE62E008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
 					};
-					C556242D2A2E3A470038200E = {
-						CreatedOnToolsVersion = 14.3.1;
-						TestTargetID = C53FF24D2A2B8F3F00EFA4EC;
+					C56C21B52A2EE62E008D2CBE = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = C56C212D2A2EE4E7008D2CBE;
 					};
 				};
 			};
-			buildConfigurationList = C53FF2492A2B8F3F00EFA4EC /* Build configuration list for PBXProject "Drive Logger" */;
+			buildConfigurationList = C56C21292A2EE4E7008D2CBE /* Build configuration list for PBXProject "Drive Logger" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -559,69 +542,68 @@
 				en,
 				Base,
 			);
-			mainGroup = C53FF2452A2B8F3F00EFA4EC;
-			productRefGroup = C53FF24F2A2B8F3F00EFA4EC /* Products */;
+			mainGroup = C56C21252A2EE4E7008D2CBE;
+			productRefGroup = C56C212F2A2EE4E7008D2CBE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C53FF24D2A2B8F3F00EFA4EC /* Drive Logger */,
-				C53FF2622A2B8F4000EFA4EC /* Drive LoggerTests */,
-				C53FF26C2A2B8F4000EFA4EC /* Drive LoggerUITests */,
-				C53FF2882A2BB18400EFA4EC /* DriveLoggerUI */,
-				C53FF2912A2BB18500EFA4EC /* DriveLoggerUITests */,
-				C55624242A2E3A470038200E /* DriveLoggerCore */,
-				C556242D2A2E3A470038200E /* DriveLoggerCoreTests */,
+				C56C212D2A2EE4E7008D2CBE /* Drive Logger */,
+				C56C21412A2EE4E8008D2CBE /* Drive LoggerTests */,
+				C56C214B2A2EE4E8008D2CBE /* Drive LoggerUITests */,
+				C56C21632A2EE539008D2CBE /* DriveLoggerUI */,
+				C56C216C2A2EE53A008D2CBE /* DriveLoggerUITests */,
+				C56C21AC2A2EE62E008D2CBE /* DriveLoggerCore */,
+				C56C21B52A2EE62E008D2CBE /* DriveLoggerCoreTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C53FF24C2A2B8F3F00EFA4EC /* Resources */ = {
+		C56C212C2A2EE4E7008D2CBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF2592A2B8F4000EFA4EC /* Preview Assets.xcassets in Resources */,
-				C53FF2562A2B8F4000EFA4EC /* Assets.xcassets in Resources */,
+				C56C21392A2EE4E8008D2CBE /* Preview Assets.xcassets in Resources */,
+				C56C21362A2EE4E7008D2CBE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF2612A2B8F4000EFA4EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FF26B2A2B8F4000EFA4EC /* Resources */ = {
+		C56C21402A2EE4E8008D2CBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF2872A2BB18400EFA4EC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C53FF2A92A2BB2E700EFA4EC /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FF2902A2BB18500EFA4EC /* Resources */ = {
+		C56C214A2A2EE4E8008D2CBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C55624232A2E3A470038200E /* Resources */ = {
+		C56C21622A2EE539008D2CBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C556242C2A2E3A470038200E /* Resources */ = {
+		C56C216B2A2EE53A008D2CBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C56C21AB2A2EE62E008D2CBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C56C21B42A2EE62E008D2CBE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -631,133 +613,129 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C53FF24A2A2B8F3F00EFA4EC /* Sources */ = {
+		C56C212A2A2EE4E7008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF2542A2B8F3F00EFA4EC /* ContentViewSample.swift in Sources */,
-				C53FF2812A2B905A00EFA4EC /* ContetView.swift in Sources */,
-				C53FF2832A2B90F100EFA4EC /* HomeView.swift in Sources */,
-				C5A434602A2EE2B3008A00B3 /* AppState.swift in Sources */,
-				C53FF2B12A2CF07600EFA4EC /* HomeHeaderSection.swift in Sources */,
-				C556241E2A2D38AD0038200E /* DrivingView.swift in Sources */,
-				C53FF2B52A2CF4B300EFA4EC /* StatisticsSection.swift in Sources */,
-				C53FF2522A2B8F3F00EFA4EC /* Drive_LoggerApp.swift in Sources */,
-				C53FF2B32A2CF11100EFA4EC /* RecentDrivesSection.swift in Sources */,
+				C56C21342A2EE4E7008D2CBE /* ContentViewSample.swift in Sources */,
+				C56C218F2A2EE589008D2CBE /* DrivingView.swift in Sources */,
+				C56C213B2A2EE4E8008D2CBE /* Item.swift in Sources */,
+				C56C21952A2EE5B7008D2CBE /* StatisticsSection.swift in Sources */,
+				C56C21972A2EE5B7008D2CBE /* HomeHeaderSection.swift in Sources */,
+				C56C21322A2EE4E7008D2CBE /* Drive_LoggerApp.swift in Sources */,
+				C56C21962A2EE5B7008D2CBE /* HomeView.swift in Sources */,
+				C56C21D02A2F0DCB008D2CBE /* AllDrivesView.swift in Sources */,
+				C56C218E2A2EE589008D2CBE /* ContentView.swift in Sources */,
+				C56C21942A2EE5B7008D2CBE /* RecentDrivesSection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF25F2A2B8F4000EFA4EC /* Sources */ = {
+		C56C213E2A2EE4E8008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF2682A2B8F4000EFA4EC /* Drive_LoggerTests.swift in Sources */,
+				C56C21472A2EE4E8008D2CBE /* Drive_LoggerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF2692A2B8F4000EFA4EC /* Sources */ = {
+		C56C21482A2EE4E8008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF2722A2B8F4000EFA4EC /* Drive_LoggerUITests.swift in Sources */,
-				C53FF2742A2B8F4000EFA4EC /* Drive_LoggerUITestsLaunchTests.swift in Sources */,
+				C56C21512A2EE4E8008D2CBE /* Drive_LoggerUITests.swift in Sources */,
+				C56C21532A2EE4E8008D2CBE /* Drive_LoggerUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF2852A2BB18400EFA4EC /* Sources */ = {
+		C56C21602A2EE539008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF2A82A2BB19F00EFA4EC /* ProgressBar.swift in Sources */,
-				C53FF2AF2A2BC54E00EFA4EC /* LargeButton.swift in Sources */,
-				C53FF2AB2A2BB71100EFA4EC /* DriveCard.swift in Sources */,
-				C53FF2AD2A2BBA8500EFA4EC /* CardModifier.swift in Sources */,
-				C53FF28D2A2BB18400EFA4EC /* DriveLoggerUI.docc in Sources */,
+				C56C21862A2EE56E008D2CBE /* CardModifier.swift in Sources */,
+				C56C21892A2EE56E008D2CBE /* LargeButton.swift in Sources */,
+				C56C21872A2EE56E008D2CBE /* DriveCard.swift in Sources */,
+				C56C21882A2EE56E008D2CBE /* ProgressBar.swift in Sources */,
+				C56C21682A2EE53A008D2CBE /* DriveLoggerUI.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C53FF28E2A2BB18500EFA4EC /* Sources */ = {
+		C56C21692A2EE53A008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53FF29A2A2BB18500EFA4EC /* DriveLoggerUITests.swift in Sources */,
+				C56C21752A2EE53A008D2CBE /* DriveLoggerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C55624212A2E3A470038200E /* Sources */ = {
+		C56C21A92A2EE62E008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C55624472A2E3D7B0038200E /* Drive_Logger.xcdatamodeld in Sources */,
-				C55624292A2E3A470038200E /* DriveLoggerCore.docc in Sources */,
-				C55624422A2E3A4D0038200E /* Persistence.swift in Sources */,
-				C51DB14A2A2E436900340C02 /* SampleData.swift in Sources */,
+				C56C21B12A2EE62E008D2CBE /* DriveLoggerCore.docc in Sources */,
+				C56C21CE2A2F0837008D2CBE /* Drive.model.swift in Sources */,
+				C56C21CB2A2EE65A008D2CBE /* test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C556242A2A2E3A470038200E /* Sources */ = {
+		C56C21B22A2EE62E008D2CBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C55624362A2E3A470038200E /* DriveLoggerCoreTests.swift in Sources */,
+				C56C21BE2A2EE62E008D2CBE /* DriveLoggerCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C53FF2652A2B8F4000EFA4EC /* PBXTargetDependency */ = {
+		C56C21442A2EE4E8008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C53FF24D2A2B8F3F00EFA4EC /* Drive Logger */;
-			targetProxy = C53FF2642A2B8F4000EFA4EC /* PBXContainerItemProxy */;
+			target = C56C212D2A2EE4E7008D2CBE /* Drive Logger */;
+			targetProxy = C56C21432A2EE4E8008D2CBE /* PBXContainerItemProxy */;
 		};
-		C53FF26F2A2B8F4000EFA4EC /* PBXTargetDependency */ = {
+		C56C214E2A2EE4E8008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C53FF24D2A2B8F3F00EFA4EC /* Drive Logger */;
-			targetProxy = C53FF26E2A2B8F4000EFA4EC /* PBXContainerItemProxy */;
+			target = C56C212D2A2EE4E7008D2CBE /* Drive Logger */;
+			targetProxy = C56C214D2A2EE4E8008D2CBE /* PBXContainerItemProxy */;
 		};
-		C53FF2952A2BB18500EFA4EC /* PBXTargetDependency */ = {
+		C56C21702A2EE53A008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C53FF2882A2BB18400EFA4EC /* DriveLoggerUI */;
-			targetProxy = C53FF2942A2BB18500EFA4EC /* PBXContainerItemProxy */;
+			target = C56C21632A2EE539008D2CBE /* DriveLoggerUI */;
+			targetProxy = C56C216F2A2EE53A008D2CBE /* PBXContainerItemProxy */;
 		};
-		C53FF2972A2BB18500EFA4EC /* PBXTargetDependency */ = {
+		C56C21722A2EE53A008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C53FF24D2A2B8F3F00EFA4EC /* Drive Logger */;
-			targetProxy = C53FF2962A2BB18500EFA4EC /* PBXContainerItemProxy */;
+			target = C56C212D2A2EE4E7008D2CBE /* Drive Logger */;
+			targetProxy = C56C21712A2EE53A008D2CBE /* PBXContainerItemProxy */;
 		};
-		C53FF29D2A2BB18500EFA4EC /* PBXTargetDependency */ = {
+		C56C21782A2EE53A008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C53FF2882A2BB18400EFA4EC /* DriveLoggerUI */;
-			targetProxy = C53FF29C2A2BB18500EFA4EC /* PBXContainerItemProxy */;
+			target = C56C21632A2EE539008D2CBE /* DriveLoggerUI */;
+			targetProxy = C56C21772A2EE53A008D2CBE /* PBXContainerItemProxy */;
 		};
-		C55624312A2E3A470038200E /* PBXTargetDependency */ = {
+		C56C21B92A2EE62E008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C55624242A2E3A470038200E /* DriveLoggerCore */;
-			targetProxy = C55624302A2E3A470038200E /* PBXContainerItemProxy */;
+			target = C56C21AC2A2EE62E008D2CBE /* DriveLoggerCore */;
+			targetProxy = C56C21B82A2EE62E008D2CBE /* PBXContainerItemProxy */;
 		};
-		C55624332A2E3A470038200E /* PBXTargetDependency */ = {
+		C56C21BB2A2EE62E008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C53FF24D2A2B8F3F00EFA4EC /* Drive Logger */;
-			targetProxy = C55624322A2E3A470038200E /* PBXContainerItemProxy */;
+			target = C56C212D2A2EE4E7008D2CBE /* Drive Logger */;
+			targetProxy = C56C21BA2A2EE62E008D2CBE /* PBXContainerItemProxy */;
 		};
-		C55624392A2E3A470038200E /* PBXTargetDependency */ = {
+		C56C21C12A2EE62F008D2CBE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C55624242A2E3A470038200E /* DriveLoggerCore */;
-			targetProxy = C55624382A2E3A470038200E /* PBXContainerItemProxy */;
-		};
-		C556244D2A2E418C0038200E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C55624242A2E3A470038200E /* DriveLoggerCore */;
-			targetProxy = C556244C2A2E418C0038200E /* PBXContainerItemProxy */;
+			target = C56C21AC2A2EE62E008D2CBE /* DriveLoggerCore */;
+			targetProxy = C56C21C02A2EE62F008D2CBE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C53FF2752A2B8F4000EFA4EC /* Debug */ = {
+		C56C21542A2EE4E8008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -790,7 +768,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -804,20 +783,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		C53FF2762A2B8F4000EFA4EC /* Release */ = {
+		C56C21552A2EE4E8008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -850,7 +831,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -858,87 +840,81 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		C53FF2782A2B8F4000EFA4EC /* Debug */ = {
+		C56C21572A2EE4E8008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Drive Logger/Drive_Logger.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Drive Logger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_FILE = "Drive Logger/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.Drive-Logger";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C53FF2792A2B8F4000EFA4EC /* Release */ = {
+		C56C21582A2EE4E8008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Drive Logger/Drive_Logger.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Drive Logger/Preview Content\"";
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_FILE = "Drive Logger/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.Drive-Logger";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		C53FF27B2A2B8F4000EFA4EC /* Debug */ = {
+		C56C215A2A2EE4E8008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -947,9 +923,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.Drive-LoggerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -958,7 +934,7 @@
 			};
 			name = Debug;
 		};
-		C53FF27C2A2B8F4000EFA4EC /* Release */ = {
+		C56C215B2A2EE4E8008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -967,9 +943,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7M5JDZSYX7;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.Drive-LoggerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -978,7 +954,7 @@
 			};
 			name = Release;
 		};
-		C53FF27E2A2B8F4000EFA4EC /* Debug */ = {
+		C56C215D2A2EE4E8008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -996,7 +972,7 @@
 			};
 			name = Debug;
 		};
-		C53FF27F2A2B8F4000EFA4EC /* Release */ = {
+		C56C215E2A2EE4E8008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1014,7 +990,7 @@
 			};
 			name = Release;
 		};
-		C53FF2A12A2BB18500EFA4EC /* Debug */ = {
+		C56C217C2A2EE53A008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1028,7 +1004,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1036,7 +1011,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.DriveLoggerUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1048,7 +1023,7 @@
 			};
 			name = Debug;
 		};
-		C53FF2A22A2BB18500EFA4EC /* Release */ = {
+		C56C217D2A2EE53A008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1062,7 +1037,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1070,7 +1044,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.DriveLoggerUI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1082,7 +1056,7 @@
 			};
 			name = Release;
 		};
-		C53FF2A52A2BB18500EFA4EC /* Debug */ = {
+		C56C21802A2EE53A008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1100,7 +1074,7 @@
 			};
 			name = Debug;
 		};
-		C53FF2A62A2BB18500EFA4EC /* Release */ = {
+		C56C21812A2EE53A008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1118,7 +1092,7 @@
 			};
 			name = Release;
 		};
-		C556243D2A2E3A470038200E /* Debug */ = {
+		C56C21C52A2EE62F008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1132,7 +1106,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1140,7 +1113,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.DriveLoggerCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1152,7 +1125,7 @@
 			};
 			name = Debug;
 		};
-		C556243E2A2E3A470038200E /* Release */ = {
+		C56C21C62A2EE62F008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1166,7 +1139,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1174,7 +1146,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
-				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu11 gnu++20";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.DriveLoggerCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -1186,7 +1158,7 @@
 			};
 			name = Release;
 		};
-		C55624402A2E3A470038200E /* Debug */ = {
+		C56C21C82A2EE62F008D2CBE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1204,7 +1176,7 @@
 			};
 			name = Debug;
 		};
-		C55624412A2E3A470038200E /* Release */ = {
+		C56C21C92A2EE62F008D2CBE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -1225,92 +1197,79 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C53FF2492A2B8F3F00EFA4EC /* Build configuration list for PBXProject "Drive Logger" */ = {
+		C56C21292A2EE4E7008D2CBE /* Build configuration list for PBXProject "Drive Logger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C53FF2752A2B8F4000EFA4EC /* Debug */,
-				C53FF2762A2B8F4000EFA4EC /* Release */,
+				C56C21542A2EE4E8008D2CBE /* Debug */,
+				C56C21552A2EE4E8008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C53FF2772A2B8F4000EFA4EC /* Build configuration list for PBXNativeTarget "Drive Logger" */ = {
+		C56C21562A2EE4E8008D2CBE /* Build configuration list for PBXNativeTarget "Drive Logger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C53FF2782A2B8F4000EFA4EC /* Debug */,
-				C53FF2792A2B8F4000EFA4EC /* Release */,
+				C56C21572A2EE4E8008D2CBE /* Debug */,
+				C56C21582A2EE4E8008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C53FF27A2A2B8F4000EFA4EC /* Build configuration list for PBXNativeTarget "Drive LoggerTests" */ = {
+		C56C21592A2EE4E8008D2CBE /* Build configuration list for PBXNativeTarget "Drive LoggerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C53FF27B2A2B8F4000EFA4EC /* Debug */,
-				C53FF27C2A2B8F4000EFA4EC /* Release */,
+				C56C215A2A2EE4E8008D2CBE /* Debug */,
+				C56C215B2A2EE4E8008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C53FF27D2A2B8F4000EFA4EC /* Build configuration list for PBXNativeTarget "Drive LoggerUITests" */ = {
+		C56C215C2A2EE4E8008D2CBE /* Build configuration list for PBXNativeTarget "Drive LoggerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C53FF27E2A2B8F4000EFA4EC /* Debug */,
-				C53FF27F2A2B8F4000EFA4EC /* Release */,
+				C56C215D2A2EE4E8008D2CBE /* Debug */,
+				C56C215E2A2EE4E8008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C53FF2A02A2BB18500EFA4EC /* Build configuration list for PBXNativeTarget "DriveLoggerUI" */ = {
+		C56C217B2A2EE53A008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C53FF2A12A2BB18500EFA4EC /* Debug */,
-				C53FF2A22A2BB18500EFA4EC /* Release */,
+				C56C217C2A2EE53A008D2CBE /* Debug */,
+				C56C217D2A2EE53A008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C53FF2A42A2BB18500EFA4EC /* Build configuration list for PBXNativeTarget "DriveLoggerUITests" */ = {
+		C56C217F2A2EE53A008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C53FF2A52A2BB18500EFA4EC /* Debug */,
-				C53FF2A62A2BB18500EFA4EC /* Release */,
+				C56C21802A2EE53A008D2CBE /* Debug */,
+				C56C21812A2EE53A008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C556243C2A2E3A470038200E /* Build configuration list for PBXNativeTarget "DriveLoggerCore" */ = {
+		C56C21C42A2EE62F008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C556243D2A2E3A470038200E /* Debug */,
-				C556243E2A2E3A470038200E /* Release */,
+				C56C21C52A2EE62F008D2CBE /* Debug */,
+				C56C21C62A2EE62F008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C556243F2A2E3A470038200E /* Build configuration list for PBXNativeTarget "DriveLoggerCoreTests" */ = {
+		C56C21C72A2EE62F008D2CBE /* Build configuration list for PBXNativeTarget "DriveLoggerCoreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C55624402A2E3A470038200E /* Debug */,
-				C55624412A2E3A470038200E /* Release */,
+				C56C21C82A2EE62F008D2CBE /* Debug */,
+				C56C21C92A2EE62F008D2CBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C53FF25C2A2B8F4000EFA4EC /* Drive_Logger.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C53FF25D2A2B8F4000EFA4EC /* Drive_Logger.xcdatamodel */,
-			);
-			currentVersion = C53FF25D2A2B8F4000EFA4EC /* Drive_Logger.xcdatamodel */;
-			path = Drive_Logger.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = C53FF2462A2B8F3F00EFA4EC /* Project object */;
+	rootObject = C56C21262A2EE4E7008D2CBE /* Project object */;
 }

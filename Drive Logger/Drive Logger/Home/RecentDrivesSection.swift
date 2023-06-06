@@ -8,30 +8,27 @@
 import SwiftUI
 import DriveLoggerUI
 import DriveLoggerCore
-import CoreData
+import SwiftData
 struct RecentDrivesSection: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Drive.startTime, ascending: true)],
-        animation: .default)
-    private var drives: FetchedResults<Drive>
+    @Environment(\.modelContext) private var modelContext
+    @Query private var drives: [Drive]
     var body: some View {
         VStack {
             HStack {
                 Text("Recent Drives").font(.headline)
                 Spacer()
-                NavigationLink(destination: {}, label: {Text("View More \(Image(systemName: "chevron.right"))")})
+                NavigationLink(destination: AllDrivesView(), label: {Text("View More \(Image(systemName: "chevron.right"))")})
             }
             if (drives.count > 0 ) {
                 VStack {
-                    ForEach (drives.prefix(3)) {drive in
+                    ForEach(drives.prefix(3)) {drive in
                         DriveCard(drive).padding(.vertical, 2)
-                        
                     }
+                       
+                 Spacer()
                     
                     
-                    
-                }
+                }.frame(minHeight: 250)
             } else {
                 VStack {
                     Spacer()
@@ -47,21 +44,22 @@ struct RecentDrivesSection: View {
            
         }.padding(.vertical)
     }
+    private func addItem() {
+        withAnimation {
+            let newItem = Drive(sampleData: true)
+            modelContext.insert(newItem)
+        }
+    }
 }
 
 struct RecentDrivesSection_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             VStack {
-        RecentDrivesSection().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        Spacer()
-    }.padding()
-}.previewLayout(.sizeThatFits).previewDisplayName("With Drives")
-        NavigationView {
-            VStack {
         RecentDrivesSection()
         Spacer()
     }.padding()
-}.previewLayout(.sizeThatFits).previewDisplayName("No Drives")
+}.previewLayout(.sizeThatFits).previewDisplayName("With Drives")
+       
     }
 }
