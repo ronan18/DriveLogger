@@ -16,9 +16,7 @@ struct StatisticsSection: View {
                 NavigationLink(destination: {}, label: {Text("View More \(Image(systemName: "chevron.right"))")})
             }
             VStack {
-                DriveCard().padding(.vertical, 2)
-                DriveCard().padding(.vertical, 2)
-                DriveCard().padding(.vertical, 2)
+              Text("Stats")
               
                 
             }

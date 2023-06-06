@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
-
-struct ContetView: View {
+import DriveLoggerCore
+struct ContentView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+           HomeView()
+        }
     }
 }
 
 struct ContetView_Previews: PreviewProvider {
     static var previews: some View {
-        ContetView()
+        ContentView()
     }
 }

@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import DriveLoggerCore
 import CoreData
 
-struct ContentView: View {
+struct ContentViewSample: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(

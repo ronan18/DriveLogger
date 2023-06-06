@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import CoreData
+public struct SampleDrive {
+    
+}
+
+func generateSampleDrive() {
+ 
+    
+  
+}

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import DriveLoggerCore
 
 @main
 struct Drive_LoggerApp: App {

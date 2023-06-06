@@ -7,10 +7,10 @@
 
 import CoreData
 
-struct PersistenceController {
-    static let shared = PersistenceController()
+public struct PersistenceController {
+   public static let shared = PersistenceController()
 
-    static var preview: PersistenceController = {
+    public static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for i in 0..<10 {
@@ -28,10 +28,11 @@ struct PersistenceController {
         return result
     }()
 
-    let container: NSPersistentContainer
+    public class PersistentContainer: NSPersistentContainer { }
+    public let container: PersistentContainer
 
-    init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "Drive_Logger")
+    public init(inMemory: Bool = false) {
+        container = PersistentContainer(name: "Drive_Logger")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
