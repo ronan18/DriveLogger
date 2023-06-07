@@ -4,10 +4,10 @@
 //
 //  Created by Ronan Furuta on 6/3/23.
 //
-
+import Foundation
 import SwiftUI
 import DriveLoggerCore
-import CoreData
+import SwiftData
 
 public struct DriveCard: View {
     let drive: Drive
@@ -31,11 +31,11 @@ public struct DriveCard: View {
                     }
                     
                     if (drive.endLocationName == nil && drive.startLocationName == nil) {
-                        Text(drive.backupDriveString())
+                        Text(drive.backupDriveString)
                     }
                     
                     
-                }.font(.headline)
+                }.font(.headline).lineLimit(1)
                 HStack {
                     if (!(drive.endLocationName == nil && drive.startLocationName == nil)) {
                         Text(drive.startTime.formatted(date: .abbreviated, time: .shortened))
@@ -51,18 +51,15 @@ public struct DriveCard: View {
             }
             Spacer()
             VStack {
-                Text("23").font(.headline)
-                Text("minutes").font(.caption)
+                Text(drive.driveLength.formatedForDrive()).font(.headline)
             }
         }.padding().background(Color.white).card()
         
     }
 }
 
-struct DriveCard_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        DriveCard(Drive(sampleData: true)).padding().previewLayout(.sizeThatFits)
+#Preview {
+        DriveCard(Drive(sampleData: true)).padding().previewLayout(.sizeThatFits) .modelContainer(for: Drive.self, inMemory: true)
         
-    }
+    
 }

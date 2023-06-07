@@ -7,8 +7,13 @@
 
 import SwiftUI
 import DriveLoggerUI
+import DriveLoggerCore
+import SwiftData
+
 
 struct HomeHeaderSection: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     var body: some View {
         Group {
             
@@ -19,8 +24,16 @@ struct HomeHeaderSection: View {
             }
             Spacer().frame(height: 20)
             VStack() {
-                Text("52").font(.system(size: 150)).fontWeight(.heavy).frame(height: 130)
-                Text("hours").font(.title).bold().frame(height: 20)
+                GeometryReader {g in
+                    HStack {
+                        Spacer()
+                        Text("\(DriveLoggerData().totalDriveTime(drives: drives).format(using: [.hour, .minute]) ?? "0m")").minimumScaleFactor(0.4).font(.system(size: g.size.height > g.size.width ? g.size.width * 0.4: g.size.height))
+                            .lineLimit(1).fontWeight(.heavy)
+                    Spacer()
+                    }
+                }.frame(height: 100)
+               
+                Text("time driven").font(.title).bold().frame(height: 20)
                 
                 HStack {
                     Text("\(Image(systemName: "sun.max.circle.fill")) **40** hrs")
@@ -42,6 +55,6 @@ struct HomeHeaderSection_Previews: PreviewProvider {
                 HomeHeaderSection()
                 Spacer()
             }.padding()
-        }.previewLayout(.sizeThatFits)
+        }.previewLayout(.sizeThatFits).modelContainer(previewContainer)
     }
 }

@@ -14,5 +14,3 @@ FOUNDATION_EXPORT double DriveLoggerCoreVersionNumber;
 FOUNDATION_EXPORT const unsigned char DriveLoggerCoreVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <DriveLoggerCore/PublicHeader.h>
-
-

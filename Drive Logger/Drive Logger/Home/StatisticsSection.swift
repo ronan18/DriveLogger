@@ -7,6 +7,8 @@
 
 import SwiftUI
 import DriveLoggerUI
+import DriveLoggerCore
+import SwiftData
 struct StatisticsSection: View {
     var body: some View {
         VStack {
@@ -16,7 +18,7 @@ struct StatisticsSection: View {
                 NavigationLink(destination: {}, label: {Text("View More \(Image(systemName: "chevron.right"))")})
             }
             VStack {
-              Text("Stats")
+                Spacer().frame(height: 100)
               
                 
             }
@@ -27,6 +29,6 @@ struct StatisticsSection: View {
 
 struct StatisticsSection_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsSection()
+        StatisticsSection().modelContainer(previewContainer)
     }
 }

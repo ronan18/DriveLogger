@@ -12,16 +12,16 @@ import SwiftData
 
 struct AllDrivesView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     var body: some View {
         VStack {
             List {
-                ForEach(drives){drive in
-                DriveCard(drive).listRowInsets(.none).listRowSeparator(.hidden).listRowSpacing(0)
-            }.onDelete(perform: deleteItems)
+                ForEach(drives) {drive in
+                    DriveCard(drive)
+                }.onDelete(perform: deleteItems).listRowInsets(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0)).listRowSeparator(.hidden).listRowSpacing(0)
             }.listStyle(.plain).listRowSpacing(0)
             
-        }.navigationTitle("All Drives").toolbar {
+        }.padding().navigationTitle("All Drives").toolbar {
             ToolbarItem(placement: .primaryAction, content: {
                 Button(action: addItem) {
                     Label("Add Item", systemImage: "plus")
@@ -44,11 +44,11 @@ struct AllDrivesView: View {
     }
 }
 
-#Preview {
-    
-    NavigationView {
-        AllDrivesView()
-    }.onAppear {
-       
+struct AllDrives_Previews: PreviewProvider {
+    static var previews: some View {
+        
+        NavigationView {
+            AllDrivesView().modelContainer(previewContainer)
+        }
     }
 }

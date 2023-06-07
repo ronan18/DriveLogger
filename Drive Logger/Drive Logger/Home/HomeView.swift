@@ -7,8 +7,11 @@
 
 import SwiftUI
 import DriveLoggerUI
-
+import DriveLoggerCore
+import SwiftData
 struct HomeView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var appState: [AppState]
     var body: some View {
         ScrollView {
             VStack {
@@ -23,7 +26,11 @@ struct HomeView: View {
                 VStack {
                    // Spacer()
                     Button(action: {
-                        // Handle button tap
+                        guard let appState = self.appState.first else {
+                            print("no appstate exists starting drive")
+                            return
+                        }
+                        appState.startDrive()
                     }) {
                         Text("Start Drive")
                             .fontWeight(.bold)
@@ -41,7 +48,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HomeView()
+            HomeView().modelContainer(previewContainer)
         }.ignoresSafeArea()
     }
 }

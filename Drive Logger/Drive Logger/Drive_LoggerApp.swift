@@ -11,11 +11,11 @@ import DriveLoggerCore
 
 @main
 struct Drive_LoggerApp: App {
-
+    @Environment(\.modelContext) private var modelContext
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Drive.self)
+        .modelContainer(for: [Drive.self, AppState.self])
     }
 }

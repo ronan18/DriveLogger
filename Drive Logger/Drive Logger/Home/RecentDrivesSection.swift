@@ -11,20 +11,21 @@ import DriveLoggerCore
 import SwiftData
 struct RecentDrivesSection: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     var body: some View {
         VStack {
             HStack {
                 Text("Recent Drives").font(.headline)
                 Spacer()
-                NavigationLink(destination: AllDrivesView(), label: {Text("View More \(Image(systemName: "chevron.right"))")})
+                NavigationLink(destination: AllDrivesView(), label: {Text("View All \(Image(systemName: "chevron.right"))")})
             }
             if (drives.count > 0 ) {
                 VStack {
-                    ForEach(drives.prefix(3)) {drive in
-                        DriveCard(drive).padding(.vertical, 2)
-                    }
-                       
+                    List {
+                        ForEach(drives.prefix(3)) {drive in
+                            DriveCard(drive)
+                        }.onDelete(perform: deleteItems).listRowInsets(EdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0)).listRowSeparator(.hidden).listRowSpacing(0)
+                    }.listStyle(.plain).listRowSpacing(0).scrollDisabled(true)
                  Spacer()
                     
                     
@@ -50,16 +51,37 @@ struct RecentDrivesSection: View {
             modelContext.insert(newItem)
         }
     }
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(drives[index])
+            }
+        }
+    }
 }
 
 struct RecentDrivesSection_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             VStack {
-        RecentDrivesSection()
+        RecentDrivesSection().modelContainer(previewContainer)
         Spacer()
     }.padding()
 }.previewLayout(.sizeThatFits).previewDisplayName("With Drives")
+        NavigationView {
+            VStack {
+        RecentDrivesSection()
+        Spacer()
+    }.padding()
+}.previewLayout(.sizeThatFits).previewDisplayName("With Out Drives")
        
+    }
+}
+
+
+private extension UIScrollView {
+    open override var clipsToBounds: Bool {
+        get { false }
+        set {}
     }
 }
