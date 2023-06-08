@@ -12,17 +12,54 @@ import SwiftData
 
 struct DriveEditorView: View {
     @Binding var drive: Drive
+    @State var appState: AppState
     var body: some View {
-        NavigationView {
-            VStack {
-                Text(drive.backupDriveString)
+        
+            Form {
+                Section {
+                    LabeledContent {
+                        TextField("Start Location Name", text:  self.$drive.startLocationName, prompt: Text("Start location name"))
+                    } label: {
+                        Text("Name").font(.headline)
+                      }
+                    DatePicker("Time", selection: self.$drive.startTime, displayedComponents: [.date, .hourAndMinute])
+                    
+                    
+                } header: {
+                    Text("\(Image(systemName: "mappin.circle.fill")) Start")
+                }
+                Section {
+                    LabeledContent {
+                        TextField("End Location Name", text:  self.$drive.endLocationName, prompt: Text("End location name"))
+                    } label: {
+                        Text("Name").font(.headline)
+                      }
+                    DatePicker("Time", selection: self.$drive.endTime, displayedComponents: [.date, .hourAndMinute])
+                    
+                    
+                } header: {
+                    Text("\(Image(systemName: "flag.checkered")) Finish")
+                }
+                Section {
+                    DatePicker("\(Image(systemName: "sunset.fill")) Sunset", selection: self.$drive.sunsetTime, displayedComponents: [ .hourAndMinute])
+                    DatePicker("\(Image(systemName: "sunrise.fill")) Sunrise", selection: self.$drive.sunriseTime, displayedComponents: [ .hourAndMinute])
+                } header: {
+                    Text("\(Image(systemName: "sun.max")) Additional Data")
+                }
+                DriveCard(self.drive, noShadow: true)
+            }.navigationTitle(drive.backupDriveString).toolbar {
+                ToolbarItem(placement: .primaryAction, content: {
+                    Button("Done") {
+                        self.appState.driveEditorPresented = false
+                    }
+                })
             }
-        }
+        
     }
 }
 
 struct DriveEditor_Previews: PreviewProvider {
     static var previews: some View {
-        DriveEditorView(drive: .constant(Drive(sampleData: true)))
+        DriveEditorView(drive: .constant(Drive(sampleData: true)), appState: AppState()).modelContainer(previewContainer)
     }
 }

@@ -12,27 +12,28 @@ import DriveLoggerCore
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scene
-    @Query private var appState: [AppState]
-    
+   @State var appState = AppState()
+    init () {
+      
+        
+    }
     var body: some View {
         Group {
-            if (appState.first?.driving ?? false) {
-                DrivingView()
+            if (appState.driving) {
+                DrivingView(appState: appState)
             } else {
                 NavigationView {
-                    HomeView()
-                }
+                    HomeView(appState: appState)
+                }.inspector(isPresented: self.$appState.driveEditorPresented, content: {
+                    
+                    DriveEditorView(drive: self.$appState.driveToBeEdited, appState: self.appState)
+               
+                
+            })
             }
         }.onAppear {
-           
-            if self.appState.isEmpty {
-                modelContext.insert(AppState(firstBoot: true))
-                
-                print("appstate created")
-            } else {
-                print("appstate exists")
-                self.appState.first!.intAppStateContext()
-            }
+            self.appState.context = modelContext
+         
         }.onChange(of: scene) {(initial, scene) in
             print("scene change", initial, scene)
             if scene == .background {

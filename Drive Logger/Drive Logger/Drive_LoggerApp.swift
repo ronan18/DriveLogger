@@ -14,8 +14,8 @@ struct Drive_LoggerApp: App {
     @Environment(\.modelContext) private var modelContext
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().modelContainer(for: [Drive.self]).modelContext(modelContext)
         }
-        .modelContainer(for: [Drive.self, AppState.self])
+        
     }
 }

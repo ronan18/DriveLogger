@@ -10,6 +10,7 @@ import DriveLoggerUI
 import DriveLoggerCore
 import SwiftData
 struct StatisticsSection: View {
+    @Environment(\.modelContext) private var modelContext
     var body: some View {
         VStack {
             HStack {

@@ -21,29 +21,34 @@ import CoreLocation
 public struct SunTime: Codable {
     public let hour: Int
     public let minute: Int
+    public init(hour: Int, minute: Int) {
+        self.hour = hour
+        self.minute = minute
+    }
 }
 
 @Model
 final public class Drive: Identifiable {
-   
-    public let startTime: Date = Date()
-    public let endTime: Date = Date()
-    public let startLocation: DLLocationStore?
-    public let endLocation: DLLocationStore?
-    public let startLocationName: String?
-    public let endLocationName: String?
-    public let sunsetTime: SunTime = SunTime(hour: 19, minute: 46)
-    public let sunriseTime: SunTime = SunTime(hour: 7, minute: 20)
-    
+    @Attribute(.unique) public let id: String
+    public var startTime: Date = Date()
+    public var endTime: Date = Date()
+    public var startLocation: String?
+    public var endLocation: String?
+    public var startLocationName: String
+    public var endLocationName: String
+    public var sunsetTime: Date
+    public var sunriseTime: Date
+  ///
     public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: SunTime, sunriseTime: SunTime) {
         self.startTime = startTime
         self.endTime = endTime
-        self.startLocation = startLocation
-        self.endLocation = endLocation
-        self.startLocationName = startLocationName
-        self.endLocationName = endLocationName
-        self.sunsetTime = sunsetTime
-        self.sunriseTime = sunriseTime
+        self.startLocation = nil
+        self.endLocation = nil
+        self.startLocationName = startLocationName ?? ""
+        self.endLocationName = endLocationName ?? ""
+        self.id = UUID().uuidString
+        self.sunsetTime = Date()
+        self.sunriseTime = Date()
        
  
     }
@@ -53,18 +58,34 @@ final public class Drive: Identifiable {
         let startTime = Date(timeIntervalSinceNow: (0 - (Double.random(in: 1000...500000))))
         self.startTime = startTime
         self.endTime = Date(timeInterval: (Double.random(in: 100...9000)), since: startTime)
-        print(startTime.formatted(), endTime.formatted(), "newdate")
         self.startLocation = nil
         self.endLocation = nil
-        self.startLocationName = SampleData.locations.randomElement()
-        self.endLocationName = SampleData.locations.randomElement()
-        self.sunsetTime = SunTime(hour: 7, minute: 30)
-        self.sunriseTime =  SunTime(hour: 14, minute: 45)
+        self.startLocationName = SampleData.locations.randomElement() ?? ""
+        self.endLocationName = SampleData.locations.randomElement() ?? ""
+        self.id = UUID().uuidString
+        print("creating new drive from sample data")
+        self.sunsetTime = Date()
+        self.sunriseTime = Date()
+       // self.sunsetTime = SunTime(hour: 7, minute: 30)
+       // self.sunriseTime =  SunTime(hour: 14, minute: 45)
+        
        
     }
     
     public var backupDriveString: String {
-        return startTime.formatted(date: .abbreviated, time: .shortened)
+        var result: String = startTime.formatted(date: .abbreviated, time: .shortened)
+        if !self.startLocationName.isEmpty {
+            result = self.startLocationName
+            
+        }
+        if !self.endLocationName.isEmpty {
+            result = self.endLocationName
+        }
+        if !self.endLocationName.isEmpty && !self.startLocationName.isEmpty {
+            result = "\(startLocationName) to \(endLocationName)"
+        }
+        return result
+         
     }
     public var driveLength: TimeInterval {
         return endTime.timeIntervalSince(startTime)

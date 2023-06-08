@@ -11,12 +11,12 @@ import DriveLoggerCore
 import SwiftData
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var appState: [AppState]
+    @State var appState: AppState
     var body: some View {
         ScrollView {
             VStack {
                 HomeHeaderSection()
-                RecentDrivesSection()
+                RecentDrivesSection(appState: appState).modelContext(modelContext)
                 StatisticsSection()
               
             }.padding()
@@ -26,10 +26,7 @@ struct HomeView: View {
                 VStack {
                    // Spacer()
                     Button(action: {
-                        guard let appState = self.appState.first else {
-                            print("no appstate exists starting drive")
-                            return
-                        }
+                      
                         appState.startDrive()
                     }) {
                         Text("Start Drive")
@@ -48,7 +45,7 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HomeView().modelContainer(previewContainer)
+            HomeView(appState: AppState()).modelContainer(previewContainer)
         }.ignoresSafeArea()
     }
 }

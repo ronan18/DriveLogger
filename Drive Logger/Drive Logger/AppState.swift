@@ -10,30 +10,26 @@ import Observation
 import DriveLoggerCore
 import SwiftData
 
-@Model
+@Observable
 public final class AppState {
   //  public var drivingState: DrivingState = DrivingState(from)
-  @Transient  private var container: ModelContainer? = nil
+  public var context: ModelContext? = nil
     public var driving = false
     public var currentDriveStart: Date? = nil
     public var currentDriveEnd: Date? = nil
     public var goal: TimeInterval? = 180000
+    public var driveEditorPresented = false
+    public var driveToBeEdited: Drive = Drive(sampleData: true)
+    public init(context: ModelContext) {
+        self.context = context
+    }
     
     public init(firstBoot: Bool = false) {
      //   self.start()
     }
     
     
- public func intAppStateContext() {
-     guard container == nil else {
-         return
-     }
-        do {
-            container = try ModelContainer(for: Drive.self)
-        } catch {
-            print("error creating container")
-        }
-    }
+
    
      public func startDrive() {
         self.driving = true
@@ -44,9 +40,8 @@ public final class AppState {
     @MainActor
      public func stopDrive() {
          print("stoping drive")
-         guard let container = container else {
-             self.intAppStateContext()
-             self.stopDrive()
+         guard let context = context else {
+            
              return
          }
         self.currentDriveEnd = Date()
@@ -61,9 +56,9 @@ public final class AppState {
         }
          let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: nil, endLocation: nil, startLocationName: "new", endLocationName: nil, sunsetTime: SunTime(hour: 19, minute: 30), sunriseTime: SunTime(hour: 7, minute: 45))
          print("new drive", newDrive)
-        container.mainContext.insert(newDrive)
+        context.insert(newDrive)
          do {
-             try container.mainContext.save()
+             try context.save()
          } catch {
              print("error saving new drive")
          }
