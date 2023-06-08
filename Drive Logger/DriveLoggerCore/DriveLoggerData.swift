@@ -19,6 +19,22 @@ public class DriveLoggerData {
         return time
         
     }
+    public func totalNightTime(drives: [Drive]) -> TimeInterval {
+        var time: TimeInterval = 0
+        drives.forEach { drive in
+            time += drive.nightDriveTime
+        }
+        return time
+        
+    }
+    public func totalDayTime(drives: [Drive]) -> TimeInterval {
+        var time: TimeInterval = 0
+        drives.forEach { drive in
+            time += drive.dayDriveTime
+        }
+        return time
+        
+    }
     
 }
 

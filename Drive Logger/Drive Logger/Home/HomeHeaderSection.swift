@@ -14,6 +14,7 @@ import SwiftData
 struct HomeHeaderSection: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    var appState: AppState
     var body: some View {
         Group {
             
@@ -36,11 +37,11 @@ struct HomeHeaderSection: View {
                 Text("time driven").font(.title).bold().frame(height: 20)
                 
                 HStack {
-                    Text("\(Image(systemName: "sun.max.circle.fill")) **40** hrs")
-                    Text("\(Image(systemName: "moon.stars.circle.fill")) **10** hrs")
+                    Text("\(Image(systemName: "sun.max.circle.fill")) \(DriveLoggerData().totalDayTime(drives: drives).formatedForDrive())")
+                    Text("\(Image(systemName: "moon.stars.circle.fill")) \(DriveLoggerData().totalNightTime(drives: drives).formatedForDrive())")
                 }.symbolRenderingMode(.hierarchical).padding(.top)
                 Spacer().frame(height: 50)
-                ProgressBar(percentComplete: .constant(0.29))
+                ProgressBar(percentComplete: (DriveLoggerData().totalDriveTime(drives: self.drives) / (self.appState.goal ?? 1)))
                 
             }
             
@@ -52,7 +53,7 @@ struct HomeHeaderSection_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             VStack {
-                HomeHeaderSection()
+                HomeHeaderSection(appState: AppState())
                 Spacer()
             }.padding()
         }.previewLayout(.sizeThatFits).modelContainer(previewContainer)

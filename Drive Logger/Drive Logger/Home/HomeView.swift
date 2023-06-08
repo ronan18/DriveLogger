@@ -15,7 +15,7 @@ struct HomeView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HomeHeaderSection()
+                HomeHeaderSection(appState: appState)
                 RecentDrivesSection(appState: appState).modelContext(modelContext)
                 StatisticsSection()
               

@@ -30,7 +30,7 @@ struct DrivingView: View {
                 }
             }
             Spacer()
-            ProgressBar(percentComplete: .constant(0.25))
+            ProgressBar(percentComplete: 0.25)
             Button(action: {
                 // Handle button tap
                

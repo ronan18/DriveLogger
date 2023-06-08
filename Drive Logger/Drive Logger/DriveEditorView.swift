@@ -41,12 +41,21 @@ struct DriveEditorView: View {
                     Text("\(Image(systemName: "flag.checkered")) Finish")
                 }
                 Section {
-                    DatePicker("\(Image(systemName: "sunset.fill")) Sunset", selection: self.$drive.sunsetTime, displayedComponents: [ .hourAndMinute])
                     DatePicker("\(Image(systemName: "sunrise.fill")) Sunrise", selection: self.$drive.sunriseTime, displayedComponents: [ .hourAndMinute])
+                    DatePicker("\(Image(systemName: "sunset.fill")) Sunset", selection: self.$drive.sunsetTime, displayedComponents: [ .hourAndMinute])
+                    HStack {
+                        Text("\(Image(systemName: "sun.max.circle.fill")) \(self.drive.dayDriveTime.formatedForDrive())")
+                        Text("\(Image(systemName: "moon.stars.circle.fill")) \(self.drive.nightDriveTime.formatedForDrive())")
+                    }
                 } header: {
                     Text("\(Image(systemName: "sun.max")) Additional Data")
                 }
-                DriveCard(self.drive, noShadow: true)
+                Section {
+                    
+                    DriveCard(self.drive, noShadow: true)
+                }
+                
+              
             }.navigationTitle(drive.backupDriveString).toolbar {
                 ToolbarItem(placement: .primaryAction, content: {
                     Button("Done") {

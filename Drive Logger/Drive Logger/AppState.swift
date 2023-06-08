@@ -17,9 +17,10 @@ public final class AppState {
     public var driving = false
     public var currentDriveStart: Date? = nil
     public var currentDriveEnd: Date? = nil
-    public var goal: TimeInterval? = 180000
+    public var goal: TimeInterval? = 50*60*60
     public var driveEditorPresented = false
     public var driveToBeEdited: Drive = Drive(sampleData: true)
+    
     public init(context: ModelContext) {
         self.context = context
     }

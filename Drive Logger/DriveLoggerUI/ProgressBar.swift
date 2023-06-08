@@ -9,9 +9,9 @@ import SwiftUI
 
 public struct ProgressBar: View {
     let height: Double = 20
-    @Binding var percentComplete:Double
-    public init(percentComplete: Binding<Double>) {
-        self._percentComplete = percentComplete
+     var percentComplete:Double
+    public init(percentComplete: Double) {
+        self.percentComplete = percentComplete
     }
     public var body: some View {
         GeometryReader { geo in
@@ -40,7 +40,7 @@ struct ProgressBar_Previews: PreviewProvider {
         
         VStack {
             Spacer()
-            ProgressBar(percentComplete: .constant(0.34)).padding()
+            ProgressBar(percentComplete: 0.34).padding()
             Spacer()
         }.frame(width: 500, height: 100).previewLayout(.sizeThatFits)
         

@@ -44,8 +44,12 @@ public struct DriveCard: View {
                     }
                   
                     HStack(spacing: 0) {
-                        Image(systemName: "sun.max.circle.fill")
-                        Image(systemName: "moon.stars.circle.fill")
+                        if (self.drive.dayDriveTime > 0) {
+                            Image(systemName: "sun.max.circle.fill")
+                        }
+                        if (self.drive.nightDriveTime > 0) {
+                            Image(systemName: "moon.stars.circle.fill")
+                        }
                     }.symbolRenderingMode(.hierarchical)
                     
                 }.font(.subheadline)

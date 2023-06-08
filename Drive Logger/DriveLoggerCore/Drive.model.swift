@@ -38,7 +38,7 @@ final public class Drive: Identifiable {
     public var endLocationName: String
     public var sunsetTime: Date
     public var sunriseTime: Date
-  ///
+
     public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: SunTime, sunriseTime: SunTime) {
         self.startTime = startTime
         self.endTime = endTime
@@ -47,8 +47,9 @@ final public class Drive: Identifiable {
         self.startLocationName = startLocationName ?? ""
         self.endLocationName = endLocationName ?? ""
         self.id = UUID().uuidString
-        self.sunsetTime = Date()
-        self.sunriseTime = Date()
+        
+        self.sunsetTime = Calendar.current.date(from:DateComponents(hour:sunsetTime.hour, minute: sunsetTime.minute)) ?? Date()
+        self.sunriseTime = Calendar.current.date(from:DateComponents(hour:sunriseTime.hour, minute: sunriseTime.minute)) ?? Date()
        
  
     }
@@ -64,8 +65,8 @@ final public class Drive: Identifiable {
         self.endLocationName = SampleData.locations.randomElement() ?? ""
         self.id = UUID().uuidString
         print("creating new drive from sample data")
-        self.sunsetTime = Date()
-        self.sunriseTime = Date()
+        self.sunsetTime = Calendar.current.date(from:DateComponents(hour:19, minute: 49)) ?? Date()
+        self.sunriseTime = Calendar.current.date(from:DateComponents(hour:6, minute: 31)) ?? Date()
        // self.sunsetTime = SunTime(hour: 7, minute: 30)
        // self.sunriseTime =  SunTime(hour: 14, minute: 45)
         
@@ -89,5 +90,61 @@ final public class Drive: Identifiable {
     }
     public var driveLength: TimeInterval {
         return endTime.timeIntervalSince(startTime)
+    }
+    public var sunsetTimeComponents: DateComponents {
+        
+        return self.sunsetTime.get(.hour, .minute)
+    }
+    public var sunriseTimeComponents: DateComponents {
+        
+        return self.sunriseTime.get(.hour, .minute)
+    }
+    public var nightDriveTime: TimeInterval {
+        print("calc night drive for \(self.backupDriveString)")
+        var result: TimeInterval = 0
+    
+       guard let sunriseTimeDate = Calendar.current.date(from: DateComponents(calendar: Calendar.current, timeZone: Calendar.current.timeZone, year: self.startTime.get(.year), month: self.startTime.get(.month), day: self.startTime.get(.day), hour: self.sunriseTime.get(.hour), minute: self.sunriseTime.get(.minute)) ) else {
+            return 0
+        }
+        guard let sunsetTimeDate = Calendar.current.date(from: DateComponents(calendar: Calendar.current, timeZone: Calendar.current.timeZone, year: self.endTime.get(.year), month: self.endTime.get(.month), day: self.endTime.get(.day), hour: self.sunsetTime.get(.hour), minute: self.sunsetTime.get(.minute)) ) else {
+            return 0
+        }
+        
+        let timeBefore = sunriseTimeDate.timeIntervalSince(startTime)
+        print("timeBefore", timeBefore, sunriseTimeDate.formatted(), startTime.formatted())
+        if (timeBefore > 0) {
+            if (sunriseTimeDate.timeIntervalSince(endTime) >= 0) {
+                result = driveLength
+            } else {
+                result += timeBefore
+            }
+        }
+       // print("Sunset Time, end time", sunsetTimeDate.formatted(), endTime.formatted())
+        let timeAfter = endTime.timeIntervalSince(sunsetTimeDate)
+        print("timeAfter", timeAfter, timeAfter.formatedForDrive(), sunsetTimeDate.formatted(), endTime.formatted())
+        if (timeAfter > 0) {
+            if (startTime.timeIntervalSince(sunsetTimeDate) >= 0) {
+                result = driveLength
+            } else {
+                result += timeAfter
+            }
+            
+        }
+        
+        print(result, backupDriveString)
+        return result
+    }
+    public var dayDriveTime: TimeInterval {
+        
+        return self.driveLength - self.nightDriveTime
+    }
+}
+extension Date {
+    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+
+    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
     }
 }
