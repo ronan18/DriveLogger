@@ -51,6 +51,8 @@
 		C58C53692A32F060006FD700 /* CurrentDrive.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53682A32F060006FD700 /* CurrentDrive.model.swift */; };
 		C58C536B2A32F2DE006FD700 /* UserPreferences.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C536A2A32F2DE006FD700 /* UserPreferences.model.swift */; };
 		C58C536D2A3390CC006FD700 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C536C2A3390CC006FD700 /* WeatherService.swift */; };
+		C58C536E2A33A4F1006FD700 /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; };
+		C58C536F2A33A4F1006FD700 /* DriveLoggerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,13 @@
 			remoteGlobalIDString = C56C21AC2A2EE62E008D2CBE;
 			remoteInfo = DriveLoggerCore;
 		};
+		C58C53702A33A4F1006FD700 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C56C21AC2A2EE62E008D2CBE;
+			remoteInfo = DriveLoggerCore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -133,6 +142,17 @@
 			files = (
 			);
 			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C58C53722A33A4F1006FD700 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C58C536F2A33A4F1006FD700 /* DriveLoggerCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -213,6 +233,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58C536E2A33A4F1006FD700 /* DriveLoggerCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,10 +500,12 @@
 				C56C21602A2EE539008D2CBE /* Sources */,
 				C56C21612A2EE539008D2CBE /* Frameworks */,
 				C56C21622A2EE539008D2CBE /* Resources */,
+				C58C53722A33A4F1006FD700 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C58C53712A33A4F1006FD700 /* PBXTargetDependency */,
 			);
 			name = DriveLoggerUI;
 			productName = DriveLoggerUI;
@@ -790,6 +813,11 @@
 			isa = PBXTargetDependency;
 			target = C56C21AC2A2EE62E008D2CBE /* DriveLoggerCore */;
 			targetProxy = C56C21C02A2EE62F008D2CBE /* PBXContainerItemProxy */;
+		};
+		C58C53712A33A4F1006FD700 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C56C21AC2A2EE62E008D2CBE /* DriveLoggerCore */;
+			targetProxy = C58C53702A33A4F1006FD700 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

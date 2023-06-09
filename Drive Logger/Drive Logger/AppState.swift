@@ -92,6 +92,7 @@ public final class AppState {
              if let sunset = sunset {
                  sunSetTime = sunset
              }
+             print("sun rise sunset time for drive", sunrise, sunset)
          }
          let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime)
          print("new drive", newDrive)
@@ -127,7 +128,7 @@ public final class AppState {
                             }
                             
                         }
-                       let (_,_) = await self.weatherService.suntimes(for: location)
+                     //  let (_,_) = await self.weatherService.suntimes(for: location)
                         
                     }
                    

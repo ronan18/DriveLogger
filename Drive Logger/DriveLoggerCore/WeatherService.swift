@@ -20,12 +20,14 @@ public class DLWeather {
     public func suntimes(for locatation: CLLocation) async -> (Date?, Date?) {
         print("fetching weather for", locatation)
         do {
-            let weather = try await weatherService.weather(for: locatation)
+            let weather = try await weatherService.weather(for: locatation, including: .daily)
             print(weather, "got weather")
-            guard let sun = weather.dailyForecast.forecast.first?.sun else {
+                //   print(weather.dailyForecast, "day weather")
+         /*   guard let sun = weather.dailyForecast.forecast.first?.sun else {
                 return (nil, nil)
             }
-            return (sun.civilDawn, sun.civilDusk)
+            return (sun.civilDawn, sun.civilDusk)*/
+            return (nil, nil)
         } catch {
             print("error getting weather", error)
             return (nil, nil)

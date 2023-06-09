@@ -9,7 +9,8 @@ import Foundation
 
 public class UserPreferences: Codable {
     public var goal: TimeInterval
-    public var defaultSunrise: SunTime
-    public var defaultSunset: SunTime
+    public var defaultSunrise: DateComponents
+    public var defaultSunset: DateComponents
+    
     
 }

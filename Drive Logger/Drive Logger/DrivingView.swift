@@ -21,7 +21,7 @@ struct DrivingView: View {
             if (self.appState.lastLocation != nil) {
                 Text("\(Image(systemName: "location.fill")) \(self.appState.lastLocation?.placeName ?? "error")").font(.subheadline).foregroundColor(.gray)
             } else {
-                Text("\(Image(systemName: "location.slash.fill"))").font(.subheadline).foregroundColor(.gray)
+                Text("\(Image(systemName: "location.slash.fill")) location unavailable").font(.subheadline).foregroundColor(.gray)
             }
            
             Spacer()
