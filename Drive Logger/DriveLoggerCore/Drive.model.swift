@@ -30,6 +30,10 @@ public struct SunTime: Codable {
         self.hour = hour
         self.minute = minute
     }
+    
+   public func date() -> Date {
+        return Calendar.current.date(from:DateComponents(hour: self.hour, minute: self.minute)) ?? Date()
+    }
 }
 
 @Model
@@ -44,7 +48,7 @@ final public class Drive: Identifiable {
     public var sunsetTime: Date
     public var sunriseTime: Date
 
-    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: SunTime, sunriseTime: SunTime) {
+    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date) {
         self.startTime = startTime
         self.endTime = endTime
         self.startLocation = startLocation
@@ -53,8 +57,8 @@ final public class Drive: Identifiable {
         self.endLocationName = endLocationName ?? ""
         self.id = UUID().uuidString
         
-        self.sunsetTime = Calendar.current.date(from:DateComponents(hour:sunsetTime.hour, minute: sunsetTime.minute)) ?? Date()
-        self.sunriseTime = Calendar.current.date(from:DateComponents(hour:sunriseTime.hour, minute: sunriseTime.minute)) ?? Date()
+        self.sunsetTime = sunsetTime
+        self.sunriseTime = sunriseTime
        
  
     }

@@ -39,8 +39,9 @@ struct DrivingView: View {
             ProgressBar(percentComplete: ((DriveLoggerData().totalDriveTime(drives: self.drives) +  (0 - (self.appState.currentDrive?.start ?? Date(timeIntervalSince1970: 0)).timeIntervalSinceNow)) / (self.appState.goal ?? 1)))
             Button(action: {
                 // Handle button tap
-               
-                appState.stopDrive()
+                Task {
+                    await appState.stopDrive()
+                }
             }) {
                 Text("End Drive")
                     .fontWeight(.bold)

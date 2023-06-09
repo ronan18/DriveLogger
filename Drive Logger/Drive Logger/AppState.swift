@@ -26,6 +26,7 @@ public final class AppState {
     private let manager: CLLocationManager
     private var locationsUpdating = false
     private var service = DLDiskService()
+    private var weatherService = DLWeather()
     
     public init(context: ModelContext) {
         self.manager = CLLocationManager()
@@ -60,7 +61,7 @@ public final class AppState {
       
     }
     @MainActor
-     public func stopDrive() {
+     public func stopDrive() async {
          print("stoping drive")
          guard let context = context else {
              print("no context to stop drive")
@@ -79,7 +80,20 @@ public final class AppState {
             print("no drive start")
             return
         }
-         let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: SunTime(hour: 19, minute: 30), sunriseTime: SunTime(hour: 7, minute: 45))
+         
+         var sunSetTime = SunTime(hour: 19, minute: 30).date()
+         var sunRiseTime = SunTime(hour: 7, minute: 45).date()
+         if let startLocation = drive?.startLocation {
+             
+             let (sunrise, sunset) = await weatherService.suntimes(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
+             if let sunrise = sunrise {
+                 sunRiseTime = sunrise
+             }
+             if let sunset = sunset {
+                 sunSetTime = sunset
+             }
+         }
+         let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime)
          print("new drive", newDrive)
         context.insert(newDrive)
          do {
@@ -113,6 +127,7 @@ public final class AppState {
                             }
                             
                         }
+                       let (_,_) = await self.weatherService.suntimes(for: location)
                         
                     }
                    

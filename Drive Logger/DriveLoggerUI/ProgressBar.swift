@@ -19,7 +19,9 @@ public struct ProgressBar: View {
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor(Color.lightBG)
                 HStack {
-                    RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: percentComplete * geo.size.width, height: height).foregroundColor(.black)
+                    if (percentComplete * geo.size.width > 17) {
+                        RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: percentComplete * geo.size.width, height: height).foregroundColor(.black)
+                    }
                     Spacer()
                 }
                 HStack() {
@@ -40,7 +42,7 @@ struct ProgressBar_Previews: PreviewProvider {
         
         VStack {
             Spacer()
-            ProgressBar(percentComplete: 0.34).padding()
+            ProgressBar(percentComplete: 0.04).padding()
             Spacer()
         }.frame(width: 500, height: 100).previewLayout(.sizeThatFits)
         

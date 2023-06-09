@@ -50,6 +50,7 @@
 		C58C53672A32EF3E006FD700 /* DLDisk.service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53662A32EF3E006FD700 /* DLDisk.service.swift */; };
 		C58C53692A32F060006FD700 /* CurrentDrive.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53682A32F060006FD700 /* CurrentDrive.model.swift */; };
 		C58C536B2A32F2DE006FD700 /* UserPreferences.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C536A2A32F2DE006FD700 /* UserPreferences.model.swift */; };
+		C58C536D2A3390CC006FD700 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C536C2A3390CC006FD700 /* WeatherService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,7 @@
 		C58C53662A32EF3E006FD700 /* DLDisk.service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLDisk.service.swift; sourceTree = "<group>"; };
 		C58C53682A32F060006FD700 /* CurrentDrive.model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDrive.model.swift; sourceTree = "<group>"; };
 		C58C536A2A32F2DE006FD700 /* UserPreferences.model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.model.swift; sourceTree = "<group>"; };
+		C58C536C2A3390CC006FD700 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 				C56C21D52A2FBA52008D2CBE /* DriveLoggerData.swift */,
 				C56C21D82A300193008D2CBE /* SampleData.swift */,
 				C58C53662A32EF3E006FD700 /* DLDisk.service.swift */,
+				C58C536C2A3390CC006FD700 /* WeatherService.swift */,
 				C58C53602A32ED9E006FD700 /* Legacy Support */,
 			);
 			path = DriveLoggerCore;
@@ -724,6 +727,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58C536D2A3390CC006FD700 /* WeatherService.swift in Sources */,
 				C56C21B12A2EE62E008D2CBE /* DriveLoggerCore.docc in Sources */,
 				C58C53672A32EF3E006FD700 /* DLDisk.service.swift in Sources */,
 				C58C53692A32F060006FD700 /* CurrentDrive.model.swift in Sources */,
