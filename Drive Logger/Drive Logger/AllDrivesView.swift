@@ -44,6 +44,12 @@ struct AllDrivesView: View {
         withAnimation {
             let newItem = Drive(sampleData: true)
             modelContext.insert(newItem)
+            do {
+                try modelContext.save()
+                print("model context saved")
+            } catch {
+                print("error saving model context")
+            }
         }
     }
 }

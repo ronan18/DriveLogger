@@ -11,8 +11,10 @@ import DriveLoggerUI
 import SwiftData
 
 struct DriveEditorView: View {
+    @Environment(\.modelContext) private var modelContext
     @Binding var drive: Drive
     @State var appState: AppState
+    @State var deletionConfirmation: Bool = false
     var body: some View {
         
             Form {
@@ -35,7 +37,7 @@ struct DriveEditorView: View {
                         Text("Name").font(.headline)
                       }
                     DatePicker("Time", selection: self.$drive.endTime, displayedComponents: [.date, .hourAndMinute])
-                    
+                    //TODO: Limit Drive End to after sunrise
                     
                 } header: {
                     Text("\(Image(systemName: "flag.checkered")) Finish")
@@ -43,6 +45,7 @@ struct DriveEditorView: View {
                 Section {
                     DatePicker("\(Image(systemName: "sunrise.fill")) Sunrise", selection: self.$drive.sunriseTime, displayedComponents: [ .hourAndMinute])
                     DatePicker("\(Image(systemName: "sunset.fill")) Sunset", selection: self.$drive.sunsetTime, displayedComponents: [ .hourAndMinute])
+                    //TODO: Limit date sunset to after sunrise
                     HStack {
                         Text("\(Image(systemName: "sun.max.circle.fill")) \(self.drive.dayDriveTime.formatedForDrive())")
                         Text("\(Image(systemName: "moon.stars.circle.fill")) \(self.drive.nightDriveTime.formatedForDrive())")
@@ -54,6 +57,22 @@ struct DriveEditorView: View {
                     
                     DriveCard(self.drive, noShadow: true)
                 }
+                
+                Section {
+                    Button("Delete Drive", role: .destructive, action: {
+                        self.deletionConfirmation = true
+                       
+                    })
+                }.confirmationDialog("Are you sure you want to delete this drive?", isPresented: self.$deletionConfirmation, titleVisibility: .visible, actions: {
+                    Button("Delete Drive", role: .destructive) {
+                        modelContext.delete(drive)
+                        self.appState.driveEditorPresented = false
+                        self.appState.driveToBeEdited = Drive(sampleData: true)
+                                }
+                                Button("Cancel", role: .cancel) {
+                                    self.deletionConfirmation = false
+                                }
+                })
                 
               
             }.navigationTitle(drive.backupDriveString).toolbar {

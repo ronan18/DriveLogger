@@ -20,7 +20,8 @@ struct HomeHeaderSection: View {
             
             HStack {
                 Spacer()
-                NavigationLink(destination: {}, label:{ Text("\(Image(systemName: "gearshape.fill"))").padding(.horizontal)
+                NavigationLink(destination: SettingsView(appState: appState
+                                                        ), label:{ Text("\(Image(systemName: "gearshape.fill"))").padding(.horizontal)
                     .font(.title)}).buttonStyle(.borderless).foregroundColor(.black)
             }
             Spacer().frame(height: 20)

@@ -93,6 +93,6 @@ struct NoLoggedDrivesView: View {
                 Text("Hit the *Start Drive* button to begin your first drive")
             }
             Spacer()
-        }.background(Color("LightGray")).cornerRadius(6).frame(height: 250).padding(.vertical, 2)
+        }.background(Color.lightBG).cornerRadius(6).frame(height: 250).padding(.vertical, 2)
     }
 }

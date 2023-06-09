@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CoreLocation
 public class DriveLoggerData {
     public init () {
         
@@ -34,6 +34,43 @@ public class DriveLoggerData {
         }
         return time
         
+    }
+    
+    public func cityName(from: CLLocation) async -> String? {
+        return await withCheckedContinuation{cont in
+            let geocoder = CLGeocoder()
+            
+            geocoder.reverseGeocodeLocation(from, completionHandler: {
+                placemarks, error in
+                if let placemarks = placemarks {
+                    if error == nil && placemarks.count > 0 {
+                        let placeMark = placemarks.last
+                        debugPrint(placeMark ?? "")
+                        debugPrint(placeMark?.administrativeArea ?? "")
+                        debugPrint("subAdminArea",placeMark?.subAdministrativeArea ?? "")
+                        debugPrint("locality",placeMark?.locality ?? "")
+                        debugPrint("subLocality",placeMark?.subLocality ?? "")
+                        debugPrint("thuroughFare",placeMark?.thoroughfare ?? "")
+                        debugPrint("subThoroughfare", placeMark?.subThoroughfare ?? "")
+                        debugPrint("name", placeMark?.name ?? "")
+                        
+                        var resultString = placeMark?.locality ?? ""
+                        if let subLocality =  placeMark?.subLocality {
+                            print("sublocality")
+                            resultString = subLocality
+                        }
+                        cont.resume(returning: resultString)
+                        
+                    } else {
+                        cont.resume(returning: nil)
+                    }
+                    
+                } else {
+                    cont.resume(returning: nil)
+                }
+            })
+        }
+      
     }
     
 }

@@ -19,7 +19,7 @@ struct ContentView: View {
     }
     var body: some View {
         Group {
-            if (appState.driving) {
+            if (appState.currentDrive != nil) {
                 DrivingView(appState: appState)
             } else {
                 NavigationView {
@@ -33,19 +33,21 @@ struct ContentView: View {
             }
         }.onAppear {
             self.appState.context = modelContext
+            print("added appstate model context")
          
         }.onChange(of: scene) {(initial, scene) in
             print("scene change", initial, scene)
-            if scene == .background {
+            if (scene == .background || scene == ScenePhase.inactive) {
+               
                 guard  modelContext.hasChanges else {
                     print("no changes")
                     return
                 }
                 do {
-                   try modelContext.save()
-                    print("saved model")
+                 //  try modelContext.save()
+                 //   print("saved model")
                 } catch {
-                    print("error saving model")
+                  //  print("error saving model")
                 }
             }
             

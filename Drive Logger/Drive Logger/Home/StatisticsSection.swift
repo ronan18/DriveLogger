@@ -20,7 +20,10 @@ struct StatisticsSection: View {
             }
             VStack {
                 Spacer().frame(height: 100)
-              
+                Gauge(value: /*@START_MENU_TOKEN@*/0.5/*@END_MENU_TOKEN@*/, label: {
+                    Text("Label")
+                }
+                )
                 
             }
            

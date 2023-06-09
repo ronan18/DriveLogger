@@ -11,11 +11,16 @@ import CoreData
 import MapKit
 import CoreLocation
 
-
- public struct DLLocationStore: Codable {
-    public let name: String
+@Model
+public class DLLocationStore {
+    public let placeName: String
     public let lat: Double
     public let lon: Double
+     public init(placeName: String, lat: Double, lon: Double) {
+         self.placeName = placeName
+         self.lat = lat
+         self.lon = lon
+     }
     
 }
 public struct SunTime: Codable {
@@ -32,8 +37,8 @@ final public class Drive: Identifiable {
     @Attribute(.unique) public let id: String
     public var startTime: Date = Date()
     public var endTime: Date = Date()
-    public var startLocation: String?
-    public var endLocation: String?
+    public var startLocation: DLLocationStore?
+    public var endLocation: DLLocationStore?
     public var startLocationName: String
     public var endLocationName: String
     public var sunsetTime: Date
@@ -42,8 +47,8 @@ final public class Drive: Identifiable {
     public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: SunTime, sunriseTime: SunTime) {
         self.startTime = startTime
         self.endTime = endTime
-        self.startLocation = nil
-        self.endLocation = nil
+        self.startLocation = startLocation
+        self.endLocation = endLocation
         self.startLocationName = startLocationName ?? ""
         self.endLocationName = endLocationName ?? ""
         self.id = UUID().uuidString
@@ -100,7 +105,7 @@ final public class Drive: Identifiable {
         return self.sunriseTime.get(.hour, .minute)
     }
     public var nightDriveTime: TimeInterval {
-        print("calc night drive for \(self.backupDriveString)")
+      //  print("calc night drive for \(self.backupDriveString)")
         var result: TimeInterval = 0
     
        guard let sunriseTimeDate = Calendar.current.date(from: DateComponents(calendar: Calendar.current, timeZone: Calendar.current.timeZone, year: self.startTime.get(.year), month: self.startTime.get(.month), day: self.startTime.get(.day), hour: self.sunriseTime.get(.hour), minute: self.sunriseTime.get(.minute)) ) else {
@@ -111,7 +116,7 @@ final public class Drive: Identifiable {
         }
         
         let timeBefore = sunriseTimeDate.timeIntervalSince(startTime)
-        print("timeBefore", timeBefore, sunriseTimeDate.formatted(), startTime.formatted())
+       // print("timeBefore", timeBefore, sunriseTimeDate.formatted(), startTime.formatted())
         if (timeBefore > 0) {
             if (sunriseTimeDate.timeIntervalSince(endTime) >= 0) {
                 result = driveLength
@@ -121,7 +126,7 @@ final public class Drive: Identifiable {
         }
        // print("Sunset Time, end time", sunsetTimeDate.formatted(), endTime.formatted())
         let timeAfter = endTime.timeIntervalSince(sunsetTimeDate)
-        print("timeAfter", timeAfter, timeAfter.formatedForDrive(), sunsetTimeDate.formatted(), endTime.formatted())
+       // print("timeAfter", timeAfter, timeAfter.formatedForDrive(), sunsetTimeDate.formatted(), endTime.formatted())
         if (timeAfter > 0) {
             if (startTime.timeIntervalSince(sunsetTimeDate) >= 0) {
                 result = driveLength
@@ -131,7 +136,7 @@ final public class Drive: Identifiable {
             
         }
         
-        print(result, backupDriveString)
+      //  print(result, backupDriveString)
         return result
     }
     public var dayDriveTime: TimeInterval {

@@ -17,7 +17,7 @@ public struct ProgressBar: View {
         GeometryReader { geo in
             
             ZStack {
-                RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor(Color("LightGray"))
+                RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor(Color.lightBG)
                 HStack {
                     RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: percentComplete * geo.size.width, height: height).foregroundColor(.black)
                     Spacer()
