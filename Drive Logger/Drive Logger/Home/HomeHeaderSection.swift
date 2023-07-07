@@ -29,7 +29,7 @@ struct HomeHeaderSection: View {
                 GeometryReader {g in
                     HStack {
                         Spacer()
-                        Text("\(DriveLoggerData().totalDriveTime(drives: drives).format(using: [.hour, .minute]) ?? "0m")").minimumScaleFactor(0.4).font(.system(size: g.size.height > g.size.width ? g.size.width * 0.4: g.size.height))
+                        Text("\(self.appState.statistics.totalDriveTime.format(using: [.hour, .minute]) ?? "0m")").minimumScaleFactor(0.4).font(.system(size: g.size.height > g.size.width ? g.size.width * 0.4: g.size.height))
                             .lineLimit(1).fontWeight(.heavy)
                     Spacer()
                     }
@@ -38,11 +38,11 @@ struct HomeHeaderSection: View {
                 Text("time driven").font(.title).bold().frame(height: 20)
                 
                 HStack {
-                    Text("\(Image(systemName: "sun.max.circle.fill")) \(DriveLoggerData().totalDayTime(drives: drives).formatedForDrive())")
-                    Text("\(Image(systemName: "moon.stars.circle.fill")) \(DriveLoggerData().totalNightTime(drives: drives).formatedForDrive())")
+                    Text("\(Image(systemName: "sun.max.circle.fill")) \(self.appState.statistics.dayDriveTime.formatedForDrive())")
+                    Text("\(Image(systemName: "moon.stars.circle.fill")) \(self.appState.statistics.nightDriveTime.formatedForDrive())")
                 }.symbolRenderingMode(.hierarchical).padding(.top)
                 Spacer().frame(height: 50)
-                ProgressBar(percentComplete: (DriveLoggerData().totalDriveTime(drives: self.drives) / (self.appState.goal ?? 1)))
+                ProgressBar(percentComplete: (self.appState.statistics.totalDriveTime / (self.appState.goal)))
                 
             }
             

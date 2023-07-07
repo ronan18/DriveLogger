@@ -13,27 +13,31 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scene
    @State var appState = AppState()
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     init () {
       
         
     }
     var body: some View {
-        Group {
+        NavigationView {
             if (appState.currentDrive != nil) {
                 DrivingView(appState: appState)
             } else {
-                NavigationView {
+                 
                     HomeView(appState: appState)
-                }.inspector(isPresented: self.$appState.driveEditorPresented, content: {
-                    
-                    DriveEditorView(drive: self.$appState.driveToBeEdited, appState: self.appState)
-               
                 
-            })
             }
-        }.onAppear {
+        }.inspector(isPresented: self.$appState.driveEditorPresented, content: {
+            
+            DriveEditorView(drive: self.$appState.driveToBeEdited, appState: self.appState)
+            
+            
+        }).onAppear {
             self.appState.context = modelContext
             print("added appstate model context")
+            self.appState.statistics.updateStatistics(drives: drives)
+            print("DLSTAT triggered stat update on launch", drives.count)
+           
          
         }.onChange(of: scene) {(initial, scene) in
             print("scene change", initial, scene)
@@ -51,7 +55,15 @@ struct ContentView: View {
                 }
             }
             
-        }
+        }.onChange(of: drives) {_,new in
+            print("DLSTAT drives change", new.count)
+            self.appState.statistics.updateStatistics(drives: new)
+        }.onChange(of: self.appState.driveEditorPresented, {old, new in
+            if (new == false) {
+                print("DLSTAT drive editor closed", new)
+                self.appState.statistics.updateStatistics(drives: drives)
+            }
+        })
     }
  
 }

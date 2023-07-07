@@ -11,20 +11,34 @@ import DriveLoggerCore
 import SwiftData
 struct StatisticsSection: View {
     @Environment(\.modelContext) private var modelContext
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    var appState: AppState
+    
     var body: some View {
         VStack {
             HStack {
                 Text("Statistics").font(.headline)
                 Spacer()
-                NavigationLink(destination: {}, label: {Text("View More \(Image(systemName: "chevron.right"))")})
+               
             }
-            VStack {
-                Spacer().frame(height: 100)
-                Gauge(value: /*@START_MENU_TOKEN@*/0.5/*@END_MENU_TOKEN@*/, label: {
-                    Text("Label")
+            HStack {
+               
+                Grid(horizontalSpacing: 15,
+                     verticalSpacing: 15) {
+                    GridRow {
+                        PercentageStat(percentComplete: (self.appState.statistics.totalDriveTime / (self.appState.goal)), lable: "percent complete").frame(maxWidth: .infinity).background(Color.cardBG).card()
+                        NumberStat(time: (self.appState.goal - self.appState.statistics.totalDriveTime), label: "until goal")
+                        NumberStat(time: self.appState.statistics.averageDriveDuration, label: "average drive duration")
+                        
+                    }
+                    GridRow {
+                       
+                        NumberStat(value: String(self.drives.count), label: "logged drives")
+                        NumberStat(time: self.appState.statistics.longestDriveLength, label: "longest drive")
+                        NumberStat(time: self.appState.statistics.timeDrivenToday, label: "time driven today")
+                        
+                    }.frame(minHeight: 130)
                 }
-                )
-                
             }
            
         }.padding(.vertical)
@@ -33,6 +47,7 @@ struct StatisticsSection: View {
 
 struct StatisticsSection_Previews: PreviewProvider {
     static var previews: some View {
-        StatisticsSection().modelContainer(previewContainer)
+        StatisticsSection(appState: AppState()).padding().modelContainer(previewContainer)
     }
 }
+

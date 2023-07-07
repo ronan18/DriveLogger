@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C50D261A2A30E70000A33216 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21D12A2FB669008D2CBE /* AppState.swift */; };
 		C50D261C2A329A7B00A33216 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D261B2A329A7B00A33216 /* SettingsView.swift */; };
+		C516AC6B2A5846BA006526E8 /* DriveLoggerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516AC6A2A5846BA006526E8 /* DriveLoggerStatistics.swift */; };
 		C56C21322A2EE4E7008D2CBE /* Drive_LoggerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21312A2EE4E7008D2CBE /* Drive_LoggerApp.swift */; };
 		C56C21362A2EE4E7008D2CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56C21352A2EE4E7008D2CBE /* Assets.xcassets */; };
 		C56C21392A2EE4E8008D2CBE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56C21382A2EE4E8008D2CBE /* Preview Assets.xcassets */; };
@@ -53,6 +54,8 @@
 		C58C536D2A3390CC006FD700 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C536C2A3390CC006FD700 /* WeatherService.swift */; };
 		C58C536E2A33A4F1006FD700 /* DriveLoggerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; };
 		C58C536F2A33A4F1006FD700 /* DriveLoggerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21AD2A2EE62E008D2CBE /* DriveLoggerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53732A33AC65006FD700 /* PercentComplete.swift */; };
+		C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53752A34CD39006FD700 /* NumberStat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +162,7 @@
 
 /* Begin PBXFileReference section */
 		C50D261B2A329A7B00A33216 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C516AC6A2A5846BA006526E8 /* DriveLoggerStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerStatistics.swift; sourceTree = "<group>"; };
 		C56C212E2A2EE4E7008D2CBE /* Drive Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Drive Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56C21312A2EE4E7008D2CBE /* Drive_LoggerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drive_LoggerApp.swift; sourceTree = "<group>"; };
 		C56C21352A2EE4E7008D2CBE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -202,6 +206,8 @@
 		C58C53682A32F060006FD700 /* CurrentDrive.model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDrive.model.swift; sourceTree = "<group>"; };
 		C58C536A2A32F2DE006FD700 /* UserPreferences.model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.model.swift; sourceTree = "<group>"; };
 		C58C536C2A3390CC006FD700 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		C58C53732A33AC65006FD700 /* PercentComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentComplete.swift; sourceTree = "<group>"; };
+		C58C53752A34CD39006FD700 /* NumberStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberStat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +352,8 @@
 				C56C21842A2EE56E008D2CBE /* ProgressBar.swift */,
 				C56C21662A2EE53A008D2CBE /* DriveLoggerUI.h */,
 				C56C21672A2EE53A008D2CBE /* DriveLoggerUI.docc */,
+				C58C53732A33AC65006FD700 /* PercentComplete.swift */,
+				C58C53752A34CD39006FD700 /* NumberStat.swift */,
 			);
 			path = DriveLoggerUI;
 			sourceTree = "<group>";
@@ -371,6 +379,7 @@
 				C58C53662A32EF3E006FD700 /* DLDisk.service.swift */,
 				C58C536C2A3390CC006FD700 /* WeatherService.swift */,
 				C58C53602A32ED9E006FD700 /* Legacy Support */,
+				C516AC6A2A5846BA006526E8 /* DriveLoggerStatistics.swift */,
 			);
 			path = DriveLoggerCore;
 			sourceTree = "<group>";
@@ -730,8 +739,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */,
 				C56C21862A2EE56E008D2CBE /* CardModifier.swift in Sources */,
 				C56C21892A2EE56E008D2CBE /* LargeButton.swift in Sources */,
+				C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */,
 				C56C21872A2EE56E008D2CBE /* DriveCard.swift in Sources */,
 				C56C21882A2EE56E008D2CBE /* ProgressBar.swift in Sources */,
 				C56C21682A2EE53A008D2CBE /* DriveLoggerUI.docc in Sources */,
@@ -750,6 +761,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C516AC6B2A5846BA006526E8 /* DriveLoggerStatistics.swift in Sources */,
 				C58C536D2A3390CC006FD700 /* WeatherService.swift in Sources */,
 				C56C21B12A2EE62E008D2CBE /* DriveLoggerCore.docc in Sources */,
 				C58C53672A32EF3E006FD700 /* DLDisk.service.swift in Sources */,
@@ -965,6 +977,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
+				MERGED_BINARY_TYPE = automatic;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -997,6 +1011,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 2.0.0;
+				MERGED_BINARY_TYPE = automatic;
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.beta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

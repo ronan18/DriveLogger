@@ -6,15 +6,40 @@
 //
 
 import SwiftUI
-
+import Combine
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
    // @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
-    var appState: AppState
+    @State var appState: AppState
+    @State var goal: Double = 50
     var body: some View {
-        VStack {
-            Text("settings")
-        }.navigationTitle("Settings")
+        Form {
+            Section {
+                HStack() {
+                    
+                        Text("Driving goal: ").font(.headline).frame(width: 100)
+                    Spacer()
+                    HStack (alignment: .firstTextBaseline) {
+                        Spacer()
+                        TextField("hours", value: $goal, formatter: NumberFormatter()).frame(width: 25).multilineTextAlignment(.trailing).keyboardType(.decimalPad)
+                        
+                        Text("hours").font(.caption)
+                    }
+                   Stepper(value: $goal, in: 1...10000) {
+                        EmptyView()
+                    }
+                }
+            }
+            VStack {
+                Text("settings")
+            }
+            
+        }.navigationTitle("Settings").onChange(of: self.goal, {old, new in
+            self.appState.goal = new * 60 * 60
+        }).onAppear {
+            self.goal = self.appState.goal / 60 / 60
+        }
+       
     }
 }
 

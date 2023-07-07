@@ -19,9 +19,11 @@ public final class AppState {
     public var currentDrive: CurrentDrive? = nil
     var lastLocation: DLLocationStore? = nil
    
-    public var goal: TimeInterval? = 50*60*60
+    public var goal: TimeInterval = 50*60*60
     public var driveEditorPresented = false
     public var driveToBeEdited: Drive = Drive(sampleData: true)
+    
+    public var statistics = DriveLoggerStatistics(drives: [])
     
     private let manager: CLLocationManager
     private var locationsUpdating = false

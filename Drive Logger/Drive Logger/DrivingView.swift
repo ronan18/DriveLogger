@@ -36,7 +36,7 @@ struct DrivingView: View {
                 }
             }
             Spacer()
-            ProgressBar(percentComplete: ((DriveLoggerData().totalDriveTime(drives: self.drives) +  (0 - (self.appState.currentDrive?.start ?? Date(timeIntervalSince1970: 0)).timeIntervalSinceNow)) / (self.appState.goal ?? 1)))
+            ProgressBar(percentComplete: ((self.appState.statistics.totalDriveTime +  (0 - (self.appState.currentDrive?.start ?? Date(timeIntervalSince1970: 0)).timeIntervalSinceNow)) / (self.appState.goal)))
             Button(action: {
                 // Handle button tap
                 Task {
