@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DriveLoggerCore
+import DriveLoggerKit
 import DriveLoggerUI
 import SwiftData
 

@@ -82,14 +82,14 @@ final public class Drive: Identifiable {
        
     }
     
-    public var backupDriveString: String {
-        var result: String = startTime.formatted(date: .abbreviated, time: .shortened)
+    public var backupDriveString: LocalizedStringResource {
+        var result: LocalizedStringResource = LocalizedStringResource(stringLiteral: startTime.formatted(date: .abbreviated, time: .shortened))
         if !self.startLocationName.isEmpty {
-            result = self.startLocationName
+            result = LocalizedStringResource(stringLiteral: self.startLocationName)
             
         }
         if !self.endLocationName.isEmpty {
-            result = self.endLocationName
+            result = LocalizedStringResource(stringLiteral: self.endLocationName)
         }
         if !self.endLocationName.isEmpty && !self.startLocationName.isEmpty {
             result = "\(startLocationName) to \(endLocationName)"

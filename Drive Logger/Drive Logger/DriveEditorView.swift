@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import DriveLoggerCore
+import DriveLoggerKit
 import DriveLoggerUI
 import SwiftData
 
@@ -75,7 +75,7 @@ struct DriveEditorView: View {
                 })
                 
               
-            }.navigationTitle(drive.backupDriveString).toolbar {
+            }.navigationTitle(String(localized: drive.backupDriveString)).toolbar {
                 ToolbarItem(placement: .primaryAction, content: {
                     Button("Done") {
                         self.appState.driveEditorPresented = false

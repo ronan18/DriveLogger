@@ -6,7 +6,7 @@
 //
 import Foundation
 import SwiftUI
-import DriveLoggerCore
+import DriveLoggerKit
 import SwiftData
 
 public struct DriveCard: View {
@@ -60,7 +60,7 @@ public struct DriveCard: View {
                 Text(drive.driveLength.formatedForDrive()).font(.headline)
             }
         }.ifCondition(!self.noShadow, then: {view in
-            view.padding().background(Color.white).card()
+            view.padding().background(Color.cardBG).card()
         })
         
     }

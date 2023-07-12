@@ -7,12 +7,12 @@
 
 import SwiftUI
 import SwiftData
-import DriveLoggerCore
+import DriveLoggerKit
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scene
-   @State var appState = AppState()
+    @State var appState = AppState.shared
     @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     init () {
       
@@ -47,12 +47,7 @@ struct ContentView: View {
                     print("no changes")
                     return
                 }
-                do {
-                 //  try modelContext.save()
-                 //   print("saved model")
-                } catch {
-                  //  print("error saving model")
-                }
+               
             }
             
         }.onChange(of: drives) {_,new in

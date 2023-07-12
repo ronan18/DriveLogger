@@ -19,6 +19,8 @@ public class DriveLoggerStatistics {
         self.updateStatistics(drives: drives)
     }
     public func updateStatistics(drives: [Drive]) {
+        
+        let start = Date()
         self.drives = drives
         var totalDriveTimeResult: TimeInterval = 0
         var timeDrivenTodayResult: TimeInterval = 0
@@ -42,5 +44,7 @@ public class DriveLoggerStatistics {
         self.longestDriveLength = longestDriveResult
         self.dayDriveTime = dayDriveResult
         self.nightDriveTime = nightDriveResult
+        let end = Date()
+        print("DLSTAT stat update time",  end.timeIntervalSince(start))
     }
 }

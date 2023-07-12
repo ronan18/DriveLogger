@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
-import DriveLoggerCore
+import DriveLoggerKit
+import Foundation
 
 public struct NumberStat: View {
-    var value: String
-    var label: String
-    public init(time: TimeInterval, label: String) {
-        self.value = time.formatedForDrive()
+    var value: LocalizedStringResource
+    var label: LocalizedStringResource
+    public init(time: TimeInterval, label: LocalizedStringResource) {
+        self.value = LocalizedStringResource(stringLiteral: time.formatedForDrive())
         self.label = label
     }
-    public init (value: String, label: String) {
+    public init (value: LocalizedStringResource, label: LocalizedStringResource) {
         self.value = value
         self.label = label
         

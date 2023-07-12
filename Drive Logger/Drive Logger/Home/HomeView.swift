@@ -7,7 +7,7 @@
 
 import SwiftUI
 import DriveLoggerUI
-import DriveLoggerCore
+import DriveLoggerKit
 import SwiftData
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
@@ -34,7 +34,7 @@ struct HomeView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 10)
                     }
-                    .buttonStyle(.borderedProminent).ignoresSafeArea().padding(.top)
+                    .buttonStyle(.borderedProminent).ignoresSafeArea().padding(.top).tint(Color("btnColor"))
                 }
             }
             

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-import DriveLoggerCore
+import DriveLoggerKit
 
 @main
 struct Drive_LoggerApp: App {

@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-public struct DLLocationStoreCodable: Codable {
+public struct DLLocationStoreCodable: Codable, Equatable, Hashable {
     public let placeName: String
     public let lat: Double
     public let lon: Double
@@ -25,7 +25,7 @@ public struct DLLocationStoreCodable: Codable {
     
 }
 
-public struct CurrentDrive: Codable {
+public struct CurrentDrive: Codable, Equatable, Hashable {
     public var start: Date
     public var startLocation: DLLocationStoreCodable?
     public init(start: Date,startLocation: DLLocationStore?) {

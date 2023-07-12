@@ -7,7 +7,7 @@
 
 import SwiftUI
 import DriveLoggerUI
-import DriveLoggerCore
+import DriveLoggerKit
 import SwiftData
 struct RecentDrivesSection: View {
     @Environment(\.modelContext) private var modelContext

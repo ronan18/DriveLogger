@@ -16,21 +16,23 @@ public class DLWeather {
     public init() {
         
     }
-    
-    public func suntimes(for locatation: CLLocation) async -> (Date?, Date?) {
+    public enum DLWeatherServiceError: Error {
+        case noSunEvent
+    }
+    public func suntimes(for locatation: CLLocation) async throws -> SunEvents {
         print("fetching weather for", locatation)
         do {
-            let weather = try await weatherService.weather(for: locatation, including: .daily)
+            let weather = try await weatherService.weather(for: locatation)
             print(weather, "got weather")
-                //   print(weather.dailyForecast, "day weather")
-         /*   guard let sun = weather.dailyForecast.forecast.first?.sun else {
-                return (nil, nil)
+            print(weather.dailyForecast, "day weather")
+           guard let sun = weather.dailyForecast.forecast.first?.sun else {
+               throw DLWeatherServiceError.noSunEvent
             }
-            return (sun.civilDawn, sun.civilDusk)*/
-            return (nil, nil)
+            return sun
+          
         } catch {
             print("error getting weather", error)
-            return (nil, nil)
+           throw error
         }
         
     }

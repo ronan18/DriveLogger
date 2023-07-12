@@ -11,26 +11,41 @@ public struct ProgressBar: View {
     let height: Double = 20
      var percentComplete:Double
     public init(percentComplete: Double) {
-        self.percentComplete = percentComplete
+        if (percentComplete > 1) {
+            self.percentComplete = 1.01
+        } else {
+            self.percentComplete = percentComplete
+        }
     }
     public var body: some View {
         GeometryReader { geo in
             
             ZStack {
-                RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor(Color.lightBG)
+                RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor( percentComplete < 1 ? Color.lightBG : Color.black)
                 HStack {
-                    if (percentComplete * geo.size.width > 17) {
-                        RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: percentComplete * geo.size.width, height: height).foregroundColor(.black)
+                    if (percentComplete * geo.size.width > 17 && percentComplete < 1) {
+                        RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: percentComplete * geo.size.width, height: height).foregroundColor(Color("btnColor"))
                     }
                     Spacer()
                 }
-                HStack() {
-                    Spacer().frame(width: percentComplete * geo.size.width - ((height + 10) / 2))
-                    ZStack {
-                        Circle().frame(height: height+6).foregroundColor(.white).card()
-                        Image(systemName: "car.circle.fill").resizable().scaledToFit().frame(height: height+6).symbolRenderingMode(.monochrome).foregroundColor(.black)
+                if (percentComplete > 1) {
+                    HStack() {
+                        Spacer().frame(width: 1 * geo.size.width - ((height + 10) / 2))
+                        ZStack {
+                            Circle().frame(height: height+6).foregroundColor(.white).card()
+                            Image(systemName: "car.circle.fill").resizable().scaledToFit().frame(height: height+6).symbolRenderingMode(.monochrome).foregroundColor(.black)
+                        }
+                        Spacer()
                     }
-                    Spacer()
+                } else {
+                    HStack() {
+                        Spacer().frame(width: percentComplete * geo.size.width - ((height + 10) / 2))
+                        ZStack {
+                            Circle().frame(height: height+6).foregroundColor(.white).card()
+                            Image(systemName: "car.circle.fill").resizable().scaledToFit().frame(height: height+6).symbolRenderingMode(.monochrome).foregroundColor(.black)
+                        }
+                        Spacer()
+                    }
                 }
             }
         }.frame(height: height + 6)

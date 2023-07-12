@@ -118,11 +118,16 @@ extension TimeInterval {
         return formatter.string(from: self)
     }
     public func formatedForDrive() -> String {
+       // print("formatting for drive", self.debugDescription)
+        guard !self.isNaN else {
+            print("nan for format")
+            return ""
+        }
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
         formatter.unitsStyle = .abbreviated
         formatter.zeroFormattingBehavior = .dropAll
-
+        
         return formatter.string(from: self) ?? ""
     }
    

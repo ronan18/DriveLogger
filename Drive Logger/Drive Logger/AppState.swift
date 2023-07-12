@@ -7,14 +7,17 @@
 
 import Foundation
 import Observation
-import DriveLoggerCore
+import DriveLoggerKit
 import SwiftData
 import CoreLocation
-
+import ActivityKit
 
 @Observable
 public final class AppState {
   //  public var drivingState: DrivingState = DrivingState(from)
+    
+    static let shared = AppState()
+    
   public var context: ModelContext? = nil
     public var currentDrive: CurrentDrive? = nil
     var lastLocation: DLLocationStore? = nil
@@ -29,6 +32,7 @@ public final class AppState {
     private var locationsUpdating = false
     private var service = DLDiskService()
     private var weatherService = DLWeather()
+    private var activity: Activity<DL_Driving_ActivityAttributes>? = nil
     
     public init(context: ModelContext) {
         self.manager = CLLocationManager()
@@ -59,8 +63,38 @@ public final class AppState {
          Task {
              await self.monitorLocation()
          }
-       
-      
+         let adventure = DL_Driving_ActivityAttributes(name: "name")
+
+         let initialState = DL_Driving_ActivityAttributes.ContentState(
+            emoji: "emoji", currentDrive: drive
+         )
+         let content =  ActivityContent(state: initialState, staleDate: nil, relevanceScore: 0.0)
+         print("start drive activity")
+         do {
+             self.activity = try Activity.request(
+                attributes: adventure,
+                content: content
+             )
+             print("activity created", activity?.id as Any, activity.debugDescription)
+             self.observeLiveActivity(activity: activity!)
+             
+         } catch {
+             print("error making activity", error.localizedDescription)
+         }
+         Task {
+             do {
+                try await StartDrive().donate()
+             } catch {
+                 print(error)
+             }
+         }
+    }
+    func observeLiveActivity(activity: Activity<DL_Driving_ActivityAttributes>) {
+        Task {
+            for await activityState in activity.activityStateUpdates {
+                print("activity state", activityState)
+            }
+        }
     }
     @MainActor
      public func stopDrive() async {
@@ -86,15 +120,22 @@ public final class AppState {
          var sunSetTime = SunTime(hour: 19, minute: 30).date()
          var sunRiseTime = SunTime(hour: 7, minute: 45).date()
          if let startLocation = drive?.startLocation {
-             
-             let (sunrise, sunset) = await weatherService.suntimes(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
-             if let sunrise = sunrise {
-                 sunRiseTime = sunrise
+             do {
+                let sunEvents = try await weatherService.suntimes(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
+                 if let civilDawn = sunEvents.civilDawn {
+                     sunRiseTime = civilDawn
+                 }
+                 
+                 if let civilDusk = sunEvents.civilDusk {
+                     sunSetTime = civilDusk
+                 }
+                
+             } catch {
+                 print(error, "weather")
              }
-             if let sunset = sunset {
-                 sunSetTime = sunset
-             }
-             print("sun rise sunset time for drive", sunrise, sunset)
+          
+           
+             print("sun rise sunset time for drive", sunSetTime, sunRiseTime)
          }
          let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime)
          print("new drive", newDrive)
@@ -104,6 +145,21 @@ public final class AppState {
          } catch {
              print("error saving new drive context")
          }
+         Task {
+             if self.activity != nil {
+                 let dismissalPolicy: ActivityUIDismissalPolicy = .default
+                 let final = DL_Driving_ActivityAttributes.ContentState(emoji: "emoji", currentDrive: drive!)
+                 await self.activity!.end(
+                    ActivityContent(state: final, staleDate: nil),
+                    dismissalPolicy: dismissalPolicy)
+             }
+             do {
+                 try await EndDrive().donate()
+             } catch {
+                 print(error)
+             }
+         }
+         
          
     }
     

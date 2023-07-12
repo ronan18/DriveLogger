@@ -5,7 +5,7 @@
 //
 //  Created by Ronan Furuta on 9/24/20.
 //
-
+/*
 import Foundation
 import Disk
 import CoreLocation
@@ -23,7 +23,7 @@ public struct LegacyDrive: Codable, Identifiable {
     public var endTime: Date
     public var location: String
 }
-public struct DriveLoggerAppState: Codable {
+public struct LegacyDriveLoggerAppState: Codable {
     public init (drives: [LegacyDrive] = [], totalTime: TimeInterval = 0, dayDriveTime: TimeInterval = 0, nightDriveTime: TimeInterval = 0, averageDriveDuration: TimeInterval = 0, percentComplete: Int = 0,goalTime: TimeInterval = (50*60*60), timeToday: TimeInterval? = nil) {
         self.drives = drives
         self.totalTime = totalTime
@@ -48,7 +48,7 @@ public struct DriveLoggerAppState: Codable {
     
 }
 
-public class DriveLoggerService {
+public class LegacyDriveLoggerService {
     
     
     var encoder: JSONEncoder = JSONEncoder()
@@ -422,3 +422,4 @@ public class DriveLoggerService {
         })
     }
 }
+*/

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import DriveLoggerUI
-import DriveLoggerCore
+import DriveLoggerKit
 import SwiftData
 
 struct DrivingView: View {
@@ -25,15 +25,13 @@ struct DrivingView: View {
             }
            
             Spacer()
-            Grid {
+            Grid(horizontalSpacing: 15,
+                 verticalSpacing: 15) {
                 GridRow {
-                    VStack {
-                        Text("test")
-                    }.padding().frame(maxWidth: .infinity).background(Color.white).card()
-                    VStack {
-                        Text("test")
-                    }.padding().frame(maxWidth: .infinity).background(Color.white).card()
-                }
+                    NumberStat(time: (self.appState.statistics.totalDriveTime), label: "driven")
+                    NumberStat(time: (self.appState.statistics.dayDriveTime), label: "daytime")
+                    NumberStat(time: (self.appState.statistics.nightDriveTime), label: "nighttime")
+                }.frame(height: 130)
             }
             Spacer()
             ProgressBar(percentComplete: ((self.appState.statistics.totalDriveTime +  (0 - (self.appState.currentDrive?.start ?? Date(timeIntervalSince1970: 0)).timeIntervalSinceNow)) / (self.appState.goal)))

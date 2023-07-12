@@ -7,7 +7,8 @@
 
 import Foundation
 import CoreLocation
-public struct TimeDisplay {
+/*
+public struct LegacyTimeDisplay {
     public var value: String
     public var unit: String
 }
@@ -22,3 +23,4 @@ public struct LegacyCurrentDrive: Encodable, Decodable {
         self.startTime = startTime
     }
 }
+*/

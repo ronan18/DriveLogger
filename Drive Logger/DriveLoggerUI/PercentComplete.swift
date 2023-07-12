@@ -9,8 +9,8 @@ import SwiftUI
 
 public struct PercentageStat: View {
     var percentComplete: Double
-    var lable: String
-    public init(percentComplete: Double, lable: String) {
+    var lable: LocalizedStringResource
+    public init(percentComplete: Double, lable: LocalizedStringResource) {
         self.percentComplete = percentComplete
         self.lable = lable
     }
