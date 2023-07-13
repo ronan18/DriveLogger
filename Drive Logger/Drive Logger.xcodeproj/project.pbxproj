@@ -66,6 +66,9 @@
 		C56C21DC2A3009BA008D2CBE /* DriveEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56C21DB2A3009BA008D2CBE /* DriveEditorView.swift */; };
 		C57137C92A5F214E00063661 /* DriveLoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; };
 		C57137CA2A5F214E00063661 /* DriveLoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C57FAD452A606FDD00B7AE44 /* PercentCompleteStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD442A606FDD00B7AE44 /* PercentCompleteStatCard.swift */; };
+		C57FAD472A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD462A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift */; };
+		C57FAD492A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD482A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift */; };
 		C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53732A33AC65006FD700 /* PercentComplete.swift */; };
 		C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53752A34CD39006FD700 /* NumberStat.swift */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
@@ -261,6 +264,9 @@
 		C56C21D12A2FB669008D2CBE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		C56C21DB2A3009BA008D2CBE /* DriveEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveEditorView.swift; sourceTree = "<group>"; };
 		C57137C82A5F198500063661 /* Drive Logger Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Drive Logger Testing.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		C57FAD442A606FDD00B7AE44 /* PercentCompleteStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentCompleteStatCard.swift; sourceTree = "<group>"; };
+		C57FAD462A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDrivenTodayStatCard.swift; sourceTree = "<group>"; };
+		C57FAD482A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUntilGoalStatCard.swift; sourceTree = "<group>"; };
 		C58C53732A33AC65006FD700 /* PercentComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentComplete.swift; sourceTree = "<group>"; };
 		C58C53752A34CD39006FD700 /* NumberStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberStat.swift; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
@@ -477,6 +483,9 @@
 				C56C21672A2EE53A008D2CBE /* DriveLoggerUI.docc */,
 				C58C53732A33AC65006FD700 /* PercentComplete.swift */,
 				C58C53752A34CD39006FD700 /* NumberStat.swift */,
+				C57FAD442A606FDD00B7AE44 /* PercentCompleteStatCard.swift */,
+				C57FAD482A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift */,
+				C57FAD462A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift */,
 			);
 			path = DriveLoggerUI;
 			sourceTree = "<group>";
@@ -902,9 +911,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C57FAD452A606FDD00B7AE44 /* PercentCompleteStatCard.swift in Sources */,
 				C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */,
 				C56C21862A2EE56E008D2CBE /* CardModifier.swift in Sources */,
 				C56C21892A2EE56E008D2CBE /* LargeButton.swift in Sources */,
+				C57FAD492A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift in Sources */,
+				C57FAD472A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift in Sources */,
 				C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */,
 				C56C21872A2EE56E008D2CBE /* DriveCard.swift in Sources */,
 				C56C21882A2EE56E008D2CBE /* ProgressBar.swift in Sources */,

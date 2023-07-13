@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%" : {
-
-    },
     "%@" : {
       "localizations" : {
         "es" : {
@@ -149,15 +146,6 @@
         }
       }
     },
-    "complete" : {
-
-    },
-    "day" : {
-
-    },
-    "Day" : {
-
-    },
     "daytime" : {
 
     },
@@ -244,9 +232,6 @@
         }
       }
     },
-    "Goal" : {
-
-    },
     "Hit the *Start Drive* button to begin your first drive" : {
       "localizations" : {
         "es" : {
@@ -268,9 +253,6 @@
       }
     },
     "If weather and location data are unavailable, Drive Logger will default to these times." : {
-
-    },
-    "length" : {
 
     },
     "logged drives" : {
