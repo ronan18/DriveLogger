@@ -46,11 +46,30 @@ public final class AppState {
         self.manager = CLLocationManager()
         
         self.currentDrive = service.readCurrentDrive()
-        if (self.currentDrive != nil) {
+        if let currentDrive = self.currentDrive {
             Task {
                 await self.monitorLocation()
             }
+            let adventure = DL_Driving_ActivityAttributes(currentDrive: currentDrive)
+
+            let initialState = DL_Driving_ActivityAttributes.ContentState(
+             currentDrive: currentDrive
+            )
+            let content =  ActivityContent(state: initialState, staleDate: nil, relevanceScore: 0.0)
+            print("start drive activity")
+            do {
+                self.activity = try Activity.request(
+                   attributes: adventure,
+                   content: content
+                )
+                print("activity created", activity?.id as Any, activity.debugDescription)
+                self.observeLiveActivity(activity: activity!)
+                
+            } catch {
+                print("error making activity", error.localizedDescription)
+            }
         }
+        
     }
     
     
@@ -63,10 +82,10 @@ public final class AppState {
          Task {
              await self.monitorLocation()
          }
-         let adventure = DL_Driving_ActivityAttributes(name: "name")
+         let adventure = DL_Driving_ActivityAttributes(currentDrive: drive)
 
          let initialState = DL_Driving_ActivityAttributes.ContentState(
-            emoji: "emoji", currentDrive: drive
+          currentDrive: drive
          )
          let content =  ActivityContent(state: initialState, staleDate: nil, relevanceScore: 0.0)
          print("start drive activity")
@@ -148,7 +167,7 @@ public final class AppState {
          Task {
              if self.activity != nil {
                  let dismissalPolicy: ActivityUIDismissalPolicy = .default
-                 let final = DL_Driving_ActivityAttributes.ContentState(emoji: "emoji", currentDrive: drive!)
+                 let final = DL_Driving_ActivityAttributes.ContentState(currentDrive: drive!)
                  await self.activity!.end(
                     ActivityContent(state: final, staleDate: nil),
                     dismissalPolicy: dismissalPolicy)

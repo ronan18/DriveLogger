@@ -38,6 +38,9 @@ struct ContentView: View {
             self.appState.statistics.updateStatistics(drives: drives)
             print("DLSTAT triggered stat update on launch", drives.count)
            
+            Task {
+                await testWeather()
+            }
          
         }.onChange(of: scene) {(initial, scene) in
             print("scene change", initial, scene)

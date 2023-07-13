@@ -11,19 +11,19 @@ public struct DL_Driving_ActivityAttributes: ActivityAttributes {
    
     public struct ContentState: Codable, Hashable {
         // Dynamic stateful properties about your activity go here!
-        public init (emoji: String, currentDrive: CurrentDrive) {
-            self.emoji = emoji
+        public init (currentDrive: CurrentDrive) {
+         
             self.currentDrive = currentDrive
         }
-        public var emoji: String
+       
         public var currentDrive: CurrentDrive
     }
 
     // Fixed non-changing properties about your activity go here!
-    var name: String
-    public init ( name: String) {
+    var currentDrive: CurrentDrive
+    public init ( currentDrive: CurrentDrive) {
       
-        self.name = name
+        self.currentDrive = currentDrive
     }
    
 }

@@ -29,11 +29,14 @@ final class DriveLoggerKitTests: XCTestCase {
         do {
             let sunEvents = try await DLWeather().suntimes(for: CLLocation(latitude: 44.47438, longitude: 73.21403))
             print("XC Test Weather kit", sunEvents)
+            print("XC Test weather")
+            XCTAssertNotNil(sunEvents.civilDawn)
         } catch {
             didFailWithError = error
+            XCTAssertFalse(true)
             // Here you could do more assertions with the non-nil error object
         }
-        XCTAssertNoThrow(didFailWithError)
+      
    
             
            

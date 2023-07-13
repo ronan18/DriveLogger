@@ -68,6 +68,7 @@
 		C57137CA2A5F214E00063661 /* DriveLoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53732A33AC65006FD700 /* PercentComplete.swift */; };
 		C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53752A34CD39006FD700 /* NumberStat.swift */; };
+		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +263,7 @@
 		C57137C82A5F198500063661 /* Drive Logger Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Drive Logger Testing.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C58C53732A33AC65006FD700 /* PercentComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentComplete.swift; sourceTree = "<group>"; };
 		C58C53752A34CD39006FD700 /* NumberStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberStat.swift; sourceTree = "<group>"; };
+		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +436,7 @@
 				C5302B1C2A5AFE180069C684 /* EndDrive.intent.swift */,
 				C56C21CC2A2EE676008D2CBE /* Home */,
 				C56C21372A2EE4E7008D2CBE /* Preview Content */,
+				C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */,
 			);
 			path = "Drive Logger";
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C56C218F2A2EE589008D2CBE /* DrivingView.swift in Sources */,
+				C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */,
 				C50D261A2A30E70000A33216 /* AppState.swift in Sources */,
 				C5302B192A5AFC440069C684 /* AppShortcutsProvider.swift in Sources */,
 				C56C21952A2EE5B7008D2CBE /* StatisticsSection.swift in Sources */,
@@ -1097,7 +1101,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.drives.beta.DL-Driving-Activity";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.driveloggerbeta.DL-Driving-Activity";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1128,7 +1132,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.drives.beta.DL-Driving-Activity";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ronanfuruta.driveloggerbeta.DL-Driving-Activity";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1280,7 +1284,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1288,11 +1293,15 @@
 				MARKETING_VERSION = 2.0.0;
 				MERGED_BINARY_TYPE = automatic;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.driveloggerbeta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1316,7 +1325,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1324,11 +1334,15 @@
 				MARKETING_VERSION = 2.0.0;
 				MERGED_BINARY_TYPE = automatic;
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.drives.beta;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.driveloggerbeta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

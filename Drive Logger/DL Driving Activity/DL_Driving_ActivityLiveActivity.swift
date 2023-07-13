@@ -17,7 +17,7 @@ struct DL_Driving_ActivityLiveActivity: Widget {
         ActivityConfiguration(for: DL_Driving_ActivityAttributes.self) { context in
             // Lock screen/banner UI goes here
             VStack {
-                Text("Hello \(context.state.emoji)")
+                Text(context.state.currentDrive.start, style: .timer)
             }
             .activityBackgroundTint(Color.cyan)
             .activitySystemActionForegroundColor(Color.black)
@@ -33,15 +33,15 @@ struct DL_Driving_ActivityLiveActivity: Widget {
                     Text("Trailing")
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.emoji)")
+                    Text(context.state.currentDrive.start, style: .timer)
                     // more content
                 }
             } compactLeading: {
-                Text("L")
+                Image(systemName: "car.fill")
             } compactTrailing: {
-                Text("T \(context.state.emoji)")
+                Text(context.state.currentDrive.start, style: .timer)
             } minimal: {
-                Text(context.state.emoji)
+                Text(context.state.currentDrive.start, style: .timer)
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
@@ -51,17 +51,17 @@ struct DL_Driving_ActivityLiveActivity: Widget {
 
 extension DL_Driving_ActivityAttributes {
     fileprivate static var preview: DL_Driving_ActivityAttributes {
-        DL_Driving_ActivityAttributes(name: "World")
+        DL_Driving_ActivityAttributes(currentDrive: CurrentDrive(start: Date(), startLocation: DLLocationStore(placeName: "Oakmore", lat: 45, lon: 23)))
     }
 }
 
 extension DL_Driving_ActivityAttributes.ContentState {
     fileprivate static var smiley: DL_Driving_ActivityAttributes.ContentState {
-        DL_Driving_ActivityAttributes.ContentState(emoji: "😀", currentDrive: CurrentDrive(start: Date(), startLocation: nil))
+        DL_Driving_ActivityAttributes.ContentState(currentDrive: CurrentDrive(start: Date(), startLocation: nil))
      }
      
      fileprivate static var starEyes: DL_Driving_ActivityAttributes.ContentState {
-         DL_Driving_ActivityAttributes.ContentState(emoji: "🤩", currentDrive: CurrentDrive(start: Date(), startLocation: nil))
+         DL_Driving_ActivityAttributes.ContentState(currentDrive: CurrentDrive(start: Date(), startLocation: nil))
      }
 }
 
