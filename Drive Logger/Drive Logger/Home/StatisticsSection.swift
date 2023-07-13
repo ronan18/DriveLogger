@@ -29,7 +29,7 @@ struct StatisticsSection: View {
             if (self.appState.statistics.totalDriveTime >= 5 * 60) {
                 VStack {
                     TimeDrivenTodayStatCard(appState: appState, drives: drives)
-                    PercentCompleteStatCard(appState: appState, drives: drives)
+                    PercentCompleteStatCard(appState: appState, drives: drives).padding(.vertical, 7)
                     Grid(horizontalSpacing: 15,
                          verticalSpacing: 15) {
                         GridRow {
@@ -125,11 +125,18 @@ struct PercentCompleteStatCard: View {
     var percentComplete: String
     var days: [DayPercentageStat] = []
     let todaysDay: Int = Calendar.current.dateComponents([.day], from: Date()).day ?? 1
+    var chartYAxisHeight: TimeInterval
     init(appState: AppState, drives: [Drive], daysInGraph: Int = 7) {
         self.appState = appState
-        self.percentComplete = String(Int(round((appState.statistics.totalDriveTime / appState.goal) * 100)))
+        let number = round((appState.statistics.totalDriveTime / appState.goal) * 100)
+        if number.isNaN || number.isInfinite {
+            self.percentComplete = "100"
+        } else {
+            self.percentComplete = String(Int(number))
+        }
         var data: [Int: TimeInterval] = [:]
-        drives.forEach {drive in
+        self.chartYAxisHeight = appState.goal
+        drives.forEach { drive in
             
             guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
                 return
@@ -145,6 +152,7 @@ struct PercentCompleteStatCard: View {
                 }
                 
             }
+           
            
         }
         let daysIncluded = data.keys.sorted { a, b in
@@ -163,13 +171,17 @@ struct PercentCompleteStatCard: View {
               //  print("stat", i, daysIncluded[i], data[daysIncluded[i]], yesterdays )
               //  print("stat total driven,", totalDriven)
                 days.append(.init(id: daysIncluded[i], driven: totalDriven, today: daysIncluded[i] == todaysDay))
+                if ((totalDriven + 60*60) > self.chartYAxisHeight) {
+                    self.chartYAxisHeight = totalDriven + 60*60
+                }
                // print("stat", daysIncluded[i], todaysDay, daysIncluded[i] == todaysDay)
             }
         }
-        print(days)
-        
+       
+       
 
     }
+    let chartHeight: CGFloat = 60
     var body: some View {
         HStack {
             
@@ -183,6 +195,7 @@ struct PercentCompleteStatCard: View {
                 Spacer()
                 ZStack {
                     Chart() {
+                      
                         ForEach (days) {day in
                             
                             LineMark(x: .value("day", day.id), y: .value("length", day.driven)).interpolationMethod(.catmullRom).symbol(by: .value("Day", "int")).foregroundStyle(day.today ? Color.black : Color.gray)
@@ -190,13 +203,19 @@ struct PercentCompleteStatCard: View {
                             
                             
                         }
+                       
+                        RuleMark(
+                                            y: .value("Goal", self.appState.goal)
+                        ).foregroundStyle(Color.gray).lineStyle(.init(dash: [10, 5]))/*.annotation(position: .bottom, alignment: .leading) {
+                            Text("\(self.appState.goal.formatedForDrive())").font(.caption).foregroundColor(Color.gray)
+                        }*/
                         
                         
                         
                         
                         
-                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: 60).chartYScale(domain: [0, self.appState.goal]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
-                    Chart() {
+                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
+                  Chart() {
                         ForEach (days) {day in
                             if (day.today) {
                                 LineMark(x: .value("day", day.id), y: .value("length", day.driven)).interpolationMethod(.catmullRom).symbol(by: .value("Day", "int")).foregroundStyle( Color.black)
@@ -210,7 +229,7 @@ struct PercentCompleteStatCard: View {
                         
                         
                         
-                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: 60).chartYScale(domain: [0, self.appState.goal]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
+                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
                 }
                 Spacer()
             }

@@ -244,6 +244,9 @@
         }
       }
     },
+    "Goal" : {
+
+    },
     "Hit the *Start Drive* button to begin your first drive" : {
       "localizations" : {
         "es" : {

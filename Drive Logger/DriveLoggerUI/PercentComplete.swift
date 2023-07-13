@@ -11,7 +11,11 @@ public struct PercentageStat: View {
     var percentComplete: Double
     var lable: LocalizedStringResource
     public init(percentComplete: Double, lable: LocalizedStringResource) {
-        self.percentComplete = percentComplete
+        if percentComplete.isNaN || percentComplete.isInfinite {
+            self.percentComplete = 1
+        } else {
+            self.percentComplete = percentComplete
+        }
         self.lable = lable
     }
    public var body: some View {
