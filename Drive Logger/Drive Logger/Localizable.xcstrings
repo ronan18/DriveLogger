@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%" : {
+
+    },
     "%@" : {
       "localizations" : {
         "es" : {
@@ -36,6 +39,12 @@
           }
         }
       }
+    },
+    "%@ Default Sunrise" : {
+
+    },
+    "%@ Default Sunset" : {
+
     },
     "%@ Finish" : {
       "localizations" : {
@@ -76,6 +85,9 @@
           }
         }
       }
+    },
+    "%@ Sunrise Defaults" : {
+
     },
     "%@ Sunset" : {
       "localizations" : {
@@ -136,6 +148,15 @@
           }
         }
       }
+    },
+    "complete" : {
+
+    },
+    "day" : {
+
+    },
+    "Day" : {
+
     },
     "daytime" : {
 
@@ -243,6 +264,12 @@
         }
       }
     },
+    "If weather and location data are unavailable, Drive Logger will default to these times." : {
+
+    },
+    "length" : {
+
+    },
     "logged drives" : {
       "localizations" : {
         "es" : {
@@ -317,6 +344,7 @@
       }
     },
     "settings" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {

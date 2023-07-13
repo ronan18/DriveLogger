@@ -37,7 +37,7 @@ struct DriveEditorView: View {
                         Text("Name").font(.headline)
                       }
                     DatePicker("Time", selection: self.$drive.endTime, displayedComponents: [.date, .hourAndMinute])
-                    //TODO: Limit Drive End to after sunrise
+                    //TODO: Limit Drive End to after start
                     
                 } header: {
                     Text("\(Image(systemName: "flag.checkered")) Finish")

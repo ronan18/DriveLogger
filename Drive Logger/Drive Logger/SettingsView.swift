@@ -12,6 +12,8 @@ struct SettingsView: View {
    // @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     @State var appState: AppState
     @State var goal: Double = 50
+    @State var defaultSunrise: Date = Date()
+    @State var defaultSunset: Date = Date()
     var body: some View {
         Form {
             Section {
@@ -30,8 +32,18 @@ struct SettingsView: View {
                     }
                 }
             }
-            VStack {
-                Text("settings")
+            Section {
+                DatePicker("\(Image(systemName: "sunrise.fill")) Default Sunrise", selection: self.$defaultSunrise, displayedComponents: [ .hourAndMinute])
+                DatePicker("\(Image(systemName: "sunset.fill")) Default Sunset", selection: self.$defaultSunset, displayedComponents: [ .hourAndMinute])
+                //TODO: Limit date sunset to after sunrise
+              /*  HStack {
+                    Text("\(Image(systemName: "sun.max.circle.fill")) \(self.drive.dayDriveTime.formatedForDrive())")
+                    Text("\(Image(systemName: "moon.stars.circle.fill")) \(self.drive.nightDriveTime.formatedForDrive())")
+                }*/
+            } header: {
+                Text("\(Image(systemName: "sun.max")) Sunrise Defaults")
+            } footer: {
+                Text("If weather and location data are unavailable, Drive Logger will default to these times.")
             }
             
         }.navigationTitle("Settings").onChange(of: self.goal, {old, new in

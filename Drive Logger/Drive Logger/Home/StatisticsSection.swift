@@ -9,10 +9,15 @@ import SwiftUI
 import DriveLoggerUI
 import DriveLoggerKit
 import SwiftData
+import Charts
+
 struct StatisticsSection: View {
+   
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    
     var appState: AppState
+    
     
     var body: some View {
         VStack {
@@ -22,8 +27,9 @@ struct StatisticsSection: View {
                
             }
             if (self.appState.statistics.totalDriveTime >= 5 * 60) {
-                HStack {
-                    
+                VStack {
+                    TimeDrivenTodayStatCard(appState: appState, drives: drives)
+                    PercentCompleteStatCard(appState: appState, drives: drives)
                     Grid(horizontalSpacing: 15,
                          verticalSpacing: 15) {
                         GridRow {
@@ -68,3 +74,147 @@ struct StatisticsSection_Previews: PreviewProvider {
     }
 }
 
+
+struct TimeDrivenTodayStatCard: View {
+    var appState: AppState
+    var drives: [Drive] = []
+    init(appState: AppState, drives: [Drive], daysInGraph: Int = 7) {
+        self.appState = appState
+        drives.forEach {drive in
+            
+            guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
+                return
+            }
+            self.drives.append(drive)
+    
+        }
+       
+    }
+    var body: some View {
+        HStack {
+            
+            VStack(alignment: .leading) {
+                Spacer()
+                Text(self.appState.statistics.timeDrivenToday.formatedForDrive()).font(.title).bold()
+                Text("driven today").font(.subheadline)
+            }
+            Spacer()
+            VStack (alignment: .trailing) {
+                Spacer()
+                Chart(drives, id: \.id) {
+                  
+                        BarMark(x: .value("day", $0.startTime, unit: .day), y: .value("length", $0.driveLength)).foregroundStyle(Calendar.current.isDateInToday($0.startTime) ? Color.black : Color.gray)
+                    
+                }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: 60)
+               // Spacer()
+            }
+           
+        }.frame(height: 80).padding().background(Color.cardBG).card()
+    }
+}
+
+struct DayPercentageStat: Identifiable {
+    var id: Int
+    var driven: TimeInterval
+    var today: Bool
+}
+
+struct PercentCompleteStatCard: View {
+    var appState: AppState
+    var drives: [Drive] = []
+    var percentComplete: String
+    var days: [DayPercentageStat] = []
+    let todaysDay: Int = Calendar.current.dateComponents([.day], from: Date()).day ?? 1
+    init(appState: AppState, drives: [Drive], daysInGraph: Int = 7) {
+        self.appState = appState
+        self.percentComplete = String(Int(round((appState.statistics.totalDriveTime / appState.goal) * 100)))
+        var data: [Int: TimeInterval] = [:]
+        drives.forEach {drive in
+            
+            guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
+                return
+            }
+            let day = Calendar.current.dateComponents([.day], from: drive.startTime)
+           
+            self.drives.append(drive)
+            if let day = day.day {
+                if let currentLength = data[day] {
+                    data[day] = currentLength + drive.driveLength
+                } else {
+                    data[day] = drive.driveLength
+                }
+                
+            }
+           
+        }
+        let daysIncluded = data.keys.sorted { a, b in
+         return a < b
+        }
+       // print("stat, days included", daysIncluded)
+        
+        for i in 0..<daysIncluded.count {
+            
+            if (i == 0) {
+             //   print("stat", i, daysIncluded[i], data[daysIncluded[i]])
+                days.append(.init(id: daysIncluded[i], driven: data[daysIncluded[i]] ?? 0, today: daysIncluded[i] == todaysDay))
+            } else {
+                let yesterdays: TimeInterval = days[i-1].driven
+                let totalDriven: TimeInterval = yesterdays + (data[daysIncluded[i]] ?? 0) ?? 0
+              //  print("stat", i, daysIncluded[i], data[daysIncluded[i]], yesterdays )
+              //  print("stat total driven,", totalDriven)
+                days.append(.init(id: daysIncluded[i], driven: totalDriven, today: daysIncluded[i] == todaysDay))
+               // print("stat", daysIncluded[i], todaysDay, daysIncluded[i] == todaysDay)
+            }
+        }
+        print(days)
+        
+
+    }
+    var body: some View {
+        HStack {
+            
+            VStack(alignment: .leading) {
+                Spacer()
+                Text(percentComplete).font(.title).bold() + Text("%").font(.title3)
+                Text("complete").font(.subheadline)
+            }
+            Spacer()
+            VStack (alignment: .trailing) {
+                Spacer()
+                ZStack {
+                    Chart() {
+                        ForEach (days) {day in
+                            
+                            LineMark(x: .value("day", day.id), y: .value("length", day.driven)).interpolationMethod(.catmullRom).symbol(by: .value("Day", "int")).foregroundStyle(day.today ? Color.black : Color.gray)
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: 60).chartYScale(domain: [0, self.appState.goal]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
+                    Chart() {
+                        ForEach (days) {day in
+                            if (day.today) {
+                                LineMark(x: .value("day", day.id), y: .value("length", day.driven)).interpolationMethod(.catmullRom).symbol(by: .value("Day", "int")).foregroundStyle( Color.black)
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: 60).chartYScale(domain: [0, self.appState.goal]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
+                }
+                Spacer()
+            }
+           
+        }.frame(height: 80).padding().background(Color.cardBG).card()
+    }
+}
