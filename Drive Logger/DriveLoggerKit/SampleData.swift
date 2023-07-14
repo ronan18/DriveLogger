@@ -8,7 +8,8 @@
 import Foundation
 
 public struct SampleData {
-    static var driveList: [Drive] = [
+    public init() {}
+    public static var driveList: [Drive] = [
         Drive(sampleData: true),
         Drive(sampleData: true),
         Drive(sampleData: true),

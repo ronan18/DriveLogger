@@ -28,26 +28,17 @@ struct StatisticsSection: View {
             }
             if (self.appState.statistics.totalDriveTime >= 5 * 60) {
                 VStack {
-                    TimeDrivenTodayStatCard(statistics: self.appState.statistics, drives: drives)
+                    TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday.formatedForDrive(), drives: drives)
                     PercentCompleteStatCard(goal: self.appState.goal, statistics: self.appState.statistics, drives: drives).padding(.vertical, 7)
                     TimeUntilGoalStatCard(statistics: self.appState.statistics, goal: self.appState.goal).padding(.bottom, 7)
                     Grid(horizontalSpacing: 15,
                          verticalSpacing: 15) {
-                        GridRow {
-                            PercentageStat(percentComplete: (self.appState.statistics.totalDriveTime / (self.appState.goal)), lable: "percent complete").frame(maxWidth: .infinity).background(Color.cardBG).card()
-                            if ((self.appState.goal - self.appState.statistics.totalDriveTime) >= 0) {
-                                NumberStat(time: (self.appState.goal - self.appState.statistics.totalDriveTime), label: "until goal")
-                            } else {
-                                NumberStat(time: -(self.appState.goal - self.appState.statistics.totalDriveTime), label: "past goal")
-                            }
-                            NumberStat(time: self.appState.statistics.averageDriveDuration, label: "average drive duration")
-                            
-                        }
+                     
                         GridRow {
                             
                             NumberStat(value: LocalizedStringResource(stringLiteral: String(self.drives.count)), label: "logged drives")
                             NumberStat(time: self.appState.statistics.longestDriveLength, label: "longest drive")
-                            NumberStat(time: self.appState.statistics.timeDrivenToday, label: "driven today")
+                            NumberStat(time: self.appState.statistics.averageDriveDuration, label: "average drive duration")
                             
                         }.frame(minHeight: 130)
                     }

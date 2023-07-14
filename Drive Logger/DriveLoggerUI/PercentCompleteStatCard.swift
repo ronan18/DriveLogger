@@ -22,8 +22,11 @@ public struct PercentCompleteStatCard: View {
     fileprivate var days: [DayPercentageStat] = []
     let todaysDay: Int = Calendar.current.dateComponents([.day], from: Date()).day ?? 1
     var chartYAxisHeight: TimeInterval
-    public init(goal: TimeInterval, statistics: DriveLoggerStatistics, drives: [Drive], daysInGraph: Int = 7) {
+    var widgetMode: Bool
+    var chartHeight: CGFloat = 60
+    public init(goal: TimeInterval, statistics: DriveLoggerStatistics, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.goal = goal
+        self.widgetMode = widgetMode
         let number = round((statistics.totalDriveTime / goal) * 100)
         if number.isNaN || number.isInfinite {
             self.percentComplete = "100"
@@ -74,10 +77,12 @@ public struct PercentCompleteStatCard: View {
             }
         }
        
-       
+        if widgetMode {
+            self.chartHeight = 80
+        }
 
     }
-    let chartHeight: CGFloat = 60
+    
     public var body: some View {
         HStack {
             
@@ -102,7 +107,7 @@ public struct PercentCompleteStatCard: View {
                        
                         RuleMark(
                                             y: .value("Goal", self.goal)
-                        ).foregroundStyle(Color.gray).lineStyle(.init(dash: [10, 5]))/*.annotation(position: .bottom, alignment: .leading) {
+                        ).foregroundStyle(Color.gray).lineStyle(.init(dash: widgetMode ? [11, 5] : [10, 5]))/*.annotation(position: .bottom, alignment: .leading) {
                             Text("\(self.appState.goal.formatedForDrive())").font(.caption).foregroundColor(Color.gray)
                         }*/
                         
@@ -110,7 +115,7 @@ public struct PercentCompleteStatCard: View {
                         
                         
                         
-                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
+                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: widgetMode ? 120 :  100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
                   Chart() {
                         ForEach (days) {day in
                             if (day.today) {
@@ -125,11 +130,15 @@ public struct PercentCompleteStatCard: View {
                         
                         
                         
-                    }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: 100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
+                  }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: widgetMode ? 120 : 100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
                 }
                 Spacer()
             }
            
-        }.frame(height: 80).padding().background(Color.cardBG).card()
+        }.ifCondition(!self.widgetMode, then: {view in
+            view.frame(height: 80).padding().background(Color.cardBG).card()
+        }).ifCondition(widgetMode, then: {view in
+            view.padding(10)
+        })
     }
 }

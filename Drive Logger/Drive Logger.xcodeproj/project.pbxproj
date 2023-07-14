@@ -69,6 +69,19 @@
 		C57FAD452A606FDD00B7AE44 /* PercentCompleteStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD442A606FDD00B7AE44 /* PercentCompleteStatCard.swift */; };
 		C57FAD472A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD462A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift */; };
 		C57FAD492A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD482A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift */; };
+		C57FAD4F2A60EE3D00B7AE44 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302B232A5B06F70069C684 /* WidgetKit.framework */; };
+		C57FAD502A60EE3D00B7AE44 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302B252A5B06F70069C684 /* SwiftUI.framework */; };
+		C57FAD532A60EE3E00B7AE44 /* DLWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD522A60EE3E00B7AE44 /* DLWidgetsBundle.swift */; };
+		C57FAD552A60EE3E00B7AE44 /* DrivenTodayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD542A60EE3E00B7AE44 /* DrivenTodayWidget.swift */; };
+		C57FAD5B2A60EE4000B7AE44 /* DLWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C57FAD4E2A60EE3D00B7AE44 /* DLWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C57FAD5F2A60EE5300B7AE44 /* DriveLoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; };
+		C57FAD602A60EE5300B7AE44 /* DriveLoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C57FAD632A60EE5300B7AE44 /* DriveLoggerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */; };
+		C57FAD642A60EE5300B7AE44 /* DriveLoggerUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C56C21642A2EE539008D2CBE /* DriveLoggerUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C57FAD692A60F56B00B7AE44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56C21352A2EE4E7008D2CBE /* Assets.xcassets */; };
+		C57FAD6A2A60F56C00B7AE44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C56C21352A2EE4E7008D2CBE /* Assets.xcassets */; };
+		C57FAD6D2A60F68500B7AE44 /* PercentCompleteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD6B2A60F5C200B7AE44 /* PercentCompleteWidget.swift */; };
+		C57FAD702A61793700B7AE44 /* TimeUntilGoalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD6E2A61793300B7AE44 /* TimeUntilGoalWidget.swift */; };
 		C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53732A33AC65006FD700 /* PercentComplete.swift */; };
 		C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53752A34CD39006FD700 /* NumberStat.swift */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
@@ -152,6 +165,27 @@
 			remoteGlobalIDString = C5302AD92A5AE6530069C684;
 			remoteInfo = DriveLoggerKit;
 		};
+		C57FAD592A60EE4000B7AE44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C57FAD4D2A60EE3D00B7AE44;
+			remoteInfo = DLWidgetsExtension;
+		};
+		C57FAD612A60EE5300B7AE44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5302AD92A5AE6530069C684;
+			remoteInfo = DriveLoggerKit;
+		};
+		C57FAD652A60EE5300B7AE44 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C56C21262A2EE4E7008D2CBE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C56C21632A2EE539008D2CBE;
+			remoteInfo = DriveLoggerUI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -173,6 +207,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				C57FAD5B2A60EE4000B7AE44 /* DLWidgetsExtension.appex in Embed Foundation Extensions */,
 				C5302B332A5B06F90069C684 /* DL Driving ActivityExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
@@ -185,6 +220,18 @@
 			dstSubfolderSpec = 10;
 			files = (
 				C57137CA2A5F214E00063661 /* DriveLoggerKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C57FAD672A60EE5400B7AE44 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C57FAD602A60EE5300B7AE44 /* DriveLoggerKit.framework in Embed Frameworks */,
+				C57FAD642A60EE5300B7AE44 /* DriveLoggerUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -267,6 +314,13 @@
 		C57FAD442A606FDD00B7AE44 /* PercentCompleteStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentCompleteStatCard.swift; sourceTree = "<group>"; };
 		C57FAD462A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDrivenTodayStatCard.swift; sourceTree = "<group>"; };
 		C57FAD482A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUntilGoalStatCard.swift; sourceTree = "<group>"; };
+		C57FAD4E2A60EE3D00B7AE44 /* DLWidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DLWidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C57FAD522A60EE3E00B7AE44 /* DLWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLWidgetsBundle.swift; sourceTree = "<group>"; };
+		C57FAD542A60EE3E00B7AE44 /* DrivenTodayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrivenTodayWidget.swift; sourceTree = "<group>"; };
+		C57FAD582A60EE4000B7AE44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C57FAD682A60EF7000B7AE44 /* DLWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DLWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		C57FAD6B2A60F5C200B7AE44 /* PercentCompleteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentCompleteWidget.swift; sourceTree = "<group>"; };
+		C57FAD6E2A61793300B7AE44 /* TimeUntilGoalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUntilGoalWidget.swift; sourceTree = "<group>"; };
 		C58C53732A33AC65006FD700 /* PercentComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentComplete.swift; sourceTree = "<group>"; };
 		C58C53752A34CD39006FD700 /* NumberStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberStat.swift; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
@@ -339,6 +393,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C57FAD4B2A60EE3D00B7AE44 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C57FAD502A60EE3D00B7AE44 /* SwiftUI.framework in Frameworks */,
+				C57FAD5F2A60EE5300B7AE44 /* DriveLoggerKit.framework in Frameworks */,
+				C57FAD4F2A60EE3D00B7AE44 /* WidgetKit.framework in Frameworks */,
+				C57FAD632A60EE5300B7AE44 /* DriveLoggerUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -394,6 +459,7 @@
 		C56C21252A2EE4E7008D2CBE = {
 			isa = PBXGroup;
 			children = (
+				C57FAD682A60EF7000B7AE44 /* DLWidgetsExtension.entitlements */,
 				C57137C82A5F198500063661 /* Drive Logger Testing.playground */,
 				C56C21302A2EE4E7008D2CBE /* Drive Logger */,
 				C56C21452A2EE4E8008D2CBE /* Drive LoggerTests */,
@@ -403,6 +469,7 @@
 				C5302ADB2A5AE6530069C684 /* DriveLoggerKit */,
 				C5302AE92A5AE6530069C684 /* DriveLoggerKitTests */,
 				C5302B272A5B06F70069C684 /* DL Driving Activity */,
+				C57FAD512A60EE3E00B7AE44 /* DLWidgets */,
 				C56C212F2A2EE4E7008D2CBE /* Products */,
 				C58C53632A32EE56006FD700 /* Frameworks */,
 			);
@@ -419,6 +486,7 @@
 				C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */,
 				C5302AE32A5AE6530069C684 /* DriveLoggerKitTests.xctest */,
 				C5302B222A5B06F60069C684 /* DL Driving ActivityExtension.appex */,
+				C57FAD4E2A60EE3D00B7AE44 /* DLWidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -507,6 +575,18 @@
 				C56C21902A2EE5B6008D2CBE /* RecentDrivesSection.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		C57FAD512A60EE3E00B7AE44 /* DLWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				C57FAD522A60EE3E00B7AE44 /* DLWidgetsBundle.swift */,
+				C57FAD542A60EE3E00B7AE44 /* DrivenTodayWidget.swift */,
+				C57FAD6B2A60F5C200B7AE44 /* PercentCompleteWidget.swift */,
+				C57FAD6E2A61793300B7AE44 /* TimeUntilGoalWidget.swift */,
+				C57FAD582A60EE4000B7AE44 /* Info.plist */,
+			);
+			path = DLWidgets;
 			sourceTree = "<group>";
 		};
 		C58C53632A32EE56006FD700 /* Frameworks */ = {
@@ -616,6 +696,7 @@
 				C56C21782A2EE53A008D2CBE /* PBXTargetDependency */,
 				C5302AEE2A5AE6530069C684 /* PBXTargetDependency */,
 				C5302B322A5B06F90069C684 /* PBXTargetDependency */,
+				C57FAD5A2A60EE4000B7AE44 /* PBXTargetDependency */,
 			);
 			name = "Drive Logger";
 			packageProductDependencies = (
@@ -699,6 +780,26 @@
 			productReference = C56C216D2A2EE53A008D2CBE /* DriveLoggerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C57FAD4D2A60EE3D00B7AE44 /* DLWidgetsExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C57FAD5C2A60EE4000B7AE44 /* Build configuration list for PBXNativeTarget "DLWidgetsExtension" */;
+			buildPhases = (
+				C57FAD4A2A60EE3D00B7AE44 /* Sources */,
+				C57FAD4B2A60EE3D00B7AE44 /* Frameworks */,
+				C57FAD4C2A60EE3D00B7AE44 /* Resources */,
+				C57FAD672A60EE5400B7AE44 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C57FAD622A60EE5300B7AE44 /* PBXTargetDependency */,
+				C57FAD662A60EE5300B7AE44 /* PBXTargetDependency */,
+			);
+			name = DLWidgetsExtension;
+			productName = DLWidgetsExtension;
+			productReference = C57FAD4E2A60EE3D00B7AE44 /* DLWidgetsExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -737,6 +838,9 @@
 						CreatedOnToolsVersion = 15.0;
 						TestTargetID = C56C212D2A2EE4E7008D2CBE;
 					};
+					C57FAD4D2A60EE3D00B7AE44 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 				};
 			};
 			buildConfigurationList = C56C21292A2EE4E7008D2CBE /* Build configuration list for PBXProject "Drive Logger" */;
@@ -764,6 +868,7 @@
 				C5302AD92A5AE6530069C684 /* DriveLoggerKit */,
 				C5302AE22A5AE6530069C684 /* DriveLoggerKitTests */,
 				C5302B212A5B06F60069C684 /* DL Driving ActivityExtension */,
+				C57FAD4D2A60EE3D00B7AE44 /* DLWidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -787,6 +892,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C57FAD6A2A60F56C00B7AE44 /* Assets.xcassets in Resources */,
 				C5302B2F2A5B06F90069C684 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,6 +933,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C57FAD4C2A60EE3D00B7AE44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C57FAD692A60F56B00B7AE44 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,6 +1046,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C57FAD4A2A60EE3D00B7AE44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C57FAD6D2A60F68500B7AE44 /* PercentCompleteWidget.swift in Sources */,
+				C57FAD532A60EE3E00B7AE44 /* DLWidgetsBundle.swift in Sources */,
+				C57FAD702A61793700B7AE44 /* TimeUntilGoalWidget.swift in Sources */,
+				C57FAD552A60EE3E00B7AE44 /* DrivenTodayWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -989,6 +1114,21 @@
 			isa = PBXTargetDependency;
 			target = C5302AD92A5AE6530069C684 /* DriveLoggerKit */;
 			targetProxy = C57137CB2A5F214E00063661 /* PBXContainerItemProxy */;
+		};
+		C57FAD5A2A60EE4000B7AE44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C57FAD4D2A60EE3D00B7AE44 /* DLWidgetsExtension */;
+			targetProxy = C57FAD592A60EE4000B7AE44 /* PBXContainerItemProxy */;
+		};
+		C57FAD622A60EE5300B7AE44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5302AD92A5AE6530069C684 /* DriveLoggerKit */;
+			targetProxy = C57FAD612A60EE5300B7AE44 /* PBXContainerItemProxy */;
+		};
+		C57FAD662A60EE5300B7AE44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C56C21632A2EE539008D2CBE /* DriveLoggerUI */;
+			targetProxy = C57FAD652A60EE5300B7AE44 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1536,6 +1676,62 @@
 			};
 			name = Release;
 		};
+		C57FAD5D2A60EE4000B7AE44 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DLWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7M5JDZSYX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DLWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DLWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.driveloggerbeta.DLWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C57FAD5E2A60EE4000B7AE44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = DLWidgetsExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7M5JDZSYX7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DLWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DLWidgets;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ronanfuruta.driveloggerbeta.DLWidgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1616,6 +1812,15 @@
 			buildConfigurations = (
 				C56C21802A2EE53A008D2CBE /* Debug */,
 				C56C21812A2EE53A008D2CBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C57FAD5C2A60EE4000B7AE44 /* Build configuration list for PBXNativeTarget "DLWidgetsExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C57FAD5D2A60EE4000B7AE44 /* Debug */,
+				C57FAD5E2A60EE4000B7AE44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
