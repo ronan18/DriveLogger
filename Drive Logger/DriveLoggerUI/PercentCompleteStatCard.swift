@@ -37,9 +37,9 @@ public struct PercentCompleteStatCard: View {
         self.chartYAxisHeight = goal
         drives.forEach { drive in
             
-            guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
+           /* guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
                 return
-            }
+            }*/
             let day = Calendar.current.dateComponents([.day], from: drive.startTime)
            
             self.drives.append(drive)
@@ -58,12 +58,13 @@ public struct PercentCompleteStatCard: View {
          return a < b
         }
        // print("stat, days included", daysIncluded)
-        
+        print("percent stat driven starting to calculate")
         for i in 0..<daysIncluded.count {
             
             if (i == 0) {
              //   print("stat", i, daysIncluded[i], data[daysIncluded[i]])
                 days.append(.init(id: daysIncluded[i], driven: data[daysIncluded[i]] ?? 0, today: daysIncluded[i] == todaysDay))
+                print( data[daysIncluded[i]]?.formatedForDrive(), "percent stat driven")
             } else {
                 let yesterdays: TimeInterval = days[i-1].driven
                 let totalDriven: TimeInterval = yesterdays + (data[daysIncluded[i]] ?? 0) 
@@ -74,11 +75,18 @@ public struct PercentCompleteStatCard: View {
                     self.chartYAxisHeight = totalDriven + 60*60
                 }
                // print("stat", daysIncluded[i], todaysDay, daysIncluded[i] == todaysDay)
+                print(totalDriven.formatedForDrive(), "percent stat driven", yesterdays.formatedForDrive(), (data[daysIncluded[i]] ?? 0).formatedForDrive())
             }
+            
         }
        
         if widgetMode {
             self.chartHeight = 80
+        }
+        let today = Calendar.current.dateComponents([.day], from: Date()).day ?? 0
+        self.days = self.days.filter {day in
+            
+            return (today - day.id) < daysInGraph
         }
 
     }

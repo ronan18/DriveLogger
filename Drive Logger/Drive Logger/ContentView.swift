@@ -46,10 +46,7 @@ struct ContentView: View {
             print("scene change", initial, scene)
             if (scene == .background || scene == ScenePhase.inactive) {
                
-                guard  modelContext.hasChanges else {
-                    print("no changes")
-                    return
-                }
+                self.appState.reloadWidgets(hash: self.appState.hashDrives(drives: self.drives))
                
             }
             

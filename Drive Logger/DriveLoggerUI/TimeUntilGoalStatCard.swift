@@ -19,7 +19,7 @@ public struct TimeUntilGoalStatCard: View {
         self.goal = goal
         self.widgetMode = widgetMode
         let timeTill = (goal - statistics.totalDriveTime)
-        self.untilGoal = timeTill.formatedForDrive()
+        self.untilGoal = abs(timeTill).formatedForDrive()
         let number = (statistics.totalDriveTime / goal)
         if number.isNaN || number.isInfinite {
             self.percentComplete = 1

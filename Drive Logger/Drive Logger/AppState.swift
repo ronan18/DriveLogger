@@ -11,13 +11,14 @@ import DriveLoggerKit
 import SwiftData
 import CoreLocation
 import ActivityKit
+import WidgetKit
 
 @Observable
 public final class AppState {
   //  public var drivingState: DrivingState = DrivingState(from)
     
     static let shared = AppState()
-    
+    let defaults = UserDefaults.standard
   public var context: ModelContext? = nil
     public var currentDrive: CurrentDrive? = nil
     var lastLocation: DLLocationStore? = nil
@@ -73,8 +74,29 @@ public final class AppState {
     }
     
     
-
-   
+    public func hashDrives(drives: [Drive]) -> String {
+        var result: String = ""
+        
+        drives.forEach({drive in
+            result += String(drive.valueHash)
+        })
+        return MD5(string: result).base64EncodedString() + self.goal.description
+    }
+    public func reloadWidgets(hash: String) {
+        print("DL starting reload widget")
+        if let lastHash = self.defaults.string(forKey: "drivesHash") {
+            print("DL Drives", lastHash, hash)
+            if (lastHash == hash) {
+                print("DL Drives hash is same, cancling")
+                return
+            }
+        }
+        
+        print("DL Drives hash different or doesn't exist, updating")
+        WidgetCenter.shared.reloadAllTimelines()
+        self.defaults.setValue(hash, forKey: "drivesHash")
+        return
+    }
      public func startDrive() {
          let drive = CurrentDrive(start: Date(), startLocation: nil)
          self.currentDrive = drive
@@ -178,7 +200,7 @@ public final class AppState {
                  print(error)
              }
          }
-         
+        
          
     }
     
