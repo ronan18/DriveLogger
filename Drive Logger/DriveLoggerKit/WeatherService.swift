@@ -36,5 +36,16 @@ public class DLWeather {
         }
         
     }
+    public func condtitions(for location: CLLocation) async throws -> CurrentWeather {
+        print("fetching conditions for", location)
+        do {
+            let weather = try await weatherService.weather(for: location, including: .current)
+            print(weather, "got weather")
+            return weather
+        } catch {
+            print("error getting conditions", error)
+            throw error
+        }
+    }
 
 }

@@ -83,8 +83,12 @@
 		C57FAD6D2A60F68500B7AE44 /* PercentCompleteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD6B2A60F5C200B7AE44 /* PercentCompleteWidget.swift */; };
 		C57FAD702A61793700B7AE44 /* TimeUntilGoalWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD6E2A61793300B7AE44 /* TimeUntilGoalWidget.swift */; };
 		C57FAD722A617B7B00B7AE44 /* DLWidgetEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD712A617B7B00B7AE44 /* DLWidgetEntry.swift */; };
+		C57FAD742A6187C600B7AE44 /* AmountDriven.intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD732A6187C600B7AE44 /* AmountDriven.intent.swift */; };
+		C57FAD762A618EFD00B7AE44 /* PercentofGoal.intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FAD752A618EFD00B7AE44 /* PercentofGoal.intent.swift */; };
 		C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53732A33AC65006FD700 /* PercentComplete.swift */; };
 		C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53752A34CD39006FD700 /* NumberStat.swift */; };
+		C59C33872A62DF0300635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33862A62DF0300635F02 /* Localizable.xcstrings */; };
+		C59C33892A62DF1100635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33882A62DF1100635F02 /* Localizable.xcstrings */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
 /* End PBXBuildFile section */
 
@@ -323,8 +327,12 @@
 		C57FAD6B2A60F5C200B7AE44 /* PercentCompleteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentCompleteWidget.swift; sourceTree = "<group>"; };
 		C57FAD6E2A61793300B7AE44 /* TimeUntilGoalWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUntilGoalWidget.swift; sourceTree = "<group>"; };
 		C57FAD712A617B7B00B7AE44 /* DLWidgetEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLWidgetEntry.swift; sourceTree = "<group>"; };
+		C57FAD732A6187C600B7AE44 /* AmountDriven.intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountDriven.intent.swift; sourceTree = "<group>"; };
+		C57FAD752A618EFD00B7AE44 /* PercentofGoal.intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentofGoal.intent.swift; sourceTree = "<group>"; };
 		C58C53732A33AC65006FD700 /* PercentComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentComplete.swift; sourceTree = "<group>"; };
 		C58C53752A34CD39006FD700 /* NumberStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberStat.swift; sourceTree = "<group>"; };
+		C59C33862A62DF0300635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		C59C33882A62DF1100635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -454,6 +462,7 @@
 				C5302B2C2A5B06F70069C684 /* DL_Driving_Activity.swift */,
 				C5302B2E2A5B06F90069C684 /* Assets.xcassets */,
 				C5302B302A5B06F90069C684 /* Info.plist */,
+				C59C33882A62DF1100635F02 /* Localizable.xcstrings */,
 			);
 			path = "DL Driving Activity";
 			sourceTree = "<group>";
@@ -510,6 +519,8 @@
 				C5302B162A5AFB7D0069C684 /* AppShortcutsProvider.swift */,
 				C5302B142A5AFB160069C684 /* StartDrive.intent.swift */,
 				C5302B1C2A5AFE180069C684 /* EndDrive.intent.swift */,
+				C57FAD732A6187C600B7AE44 /* AmountDriven.intent.swift */,
+				C57FAD752A618EFD00B7AE44 /* PercentofGoal.intent.swift */,
 				C56C21CC2A2EE676008D2CBE /* Home */,
 				C56C21372A2EE4E7008D2CBE /* Preview Content */,
 				C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */,
@@ -588,6 +599,7 @@
 				C57FAD6B2A60F5C200B7AE44 /* PercentCompleteWidget.swift */,
 				C57FAD6E2A61793300B7AE44 /* TimeUntilGoalWidget.swift */,
 				C57FAD582A60EE4000B7AE44 /* Info.plist */,
+				C59C33862A62DF0300635F02 /* Localizable.xcstrings */,
 			);
 			path = DLWidgets;
 			sourceTree = "<group>";
@@ -897,6 +909,7 @@
 			files = (
 				C57FAD6A2A60F56C00B7AE44 /* Assets.xcassets in Resources */,
 				C5302B2F2A5B06F90069C684 /* Assets.xcassets in Resources */,
+				C59C33892A62DF1100635F02 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +956,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C59C33872A62DF0300635F02 /* Localizable.xcstrings in Resources */,
 				C57FAD692A60F56B00B7AE44 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -996,6 +1010,8 @@
 				C56C21952A2EE5B7008D2CBE /* StatisticsSection.swift in Sources */,
 				C5302B1B2A5AFCB50069C684 /* StartDrive.intent.swift in Sources */,
 				C56C21972A2EE5B7008D2CBE /* HomeHeaderSection.swift in Sources */,
+				C57FAD742A6187C600B7AE44 /* AmountDriven.intent.swift in Sources */,
+				C57FAD762A618EFD00B7AE44 /* PercentofGoal.intent.swift in Sources */,
 				C56C21DC2A3009BA008D2CBE /* DriveEditorView.swift in Sources */,
 				C56C21322A2EE4E7008D2CBE /* Drive_LoggerApp.swift in Sources */,
 				C56C21962A2EE5B7008D2CBE /* HomeView.swift in Sources */,

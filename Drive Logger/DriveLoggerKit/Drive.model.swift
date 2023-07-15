@@ -9,6 +9,7 @@ import Foundation
 import SwiftData
 import CoreData
 import MapKit
+import WeatherKit
 import CoreLocation
 import var CommonCrypto.CC_MD5_DIGEST_LENGTH
 import func CommonCrypto.CC_MD5
@@ -56,6 +57,37 @@ public struct SunTime: Codable {
         return Calendar.current.date(from:DateComponents(hour: self.hour, minute: self.minute)) ?? Date()
     }
 }
+public struct WeatherData: Codable {
+    let feelsLike: Measurement<UnitTemperature>
+    let temp: Measurement<UnitTemperature>
+    let wind: Wind
+    let cloudCover: Double
+    let condition: WeatherCondition
+    let visibility: Measurement<UnitLength>
+    let symbolName: String
+    let metadata: WeatherMetadata
+    
+    public init(from currentWeather: CurrentWeather) {
+        self.feelsLike = currentWeather.apparentTemperature
+        self.temp = currentWeather.temperature
+        self.wind = currentWeather.wind
+        self.cloudCover = currentWeather.cloudCover
+        self.condition = currentWeather.condition
+        self.visibility = currentWeather.visibility
+        self.symbolName = currentWeather.symbolName
+        self.metadata = currentWeather.metadata
+    }
+    func storeValue() throws -> Data {
+        let encoder = JSONEncoder()
+        do {
+          let encoded = try encoder.encode(self)
+                return encoded
+            
+        } catch {
+            throw(error)
+        }
+    }
+}
 
 @Model
 final public class Drive: Identifiable, Hashable {
@@ -68,8 +100,9 @@ final public class Drive: Identifiable, Hashable {
     public var endLocationName: String
     public var sunsetTime: Date
     public var sunriseTime: Date
+    private var weatherStore: Data?
 
-    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date) {
+    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date, weather: CurrentWeather?) {
         self.startTime = startTime
         self.endTime = endTime
         self.startLocation = startLocation
@@ -80,6 +113,12 @@ final public class Drive: Identifiable, Hashable {
         
         self.sunsetTime = sunsetTime
         self.sunriseTime = sunriseTime
+        if let weather = weather {
+            self.weatherStore = try? WeatherData(from: weather).storeValue()
+        } else {
+            self.weatherStore = nil
+        }
+        
        
  
     }
@@ -99,6 +138,7 @@ final public class Drive: Identifiable, Hashable {
         self.sunriseTime = Calendar.current.date(from:DateComponents(hour:6, minute: 31)) ?? Date()
        // self.sunsetTime = SunTime(hour: 7, minute: 30)
        // self.sunriseTime =  SunTime(hour: 14, minute: 45)
+        self.weatherStore = nil
         
        
     }
@@ -170,6 +210,12 @@ final public class Drive: Identifiable, Hashable {
     }
     public var valueHash: String {
         return MD5(string: "\(self.startTime.ISO8601Format())\(self.endTime.ISO8601Format())\(self.nightDriveTime.description)\(self.backupDriveString)").base64EncodedString()
+    }
+    public var weather: WeatherData? {
+        guard let data = self.weatherStore else {
+            return nil
+        }
+        return try? JSONDecoder().decode(WeatherData.self, from: data)
     }
 }
 extension Date {

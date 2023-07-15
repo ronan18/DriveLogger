@@ -95,6 +95,9 @@ public struct PercentCompleteStatCard: View {
         HStack {
             
             VStack(alignment: .leading) {
+                if (self.widgetMode) {
+                    Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
+                }
                 Spacer()
                 Text(percentComplete).font(.title).bold() + Text("%").font(.title3)
                 Text("complete").font(.subheadline)
@@ -118,26 +121,13 @@ public struct PercentCompleteStatCard: View {
                         ).foregroundStyle(Color.gray).lineStyle(.init(dash: widgetMode ? [11, 5] : [10, 5]))/*.annotation(position: .bottom, alignment: .leading) {
                             Text("\(self.appState.goal.formatedForDrive())").font(.caption).foregroundColor(Color.gray)
                         }*/
-                        
-                        
-                        
-                        
-                        
                     }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: widgetMode ? 120 :  100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
                   Chart() {
                         ForEach (days) {day in
                             if (day.today) {
                                 LineMark(x: .value("day", day.id), y: .value("length", day.driven)).interpolationMethod(.catmullRom).symbol(by: .value("Day", "int")).foregroundStyle( Color.black)
                             }
-                            
-                            
-                            
-                        }
-                        
-                        
-                        
-                        
-                        
+                        }            
                   }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: widgetMode ? 120 : 100, height: chartHeight).chartYScale(domain: [0, chartYAxisHeight]).chartLegend(.hidden).chartXScale(domain: [days.first?.id ?? 0, days.last?.id ?? 7])
                 }
                 Spacer()

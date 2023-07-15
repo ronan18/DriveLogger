@@ -52,6 +52,8 @@ struct DriveEditorView: View {
                     }
                 } header: {
                     Text("\(Image(systemName: "sun.max")) Additional Data")
+                } footer: {
+                    Text("Learn more about [weather data sources](https://google.com)")
                 }
                 Section {
                     

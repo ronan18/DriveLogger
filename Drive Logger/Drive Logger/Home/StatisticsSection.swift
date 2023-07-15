@@ -15,7 +15,8 @@ struct StatisticsSection: View {
    
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
-    
+    @State private var renderedImage = Image(systemName: "photo")
+     @Environment(\.displayScale) var displayScale
     var appState: AppState
     
     
@@ -24,25 +25,12 @@ struct StatisticsSection: View {
             HStack {
                 Text("Statistics").font(.headline)
                 Spacer()
-               
+                if (self.appState.statistics.totalDriveTime >= 5 * 60) {
+                    ShareLink("", item: renderedImage,  preview: SharePreview(Text("Shared image"), image: renderedImage , icon:  Image(systemName: "square.and.arrow.up.circle.fill")))
+                }
             }
             if (self.appState.statistics.totalDriveTime >= 5 * 60) {
-                VStack {
-                    TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday.formatedForDrive(), drives: drives)
-                    PercentCompleteStatCard(goal: self.appState.goal, statistics: self.appState.statistics, drives: drives).padding(.vertical, 7)
-                    TimeUntilGoalStatCard(statistics: self.appState.statistics, goal: self.appState.goal).padding(.bottom, 7)
-                    Grid(horizontalSpacing: 15,
-                         verticalSpacing: 15) {
-                     
-                        GridRow {
-                            
-                            NumberStat(value: LocalizedStringResource(stringLiteral: String(self.drives.count)), label: "logged drives")
-                            NumberStat(time: self.appState.statistics.longestDriveLength, label: "longest drive")
-                            NumberStat(time: self.appState.statistics.averageDriveDuration, label: "average drive duration")
-                            
-                        }.frame(minHeight: 130)
-                    }
-                }
+                StatisticsView(drives: self.drives, appState: self.appState)
             } else {
                 VStack {
                     Spacer()
@@ -56,12 +44,56 @@ struct StatisticsSection: View {
             }
             
            
-        }.padding(.vertical)
+        }.padding(.vertical).task {
+            await self.render()
+        }.onChange(of: self.drives, {old, new in
+            Task(priority: .low) {
+                await self.render()
+            }
+        })
+    }
+    @MainActor func render() async {
+        Task(priority: .low) {
+            let renderer = ImageRenderer(content: StatisticsView(drives: self.drives, appState: self.appState))
+            
+            // make sure and use the correct display scale for this device
+            renderer.scale = displayScale
+            
+            if let uiImage = renderer.uiImage {
+                renderedImage = Image(uiImage: uiImage)
+            }
+        }
     }
 }
 
 struct StatisticsSection_Previews: PreviewProvider {
     static var previews: some View {
         StatisticsSection(appState: AppState()).padding().modelContainer(previewContainer)
+    }
+}
+
+struct StatisticsView: View {
+  
+  var drives: [Drive]
+    
+    var appState: AppState
+    
+    var body: some View {
+        VStack {
+            TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday.formatedForDrive(), drives: drives)
+            PercentCompleteStatCard(goal: self.appState.goal, statistics: self.appState.statistics, drives: drives).padding(.vertical, 7)
+            TimeUntilGoalStatCard(statistics: self.appState.statistics, goal: self.appState.goal).padding(.bottom, 7)
+            Grid(horizontalSpacing: 15,
+                 verticalSpacing: 15) {
+             
+                GridRow {
+                    
+                    NumberStat(value: LocalizedStringResource(stringLiteral: String(self.drives.count)), label: "logged drives")
+                    NumberStat(time: self.appState.statistics.longestDriveLength, label: "longest drive")
+                    NumberStat(time: self.appState.statistics.averageDriveDuration, label: "average drive duration")
+                    
+                }.frame(minHeight: 130)
+            }
+        }
     }
 }

@@ -22,3 +22,8 @@ func suntimes(for locatation: CLLocation) async -> (Date?, Date?) {
 Task {
    await suntimes(for: CLLocation(latitude: 44.47438, longitude: 73.21403))
 }
+
+Task {
+    let weather = try? await weatherService.weather(for: CLLocation(latitude: 44.47438, longitude: 73.21403), including: .current)
+    
+}

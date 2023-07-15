@@ -11,6 +11,7 @@ import DriveLoggerKit
 import SwiftData
 import CoreLocation
 import ActivityKit
+import WeatherKit
 import WidgetKit
 
 @Observable
@@ -160,6 +161,7 @@ public final class AppState {
          
          var sunSetTime = SunTime(hour: 19, minute: 30).date()
          var sunRiseTime = SunTime(hour: 7, minute: 45).date()
+         var weather: CurrentWeather? = nil
          if let startLocation = drive?.startLocation {
              do {
                 let sunEvents = try await weatherService.suntimes(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
@@ -177,8 +179,10 @@ public final class AppState {
           
            
              print("sun rise sunset time for drive", sunSetTime, sunRiseTime)
+            weather = await try? weatherService.condtitions(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
          }
-         let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime)
+        
+         let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)
          print("new drive", newDrive)
         context.insert(newDrive)
          do {

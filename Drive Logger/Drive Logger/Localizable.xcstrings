@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "%@" : {
       "localizations" : {
         "es" : {
@@ -115,6 +118,9 @@
           }
         }
       }
+    },
+    "Amount Driven" : {
+
     },
     "Are you sure you want to delete this drive?" : {
       "localizations" : {
@@ -256,6 +262,9 @@
     "If weather and location data are unavailable, Drive Logger will default to these times." : {
 
     },
+    "Learn more about [weather data sources](https://google.com)" : {
+
+    },
     "logged drives" : {
       "localizations" : {
         "es" : {
@@ -321,6 +330,12 @@
         }
       }
     },
+    "Percent of Goal Driven" : {
+
+    },
+    "Perecent Complete" : {
+
+    },
     "Recent Drives" : {
       "localizations" : {
         "es" : {
@@ -330,6 +345,12 @@
           }
         }
       }
+    },
+    "See how much you have driven so far. Returns time driven in seconds." : {
+
+    },
+    "See what percentage of your goal you have driven" : {
+
     },
     "settings" : {
       "extractionState" : "stale",
@@ -351,6 +372,9 @@
           }
         }
       }
+    },
+    "Shared image" : {
+
     },
     "Start Drive" : {
       "localizations" : {

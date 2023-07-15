@@ -35,9 +35,12 @@ public struct TimeUntilGoalStatCard: View {
         HStack {
             
             VStack(alignment: .leading) {
+                if (self.widgetMode) {
+                    Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
+                }
                 Spacer()
                 Text(untilGoal).font(.title).bold()
-                Text(passedGoal ? "passed goal" :"until goal").font(.subheadline)
+                Text(passedGoal ? "past goal" :"until goal").font(.subheadline)
             }
             Spacer()
             VStack (alignment: .trailing) {

@@ -19,6 +19,9 @@ public class DLDiskService {
     }
     public func readCurrentDrive() -> CurrentDrive? {
         var attemptedRetreival: CurrentDrive? = nil
+        guard Disk.exists("currentDrive.json", in: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger")) else {
+            return nil
+        }
         do {
             attemptedRetreival = try Disk.retrieve("currentDrive.json", from: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: CurrentDrive.self, decoder: decoder)
         } catch {
@@ -42,7 +45,9 @@ public class DLDiskService {
       
     }
     public func deleteCurrentDrive() {
-    
+        guard Disk.exists("currentDrive.json", in: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger")) else {
+            return
+        }
         print("current drive removing")
         do {
             try Disk.remove("currentDrive.json", from: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"))
@@ -54,6 +59,9 @@ public class DLDiskService {
     }
     public func readUserPreferences() -> UserPreferences? {
         var attemptedRetreival: UserPreferences? = nil
+        guard Disk.exists("preferences.json", in: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger")) else {
+            return nil
+        }
         do {
             attemptedRetreival = try Disk.retrieve("preferences.json", from: .sharedContainer(appGroupName: "group.com.ronanfuruta.drivelogger"), as: UserPreferences.self, decoder: decoder)
         } catch {
