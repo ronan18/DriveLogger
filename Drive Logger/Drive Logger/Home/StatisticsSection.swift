@@ -17,6 +17,7 @@ struct StatisticsSection: View {
     @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     @State private var renderedImage = Image(systemName: "photo")
      @Environment(\.displayScale) var displayScale
+    @State var testing: [Drive] = []
     var appState: AppState
     
     
@@ -74,7 +75,7 @@ struct StatisticsSection_Previews: PreviewProvider {
 
 struct StatisticsView: View {
   
-  var drives: [Drive]
+var drives: [Drive]
     
     var appState: AppState
     

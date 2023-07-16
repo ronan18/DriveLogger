@@ -179,7 +179,7 @@ public final class AppState {
           
            
              print("sun rise sunset time for drive", sunSetTime, sunRiseTime)
-            weather = await try? weatherService.condtitions(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
+             weather = try? await weatherService.condtitions(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
          }
         
          let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)

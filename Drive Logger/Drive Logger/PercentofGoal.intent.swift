@@ -36,7 +36,7 @@ struct PercentofGoalIntent: AppIntent {
         print("app intent",statistics.totalDriveTime)
         let result = statistics.totalDriveTime / goal
         return .result(value: result, dialog: IntentDialog(.init(stringLiteral: String(result * 100))), content: {
-            PercentCompleteStatCard(goal: goal, statistics: statistics, drives: drives ?? [], widgetMode: true).padding()
+            PercentCompleteStatCard(goal: goal, statistics: statistics, drives:drives ?? [], widgetMode: true).padding()
         })
         
          

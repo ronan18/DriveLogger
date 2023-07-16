@@ -12,22 +12,17 @@ import DriveLoggerKit
 public var iconWidth: CGFloat = 20
 public struct TimeDrivenTodayStatCard: View {
     var drivenToday: String
-    var drives: [Drive] = []
+   
+   var drives: [Drive] = []
     var widgetMode: Bool
     var label: LocalizedStringResource
+    var daysInGraph: Int
     public init(drivenToday: String, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.drivenToday = drivenToday
         self.widgetMode = widgetMode
         self.label = LocalizedStringResource(stringLiteral: "driven today")
-        drives.forEach {drive in
-            
-            guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
-                return
-            }
-            self.drives.append(drive)
-    
-        }
-       
+        self.daysInGraph = daysInGraph
+        self.drives = drives
       
        
     }
@@ -35,14 +30,8 @@ public struct TimeDrivenTodayStatCard: View {
         self.drivenToday = drivenTotal
         self.widgetMode = widgetMode
         self.label = LocalizedStringResource(stringLiteral: "driven")
-        drives.forEach {drive in
-            
-            guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
-                return
-            }
-            self.drives.append(drive)
-    
-        }
+        self.daysInGraph = daysInGraph
+        self.drives = drives
        
     }
     public var body: some View {
@@ -60,9 +49,14 @@ public struct TimeDrivenTodayStatCard: View {
             VStack (alignment: .trailing) {
                 Spacer()
                
-                Chart(drives, id: \.id) {
+                Chart() {
+                    ForEach(drives.filter({drive in
+                        return Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < self.daysInGraph
+                    })) {drive in
+                        BarMark(x: .value("day", drive.startTime, unit: .day), y: .value("length", drive.driveLength)).foregroundStyle(Calendar.current.isDateInToday(drive.startTime) ? Color.black : Color.gray)
+                    }
                   
-                        BarMark(x: .value("day", $0.startTime, unit: .day), y: .value("length", $0.driveLength)).foregroundStyle(Calendar.current.isDateInToday($0.startTime) ? Color.black : Color.gray)
+                        
                     
                 }.chartXAxis(.hidden).chartYAxis(.hidden).frame(width: widgetMode ? 120 : 100, height: widgetMode ? 80 : 60)
                
@@ -77,4 +71,5 @@ public struct TimeDrivenTodayStatCard: View {
         
         
     }
+ 
 }

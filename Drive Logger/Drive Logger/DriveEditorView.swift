@@ -12,6 +12,7 @@ import SwiftData
 
 struct DriveEditorView: View {
     @Environment(\.modelContext) private var modelContext
+    
     @Binding var drive: Drive
     @State var appState: AppState
     @State var deletionConfirmation: Bool = false
@@ -67,7 +68,10 @@ struct DriveEditorView: View {
                     })
                 }.confirmationDialog("Are you sure you want to delete this drive?", isPresented: self.$deletionConfirmation, titleVisibility: .visible, actions: {
                     Button("Delete Drive", role: .destructive) {
-                        modelContext.delete(drive)
+                        guard let context = drive.context else {
+                            return
+                        }
+                        context.delete(drive)
                         self.appState.driveEditorPresented = false
                         self.appState.driveToBeEdited = Drive(sampleData: true)
                                 }

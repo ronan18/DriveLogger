@@ -10,85 +10,44 @@ import SwiftUI
 import Charts
 import DriveLoggerKit
 
-private struct DayPercentageStat: Identifiable {
-    var id: Int
-    var driven: TimeInterval
-    var today: Bool
-}
+
 public struct PercentCompleteStatCard: View {
     var goal: TimeInterval
-    var drives: [Drive] = []
+    var drives: [Drive]
     var percentComplete: String
-    fileprivate var days: [DayPercentageStat] = []
+    var days: [DayPercentageStat]
     let todaysDay: Int = Calendar.current.dateComponents([.day], from: Date()).day ?? 1
     var chartYAxisHeight: TimeInterval
     var widgetMode: Bool
     var chartHeight: CGFloat = 60
+    var daysInGraph: Int
+    @MainActor
     public init(goal: TimeInterval, statistics: DriveLoggerStatistics, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.goal = goal
         self.widgetMode = widgetMode
+        self.drives = drives
         let number = round((statistics.totalDriveTime / goal) * 100)
         if number.isNaN || number.isInfinite {
             self.percentComplete = "100"
         } else {
             self.percentComplete = String(Int(number))
         }
-        var data: [Int: TimeInterval] = [:]
-        self.chartYAxisHeight = goal
-        drives.forEach { drive in
-            
-           /* guard Calendar.current.dateComponents([.day], from: drive.startTime, to: Date()).day ?? 0 < daysInGraph else {
-                return
-            }*/
-            let day = Calendar.current.dateComponents([.day], from: drive.startTime)
-           
-            self.drives.append(drive)
-            if let day = day.day {
-                if let currentLength = data[day] {
-                    data[day] = currentLength + drive.driveLength
-                } else {
-                    data[day] = drive.driveLength
-                }
-                
-            }
-           
-           
-        }
-        let daysIncluded = data.keys.sorted { a, b in
-         return a < b
-        }
-       // print("stat, days included", daysIncluded)
-        print("percent stat driven starting to calculate")
-        for i in 0..<daysIncluded.count {
-            
-            if (i == 0) {
-             //   print("stat", i, daysIncluded[i], data[daysIncluded[i]])
-                days.append(.init(id: daysIncluded[i], driven: data[daysIncluded[i]] ?? 0, today: daysIncluded[i] == todaysDay))
-                print( data[daysIncluded[i]]?.formatedForDrive(), "percent stat driven")
-            } else {
-                let yesterdays: TimeInterval = days[i-1].driven
-                let totalDriven: TimeInterval = yesterdays + (data[daysIncluded[i]] ?? 0) 
-              //  print("stat", i, daysIncluded[i], data[daysIncluded[i]], yesterdays )
-              //  print("stat total driven,", totalDriven)
-                days.append(.init(id: daysIncluded[i], driven: totalDriven, today: daysIncluded[i] == todaysDay))
-                if ((totalDriven + 60*60) > self.chartYAxisHeight) {
-                    self.chartYAxisHeight = totalDriven + 60*60
-                }
-               // print("stat", daysIncluded[i], todaysDay, daysIncluded[i] == todaysDay)
-                print(totalDriven.formatedForDrive(), "percent stat driven", yesterdays.formatedForDrive(), (data[daysIncluded[i]] ?? 0).formatedForDrive())
-            }
-            
-        }
+       
+        self.daysInGraph = daysInGraph
+       
        
         if widgetMode {
+           
             self.chartHeight = 80
+            
         }
         let today = Calendar.current.dateComponents([.day], from: Date()).day ?? 0
-        self.days = self.days.filter {day in
-            
+        self.chartYAxisHeight = statistics.percentageStatChartData.suggestedChartYAxisHeight > goal ? statistics.percentageStatChartData.suggestedChartYAxisHeight : goal
+        self.days = statistics.percentageStatChartData.data.filter({day in
             return (today - day.id) < daysInGraph
-        }
-
+        })
+        
+       
     }
     
     public var body: some View {
@@ -139,4 +98,6 @@ public struct PercentCompleteStatCard: View {
             view.padding(10)
         })
     }
+   
+    
 }

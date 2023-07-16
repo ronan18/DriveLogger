@@ -11,6 +11,7 @@ import DriveLoggerKit
 import SwiftData
 struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
+
     @State var appState: AppState
     var body: some View {
         ScrollView {

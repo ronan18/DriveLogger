@@ -11,7 +11,7 @@ import CoreLocation
 
 func testWeather() async {
     do {
-        let weather = await try WeatherService().weather(for: CLLocation(latitude: 44.47438, longitude: 73.21403))
+        let weather = try await WeatherService().weather(for: CLLocation(latitude: 44.47438, longitude: 73.21403))
         print("weather", weather)
     } catch {
         print(error)
