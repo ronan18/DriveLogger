@@ -56,6 +56,7 @@ struct ContentView: View {
         }.onChange(of: self.appState.driveEditorPresented, {old, new in
             if (new == false) {
                 print("DLSTAT drive editor closed", new)
+                self.appState.driveToBeEdited = Drive(sampleData: true)
                 self.appState.statistics.updateStatistics(drives: drives)
             }
         })

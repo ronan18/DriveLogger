@@ -18,7 +18,7 @@ struct DLWidgetsEntryView : View {
 
     var body: some View {
         VStack {
-            TimeDrivenTodayStatCard(drivenToday: DriveLoggerStatistics(drives: drives).timeDrivenToday.formatedForDrive(), drives: drives, widgetMode: true)
+            TimeDrivenTodayStatCard(drivenToday: DriveLoggerStatistics(drives: drives).timeDrivenToday, drives: drives, widgetMode: true)
         }
     }
 }

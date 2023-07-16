@@ -57,7 +57,7 @@ public struct DriveCard: View {
             }
             Spacer()
             VStack {
-                Text(drive.driveLength.formatedForDrive()).font(.headline)
+                TimeDisplayView(time: self.drive.driveLength, mainFont: .headline)
             }
         }.ifCondition(!self.noShadow, then: {view in
             view.padding().background(Color.cardBG).card()

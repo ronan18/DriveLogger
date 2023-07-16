@@ -11,13 +11,13 @@ import Charts
 import DriveLoggerKit
 public var iconWidth: CGFloat = 20
 public struct TimeDrivenTodayStatCard: View {
-    var drivenToday: String
+    var drivenToday: TimeInterval
    
    var drives: [Drive] = []
     var widgetMode: Bool
     var label: LocalizedStringResource
     var daysInGraph: Int
-    public init(drivenToday: String, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
+    public init(drivenToday: TimeInterval, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.drivenToday = drivenToday
         self.widgetMode = widgetMode
         self.label = LocalizedStringResource(stringLiteral: "driven today")
@@ -26,7 +26,7 @@ public struct TimeDrivenTodayStatCard: View {
       
        
     }
-    public init(drivenTotal: String, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
+    public init(drivenTotal: TimeInterval, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.drivenToday = drivenTotal
         self.widgetMode = widgetMode
         self.label = LocalizedStringResource(stringLiteral: "driven")
@@ -42,7 +42,7 @@ public struct TimeDrivenTodayStatCard: View {
                     Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
                 }
                 Spacer()
-                Text(drivenToday).font(.title).bold()
+                TimeDisplayView(time: drivenToday, mainFont: .title, labelFont: .title2)
                 Text(label).font(.subheadline)
             }
             Spacer()

@@ -89,6 +89,7 @@
 		C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C53752A34CD39006FD700 /* NumberStat.swift */; };
 		C59C33872A62DF0300635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33862A62DF0300635F02 /* Localizable.xcstrings */; };
 		C59C33892A62DF1100635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33882A62DF1100635F02 /* Localizable.xcstrings */; };
+		C59C338B2A6435F500635F02 /* TimeDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C338A2A6435F500635F02 /* TimeDisplayView.swift */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
 /* End PBXBuildFile section */
 
@@ -333,6 +334,7 @@
 		C58C53752A34CD39006FD700 /* NumberStat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberStat.swift; sourceTree = "<group>"; };
 		C59C33862A62DF0300635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C59C33882A62DF1100635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		C59C338A2A6435F500635F02 /* TimeDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayView.swift; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -567,6 +569,7 @@
 				C57FAD442A606FDD00B7AE44 /* PercentCompleteStatCard.swift */,
 				C57FAD482A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift */,
 				C57FAD462A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift */,
+				C59C338A2A6435F500635F02 /* TimeDisplayView.swift */,
 			);
 			path = DriveLoggerUI;
 			sourceTree = "<group>";
@@ -1048,6 +1051,7 @@
 				C58C53762A34CD39006FD700 /* NumberStat.swift in Sources */,
 				C56C21862A2EE56E008D2CBE /* CardModifier.swift in Sources */,
 				C56C21892A2EE56E008D2CBE /* LargeButton.swift in Sources */,
+				C59C338B2A6435F500635F02 /* TimeDisplayView.swift in Sources */,
 				C57FAD492A6071CE00B7AE44 /* TimeUntilGoalStatCard.swift in Sources */,
 				C57FAD472A6070E300B7AE44 /* TimeDrivenTodayStatCard.swift in Sources */,
 				C58C53742A33AC65006FD700 /* PercentComplete.swift in Sources */,

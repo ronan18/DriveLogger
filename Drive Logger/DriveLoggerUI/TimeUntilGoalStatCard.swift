@@ -10,7 +10,7 @@ import DriveLoggerKit
 public struct TimeUntilGoalStatCard: View {
     var statistics: DriveLoggerStatistics
     var goal: TimeInterval
-    var untilGoal: String
+    var untilGoal: TimeInterval
     var passedGoal = false
     var percentComplete: CGFloat
     var widgetMode: Bool
@@ -19,7 +19,7 @@ public struct TimeUntilGoalStatCard: View {
         self.goal = goal
         self.widgetMode = widgetMode
         let timeTill = (goal - statistics.totalDriveTime)
-        self.untilGoal = abs(timeTill).formatedForDrive()
+        self.untilGoal = abs(timeTill)
         let number = (statistics.totalDriveTime / goal)
         if number.isNaN || number.isInfinite {
             self.percentComplete = 1
@@ -39,7 +39,8 @@ public struct TimeUntilGoalStatCard: View {
                     Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
                 }
                 Spacer()
-                Text(untilGoal).font(.title).bold()
+                TimeDisplayView(time: untilGoal, mainFont: .title, labelFont: .title2)
+              //  Text(untilGoal).font(.title).bold()
                 Text(passedGoal ? "past goal" :"until goal").font(.subheadline)
             }
             Spacer()

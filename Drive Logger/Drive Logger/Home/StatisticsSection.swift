@@ -81,7 +81,7 @@ var drives: [Drive]
     
     var body: some View {
         VStack {
-            TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday.formatedForDrive(), drives: drives)
+            TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday, drives: drives)
             PercentCompleteStatCard(goal: self.appState.goal, statistics: self.appState.statistics, drives: drives).padding(.vertical, 7)
             TimeUntilGoalStatCard(statistics: self.appState.statistics, goal: self.appState.goal).padding(.bottom, 7)
             Grid(horizontalSpacing: 15,

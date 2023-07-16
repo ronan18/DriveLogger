@@ -7,7 +7,7 @@
 
 import Foundation
 import Observation
-
+import SwiftUI
 @Observable
 public class DriveLoggerStatistics {
     var drives: [Drive] = []
@@ -86,15 +86,15 @@ public class DriveLoggerStatistics {
             
         }
       
-       
-        self.percentageStatChartData = .init(data: buildingDays, chartYAxisHeight: suggestedChartYAxisHeight)
-        self.totalDriveTime = totalDriveTimeResult
-        self.averageDriveDuration = totalDriveTimeResult / Double(drives.count)
-        self.timeDrivenToday = timeDrivenTodayResult
-        self.longestDriveLength = longestDriveResult
-        self.dayDriveTime = dayDriveResult
-        self.nightDriveTime = nightDriveResult
-        
+        withAnimation {
+            self.percentageStatChartData = .init(data: buildingDays, chartYAxisHeight: suggestedChartYAxisHeight)
+            self.totalDriveTime = totalDriveTimeResult
+            self.averageDriveDuration = totalDriveTimeResult / Double(drives.count)
+            self.timeDrivenToday = timeDrivenTodayResult
+            self.longestDriveLength = longestDriveResult
+            self.dayDriveTime = dayDriveResult
+            self.nightDriveTime = nightDriveResult
+        }
         let end = Date()
         print("DLSTAT stat update time",  end.timeIntervalSince(start))
     }

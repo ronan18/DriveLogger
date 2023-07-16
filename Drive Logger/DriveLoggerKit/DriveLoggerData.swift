@@ -102,6 +102,10 @@ public class DriveLoggerData {
 
 extension TimeInterval {
     public func format(using units: NSCalendar.Unit) -> String? {
+        guard !self.isNaN else {
+            print("nan for format")
+            return ""
+        }
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = units
         formatter.unitsStyle = .abbreviated
@@ -110,6 +114,10 @@ extension TimeInterval {
         return formatter.string(from: self)
     }
     public func format(using units: NSCalendar.Unit, unitStyle: DateComponentsFormatter.UnitsStyle) -> String? {
+        guard !self.isNaN else {
+            print("nan for format")
+            return ""
+        }
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = units
         formatter.unitsStyle = unitStyle

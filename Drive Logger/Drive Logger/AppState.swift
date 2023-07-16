@@ -20,7 +20,7 @@ public final class AppState {
     
     static let shared = AppState()
     let defaults = UserDefaults.standard
-  public var context: ModelContext? = nil
+    public var context: ModelContext? = nil
     public var currentDrive: CurrentDrive? = nil
     var lastLocation: DLLocationStore? = nil
    

@@ -39,7 +39,7 @@ struct AmountDrivenIntent: AppIntent {
         formatter.allowedUnits = [.hour, .minute]
         
         return .result(value: statistics.totalDriveTime, dialog: IntentDialog(.init(stringLiteral: formatter.string(from: statistics.totalDriveTime) ?? statistics.totalDriveTime.formatedForDrive())), content: {
-            TimeDrivenTodayStatCard(drivenTotal: statistics.totalDriveTime.formatedForDrive(), drives: drives ?? [], widgetMode: true).padding()
+            TimeDrivenTodayStatCard(drivenTotal: statistics.totalDriveTime, drives: drives ?? [], widgetMode: true).padding()
         })
         
          
