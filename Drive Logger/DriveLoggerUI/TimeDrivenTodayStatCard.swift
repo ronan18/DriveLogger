@@ -9,29 +9,30 @@ import Foundation
 import SwiftUI
 import Charts
 import DriveLoggerKit
+import SwiftData
 public var iconWidth: CGFloat = 20
 public struct TimeDrivenTodayStatCard: View {
     var drivenToday: TimeInterval
-   
-   var drives: [Drive] = []
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
     var widgetMode: Bool
     var label: LocalizedStringResource
     var daysInGraph: Int
-    public init(drivenToday: TimeInterval, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
+    public init(drivenToday: TimeInterval, daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.drivenToday = drivenToday
         self.widgetMode = widgetMode
         self.label = LocalizedStringResource(stringLiteral: "driven today")
         self.daysInGraph = daysInGraph
-        self.drives = drives
+       // self.drives = drives
       
        
     }
-    public init(drivenTotal: TimeInterval, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
+    public init(drivenTotal: TimeInterval, daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.drivenToday = drivenTotal
         self.widgetMode = widgetMode
         self.label = LocalizedStringResource(stringLiteral: "driven")
         self.daysInGraph = daysInGraph
-        self.drives = drives
+       // self.drives = drives
        
     }
     public var body: some View {

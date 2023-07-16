@@ -9,11 +9,13 @@ import Foundation
 import SwiftUI
 import Charts
 import DriveLoggerKit
-
+import SwiftData
 
 public struct PercentCompleteStatCard: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    
     var goal: TimeInterval
-    var drives: [Drive]
     var percentComplete: String
     var days: [DayPercentageStat]
     let todaysDay: Int = Calendar.current.dateComponents([.day], from: Date()).day ?? 1
@@ -22,10 +24,10 @@ public struct PercentCompleteStatCard: View {
     var chartHeight: CGFloat = 60
     var daysInGraph: Int
     @MainActor
-    public init(goal: TimeInterval, statistics: DriveLoggerStatistics, drives: [Drive], daysInGraph: Int = 7, widgetMode: Bool = false) {
+    public init(goal: TimeInterval, statistics: DriveLoggerStatistics, daysInGraph: Int = 7, widgetMode: Bool = false) {
         self.goal = goal
         self.widgetMode = widgetMode
-        self.drives = drives
+      
         let number = round((statistics.totalDriveTime / goal) * 100)
         if number.isNaN || number.isInfinite {
             self.percentComplete = "100"

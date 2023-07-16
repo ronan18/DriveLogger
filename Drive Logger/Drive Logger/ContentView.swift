@@ -35,7 +35,7 @@ struct ContentView: View {
         }).onAppear {
             self.appState.context = modelContext
             print("added appstate model context")
-            self.appState.statistics.updateStatistics(drives: drives)
+            self.appState.statistics.updateStatistics(drives)
             print("DLSTAT triggered stat update on launch", drives.count)
            
             Task {
@@ -52,12 +52,16 @@ struct ContentView: View {
             
         }.onChange(of: drives) {_,new in
             print("DLSTAT drives change", new.count)
-            self.appState.statistics.updateStatistics(drives: new)
+            Task {
+                await self.appState.statistics.requestStatisticsUpdate(context: self.modelContext)
+            }
         }.onChange(of: self.appState.driveEditorPresented, {old, new in
             if (new == false) {
                 print("DLSTAT drive editor closed", new)
                 self.appState.driveToBeEdited = Drive(sampleData: true)
-                self.appState.statistics.updateStatistics(drives: drives)
+                Task {
+                    await self.appState.statistics.requestStatisticsUpdate(context: self.modelContext)
+                }
             }
         })
     }

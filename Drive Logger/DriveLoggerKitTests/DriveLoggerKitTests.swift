@@ -25,7 +25,7 @@ final class DriveLoggerKitTests: XCTestCase {
     }
     
     func testWeatherService() async throws {
-        var didFailWithError: Error?
+       
         do {
             let sunEvents = try await DLWeather().suntimes(for: CLLocation(latitude: 44.47438, longitude: 73.21403))
             print("XC Test Weather kit", sunEvents)

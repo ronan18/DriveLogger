@@ -19,7 +19,12 @@ struct HomeHeaderSection: View {
         Group {
             
             HStack {
+              
+               
                 Spacer()
+                if (self.appState.statistics.updating) {
+                    ProgressView().progressViewStyle(.circular)
+                }
                 NavigationLink(destination: SettingsView(appState: appState
                                                         ), label:{ Text("\(Image(systemName: "gearshape.fill"))").padding(.horizontal)
                     .font(.title)}).buttonStyle(.borderless).foregroundColor(.black)

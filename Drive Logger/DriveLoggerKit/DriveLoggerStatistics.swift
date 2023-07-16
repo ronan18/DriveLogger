@@ -8,9 +8,10 @@
 import Foundation
 import Observation
 import SwiftUI
+import SwiftData
 @Observable
 public class DriveLoggerStatistics {
-    var drives: [Drive] = []
+    private var drivesHash: String = ""
     public var totalDriveTime: TimeInterval = 0
     public var averageDriveDuration: TimeInterval = 0
     public var timeDrivenToday: TimeInterval = 0
@@ -18,14 +19,16 @@ public class DriveLoggerStatistics {
     public var nightDriveTime: TimeInterval = 0
     public var dayDriveTime: TimeInterval = 0
     public var percentageStatChartData: PercentageStatChartData = .init(data: [], chartYAxisHeight: 0)
+    public var updating: Bool = true
     public init (drives: [Drive]) {
         
-        self.updateStatistics(drives: drives)
+       self.updateStatistics(drives)
     }
-    public func updateStatistics(drives: [Drive]) {
+  
+    public func updateStatistics(_ importedDrives: [Drive]) {
         let start = Date()
         
-        self.drives = drives.sorted(by: { a, b in
+        let drives = importedDrives.sorted(by: { a, b in
             a.startTime < b.startTime
         })
         var totalDriveTimeResult: TimeInterval = 0
@@ -94,9 +97,30 @@ public class DriveLoggerStatistics {
             self.longestDriveLength = longestDriveResult
             self.dayDriveTime = dayDriveResult
             self.nightDriveTime = nightDriveResult
+            self.updating = false
         }
         let end = Date()
         print("DLSTAT stat update time",  end.timeIntervalSince(start))
+    }
+    @MainActor
+    public func requestStatisticsUpdate(context: ModelContext) {
+        print("DLSTAT: updating statistics async")
+        self.updating = true
+        let drivesFetch = FetchDescriptor<Drive>(
+            //sortBy: \.startTime
+           // order: .reverse
+        )
+        do {
+            let drives = try context.fetch(drivesFetch)
+            print("DLSTAT: Async drives fetch", drives.count)
+            Task {
+                self.updateStatistics(drives)
+            }
+        } catch {
+            print("DLSTAT: Error fetching drives from model context", error)
+        }
+        print("DLSTAT: Updated statistics async")
+      
     }
 }
 public struct DayPercentageStat: Identifiable {

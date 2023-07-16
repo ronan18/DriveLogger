@@ -53,7 +53,9 @@ struct RecentDrivesSection: View {
             for index in offsets {
                 modelContext.delete(drives[index])
             }
-            self.appState.statistics.updateStatistics(drives: drives)
+            self.appState.statistics.requestStatisticsUpdate(context: modelContext)
+            
+            
         }
     }
 }
