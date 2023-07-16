@@ -12,6 +12,7 @@ import SwiftData
 struct RecentDrivesSection: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    
     var appState: AppState
     var body: some View {
         VStack {

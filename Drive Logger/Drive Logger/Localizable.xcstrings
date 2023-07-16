@@ -152,6 +152,9 @@
         }
       }
     },
+    "Complete Your Driving Goal" : {
+
+    },
     "daytime" : {
 
     },
@@ -176,6 +179,9 @@
       }
     },
     "Drive five minutes or more to unlock your driving statistics" : {
+
+    },
+    "Drive Logger makes it easy to keep track of your drives as you work to a goal." : {
 
     },
     "driven" : {
@@ -239,6 +245,9 @@
         }
       }
     },
+    "Get Started" : {
+
+    },
     "Hit the *Start Drive* button to begin your first drive" : {
       "localizations" : {
         "es" : {
@@ -258,6 +267,9 @@
           }
         }
       }
+    },
+    "I want to drive: " : {
+
     },
     "If weather and location data are unavailable, Drive Logger will default to these times." : {
 
@@ -350,6 +362,9 @@
 
     },
     "See what percentage of your goal you have driven" : {
+
+    },
+    "set your driving goal" : {
 
     },
     "settings" : {

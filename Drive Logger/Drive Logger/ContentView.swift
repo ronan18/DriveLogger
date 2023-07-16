@@ -20,7 +20,9 @@ struct ContentView: View {
     }
     var body: some View {
         NavigationView {
-            if (appState.currentDrive != nil) {
+            if (self.appState.setUpFlow) {
+                SetupScreen(appState: appState)
+            } else if (appState.currentDrive != nil) {
                 DrivingView(appState: appState)
             } else {
                  

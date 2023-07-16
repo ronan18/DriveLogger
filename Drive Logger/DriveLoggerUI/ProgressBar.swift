@@ -21,32 +21,23 @@ public struct ProgressBar: View {
         GeometryReader { geo in
             
             ZStack {
-                RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor( percentComplete < 1 ? Color.lightBG : Color.black)
+                RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: geo.size.width, height: height).foregroundColor( Color.lightBG)
                 HStack {
-                    if (percentComplete * geo.size.width > 17 && percentComplete < 1) {
+                    if (percentComplete * geo.size.width > 17 ) {
                         RoundedRectangle(cornerSize: CGSize(width: height, height: height)).frame(width: percentComplete * geo.size.width, height: height).foregroundColor(Color("btnColor"))
                     }
                     Spacer()
                 }
-                if (percentComplete > 1) {
+            
                     HStack() {
-                        Spacer().frame(width: 1 * geo.size.width - ((height + 10) / 2))
+                        Spacer().frame(width:percentComplete > 1 ? geo.size.width - ((height + 10) / 2) : percentComplete * geo.size.width - ((height + 10) / 2))
                         ZStack {
-                            Circle().frame(height: height+6).foregroundColor(.white).card()
+                            Circle().frame(width: height+6, height: height+6).foregroundColor(.white).card()
                             Image(systemName: "car.circle.fill").resizable().scaledToFit().frame(height: height+6).symbolRenderingMode(.monochrome).foregroundColor(.black)
                         }
                         Spacer()
                     }
-                } else {
-                    HStack() {
-                        Spacer().frame(width: percentComplete * geo.size.width - ((height + 10) / 2))
-                        ZStack {
-                            Circle().frame(height: height+6).foregroundColor(.white).card()
-                            Image(systemName: "car.circle.fill").resizable().scaledToFit().frame(height: height+6).symbolRenderingMode(.monochrome).foregroundColor(.black)
-                        }
-                        Spacer()
-                    }
-                }
+                
             }
         }.frame(height: height + 6)
     }

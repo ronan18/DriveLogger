@@ -25,6 +25,10 @@ public final class AppState {
     var lastLocation: DLLocationStore? = nil
    
     public var goal: TimeInterval = 50*60*60
+    public var defaultSunrise: SunTime = SunTime(hour: 6, minute: 26)
+    public var defaultSunset: SunTime = SunTime(hour: 19, minute: 30)
+    
+    public var setUpFlow = false
     public var driveEditorPresented = false
     public var driveToBeEdited: Drive = Drive(sampleData: true)
     
@@ -46,7 +50,16 @@ public final class AppState {
     public init(firstBoot: Bool = false) {
      //   self.start()
         self.manager = CLLocationManager()
-        
+        let preferences = service.readUserPreferences()
+        if let preferences = preferences {
+            self.goal = preferences.goal
+            self.defaultSunrise = preferences.defaultSunrise
+            self.defaultSunset = preferences.defaultSunset
+            print("DLPREF: set precerences", preferences)
+        } else {
+            print("DLPREF: No preferences")
+            self.setUpFlow = true
+        }
         self.currentDrive = service.readCurrentDrive()
         if let currentDrive = self.currentDrive {
             Task {
@@ -74,7 +87,9 @@ public final class AppState {
         
     }
     
-    
+    public func updatePreferences() {
+        self.service.saveUserPreferences(.init(goal: self.goal, defaultSunrise: self.defaultSunrise, defaultSunset: self.defaultSunset))
+    }
     public func hashDrives(drives: [Drive]) -> String {
         var result: String = ""
         
@@ -159,8 +174,8 @@ public final class AppState {
             return
         }
          
-         var sunSetTime = SunTime(hour: 19, minute: 30).date()
-         var sunRiseTime = SunTime(hour: 7, minute: 45).date()
+         var sunSetTime =  self.defaultSunset.date()
+         var sunRiseTime =  self.defaultSunrise.date()
          var weather: CurrentWeather? = nil
          if let startLocation = drive?.startLocation {
              do {

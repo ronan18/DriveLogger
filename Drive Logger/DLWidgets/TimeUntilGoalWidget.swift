@@ -19,7 +19,7 @@ struct TimeUntilCompleteWidgetView : View {
 
     var body: some View {
         VStack {
-            TimeUntilGoalStatCard(statistics: DriveLoggerStatistics(drives: drives), goal: 60*60*50, widgetMode: true)
+            TimeUntilGoalStatCard(statistics: DriveLoggerStatistics(drives: drives), goal: entry.goal ?? 60*60*50, widgetMode: true)
         }
     }
 }

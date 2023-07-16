@@ -7,13 +7,15 @@
 
 import Foundation
 import WidgetKit
+import DriveLoggerKit
 public struct Provider: TimelineProvider {
     public func placeholder(in context: Context) -> DLWidgetEntry {
-        DLWidgetEntry(date: Date(), goal: 60*60*50)
+        
+        DLWidgetEntry(date: Date(), goal: DLDiskService().readUserPreferences()?.goal)
     }
 
     public  func getSnapshot(in context: Context, completion: @escaping (DLWidgetEntry) -> ()) {
-        let entry = DLWidgetEntry(date: Date(), goal: 60*60*50)
+        let entry = DLWidgetEntry(date: Date(), goal: DLDiskService().readUserPreferences()?.goal)
         completion(entry)
     }
 
@@ -22,7 +24,7 @@ public struct Provider: TimelineProvider {
 
        
 
-        let timeline = Timeline(entries: [DLWidgetEntry(date: Date(), goal: 60*60*50)], policy: .after(Date(timeIntervalSinceNow: 60*60*2)))
+        let timeline = Timeline(entries: [DLWidgetEntry(date: Date(), goal: DLDiskService().readUserPreferences()?.goal)], policy: .after(Date(timeIntervalSinceNow: 60*60*5)))
         completion(timeline)
     }
     public init() {
@@ -32,8 +34,8 @@ public struct Provider: TimelineProvider {
 
 public struct DLWidgetEntry: TimelineEntry {
     public let date: Date
-    public let goal: TimeInterval
-    public init(date: Date, goal: TimeInterval) {
+    public let goal: TimeInterval?
+    public init(date: Date, goal: TimeInterval?) {
         self.date = date
         self.goal = goal
     }

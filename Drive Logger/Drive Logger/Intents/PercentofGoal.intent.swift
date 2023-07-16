@@ -32,7 +32,7 @@ struct PercentofGoalIntent: AppIntent {
         
     
             let statistics = DriveLoggerStatistics(drives: drives ?? [])
-        let goal: Double = 50*60*60
+        let goal: Double = DLDiskService().readUserPreferences()?.goal ?? 50*60*60
         print("app intent",statistics.totalDriveTime)
         let result = statistics.totalDriveTime / goal
         return .result(value: result, dialog: IntentDialog(.init(stringLiteral: "\(Int(round(result * 100)))%")), content: {

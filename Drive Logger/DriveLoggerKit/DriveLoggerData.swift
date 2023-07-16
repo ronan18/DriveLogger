@@ -11,54 +11,6 @@ public class DriveLoggerData {
     public init () {
         
     }
-    /*
-    public func totalDriveTime(drives: [Drive]) -> TimeInterval {
-        var time: TimeInterval = 0
-        drives.forEach { drive in
-            time += drive.driveLength
-        }
-        return time
-        
-    }
-    public func averageDriveDuration(drives: [Drive]) -> TimeInterval {
-        return self.totalDriveTime(drives: drives) / Double(drives.count)
-    }
-    public func timeDrivenToday(drives: [Drive]) -> TimeInterval {
-        var result: TimeInterval = 0
-        drives.forEach({drive in
-            guard Calendar.current.isDateInToday(drive.startTime) else {
-                return
-            }
-            result += drive.driveLength
-        })
-        return result
-    }
-    public func longestDrive(drives: [Drive]) -> TimeInterval {
-        var result: TimeInterval = 0
-        drives.forEach({drive in
-            if (drive.driveLength > result) {
-                result = drive.driveLength
-            }
-        })
-        return result
-    }
-    public func totalNightTime(drives: [Drive]) -> TimeInterval {
-        var time: TimeInterval = 0
-        drives.forEach { drive in
-            time += drive.nightDriveTime
-        }
-        return time
-        
-    }
-    public func totalDayTime(drives: [Drive]) -> TimeInterval {
-        var time: TimeInterval = 0
-        drives.forEach { drive in
-            time += drive.dayDriveTime
-        }
-        return time
-        
-    }*/
-    
     public func cityName(from: CLLocation) async -> String? {
         return await withCheckedContinuation{cont in
             let geocoder = CLGeocoder()

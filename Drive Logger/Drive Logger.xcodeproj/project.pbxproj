@@ -90,6 +90,7 @@
 		C59C33872A62DF0300635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33862A62DF0300635F02 /* Localizable.xcstrings */; };
 		C59C33892A62DF1100635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33882A62DF1100635F02 /* Localizable.xcstrings */; };
 		C59C338B2A6435F500635F02 /* TimeDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C338A2A6435F500635F02 /* TimeDisplayView.swift */; };
+		C59C33902A645C8100635F02 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C338F2A645C8100635F02 /* SetupScreen.swift */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
 /* End PBXBuildFile section */
 
@@ -335,6 +336,7 @@
 		C59C33862A62DF0300635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C59C33882A62DF1100635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C59C338A2A6435F500635F02 /* TimeDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayView.swift; sourceTree = "<group>"; };
+		C59C338F2A645C8100635F02 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -509,21 +511,13 @@
 			children = (
 				C56C21312A2EE4E7008D2CBE /* Drive_LoggerApp.swift */,
 				C56C218B2A2EE589008D2CBE /* ContentView.swift */,
+				C56C21D12A2FB669008D2CBE /* AppState.swift */,
 				C56C21352A2EE4E7008D2CBE /* Assets.xcassets */,
 				C5302AD12A5993280069C684 /* Localizable.xcstrings */,
 				C56C213C2A2EE4E8008D2CBE /* Drive_Logger.entitlements */,
 				C56C213D2A2EE4E8008D2CBE /* Info.plist */,
-				C56C218C2A2EE589008D2CBE /* DrivingView.swift */,
-				C56C21CF2A2F0DCB008D2CBE /* AllDrivesView.swift */,
-				C56C21DB2A3009BA008D2CBE /* DriveEditorView.swift */,
-				C56C21D12A2FB669008D2CBE /* AppState.swift */,
-				C50D261B2A329A7B00A33216 /* SettingsView.swift */,
-				C5302B162A5AFB7D0069C684 /* AppShortcutsProvider.swift */,
-				C5302B142A5AFB160069C684 /* StartDrive.intent.swift */,
-				C5302B1C2A5AFE180069C684 /* EndDrive.intent.swift */,
-				C57FAD732A6187C600B7AE44 /* AmountDriven.intent.swift */,
-				C57FAD752A618EFD00B7AE44 /* PercentofGoal.intent.swift */,
-				C56C21CC2A2EE676008D2CBE /* Home */,
+				C59C338D2A645AEF00635F02 /* Screens */,
+				C59C338C2A645ACD00635F02 /* Intents */,
 				C56C21372A2EE4E7008D2CBE /* Preview Content */,
 				C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */,
 			);
@@ -615,6 +609,39 @@
 				C5302B252A5B06F70069C684 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C59C338C2A645ACD00635F02 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				C5302B162A5AFB7D0069C684 /* AppShortcutsProvider.swift */,
+				C5302B142A5AFB160069C684 /* StartDrive.intent.swift */,
+				C5302B1C2A5AFE180069C684 /* EndDrive.intent.swift */,
+				C57FAD732A6187C600B7AE44 /* AmountDriven.intent.swift */,
+				C57FAD752A618EFD00B7AE44 /* PercentofGoal.intent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		C59C338D2A645AEF00635F02 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C59C338E2A645C6A00635F02 /* Setup */,
+				C56C218C2A2EE589008D2CBE /* DrivingView.swift */,
+				C56C21CF2A2F0DCB008D2CBE /* AllDrivesView.swift */,
+				C56C21DB2A3009BA008D2CBE /* DriveEditorView.swift */,
+				C50D261B2A329A7B00A33216 /* SettingsView.swift */,
+				C56C21CC2A2EE676008D2CBE /* Home */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		C59C338E2A645C6A00635F02 /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				C59C338F2A645C8100635F02 /* SetupScreen.swift */,
+			);
+			path = Setup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1015,6 +1042,7 @@
 				C56C21972A2EE5B7008D2CBE /* HomeHeaderSection.swift in Sources */,
 				C57FAD742A6187C600B7AE44 /* AmountDriven.intent.swift in Sources */,
 				C57FAD762A618EFD00B7AE44 /* PercentofGoal.intent.swift in Sources */,
+				C59C33902A645C8100635F02 /* SetupScreen.swift in Sources */,
 				C56C21DC2A3009BA008D2CBE /* DriveEditorView.swift in Sources */,
 				C56C21322A2EE4E7008D2CBE /* Drive_LoggerApp.swift in Sources */,
 				C56C21962A2EE5B7008D2CBE /* HomeView.swift in Sources */,

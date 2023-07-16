@@ -17,7 +17,7 @@ struct PercentCompleteWidgetView : View {
 
     var body: some View {
         VStack {
-            PercentCompleteStatCard(goal: 60*60*50, statistics: DriveLoggerStatistics(drives: drives), widgetMode: true)
+            PercentCompleteStatCard(goal: entry.goal ?? 60*60*50, statistics: DriveLoggerStatistics(drives: drives), widgetMode: true)
         }
     }
 }
