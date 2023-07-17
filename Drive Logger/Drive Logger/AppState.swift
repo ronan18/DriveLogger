@@ -30,7 +30,7 @@ public final class AppState {
     
     public var setUpFlow = false
     public var driveEditorPresented = false
-    public var driveToBeEdited: Drive = Drive(sampleData: true)
+    public var driveToBeEdited: DLDrive = DLDrive(sampleData: true)
     
     public var statistics = DriveLoggerStatistics(drives: [])
     
@@ -90,7 +90,7 @@ public final class AppState {
     public func updatePreferences() {
         self.service.saveUserPreferences(.init(goal: self.goal, defaultSunrise: self.defaultSunrise, defaultSunset: self.defaultSunset))
     }
-    public func hashDrives(drives: [Drive]) -> String {
+    public func hashDrives(drives: [DLDrive]) -> String {
         var result: String = ""
         
         drives.forEach({drive in
@@ -197,13 +197,16 @@ public final class AppState {
              weather = try? await weatherService.condtitions(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
          }
         
-         let newDrive = Drive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)
+         let newDrive = DLDrive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)
          print("new drive", newDrive)
+         
         context.insert(newDrive)
+         print("DL CONTEXT SAVE saved context new drive")
          do {
              try context.save()
+            
          } catch {
-             print("error saving new drive context")
+             print("DL CONTEXT SAVE error saving new drive context", error)
          }
          Task {
              if self.activity != nil {

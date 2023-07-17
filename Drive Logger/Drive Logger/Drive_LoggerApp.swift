@@ -11,10 +11,10 @@ import DriveLoggerKit
 
 @main
 struct Drive_LoggerApp: App {
-   
+
     var body: some Scene {
         WindowGroup {
-            ContentView().modelContainer(for: [Drive.self], isUndoEnabled: true)
+            ContentView().modelContainer(for: DLDrive.self)
         }
         
     }

@@ -358,6 +358,9 @@
         }
       }
     },
+    "See how much longer you have until you reach your goal." : {
+
+    },
     "See how much you have driven so far. Returns time driven in seconds." : {
 
     },
@@ -475,6 +478,12 @@
           }
         }
       }
+    },
+    "Time Until Goal" : {
+
+    },
+    "Time Until Goal Achieved" : {
+
     },
     "until goal" : {
       "extractionState" : "stale",

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import DriveLoggerKit
+import WidgetKit
 public struct TimeUntilGoalStatCard: View {
     var statistics: DriveLoggerStatistics
     var goal: TimeInterval
@@ -14,7 +15,9 @@ public struct TimeUntilGoalStatCard: View {
     var passedGoal = false
     var percentComplete: CGFloat
     var widgetMode: Bool
-    public init(statistics: DriveLoggerStatistics, goal: TimeInterval, widgetMode: Bool = false) {
+    var widgetFamily: WidgetFamily? = nil
+    var ringHeight: CGFloat = 52
+    public init(statistics: DriveLoggerStatistics, goal: TimeInterval, widgetMode: Bool = false, widgetFamily: WidgetFamily? = nil) {
         self.statistics = statistics
         self.goal = goal
         self.widgetMode = widgetMode
@@ -29,33 +32,58 @@ public struct TimeUntilGoalStatCard: View {
         if timeTill < 0 {
             self.passedGoal = true
         }
+        self.widgetFamily = widgetFamily
+        if (widgetFamily == .systemMedium) {
+            self.ringHeight = 70
+        }
     }
     
     public var body: some View {
-        HStack {
-            
+        if (self.widgetFamily == .systemSmall) {
             VStack(alignment: .leading) {
-                if (self.widgetMode) {
-                    Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
-                }
+                HStack {
+                    VStack {
+                        Spacer()
+                        ActivityRingView(percentComplete: percentComplete, height: 40).frame(height: 40)
+                    }
+                    Spacer()
+                    VStack {
+                        Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
+                        Spacer()
+                    }
+                    
+                }.padding(.bottom)
                 Spacer()
                 TimeDisplayView(time: untilGoal, mainFont: .title, labelFont: .title2)
-              //  Text(untilGoal).font(.title).bold()
+                //  Text(untilGoal).font(.title).bold()
                 Text(passedGoal ? "past goal" :"until goal").font(.subheadline)
             }
-            Spacer()
-            VStack (alignment: .trailing) {
-                Spacer()
+        } else {
+            HStack {
                 
-                ActivityRingView(percentComplete: percentComplete ).frame(height: 52).padding(10)
-                //Spacer()
-            }
-           
-        }.ifCondition(!self.widgetMode, then: {view in
-            view.frame(height: 80).padding().background(Color.cardBG).card()
-        }).ifCondition(widgetMode, then: {view in
-            view.padding(10)
-        })
+                VStack(alignment: .leading) {
+                    if (self.widgetMode) {
+                        Image("Icon").resizable().frame(width: iconWidth, height: iconWidth)
+                    }
+                    Spacer()
+                    TimeDisplayView(time: untilGoal, mainFont: .title, labelFont: .title2)
+                    //  Text(untilGoal).font(.title).bold()
+                    Text(passedGoal ? "past goal" :"until goal").font(.subheadline)
+                }
+                Spacer()
+                VStack (alignment: .trailing) {
+                    Spacer()
+                    
+                    ActivityRingView(percentComplete: percentComplete, height: ringHeight).frame(height: ringHeight).padding(10)
+                    //Spacer()
+                }
+                
+            }.ifCondition(!self.widgetMode, then: {view in
+                view.frame(height: 80).padding().background(Color.cardBG).card()
+            }).ifCondition(self.widgetMode, then: {view in
+                view.padding(10)
+            })
+        }
     }
 }
 
@@ -66,9 +94,12 @@ public struct TimeUntilGoalStatCard: View {
 struct ActivityRingView: View {
   var percentComplete: CGFloat
     let width: CGFloat = 10
-    let height: CGFloat = 52
+    var height: CGFloat = 52
     var colors: [Color] = [Color.black, Color.lightBlack]
-    
+    init(percentComplete: CGFloat, height: CGFloat = 52) {
+        self.percentComplete = percentComplete
+        self.height = height
+    }
     var body: some View {
        
             

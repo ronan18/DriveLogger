@@ -13,7 +13,7 @@ import SwiftData
 struct DriveEditorView: View {
     @Environment(\.modelContext) private var modelContext
     
-    @Binding var drive: Drive
+    @Binding var drive: DLDrive
     @State var appState: AppState
     @State var deletionConfirmation: Bool = false
     var body: some View {
@@ -73,7 +73,7 @@ struct DriveEditorView: View {
                         }
                         context.delete(drive)
                         self.appState.driveEditorPresented = false
-                        self.appState.driveToBeEdited = Drive(sampleData: true)
+                        self.appState.driveToBeEdited = DLDrive(sampleData: true)
                                 }
                                 Button("Cancel", role: .cancel) {
                                     self.deletionConfirmation = false
@@ -94,6 +94,6 @@ struct DriveEditorView: View {
 
 struct DriveEditor_Previews: PreviewProvider {
     static var previews: some View {
-        DriveEditorView(drive: .constant(Drive(sampleData: true)), appState: AppState()).modelContainer(previewContainer)
+        DriveEditorView(drive: .constant(DLDrive(sampleData: true)), appState: AppState()).modelContainer(previewContainer)
     }
 }

@@ -14,12 +14,13 @@ import SwiftData
 
 struct TimeUntilCompleteWidgetView : View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Environment(\.widgetFamily) private var widgetFamily
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
     var entry: Provider.Entry
 
     var body: some View {
         VStack {
-            TimeUntilGoalStatCard(statistics: DriveLoggerStatistics(drives: drives), goal: entry.goal ?? 60*60*50, widgetMode: true)
+            TimeUntilGoalStatCard(statistics: DriveLoggerStatistics(drives: drives), goal: entry.goal ?? 60*60*50, widgetMode: true, widgetFamily: widgetFamily)
         }
     }
 }
@@ -31,10 +32,10 @@ struct TimeUntilCompletWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
          
             TimeUntilCompleteWidgetView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget).modelContainer(for: [Drive.self])
+                    .containerBackground(.fill.tertiary, for: .widget).modelContainer(for: [DLDrive.self])
            
         }
         .configurationDisplayName("Time Left")
-        .description("This is an example widget.")
+        .description("This is an example widget.").supportedFamilies([.systemMedium, .systemSmall])
     }
 }

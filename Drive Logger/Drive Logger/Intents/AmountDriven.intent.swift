@@ -22,10 +22,10 @@ struct AmountDrivenIntent: AppIntent {
       //  Navigator.shared.openShelf(.currentlyReading)
         print("app intent how much driven")
         let container = try ModelContainer(
-            for: [Drive.self]
+            for: [DLDrive.self]
         )
         let context = container.mainContext
-        let drivesFetch = FetchDescriptor<Drive>()
+        let drivesFetch = FetchDescriptor<DLDrive>()
        
 
             let drives = try? context.fetch(drivesFetch)
@@ -39,7 +39,7 @@ struct AmountDrivenIntent: AppIntent {
         formatter.allowedUnits = [.hour, .minute]
         
         return .result(value: statistics.totalDriveTime, dialog: IntentDialog(.init(stringLiteral: formatter.string(from: statistics.totalDriveTime) ?? statistics.totalDriveTime.formatedForDrive())), content: {
-            TimeDrivenTodayStatCard(drivenTotal: statistics.totalDriveTime, widgetMode: true).modelContainer(for: [Drive.self]).padding()
+            TimeDrivenTodayStatCard(drivenTotal: statistics.totalDriveTime, widgetMode: true).modelContainer(for: [DLDrive.self]).padding()
         })
         
          

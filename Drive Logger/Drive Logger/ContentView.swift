@@ -13,7 +13,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scene
     @State var appState = AppState.shared
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
     init () {
       
         
@@ -60,7 +60,7 @@ struct ContentView: View {
         }.onChange(of: self.appState.driveEditorPresented, {old, new in
             if (new == false) {
                 print("DLSTAT drive editor closed", new)
-                self.appState.driveToBeEdited = Drive(sampleData: true)
+                self.appState.driveToBeEdited = DLDrive(sampleData: true)
                 Task {
                     await self.appState.statistics.requestStatisticsUpdate(context: self.modelContext)
                 }

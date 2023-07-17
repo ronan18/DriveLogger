@@ -14,10 +14,10 @@ import Charts
 struct StatisticsSection: View {
    
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
     @State private var renderedImage = Image(systemName: "photo")
      @Environment(\.displayScale) var displayScale
-    @State var testing: [Drive] = []
+    @State var testing: [DLDrive] = []
     var appState: AppState
     
     
@@ -75,14 +75,14 @@ struct StatisticsSection_Previews: PreviewProvider {
 
 struct StatisticsView: View {
   
-var drives: [Drive]
+var drives: [DLDrive]
     
     var appState: AppState
     
     var body: some View {
         VStack {
-            TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday).modelContainer(for: [Drive.self])
-            PercentCompleteStatCard(goal: self.appState.goal, statistics: self.appState.statistics).padding(.vertical, 7).modelContainer(for: [Drive.self])
+            TimeDrivenTodayStatCard(drivenToday: self.appState.statistics.timeDrivenToday).modelContainer(for: [DLDrive.self])
+            PercentCompleteStatCard(goal: self.appState.goal, statistics: self.appState.statistics).padding(.vertical, 7).modelContainer(for: [DLDrive.self])
             TimeUntilGoalStatCard(statistics: self.appState.statistics, goal: self.appState.goal).padding(.bottom, 7)
             Grid(horizontalSpacing: 15,
                  verticalSpacing: 15) {

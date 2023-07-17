@@ -91,6 +91,7 @@
 		C59C33892A62DF1100635F02 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C59C33882A62DF1100635F02 /* Localizable.xcstrings */; };
 		C59C338B2A6435F500635F02 /* TimeDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C338A2A6435F500635F02 /* TimeDisplayView.swift */; };
 		C59C33902A645C8100635F02 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C338F2A645C8100635F02 /* SetupScreen.swift */; };
+		C59C33922A647C1500635F02 /* TimeUntilGoal.intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C33912A647C1500635F02 /* TimeUntilGoal.intent.swift */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
 /* End PBXBuildFile section */
 
@@ -337,6 +338,7 @@
 		C59C33882A62DF1100635F02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C59C338A2A6435F500635F02 /* TimeDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDisplayView.swift; sourceTree = "<group>"; };
 		C59C338F2A645C8100635F02 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
+		C59C33912A647C1500635F02 /* TimeUntilGoal.intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUntilGoal.intent.swift; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -619,6 +621,7 @@
 				C5302B1C2A5AFE180069C684 /* EndDrive.intent.swift */,
 				C57FAD732A6187C600B7AE44 /* AmountDriven.intent.swift */,
 				C57FAD752A618EFD00B7AE44 /* PercentofGoal.intent.swift */,
+				C59C33912A647C1500635F02 /* TimeUntilGoal.intent.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -1043,6 +1046,7 @@
 				C57FAD742A6187C600B7AE44 /* AmountDriven.intent.swift in Sources */,
 				C57FAD762A618EFD00B7AE44 /* PercentofGoal.intent.swift in Sources */,
 				C59C33902A645C8100635F02 /* SetupScreen.swift in Sources */,
+				C59C33922A647C1500635F02 /* TimeUntilGoal.intent.swift in Sources */,
 				C56C21DC2A3009BA008D2CBE /* DriveEditorView.swift in Sources */,
 				C56C21322A2EE4E7008D2CBE /* Drive_LoggerApp.swift in Sources */,
 				C56C21962A2EE5B7008D2CBE /* HomeView.swift in Sources */,

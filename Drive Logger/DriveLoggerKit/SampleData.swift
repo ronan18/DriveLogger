@@ -9,26 +9,26 @@ import Foundation
 
 public struct SampleData {
     public init() {}
-    public static var driveList: [Drive] = [
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true),
-        Drive(sampleData: true)
+    public static var driveList: [DLDrive] = [
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true),
+        DLDrive(sampleData: true)
     ]
     static var locations: [String] = [
         "Oakmore",
@@ -47,7 +47,7 @@ import SwiftData
 public let previewContainer: ModelContainer = {
     do {
         let container = try ModelContainer(
-            for: [Drive.self], ModelConfiguration(inMemory: true)
+            for: [DLDrive.self], ModelConfiguration(inMemory: true)
         )
         for card in SampleData.driveList {
             container.mainContext.insert(object: card)

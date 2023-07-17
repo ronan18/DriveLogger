@@ -50,7 +50,23 @@ struct SettingsView: View {
             self.appState.goal = new * 60 * 60
         }).onAppear {
             self.goal = self.appState.goal / 60 / 60
-        }
+            self.defaultSunset = self.appState.defaultSunset.date()
+            self.defaultSunrise = self.appState.defaultSunrise.date()
+        }.onChange(of: self.defaultSunrise, {_, new in
+            do {
+                self.appState.defaultSunrise = try .init(from: self.defaultSunrise)
+            } catch {
+                print("error", error)
+            }
+            
+        }).onChange(of: self.defaultSunset, {_, new in
+            do {
+                self.appState.defaultSunset = try .init(from: self.defaultSunrise)
+            } catch {
+                print("error", error)
+            }
+            
+        })
        
     }
 }

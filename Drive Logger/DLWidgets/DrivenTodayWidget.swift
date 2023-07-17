@@ -13,7 +13,7 @@ import SwiftData
 
 struct DLWidgetsEntryView : View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
     var entry: Provider.Entry
 
     var body: some View {
@@ -30,7 +30,7 @@ struct DrivenTodayWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
          
                 DLWidgetsEntryView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget).modelContainer(for: [Drive.self])
+                    .containerBackground(.fill.tertiary, for: .widget).modelContainer(for: [DLDrive.self])
            
         }
         .configurationDisplayName("Time Driven Today")

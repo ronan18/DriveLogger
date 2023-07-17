@@ -12,7 +12,7 @@ import SwiftData
 
 struct DrivingView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var drives: [Drive]
+    @Query private var drives: [DLDrive]
     var appState: AppState
     var body: some View {
         VStack {
@@ -54,6 +54,6 @@ struct DrivingView: View {
 
 struct DrivingView_Previews: PreviewProvider {
     static var previews: some View {
-        DrivingView(appState: AppState()).modelContainer(for: [Drive.self])
+        DrivingView(appState: AppState()).modelContainer(for: [DLDrive.self])
     }
 }

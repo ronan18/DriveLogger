@@ -1,8 +1,8 @@
 //
-//  PercentofGoal.intent.swift
+//  TimeUntilGoal.intent.swift
 //  Drive Logger
 //
-//  Created by Ronan Furuta on 7/14/23.
+//  Created by Ronan Furuta on 7/16/23.
 //
 
 import Foundation
@@ -12,15 +12,15 @@ import SwiftData
 import DriveLoggerKit
 import SwiftUI
 import DriveLoggerUI
-struct PercentofGoalIntent: AppIntent {
-    static var title: LocalizedStringResource = "Percent of Goal Driven"
+struct TimeUntilGoalIntent: AppIntent {
+    static var title: LocalizedStringResource = "Time Until Goal Achieved"
     static var description =
-           IntentDescription("See what percentage of your goal you have driven")
+           IntentDescription("See how much longer you have until you reach your goal.")
 
     @MainActor
     func perform() async throws -> some IntentResult {
       //  Navigator.shared.openShelf(.currentlyReading)
-        print("app intent how much driven")
+        print("app intent Time Till Goal")
         let container = try ModelContainer(
             for: [DLDrive.self]
         )
@@ -34,9 +34,9 @@ struct PercentofGoalIntent: AppIntent {
             let statistics = DriveLoggerStatistics(drives: drives ?? [])
         let goal: Double = DLDiskService().readUserPreferences()?.goal ?? 50*60*60
         print("app intent",statistics.totalDriveTime)
-        let result = statistics.totalDriveTime / goal
-        return .result(value: result, dialog: IntentDialog(.init(stringLiteral: "\(Int(round(result * 100)))%")), content: {
-            PercentCompleteStatCard(goal: goal, statistics: statistics, widgetMode: true).modelContainer(for: [DLDrive.self]).padding()
+        let result: TimeInterval = goal - statistics.totalDriveTime
+        return .result(value: result, dialog: IntentDialog(.init(stringLiteral: "\(result.formatedForDrive())")), content: {
+            TimeUntilGoalStatCard(statistics: statistics, goal: goal, widgetMode: true).padding()
         })
         
          
@@ -47,4 +47,3 @@ struct PercentofGoalIntent: AppIntent {
   
     static var openAppWhenRun: Bool = false
 }
-

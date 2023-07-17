@@ -52,6 +52,11 @@ public struct SunTime: Codable {
         self.hour = hour
         self.minute = minute
     }
+    public init(from date: Date) {
+        let data = date.get(.hour, .minute)
+        hour = data.hour ?? 19
+        minute = data.minute ?? 45
+    }
     
    public func date() -> Date {
         return Calendar.current.date(from:DateComponents(hour: self.hour, minute: self.minute)) ?? Date()
@@ -90,8 +95,9 @@ public struct WeatherData: Codable {
 }
 
 @Model
-final public class Drive: Identifiable, Hashable {
+final public class DLDrive: Identifiable, Hashable {
     @Attribute(.unique) public let id: String
+    public var test: String = UUID().uuidString
     public var startTime: Date = Date()
     public var endTime: Date = Date()
     public var startLocation: DLLocationStore?

@@ -13,10 +13,14 @@ import SwiftData
 
 struct HomeHeaderSection: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    
+    @State var isShowingNavView: Bool = false
+    
     var appState: AppState
     var body: some View {
         Group {
+            
             
             HStack {
               
@@ -26,7 +30,7 @@ struct HomeHeaderSection: View {
                     ProgressView().progressViewStyle(.circular)
                 }
                 NavigationLink(destination: SettingsView(appState: appState
-                                                        ), label:{ Text("\(Image(systemName: "gearshape.fill"))").padding(.horizontal)
+                                                        ), isActive: $isShowingNavView, label:{ Text("\(Image(systemName: "gearshape.fill"))").padding(.horizontal)
                     .font(.title)}).buttonStyle(.borderless).foregroundColor(.black)
             }
             Spacer().frame(height: 20)
@@ -60,7 +64,12 @@ struct HomeHeaderSection: View {
                 
             }
             
-        }
+        }.onChange(of: self.isShowingNavView, {_, new in
+            guard !new else {
+                return
+            }
+            self.appState.updatePreferences()
+        })
     }
 }
 

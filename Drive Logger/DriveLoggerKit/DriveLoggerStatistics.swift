@@ -20,12 +20,12 @@ public class DriveLoggerStatistics {
     public var dayDriveTime: TimeInterval = 0
     public var percentageStatChartData: PercentageStatChartData = .init(data: [], chartYAxisHeight: 0)
     public var updating: Bool = true
-    public init (drives: [Drive]) {
+    public init (drives: [DLDrive]) {
         
        self.updateStatistics(drives)
     }
   
-    public func updateStatistics(_ importedDrives: [Drive]) {
+    public func updateStatistics(_ importedDrives: [DLDrive]) {
         let start = Date()
         
         let drives = importedDrives.sorted(by: { a, b in
@@ -106,7 +106,7 @@ public class DriveLoggerStatistics {
     public func requestStatisticsUpdate(context: ModelContext) {
         print("DLSTAT: updating statistics async")
         self.updating = true
-        let drivesFetch = FetchDescriptor<Drive>(
+        let drivesFetch = FetchDescriptor<DLDrive>(
             //sortBy: \.startTime
            // order: .reverse
         )

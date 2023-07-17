@@ -12,7 +12,7 @@ import SwiftData
 
 struct PercentCompleteWidgetView : View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
     var entry: Provider.Entry
 
     var body: some View {
@@ -29,7 +29,7 @@ struct PercentCompleteWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
          
             PercentCompleteWidgetView(entry: entry)
-                    .containerBackground(.fill.tertiary, for: .widget).modelContainer(for: [Drive.self])
+                    .containerBackground(.fill.tertiary, for: .widget).modelContainer(for: [DLDrive.self])
            
         }
         .configurationDisplayName("Percent Complete Widget")

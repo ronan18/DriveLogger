@@ -12,7 +12,7 @@ import SwiftData
 
 struct AllDrivesView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [Drive]
+    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
     @State var appState: AppState
     var body: some View {
         VStack {
@@ -42,7 +42,7 @@ struct AllDrivesView: View {
     }
     private func addItem() {
         withAnimation {
-            let newItem = Drive(sampleData: true)
+            let newItem = DLDrive(sampleData: true)
             modelContext.insert(newItem)
             do {
                 try modelContext.save()

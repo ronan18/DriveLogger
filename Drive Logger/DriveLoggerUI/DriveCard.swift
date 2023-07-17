@@ -10,9 +10,9 @@ import DriveLoggerKit
 import SwiftData
 
 public struct DriveCard: View {
-    let drive: Drive
+    let drive: DLDrive
     let noShadow: Bool
-    public init(_ drive: Drive, noShadow: Bool = false) {
+    public init(_ drive: DLDrive, noShadow: Bool = false) {
         self.drive = drive
         self.noShadow = noShadow
     }
@@ -67,7 +67,7 @@ public struct DriveCard: View {
 }
 
 #Preview {
-        DriveCard(Drive(sampleData: true)).padding().previewLayout(.sizeThatFits) .modelContainer(for: Drive.self, inMemory: true)
+        DriveCard(DLDrive(sampleData: true)).padding().previewLayout(.sizeThatFits) .modelContainer(for: DLDrive.self, inMemory: true)
         
     
 }
