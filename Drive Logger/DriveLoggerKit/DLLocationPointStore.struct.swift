@@ -6,7 +6,7 @@
 //
 
 import Foundation
-<<<<<<< HEAD
+
 import MapKit
 
 public class DLLocationPointStore: Codable, Equatable, Hashable {
@@ -52,5 +52,3 @@ public class DLLocationPointStore: Codable, Equatable, Hashable {
     }
     
 }
-=======
->>>>>>> 7eb00aa1586b7e39e9ca2f9c120bf7bbbff19198

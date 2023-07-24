@@ -11,10 +11,9 @@ public final class DLLocationService {
     var lastLocation: CLLocation? = nil
     var lastName: String? = nil
     var threshHold: CLLocationDistance = 200
-<<<<<<< HEAD
+
     var lastPoll: Date? = nil
-=======
->>>>>>> 7eb00aa1586b7e39e9ca2f9c120bf7bbbff19198
+
      init () {
         
     }
@@ -22,14 +21,12 @@ public final class DLLocationService {
     
     public func cityName(from location: CLLocation) async -> String? {
         print("DLLoc City name request")
-<<<<<<< HEAD
+
         guard lastPoll?.timeIntervalSinceNow ?? -50 < -30 else {
             print("DLLoc last poll time", lastPoll?.timeIntervalSinceNow as Any)
             return lastName
         }
         lastPoll = Date()
-=======
->>>>>>> 7eb00aa1586b7e39e9ca2f9c120bf7bbbff19198
         if let lastLocation = lastLocation {
             if let lastName = lastName {
                 if lastLocation.distance(from: location) > threshHold {
@@ -38,10 +35,7 @@ public final class DLLocationService {
                 }
             }
         }
-<<<<<<< HEAD
-        
-=======
->>>>>>> 7eb00aa1586b7e39e9ca2f9c120bf7bbbff19198
+
         self.lastLocation = location
 
         return await withCheckedContinuation{cont in
