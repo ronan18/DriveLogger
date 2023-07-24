@@ -19,7 +19,7 @@ struct RecentDrivesSection: View {
             HStack {
                 Text("Recent Drives").font(.headline)
                 Spacer()
-                NavigationLink(destination: AllDrivesView(appState: self.appState), label: {Text("View All \(Image(systemName: "chevron.right"))")})
+                NavigationLink(destination: AllDrivesView(appState: self.appState).modelContext(modelContext), label: {Text("View All \(Image(systemName: "chevron.right"))")})
             }
             if (drives.count > 0 ) {
                 VStack {

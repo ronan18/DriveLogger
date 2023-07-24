@@ -277,6 +277,16 @@
     "Learn more about [weather data sources](https://google.com)" : {
 
     },
+    "locations: %lld, %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "locations: %1$lld, %2$@"
+          }
+        }
+      }
+    },
     "logged drives" : {
       "localizations" : {
         "es" : {
@@ -392,6 +402,9 @@
       }
     },
     "Shared image" : {
+
+    },
+    "start" : {
 
     },
     "Start Drive" : {

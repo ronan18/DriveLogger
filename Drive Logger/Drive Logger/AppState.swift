@@ -13,6 +13,7 @@ import CoreLocation
 import ActivityKit
 import WeatherKit
 import WidgetKit
+import MapKit
 
 @Observable
 public final class AppState {
@@ -22,7 +23,9 @@ public final class AppState {
     let defaults = UserDefaults.standard
     public var context: ModelContext? = nil
     public var currentDrive: CurrentDrive? = nil
-    var lastLocation: DLLocationStore? = nil
+    var lastLocation: DLLocationPointStore? = nil
+    public var locationList: [CLLocationCoordinate2D] = []
+    public var tripPolyLine: MKPolyline = .init(coordinates: [], count: 0)
    
     public var goal: TimeInterval = 50*60*60
     public var defaultSunrise: SunTime = SunTime(hour: 6, minute: 26)
@@ -116,6 +119,7 @@ public final class AppState {
      public func startDrive() {
          let drive = CurrentDrive(start: Date(), startLocation: nil)
          self.currentDrive = drive
+         self.locationList = []
          service.saveCurrentDrive(drive)
          Task {
              await self.monitorLocation()
@@ -197,7 +201,7 @@ public final class AppState {
              weather = try? await weatherService.condtitions(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
          }
         
-         let newDrive = DLDrive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation?.normal(), endLocation: endLocation, startLocationName: drive?.startLocation?.normal().placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)
+         let newDrive = DLDrive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation, endLocation: endLocation, startLocationName: drive?.startLocation?.placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)
          print("new drive", newDrive)
          
         context.insert(newDrive)
@@ -238,12 +242,15 @@ public final class AppState {
             for try await update in updates {
                 print(update, "location update")
                 if let location = update.location {
-                    if let locationName = await DriveLoggerData().cityName(from: location) {
+                    self.locationList.append(location.coordinate)
+                    self.tripPolyLine = .init(coordinates: self.locationList, count: locationList.count)
+                    if let locationName = await DLLocationService.shared.cityName(from: location) {
                         print(locationName, "location name")
-                        let storeLoc = DLLocationStore(placeName: locationName, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+                        let storeLoc = DLLocationPointStore(placeName: locationName, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
                         self.lastLocation = storeLoc
+                      
                         if (self.currentDrive?.startLocation == nil && self.currentDrive != nil) {
-                            self.currentDrive?.startLocation = DLLocationStoreCodable(placeName: storeLoc.placeName, lat: storeLoc.lat, lon: storeLoc.lon)
+                            self.currentDrive?.startLocation = DLLocationPointStore(placeName: storeLoc.placeName, lat: storeLoc.lat, lon: storeLoc.lon)
                             if let drive = self.currentDrive {
                                 self.service.saveCurrentDrive(drive)
                             }

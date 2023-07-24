@@ -17,7 +17,7 @@ struct HomeView: View {
         ScrollView {
             VStack {
                 HomeHeaderSection(appState: appState)
-                RecentDrivesSection(appState: appState)
+                RecentDrivesSection(appState: appState).modelContext(modelContext)
                 StatisticsSection(appState: appState)
               
             }.padding()

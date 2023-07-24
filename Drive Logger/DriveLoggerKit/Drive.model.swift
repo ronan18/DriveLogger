@@ -31,20 +31,11 @@ public func MD5(string: String) -> Data {
         }
         return digestData
     }
-
-
-@Model
-public class DLLocationStore {
-    public let placeName: String
-    public let lat: Double
-    public let lon: Double
-     public init(placeName: String, lat: Double, lon: Double) {
-         self.placeName = placeName
-         self.lat = lat
-         self.lon = lon
-     }
-    
+public enum DLLocationError: Error {
+    case error
 }
+
+
 public struct SunTime: Codable {
     public let hour: Int
     public let minute: Int
@@ -62,57 +53,26 @@ public struct SunTime: Codable {
         return Calendar.current.date(from:DateComponents(hour: self.hour, minute: self.minute)) ?? Date()
     }
 }
-public struct WeatherData: Codable {
-    let feelsLike: Measurement<UnitTemperature>
-    let temp: Measurement<UnitTemperature>
-    let wind: Wind
-    let cloudCover: Double
-    let condition: WeatherCondition
-    let visibility: Measurement<UnitLength>
-    let symbolName: String
-    let metadata: WeatherMetadata
-    
-    public init(from currentWeather: CurrentWeather) {
-        self.feelsLike = currentWeather.apparentTemperature
-        self.temp = currentWeather.temperature
-        self.wind = currentWeather.wind
-        self.cloudCover = currentWeather.cloudCover
-        self.condition = currentWeather.condition
-        self.visibility = currentWeather.visibility
-        self.symbolName = currentWeather.symbolName
-        self.metadata = currentWeather.metadata
-    }
-    func storeValue() throws -> Data {
-        let encoder = JSONEncoder()
-        do {
-          let encoded = try encoder.encode(self)
-                return encoded
-            
-        } catch {
-            throw(error)
-        }
-    }
-}
 
 @Model
 final public class DLDrive: Identifiable, Hashable {
     @Attribute(.unique) public let id: String
-    public var test: String = UUID().uuidString
-    public var startTime: Date = Date()
-    public var endTime: Date = Date()
-    public var startLocation: DLLocationStore?
-    public var endLocation: DLLocationStore?
+    public var startTime: Date
+    public var endTime: Date
     public var startLocationName: String
     public var endLocationName: String
     public var sunsetTime: Date
     public var sunriseTime: Date
+    
+    private var startLocationData: Data?
+    private var endLocationData: Data?
     private var weatherStore: Data?
 
-    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationStore?, endLocation: DLLocationStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date, weather: CurrentWeather?) {
+    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationPointStore?, endLocation: DLLocationPointStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date, weather: CurrentWeather?) {
         self.startTime = startTime
         self.endTime = endTime
-        self.startLocation = startLocation
-        self.endLocation = endLocation
+        self.startLocationData = try? startLocation?.storeValue()
+        self.endLocationData = try? endLocation?.storeValue()
         self.startLocationName = startLocationName ?? ""
         self.endLocationName = endLocationName ?? ""
         self.id = UUID().uuidString
@@ -134,8 +94,8 @@ final public class DLDrive: Identifiable, Hashable {
         let startTime = Date(timeIntervalSinceNow: (0 - (Double.random(in: 1000...500000))))
         self.startTime = startTime
         self.endTime = Date(timeInterval: (Double.random(in: 100...9000)), since: startTime)
-        self.startLocation = nil
-        self.endLocation = nil
+        self.startLocationData = nil
+        self.endLocationData = nil
         self.startLocationName = SampleData.locations.randomElement() ?? ""
         self.endLocationName = SampleData.locations.randomElement() ?? ""
         self.id = UUID().uuidString
@@ -148,7 +108,19 @@ final public class DLDrive: Identifiable, Hashable {
         
        
     }
-    
+    public var startLocation: DLLocationPointStore? {
+        guard let data = self.startLocationData else {
+            return nil
+        }
+        return try? DLLocationPointStore.init(from: data)
+    }
+    public var endLocation: DLLocationPointStore? {
+        guard let data = self.endLocationData else {
+            return nil
+        }
+        return try? DLLocationPointStore.init(from: data)
+    }
+
     public var backupDriveString: LocalizedStringResource {
         var result: LocalizedStringResource = LocalizedStringResource(stringLiteral: startTime.formatted(date: .abbreviated, time: .shortened))
         if !self.startLocationName.isEmpty {
@@ -204,10 +176,8 @@ final public class DLDrive: Identifiable, Hashable {
             } else {
                 result += timeAfter
             }
-            
         }
         
-      //  print(result, backupDriveString)
         return result
     }
     public var dayDriveTime: TimeInterval {

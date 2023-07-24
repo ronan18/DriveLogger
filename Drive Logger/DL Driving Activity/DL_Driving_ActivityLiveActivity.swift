@@ -51,7 +51,7 @@ struct DL_Driving_ActivityLiveActivity: Widget {
 
 extension DL_Driving_ActivityAttributes {
     fileprivate static var preview: DL_Driving_ActivityAttributes {
-        DL_Driving_ActivityAttributes(currentDrive: CurrentDrive(start: Date(), startLocation: DLLocationStore(placeName: "Oakmore", lat: 45, lon: 23)))
+        DL_Driving_ActivityAttributes(currentDrive: CurrentDrive(start: Date(), startLocation: DLLocationPointStore(placeName: "Oakmore", lat: 45, lon: 23)))
     }
 }
 

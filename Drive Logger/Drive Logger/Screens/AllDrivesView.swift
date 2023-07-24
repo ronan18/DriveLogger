@@ -41,14 +41,17 @@ struct AllDrivesView: View {
         }
     }
     private func addItem() {
+        print(self.modelContext.container.schema)
+        let newItem = DLDrive(sampleData: true)
         withAnimation {
-            let newItem = DLDrive(sampleData: true)
+           
+            
             modelContext.insert(newItem)
             do {
                 try modelContext.save()
                 print("model context saved")
             } catch {
-                print("error saving model context")
+                print("error saving model context", error)
             }
         }
     }

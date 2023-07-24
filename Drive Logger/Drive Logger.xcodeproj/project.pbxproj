@@ -17,7 +17,7 @@
 		C5302AEF2A5AE6530069C684 /* DriveLoggerKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; };
 		C5302AF02A5AE6530069C684 /* DriveLoggerKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C5302ADA2A5AE6530069C684 /* DriveLoggerKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C5302B042A5AE6750069C684 /* DriveLoggerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5302AF72A5AE6740069C684 /* DriveLoggerStatistics.swift */; };
-		C5302B052A5AE6750069C684 /* DriveLoggerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5302B022A5AE6750069C684 /* DriveLoggerData.swift */; };
+		C5302B052A5AE6750069C684 /* DLLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5302B022A5AE6750069C684 /* DLLocationService.swift */; };
 		C5302B062A5AE6750069C684 /* CurrentDrive.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5302AFB2A5AE6740069C684 /* CurrentDrive.model.swift */; };
 		C5302B072A5AE6750069C684 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5302B032A5AE6750069C684 /* WeatherService.swift */; };
 		C5302B082A5AE6750069C684 /* Drive.model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5302AFD2A5AE6740069C684 /* Drive.model.swift */; };
@@ -93,6 +93,8 @@
 		C59C33902A645C8100635F02 /* SetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C338F2A645C8100635F02 /* SetupScreen.swift */; };
 		C59C33922A647C1500635F02 /* TimeUntilGoal.intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C33912A647C1500635F02 /* TimeUntilGoal.intent.swift */; };
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
+		C5B3501D2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3501C2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift */; };
+		C5B3501F2A6EBE5D00E3E485 /* WeatherData.struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3501E2A6EBE5D00E3E485 /* WeatherData.struct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,7 +276,7 @@
 		C5302AFF2A5AE6740069C684 /* UserPreferences.model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.model.swift; sourceTree = "<group>"; };
 		C5302B002A5AE6740069C684 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C5302B012A5AE6750069C684 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		C5302B022A5AE6750069C684 /* DriveLoggerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveLoggerData.swift; sourceTree = "<group>"; };
+		C5302B022A5AE6750069C684 /* DLLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLLocationService.swift; sourceTree = "<group>"; };
 		C5302B032A5AE6750069C684 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		C5302B122A5AE87D0069C684 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		C5302B142A5AFB160069C684 /* StartDrive.intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartDrive.intent.swift; sourceTree = "<group>"; };
@@ -340,6 +342,8 @@
 		C59C338F2A645C8100635F02 /* SetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupScreen.swift; sourceTree = "<group>"; };
 		C59C33912A647C1500635F02 /* TimeUntilGoal.intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUntilGoal.intent.swift; sourceTree = "<group>"; };
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
+		C5B3501C2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLLocationPointStore.struct.swift; sourceTree = "<group>"; };
+		C5B3501E2A6EBE5D00E3E485 /* WeatherData.struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.struct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,7 +434,9 @@
 				C5302AFB2A5AE6740069C684 /* CurrentDrive.model.swift */,
 				C5302AFE2A5AE6740069C684 /* DLDisk.service.swift */,
 				C5302AFD2A5AE6740069C684 /* Drive.model.swift */,
-				C5302B022A5AE6750069C684 /* DriveLoggerData.swift */,
+				C5B3501E2A6EBE5D00E3E485 /* WeatherData.struct.swift */,
+				C5B3501C2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift */,
+				C5302B022A5AE6750069C684 /* DLLocationService.swift */,
 				C5302AF72A5AE6740069C684 /* DriveLoggerStatistics.swift */,
 				C5302AF82A5AE6740069C684 /* Legacy Support */,
 				C5302B002A5AE6740069C684 /* Localizable.xcstrings */,
@@ -1005,11 +1011,13 @@
 				C5302B072A5AE6750069C684 /* WeatherService.swift in Sources */,
 				C5302B0A2A5AE6750069C684 /* DLDisk.service.swift in Sources */,
 				C5302B092A5AE6750069C684 /* SampleData.swift in Sources */,
+				C5B3501F2A6EBE5D00E3E485 /* WeatherData.struct.swift in Sources */,
 				C5302B082A5AE6750069C684 /* Drive.model.swift in Sources */,
+				C5B3501D2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift in Sources */,
 				C5302B0B2A5AE6750069C684 /* UserPreferences.model.swift in Sources */,
 				C5302ADE2A5AE6530069C684 /* DriveLoggerKit.docc in Sources */,
 				C5302B042A5AE6750069C684 /* DriveLoggerStatistics.swift in Sources */,
-				C5302B052A5AE6750069C684 /* DriveLoggerData.swift in Sources */,
+				C5302B052A5AE6750069C684 /* DLLocationService.swift in Sources */,
 				C5302B062A5AE6750069C684 /* CurrentDrive.model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

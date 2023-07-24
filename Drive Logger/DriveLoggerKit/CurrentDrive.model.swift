@@ -8,30 +8,12 @@
 import Foundation
 import CoreLocation
 
-public struct DLLocationStoreCodable: Codable, Equatable, Hashable {
-    public let placeName: String
-    public let lat: Double
-    public let lon: Double
-     public init(placeName: String, lat: Double, lon: Double) {
-         self.placeName = placeName
-         self.lat = lat
-         self.lon = lon
-     }
-    
-    public func normal() -> DLLocationStore {
-        return DLLocationStore(placeName: placeName, lat: lat, lon: lon)
-    }
-    
-    
-}
 
 public struct CurrentDrive: Codable, Equatable, Hashable {
     public var start: Date
-    public var startLocation: DLLocationStoreCodable?
-    public init(start: Date,startLocation: DLLocationStore?) {
+    public var startLocation: DLLocationPointStore?
+    public init(start: Date,startLocation: DLLocationPointStore?) {
         self.start = start
-        if let startLocation = startLocation {
-            self.startLocation = DLLocationStoreCodable(placeName: startLocation.placeName, lat: startLocation.lat, lon: startLocation.lon)
-        }
+        self.startLocation = startLocation
     }
 }
