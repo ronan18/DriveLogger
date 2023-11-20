@@ -6,10 +6,13 @@
 //
 
 import Foundation
+import SwiftData
 
 import MapKit
 
-public class DLLocationPointStore: Codable, Equatable, Hashable {
+
+@Model
+public class DLLocationPointStore: Equatable, Hashable {
     public static func == (lhs: DLLocationPointStore, rhs: DLLocationPointStore) -> Bool {
         return lhs.placeName == rhs.placeName && lhs.lat == rhs.lat && lhs.lon == rhs.lon
     }
@@ -23,6 +26,7 @@ public class DLLocationPointStore: Codable, Equatable, Hashable {
     public let lat: Double
     public let lon: Double
     
+    @Transient
     public var coordinate: CLLocationCoordinate2D {
         return .init(latitude: lat, longitude: lon)
     }
@@ -32,23 +36,14 @@ public class DLLocationPointStore: Codable, Equatable, Hashable {
          self.lat = lat
          self.lon = lon
      }
-     init (from data: Data) throws {
+    /* init (from data: Data) throws {
          guard let value = try? JSONDecoder().decode(DLLocationPointStore.self, from: data) else {
              throw DLLocationError.error
          }
          self.placeName = value.placeName
          self.lat = value.lat
          self.lon = value.lon
-    }
-    func storeValue() throws -> Data {
-        let encoder = JSONEncoder()
-        do {
-          let encoded = try encoder.encode(self)
-                return encoded
-            
-        } catch {
-            throw(error)
-        }
-    }
+    }*/
+    
     
 }

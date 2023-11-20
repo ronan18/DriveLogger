@@ -14,7 +14,7 @@ import Charts
 struct StatisticsSection: View {
    
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    @Query(sort: \DLDrive.startTime, order: .reverse) private var drives: [DLDrive]
     @State private var renderedImage = Image(systemName: "photo")
      @Environment(\.displayScale) var displayScale
     @State var testing: [DLDrive] = []

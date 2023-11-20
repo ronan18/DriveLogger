@@ -95,6 +95,7 @@
 		C59EC8BA2A5F4B3F00F99D5B /* WeatherTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */; };
 		C5B3501D2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3501C2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift */; };
 		C5B3501F2A6EBE5D00E3E485 /* WeatherData.struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3501E2A6EBE5D00E3E485 /* WeatherData.struct.swift */; };
+		C5B350212A6EC71700E3E485 /* DLRouteStore.struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B350202A6EC71700E3E485 /* DLRouteStore.struct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,6 +345,7 @@
 		C59EC8B92A5F4B3F00F99D5B /* WeatherTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTesting.swift; sourceTree = "<group>"; };
 		C5B3501C2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLLocationPointStore.struct.swift; sourceTree = "<group>"; };
 		C5B3501E2A6EBE5D00E3E485 /* WeatherData.struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.struct.swift; sourceTree = "<group>"; };
+		C5B350202A6EC71700E3E485 /* DLRouteStore.struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLRouteStore.struct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +436,7 @@
 				C5302AFB2A5AE6740069C684 /* CurrentDrive.model.swift */,
 				C5302AFE2A5AE6740069C684 /* DLDisk.service.swift */,
 				C5302AFD2A5AE6740069C684 /* Drive.model.swift */,
+				C5B350202A6EC71700E3E485 /* DLRouteStore.struct.swift */,
 				C5B3501E2A6EBE5D00E3E485 /* WeatherData.struct.swift */,
 				C5B3501C2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift */,
 				C5302B022A5AE6750069C684 /* DLLocationService.swift */,
@@ -1015,6 +1018,7 @@
 				C5302B082A5AE6750069C684 /* Drive.model.swift in Sources */,
 				C5B3501D2A6EBE3200E3E485 /* DLLocationPointStore.struct.swift in Sources */,
 				C5302B0B2A5AE6750069C684 /* UserPreferences.model.swift in Sources */,
+				C5B350212A6EC71700E3E485 /* DLRouteStore.struct.swift in Sources */,
 				C5302ADE2A5AE6530069C684 /* DriveLoggerKit.docc in Sources */,
 				C5302B042A5AE6750069C684 /* DriveLoggerStatistics.swift in Sources */,
 				C5302B052A5AE6750069C684 /* DLLocationService.swift in Sources */,

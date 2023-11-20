@@ -14,8 +14,8 @@ struct Drive_LoggerApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView().modelContainer(for: DLDrive.self)
-        }
+            ContentView()
+        }.modelContainer(for: [DLDrive.self, DLLocationPointStore.self])
         
     }
 }

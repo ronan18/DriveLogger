@@ -13,7 +13,7 @@ import SwiftData
 
 struct HomeHeaderSection: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    @Query(sort: \DLDrive.startTime, order: .reverse) private var drives: [DLDrive]
     
     @State var isShowingNavView: Bool = false
     

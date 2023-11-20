@@ -14,7 +14,7 @@ public var iconWidth: CGFloat = 20
 public struct TimeDrivenTodayStatCard: View {
     var drivenToday: TimeInterval
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    @Query(sort: \DLDrive.startTime, order: .reverse) private var drives: [DLDrive]
     var widgetMode: Bool
     var label: LocalizedStringResource
     var daysInGraph: Int

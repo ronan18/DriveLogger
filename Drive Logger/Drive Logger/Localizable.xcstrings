@@ -142,6 +142,9 @@
         }
       }
     },
+    "Average speed: %lldmph" : {
+
+    },
     "Cancel" : {
       "localizations" : {
         "es" : {
@@ -215,6 +218,9 @@
         }
       }
     },
+    "end" : {
+
+    },
     "End Drive" : {
       "localizations" : {
         "es" : {
@@ -274,18 +280,8 @@
     "If weather and location data are unavailable, Drive Logger will default to these times." : {
 
     },
-    "Learn more about [weather data sources](https://google.com)" : {
+    "Learn more about " : {
 
-    },
-    "locations: %lld, %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "locations: %1$lld, %2$@"
-          }
-        }
-      }
     },
     "logged drives" : {
       "localizations" : {
@@ -306,6 +302,9 @@
           }
         }
       }
+    },
+    "mph" : {
+
     },
     "Name" : {
       "localizations" : {
@@ -518,6 +517,9 @@
           }
         }
       }
+    },
+    "Weather Data Sources" : {
+
     }
   },
   "version" : "1.0"

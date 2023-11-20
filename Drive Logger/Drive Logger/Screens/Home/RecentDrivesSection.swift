@@ -11,7 +11,7 @@ import DriveLoggerKit
 import SwiftData
 struct RecentDrivesSection: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    @Query(sort: \DLDrive.startTime, order: .reverse) private var drives: [DLDrive]
     
     var appState: AppState
     var body: some View {
@@ -49,6 +49,7 @@ struct RecentDrivesSection: View {
             modelContext.insert(newItem)
         }
     }
+    @MainActor
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {

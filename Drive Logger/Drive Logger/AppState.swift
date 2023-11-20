@@ -24,8 +24,9 @@ public final class AppState {
     public var context: ModelContext? = nil
     public var currentDrive: CurrentDrive? = nil
     var lastLocation: DLLocationPointStore? = nil
-    public var locationList: [CLLocationCoordinate2D] = []
-    public var tripPolyLine: MKPolyline = .init(coordinates: [], count: 0)
+    var lastLocationData: CLLocation? = nil
+    var locationList: [DLRoutePoint] = []
+    
    
     public var goal: TimeInterval = 50*60*60
     public var defaultSunrise: SunTime = SunTime(hour: 6, minute: 26)
@@ -33,7 +34,7 @@ public final class AppState {
     
     public var setUpFlow = false
     public var driveEditorPresented = false
-    public var driveToBeEdited: DLDrive = DLDrive(sampleData: true)
+    public var driveToBeEdited: DLDrive? = nil
     
     public var statistics = DriveLoggerStatistics(drives: [])
     
@@ -53,6 +54,8 @@ public final class AppState {
     public init(firstBoot: Bool = false) {
      //   self.start()
         self.manager = CLLocationManager()
+        self.manager.allowsBackgroundLocationUpdates = true
+        self.manager.showsBackgroundLocationIndicator = true
         let preferences = service.readUserPreferences()
         if let preferences = preferences {
             self.goal = preferences.goal
@@ -117,7 +120,7 @@ public final class AppState {
         return
     }
      public func startDrive() {
-         let drive = CurrentDrive(start: Date(), startLocation: nil)
+         let drive = CurrentDrive(start: Date(), startLocation: nil, route: nil)
          self.currentDrive = drive
          self.locationList = []
          service.saveCurrentDrive(drive)
@@ -158,20 +161,32 @@ public final class AppState {
         }
     }
     @MainActor
-     public func stopDrive() async {
-         print("stoping drive")
-         guard let context = context else {
-             print("no context to stop drive")
+    public func stopDrive() async {
+        print("stoping drive")
+        guard let context = context else {
+            print("no context to stop drive")
             
-             return
-         }
-       let currentDriveEnd = Date()
-         let drive = currentDrive
+            return
+        }
+        let currentDriveEnd = Date()
+        let drive = currentDrive
         self.currentDrive = nil
-         let endLocation = lastLocation
+        var endLocation: DLLocationPointStore? = nil
+        
+        if let lastLoc = lastLocation {
+            let item = DLLocationPointStore(placeName: lastLoc.placeName, lat: lastLoc.lat, lon: lastLoc.lon)
+           context.insert(item)
+            endLocation = item
+            print("last location", lastLoc, lastLoc.context, lastLoc.hasChanges())
+           
+            print("end location", endLocation,  endLocation!.context, endLocation!.hasChanges())
+            print("item location", item,  item.context, item.hasChanges())
+        }
+         
         
          service.deleteCurrentDrive()
          self.locationsUpdating = false
+         self.manager.stopUpdatingLocation()
        
          guard let currentDriveStart = drive?.start else {
             print("no drive start")
@@ -191,7 +206,7 @@ public final class AppState {
                  if let civilDusk = sunEvents.civilDusk {
                      sunSetTime = civilDusk
                  }
-                
+                print("got sunrise and sunset times")
              } catch {
                  print(error, "weather")
              }
@@ -201,7 +216,7 @@ public final class AppState {
              weather = try? await weatherService.condtitions(for: CLLocation(latitude: startLocation.lat, longitude: startLocation.lon))
          }
         
-         let newDrive = DLDrive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation, endLocation: endLocation, startLocationName: drive?.startLocation?.placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather)
+         let newDrive = DLDrive(id: UUID(), startTime: currentDriveStart, endTime: currentDriveEnd, startLocation: drive?.startLocation, endLocation: lastLocation, startLocationName: drive?.startLocation?.placeName ?? "", endLocationName: endLocation?.placeName, sunsetTime: sunSetTime, sunriseTime: sunRiseTime, weather: weather, route: self.locationList.count > 0 ? DLRouteStore(routePoints: self.locationList) : nil)
          print("new drive", newDrive)
          
         context.insert(newDrive)
@@ -241,9 +256,13 @@ public final class AppState {
         do {
             for try await update in updates {
                 print(update, "location update")
+                if (!locationsUpdating) {
+                    break
+                }
                 if let location = update.location {
-                    self.locationList.append(location.coordinate)
-                    self.tripPolyLine = .init(coordinates: self.locationList, count: locationList.count)
+                    self.locationList.append(DLRoutePoint(from: location))
+                    self.lastLocationData = location
+                   // self.tripPolyLine = .init(coordinates: self.locationList, count: locationList.count)
                     if let locationName = await DLLocationService.shared.cityName(from: location) {
                         print(locationName, "location name")
                         let storeLoc = DLLocationPointStore(placeName: locationName, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
@@ -262,9 +281,7 @@ public final class AppState {
                    
                     
                 }
-                if (!locationsUpdating) {
-                    break
-                }
+                
                 
             }
         } catch {

@@ -47,10 +47,9 @@ import SwiftData
 public let previewContainer: ModelContainer = {
     do {
         let container = try ModelContainer(
-            for: [DLDrive.self], ModelConfiguration(inMemory: true)
-        )
+            for: DLDrive.self        )
         for card in SampleData.driveList {
-            container.mainContext.insert(object: card)
+            container.mainContext.insert(card)
         }
         return container
     } catch {

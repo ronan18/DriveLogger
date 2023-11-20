@@ -48,20 +48,21 @@ struct DL_Driving_ActivityLiveActivity: Widget {
         }
     }
 }
+/*
 
 extension DL_Driving_ActivityAttributes {
     fileprivate static var preview: DL_Driving_ActivityAttributes {
-        DL_Driving_ActivityAttributes(currentDrive: CurrentDrive(start: Date(), startLocation: DLLocationPointStore(placeName: "Oakmore", lat: 45, lon: 23)))
+        DL_Driving_ActivityAttributes(currentDrive: CurrentDrive(start: Date(), startLocation: DLLocationPointStore(placeName: "Oakmore", lat: 45, lon: 23), route: nil))
     }
 }
 
 extension DL_Driving_ActivityAttributes.ContentState {
     fileprivate static var smiley: DL_Driving_ActivityAttributes.ContentState {
-        DL_Driving_ActivityAttributes.ContentState(currentDrive: CurrentDrive(start: Date(), startLocation: nil))
+        DL_Driving_ActivityAttributes.ContentState(currentDrive: CurrentDrive(start: Date(), startLocation: nil, route: nil))
      }
      
      fileprivate static var starEyes: DL_Driving_ActivityAttributes.ContentState {
-         DL_Driving_ActivityAttributes.ContentState(currentDrive: CurrentDrive(start: Date(), startLocation: nil))
+         DL_Driving_ActivityAttributes.ContentState(currentDrive: CurrentDrive(start: Date(), startLocation: nil, route: nil))
      }
 }
 
@@ -71,3 +72,4 @@ extension DL_Driving_ActivityAttributes.ContentState {
     DL_Driving_ActivityAttributes.ContentState.smiley
     DL_Driving_ActivityAttributes.ContentState.starEyes
 }
+*/

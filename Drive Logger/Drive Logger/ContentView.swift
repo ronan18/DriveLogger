@@ -12,8 +12,8 @@ import DriveLoggerKit
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.scenePhase) private var scene
-    @State var appState = AppState.shared
-    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    @State var appState = AppState()
+    @Query(sort: \DLDrive.startTime, order: .reverse) private var drives: [DLDrive]
     init () {
       
         
@@ -29,14 +29,16 @@ struct ContentView: View {
                     HomeView(appState: appState).modelContext(modelContext)
                 
             }
-        }.inspector(isPresented: self.$appState.driveEditorPresented, content: {
-            
-            DriveEditorView(drive: self.$appState.driveToBeEdited, appState: self.appState)
+        }.sheet(isPresented: self.$appState.driveEditorPresented, content: {
+            if (self.appState.driveToBeEdited != nil) {
+                DriveEditorView(drive: self.appState.driveToBeEdited! ,appState: self.appState)
+            }
             
             
         }).onAppear {
             self.appState.context = modelContext
             print("added appstate model context", modelContext.container.schema)
+          //  modelContext.container
             self.appState.statistics.updateStatistics(drives)
             print("DLSTAT triggered stat update on launch", drives.count)
            

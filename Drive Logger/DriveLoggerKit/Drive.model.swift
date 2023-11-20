@@ -64,15 +64,21 @@ final public class DLDrive: Identifiable, Hashable {
     public var sunsetTime: Date
     public var sunriseTime: Date
     
-    private var startLocationData: Data?
-    private var endLocationData: Data?
+    private var routeData: Data?
+    
+   //@Relationship(<#T##options: PropertyOptions...##PropertyOptions#>)
+    public var startLocation: DLLocationPointStore?
+    
+  //  @Relationship(.cascade)
+    public var endLocation: DLLocationPointStore?
+    
     private var weatherStore: Data?
 
-    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationPointStore?, endLocation: DLLocationPointStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date, weather: CurrentWeather?) {
+    public init(id: UUID, startTime: Date, endTime: Date, startLocation: DLLocationPointStore?, endLocation: DLLocationPointStore?, startLocationName: String?, endLocationName: String?, sunsetTime: Date, sunriseTime: Date, weather: CurrentWeather?, route: DLRouteStore?) {
         self.startTime = startTime
         self.endTime = endTime
-        self.startLocationData = try? startLocation?.storeValue()
-        self.endLocationData = try? endLocation?.storeValue()
+        self.startLocation = startLocation
+        self.endLocation = endLocation
         self.startLocationName = startLocationName ?? ""
         self.endLocationName = endLocationName ?? ""
         self.id = UUID().uuidString
@@ -84,6 +90,9 @@ final public class DLDrive: Identifiable, Hashable {
         } else {
             self.weatherStore = nil
         }
+        if let route = route {
+            self.routeData = try? route.storeData()
+        }
         
        
  
@@ -94,8 +103,8 @@ final public class DLDrive: Identifiable, Hashable {
         let startTime = Date(timeIntervalSinceNow: (0 - (Double.random(in: 1000...500000))))
         self.startTime = startTime
         self.endTime = Date(timeInterval: (Double.random(in: 100...9000)), since: startTime)
-        self.startLocationData = nil
-        self.endLocationData = nil
+        self.startLocation = nil
+        self.endLocation = nil
         self.startLocationName = SampleData.locations.randomElement() ?? ""
         self.endLocationName = SampleData.locations.randomElement() ?? ""
         self.id = UUID().uuidString
@@ -105,10 +114,18 @@ final public class DLDrive: Identifiable, Hashable {
        // self.sunsetTime = SunTime(hour: 7, minute: 30)
        // self.sunriseTime =  SunTime(hour: 14, minute: 45)
         self.weatherStore = nil
-        
+        self.routeData = nil
        
     }
-    public var startLocation: DLLocationPointStore? {
+    public var route: DLRouteStore? {
+        guard let data = self.routeData else {
+            return nil
+        }
+        return try? DLRouteStore(from: data)
+    }
+   /* public var startLocation: DLLocationPointStore? {
+        print(self)
+        print(self.startLocationData as Any, "start location data")
         guard let data = self.startLocationData else {
             return nil
         }
@@ -120,7 +137,7 @@ final public class DLDrive: Identifiable, Hashable {
         }
         return try? DLLocationPointStore.init(from: data)
     }
-
+*/
     public var backupDriveString: LocalizedStringResource {
         var result: LocalizedStringResource = LocalizedStringResource(stringLiteral: startTime.formatted(date: .abbreviated, time: .shortened))
         if !self.startLocationName.isEmpty {

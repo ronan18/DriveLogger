@@ -15,7 +15,7 @@ import SwiftData
 struct TimeUntilCompleteWidgetView : View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.widgetFamily) private var widgetFamily
-    @Query(sort: \.startTime, order: .reverse) private var drives: [DLDrive]
+    @Query(sort: \DLDrive.startTime, order: .reverse) private var drives: [DLDrive]
     var entry: Provider.Entry
 
     var body: some View {

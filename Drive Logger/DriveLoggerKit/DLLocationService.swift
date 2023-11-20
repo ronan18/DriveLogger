@@ -26,7 +26,7 @@ public final class DLLocationService {
             print("DLLoc last poll time", lastPoll?.timeIntervalSinceNow as Any)
             return lastName
         }
-        lastPoll = Date()
+        
         if let lastLocation = lastLocation {
             if let lastName = lastName {
                 if lastLocation.distance(from: location) > threshHold {
@@ -35,8 +35,9 @@ public final class DLLocationService {
                 }
             }
         }
+        
 
-        self.lastLocation = location
+
 
         return await withCheckedContinuation{cont in
          
@@ -64,17 +65,20 @@ public final class DLLocationService {
                         }
                         self.lastName = resultString
                         self.lastLocation = location
+                        self.lastPoll = Date()
                         cont.resume(returning: resultString)
                         
                     } else {
                         self.lastName = nil
                         self.lastLocation = nil
+                        self.lastPoll = Date()
                         cont.resume(returning: nil)
                     }
                     
                 } else {
                     self.lastName = nil
                     self.lastLocation = nil
+                    self.lastPoll = Date()
                     cont.resume(returning: nil)
                 }
             })
